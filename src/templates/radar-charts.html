@@ -1,0 +1,548 @@
+{% extends "index.html" %}
+
+{% block meta %}
+ <title>chaarts — Radar charts</title>
+ <meta property="og:url" content="https://ffoodd.github.io/chaarts/radar-charts.html">
+ <meta property="og:title" content="chaarts — Radar charts">
+ <meta property="og:type" content="article">
+ <meta property="og:description"
+    name="description" content="Charts with HTML & CSS">
+ <meta name="twitter:card" content="summary">
+{% endblock %}
+
+{% block navigation %}
+<ul class="fly-out">
+  <li><a href="./index.html">Accueil</a></li>
+  <li><a href="./bar-charts.html">Graphique en barre</a></li>
+  <li><a href="./line-charts.html">Graphique linéaire</a></li>
+  <li><a href="./column-charts.html">Histogramme</a></li>
+  <li><a href="./pie-charts.html">Graphique en tarte</a></li>
+  <li><a ria-current="page">Graphique radar</a></li>
+</ul>
+{% endblock %}
+
+{% block main %}
+<h1>Graphique radar</h1>
+
+<p>
+ Celui-ci est plutôt amusant. On définit quelques variables
+ <abbr lang="en" title="Cascading StyleSheet">CSS</abbr> sur le tableau
+ &nbsp;: l’échelle (et les paliers), le nombre d’éléments, et les valeurs.
+</p>
+
+<p>
+ Côté <abbr lang="en" title="Cascading StyleSheet">CSS</abbr>, ça se complique&nbsp;:
+</p>
+
+<ul>
+ <li>
+  sur l’élément <code>&lt;table></code>, on crée l’échelle circulaire à l’aide de deux
+  <code>repeating-radial-gradient()</code> successifs —&nbsp;en fonction des variables
+  <var>--scale</var> et <var>--step</var>&nbsp;;
+ </li>
+ <li>
+  chaque élément <code>&lt;th></code> est déplacé à l’extérieur du cercle ainsi formé,
+  grâce à une technique empruntée à
+  <a href="https://stackoverflow.com/questions/12813573/position-icons-into-circle" hreflang="en">
+  <cite>Ana Tudor</cite>, qui l’explique sur StackOverflow</a>&nbsp;;
+ </li>
+ <li>
+  puis —&nbsp;toujours sur les cellules d’entête&nbsp;— la valeur correspondant à chaque colonne
+  est affichée dans un pseudo-élément <code>::after</code> à l’aide
+  <a hreflang="en" href="https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab">d’une
+  astuce de <cite>Cassie Evans</cite>, utilisant <code>counter-reset</code> et <code>counter()</code>
+  pour afficher une variable numérique dans la propriété <code>content</code></a>.
+ <li>
+  Puis la magie opère sur les éléments <code>&lt;td></code>&nbsp;:
+  <ol>
+   <li>
+    chacun est ajusté pour former <strong>un carré dont le côté est égal au rayon
+    du cercle</strong> en arrière-plan&nbsp;;
+   </li>
+   <li>
+    puis transformé de façon à représenter une portion du cercle en fonction du nombre
+    d’éléments —&nbsp;précisé avec <var>--items</var>&nbsp;— grâce à
+    <a href="https://tympanus.net/codrops/2013/08/09/building-a-circular-navigation-with-css-transforms/" hreflang="en">
+    une technique partagée par <cite>Sara Soueidan</cite> sur Codrops</a>,
+   </li>
+   <li>chacun se voit décoré d’une bordure, en bas&nbsp;;</li>
+   <li>
+    puis on utilise de nouveau <code>clip-path</code> et la fonction <code>polygon()</code>
+    sur chaque enfant direct <code>&lt;span></code> —&nbsp;étendu pour occuper toute la surface
+    de son <code>&lt;td></code> de parent&nbsp;— afin de former un triangle, basé pour un côté
+    sur le ratio valeur de l’élément courant / échelle, et sur un autre côté un ratio basé sur
+    la valeur de l’élément suivant (miam les <code>calc()</code>)
+    —&nbsp;mais sur une autre échelle…
+   </li>
+   <li>
+    car pour <strong>compenser la distorsion</strong> due à la fonction <code>skew()</code>,
+    nous devons corriger l’échelle sur laquelle est calculée le second ratio à l’aide d’un peu
+    de trigonométrie&nbsp;:
+    <ul>
+     <li>
+      nous connaissons un côté du triangle rectangle obtenu après la déformation,
+      ainsi que deux angles —&nbsp;le droit, bien entendu, et nous déduisons le deuxième de
+      l’angle utilisé pour déformer l’élément&nbsp;;
+     </li>
+     <li>
+      nous pouvons donc <strong>calculer l’hypothénuse</strong> en utilisant la loi des sinus,
+      —&nbsp;comme précédemment dans le graphique en tarte&nbsp;;
+     </li>
+     <li>
+      et finalement, il ne nous reste qu’à calculer le ratio entre la dimension initiale
+      —&nbsp;le côté&nbsp;— et la dimension finale —&nbsp;l’hypothénuse&nbsp;— et appliquer ce ratio
+      à l’échelle sur laquelle est placée le deuxième point du polygone.
+     </li>
+    </ul>
+   </li>
+   <li>
+    le troisième point du polygône est l’angle en bas à droite, dont les coordonnées sont
+    <code>100% 100%</code>&nbsp;;
+   </li>
+  </ol>
+  <li>
+   une dernière astuce est nécessaire pour fermer la forme&nbsp; vous l’avez vu, nous utilisons
+   la valeur courante et la valeur suivante pour chaque élément. Mais arrivé au dernier élément,
+   il n’y a plus de suivant&nbsp;! Il faut donc <strong>ajouter une valeur</strong>,
+   à laquelle on attribue la première valeur —&nbsp;dans cet exemple, <var>--8: var(--1);</var>.
+ </li>
+</ul>
+
+<p>Et voilà, c’est tout&nbsp;!</p>
+
+<div class="table-container radar-container" role="group" aria-labelledby="caption-9">
+ <div class="fieldset d-flex sm-hidden">
+  <p class="label no-margin">
+   <strong id="label-9">Interrupteur</strong><br>
+   <span id="description-9">Permet de désactiver les styles sur le tableau suivant.</span>
+  </p>
+  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
+      role="switch" aria-checked="true"
+      aria-labelledby="label-9" aria-describedby="description-9">
+   <span>Guilleret</span>
+   <span>Sobre</span>
+  </button>
+ </div>
+
+ <table class="table-charts radar" id="radar" style="--scale: 20; --step: 5; --items: 7; --1: 14; --2: 11; --3: 13; --4: 16; --5: 10; --6: 12; --7: 4; --8: var(--1);">
+  <caption id="caption-9">Niveau d’intérêt par domaine, sur 20</caption>
+  <thead>
+   <tr>
+    <th scope="col">Accessibilité</th>
+    <th scope="col">Référencement</th>
+    <th scope="col">Performance</th>
+    <th scope="col">Compatibilité</th>
+    <th scope="col">Sécurité</th>
+    <th scope="col">Qualité de code</th>
+    <th scope="col">Test</th>
+   </tr>
+  </thead>
+  <tbody>
+   <tr>
+    <td><span>14</span></td>
+    <td><span>11</span></td>
+    <td><span>13</span></td>
+    <td><span>16</span></td>
+    <td><span>10</span></td>
+    <td><span>12</span></td>
+    <td><span>4</span></td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+
+<details>
+ <summary>Le <abbr lang="en" title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
+ <div>
+  <pre>
+   <code class="language-markup">
+&lt;table class="table-charts radar" id="radar" style="--scale: 20; --step: 5; --items: 7; --1: 14; --2: 11; --3: 13; --4: 16; --5: 10; --6: 12; --7: 4; --8: var(--1);">
+ &lt;caption id="caption-9">Niveau d’intérêt par domaine, sur 20&lt;/caption>
+ &lt;thead>
+   &lt;tr>
+     &lt;th scope="col">Accessibilité&lt;/th>
+     &lt;th scope="col">Référencement&lt;/th>
+   &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+   &lt;tr>
+     &lt;td>&lt;span>14&lt;/span>&lt;/td>
+     &lt;td>&lt;span>11&lt;/span>&lt;/td>
+   &lt;/tr>
+ &lt;/tbody>
+&lt;/table></code>
+  </pre>
+ </div>
+</details>
+<details>
+ <summary>Le <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
+ <div>
+  <pre>
+   <code class="language-css">
+@supports(clip-path: polygon(calc( 0% 0%, 100% - ( var(--1) * 100% / var(--scale) ) ) 100%, 100% 100%)) {
+ .table-charts[class*="radar"] {
+   --radius: 12.8rem;
+   --unitless-radius: calc( 1024 / 16 / 5 );
+   --size: calc( var(--radius) / var(--scale) );
+   --part: calc( 360deg / var(--items) );
+   background-image:
+     repeating-radial-gradient(
+       circle at 50%,
+       rgba(0, 0, 0, .2),
+       rgba(0, 0, 0, .2) 2px,
+       transparent 2px,
+       transparent calc(var(--size) * var(--step))
+     ),
+     repeating-radial-gradient(
+       circle at 50%,
+       rgba(0, 0, 0, .1),
+       rgba(0, 0, 0, .1) 2px,
+       transparent 2px,
+       transparent var(--size)
+     );
+   border: 2px solid;
+   border-radius: 50%;
+   contain: layout style;
+   counter-reset: scale var(--scale);
+   height: calc( var(--radius) * 2 );
+   margin: 6rem auto 12rem;
+   overflow: visible;
+   position: relative;
+   width: calc( var(--radius) * 2 );
+ }
+
+ .table-charts[class*="radar"] caption {
+   background: none;
+   bottom: -10rem;
+   position: absolute;
+ }
+
+ .table-charts[class*="radar"] [scope="col"] {
+   --away: calc( (var(--radius) * -1) - 50% );
+   left: 50%;
+   margin: 0;
+   padding: 0 1rem;
+   position: absolute;
+   top: 50%;
+   transform:
+     translate3d(-50%, -50%, 0)
+     rotate( calc(var(--part) * var(--index, 1)) )
+     translate( var(--away) )
+     rotate( calc(var(--part) * var(--index, 1) * -1) );
+ }
+
+ .table-charts[class*="radar"] tr > *:nth-of-type(2) {
+   --index: 2;
+ }
+
+ .table-charts[class*="radar"] td {
+   --skew: calc( 90deg - var(--part) );
+   border-bottom: 1px solid blueviolet;
+   height: 50%;
+   left: 0;
+   margin: 0;
+   position: absolute;
+   top: 0;
+   transform:
+     rotate( calc(var(--part) * var(--index, 1)) )
+     skew( var(--skew) );
+   transform-origin: 100% 100%;
+   width: 50%;
+ }
+
+ .table-charts[class*="radar"] span {
+   --opposite: calc( 180 - (90 + (90 - (360 / var(--items)))) );
+   --angle: calc( var(--opposite) * 0.01745329251 );
+   --sin-term-angle-1: var(--angle);
+   --sin-term-angle-2: calc((var(--angle) * var(--angle) * var(--angle)) / 6);
+   --sin-term-angle-3: calc((var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle)) / 120);
+   --sin-term-angle-4: calc((var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle)) / 5040);
+   --sin-term-angle-5: calc((var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle)) / 362880);
+   --sin-angle: calc(var(--sin-term-angle-1) - var(--sin-term-angle-2) + var(--sin-term-angle-3) - var(--sin-term-angle-4) + var(--sin-term-angle-5));
+   --hypo: calc( var(--unitless-radius) / var(--sin-angle) );
+   --ratio: calc( var(--hypo) / var(--unitless-radius) );
+   background: linear-gradient(
+     to top left,
+     blueviolet 10%,
+     darkblue 75%
+   );
+   filter: drop-shadow( 0 0 1rem indigo );
+   height: 100%;
+   position: absolute;
+   width: 100%;
+ }
+
+ .table-charts[class*="radar"] td:nth-of-type(2) span {
+   --pos: calc( 100% - (var(--3) * 100% / (var(--scale) * var(--ratio) ) ) );
+   clip-path: polygon(
+     100% var(--pos),
+     calc( 100% - ( var(--2) * 100% / var(--scale) ) ) 100%,
+     100% 100%
+   );
+ }
+
+ .table-charts[class*="radar"] td::after,
+ .table-charts[class*="radar"] td::before {
+   display: none;
+ }
+
+ .table-charts.radar [scope="col"]::after {
+   color: rebeccapurple;
+   display: block;
+   font-size: small;
+   font-weight: 400;
+ }
+
+ .table-charts.radar [scope="col"]:nth-child(2)::after {
+   counter-reset: value var(--2);
+   content: counter(value) "\A0/\A0" counter(scale);
+ }
+}</code>
+  </pre>
+ </div>
+</details>
+
+<div class="grid-2-1">
+  <div class="note">
+   <h3>Bug dans Chromium</h3>
+   <p>
+    Il y a en ce moment un bug dans Chromium —&nbsp;j’ai saisi
+    <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=939728" hreflang="en"
+    target="_blank" rel="noopener noreferrer">un ticket sur bugs.chromium.org</a>&nbsp;—
+    lors de l’utilisation de la propriété <code>border-spacing</code> sur le tableau&nbsp;:
+    cela <strong>empêche Chrome de définir les dimensions du tableau</strong>…
+    Pour les utilisateurs de Chrome, utilisez l’inspecteur pour décocher cette propriété
+    sur la balise <code>&lt;table></code> de ces exemples&nbsp;!
+   </p>
+  </div>
+  <figure role="figure" aria-label="Capture d’écran de la déformation provoquée par skew.">
+    <img src="img/hypothenuse.jpg" alt="La fonction skew() déforme l’élément en l’inclinant." width="277" height="202" />
+    <figcaption>
+      Capture d’écran de la déformation provoquée par <code>skew()</code>.
+    </figcaption>
+  </figure>
+</div>
+
+
+<h2>Radars superposés</h2>
+
+<p>Très peu de changements par rapport à la version précédente&nbsp;:</p>
+
+<ol>
+ <li>
+  l’élément <code>&lt;table></code> ne porte plus les valeurs, mais dispose d’une nouvelle
+  variable <var>--areas</var> pour indiquer le nombre de lignes dans le tableau&nbsp;;
+ </li>
+ <li>
+  en revanche on multiplie le nombre de lignes dans le corps du tableau&nbsp;:
+  <ul>
+   <li>
+    chacune porte plusieurs variables&nbsp;:
+    <var>--color</var> puis les valeurs —&nbsp;<var>--1</var>, etc.&nbsp;;
+   </li>
+   <li>
+    et contient plusieurs cellules&nbsp;: une d’entête de ligne <code>&lt;th scope="row"></code>
+    et des cellules de données <code>&lt;td></code>&nbsp;;
+  </ul>
+ </li>
+ <li>
+  le reste est relativement commun désormais —&nbsp;si vous avez parcourus les exemples précédents&nbsp;:
+  <ol>
+   <li>
+    une couleur pour chaque ligne, présentée sur les cellules d’entête et servant d’arrière-plan aux
+    cellules de données&nbsp;;
+   </li>
+   <li>
+    un effet distinctif au <strong>survol</strong> de chaque ligne&nbsp;: les valeurs apparaissent
+    textuellement au survol, et la ligne survolée est mise en exergue. Afin de ne pas priver les utilisateurs
+    n’ayant pas de pointeur doué pour le survol, cet effet est une <strong>amélioration progressive</strong>
+    basé sur la <em lang="en">media query</em> <code>@media (hover: hover) { … }</code>.
+   </li>
+  </ol>
+ </li>
+
+</ol>
+
+<div class="table-container radar-container" role="group" aria-labelledby="caption-11">
+ <div class="fieldset d-flex sm-hidden">
+  <p class="label no-margin">
+   <strong id="label-11">Interrupteur</strong><br>
+   <span id="description-11">Permet de désactiver les styles sur le tableau suivant.</span>
+  </p>
+  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
+      role="switch" aria-checked="true"
+      aria-labelledby="label-11" aria-describedby="description-11">
+   <span>Guilleret</span>
+   <span>Sobre</span>
+  </button>
+ </div>
+
+ <table class="table-charts radar-multiple" id="radar-multiple" style="--scale: 20; --step: 5; --items: 7; --areas: 2;">
+  <caption id="caption-11">Niveau d’intérêt par domaine, sur 20</caption>
+  <thead>
+   <tr>
+    <td></td>
+    <th scope="col">Accessibilité</th>
+    <th scope="col">Référencement</th>
+    <th scope="col">Performance</th>
+    <th scope="col">Compatibilité</th>
+    <th scope="col">Sécurité</th>
+    <th scope="col">Qualité de code</th>
+    <th scope="col">Test</th>
+   </tr>
+  </thead>
+  <tbody>
+   <tr style="--color: #734bf9; --1: 14; --2: 11; --3: 13; --4: 16; --5: 14; --6: 10; --7: 4; --8: var(--1);">
+    <th scope="row">Gaël</th>
+    <td><span>14</span></td>
+    <td><span>11</span></td>
+    <td><span>13</span></td>
+    <td><span>16</span></td>
+    <td><span>14</span></td>
+    <td><span>10</span></td>
+    <td><span>4</span></td>
+   </tr>
+   <tr style="--color: #e11a81; --1: 18; --2: 10; --3: 11; --4: 16; --5: 10; --6: 12; --7: 11; --8: var(--1);">
+    <th scope="row">Luc</th>
+    <td><span>18</span></td>
+    <td><span>10</span></td>
+    <td><span>11</span></td>
+    <td><span>16</span></td>
+    <td><span>10</span></td>
+    <td><span>12</span></td>
+    <td><span>11</span></td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+
+<details>
+ <summary>Le <abbr lang="en" title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
+ <div>
+  <pre>
+   <code class="language-markup">
+&lt;table class="table-charts radar-multiple" id="radar-multiple" style="--scale: 20; --step: 5; --items: 7; --areas: 2;">
+ &lt;caption id="caption-9">Niveau d’intérêt par domaine, sur 20&lt;/caption>
+ &lt;thead>
+   &lt;tr>
+     &lt;th scope="col">Accessibilité&lt;/th>
+     &lt;th scope="col">Référencement&lt;/th>
+   &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+   &lt;tr style="--color: #734bf9; --1: 14; --2: 11; --3: 13; --4: 16; --5: 14; --6: 10; --7: 4; --8: var(--1);">
+     &lt;th scope="row">Gaël&lt;/th>
+     &lt;td>&lt;span>14&lt;/span>&lt;/td>
+   &lt;/tr>
+   &lt;tr style="-color: #e11a81; --1: 18; --2: 10; --3: 11; --4: 16; --5: 10; --6: 12; --7: 11; --8: var(--1);">
+     &lt;th scope="row">Luc&lt;/th>
+     &lt;td>&lt;span>18&lt;/span>&lt;/td>
+   &lt;/tr>
+ &lt;/tbody>
+&lt;/table></code>
+  </pre>
+ </div>
+</details>
+<details>
+ <summary>Le <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
+ <div>
+  <pre>
+   <code class="language-css">
+.table-charts.radar-multiple {
+ margin-bottom: 12rem;
+}
+
+.table-charts.radar-multiple tbody {
+ columns: var(--areas);
+ vertical-align: bottom;
+}
+
+.table-charts.radar-multiple [scope="row"] {
+ bottom: -8rem;
+ height: 2rem;
+ left: 1rem;
+ position: absolute;
+}
+
+.table-charts.radar-multiple [scope="row"]::before {
+ background: var(--color, currentColor);
+ content: "";
+ display: inline-block;
+ height: 1rem;
+ margin-right: .25rem;
+ transform: translate3d(0, .1rem, 0);
+ width: 1rem;
+}
+
+/* Pour obtenir une deuxième zone : */
+.table-charts.radar-multiple tr:nth-child(2) [scope="row"] {
+ left: calc( 1rem + (100% / var(--areas)) * 1);
+}
+
+.table-charts.radar-multiple td {
+ align-items: flex-end;
+ border-color: var(--color, currentColor);
+ display: flex;
+ justify-content: flex-end;
+ opacity: .5;
+ pointer-events: none;
+ transition: opacity .2s cubic-bezier(.5, 0, .5, 1);
+ will-change: opacity;
+ z-index: 0;
+}
+
+.table-charts.radar-multiple td::after {
+ color: var(--color, currentColor);
+ display: block;
+ font-size: small;
+ font-weight: 700;
+ text-indent: -.5rem;
+ transform:
+   skew( calc( var(--skew) * -1 ) )
+   rotate( calc( var(--part) * var(--index, 1) * -1 ) );
+ transform-origin: 0 0;
+ transition: inherit;
+ width: 100%;
+ will-change: inherit;
+ white-space: nowrap;
+}
+
+.table-charts.radar-multiple td:nth-of-type(2)::after {
+ counter-reset: value var(--2);
+ content: counter(value);
+ width: calc( var(--2) * 100% / var(--scale) );
+}
+
+.table-charts.radar-multiple span {
+ background: var(--color, currentColor);
+ pointer-events: auto;
+}
+
+@supports ( mask-image: url() ) {
+ .table-charts.radar-multiple span {
+   mask-image: radial-gradient(circle at bottom right, rgba(0,0,0,1), rgba(0,0,0,.5));
+ }
+}
+
+@media (hover: hover) {
+ .table-charts.radar-multiple td {
+   opacity: .25;
+ }
+
+ .table-charts.radar-multiple td::after {
+   opacity: 0;
+ }
+
+ .table-charts.radar-multiple tr:hover td {
+   opacity: 1;
+   z-index: 1;
+ }
+
+ .table-charts.radar-multiple tr:hover td::after {
+   opacity: inherit;
+ }
+}</code>
+  </pre>
+ </div>
+</details>
+{% endblock %}

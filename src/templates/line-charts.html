@@ -1,0 +1,628 @@
+{% extends "index.html" %}
+
+{% block meta %}
+ <title>chaarts — Line charts</title>
+ <meta property="og:url" content="https://ffoodd.github.io/chaarts/line-charts.html">
+ <meta property="og:title" content="chaarts — Line charts">
+ <meta property="og:type" content="article">
+ <meta property="og:description"
+    name="description" content="Charts with HTML & CSS">
+ <meta name="twitter:card" content="summary">
+{% endblock %}
+
+{% block navigation %}
+<ul class="fly-out">
+  <li><a href="./index.html">Accueil</a></li>
+  <li><a href="./bar-charts.html">Graphique en barre</a></li>
+  <li><a aria-current="page">Graphique linéaire</a></li>
+  <li><a href="./column-charts.html">Histogramme</a></li>
+  <li><a href="./pie-charts.html">Graphique en tarte</a></li>
+  <li><a href="./radar-charts.html">Graphique radar</a></li>
+</ul>
+{% endblock %}
+
+{% block main %}
+<h1>Graphique linéaire</h1>
+
+<h2>Graphique de surface</h2>
+
+<p>
+ Ce graphique repose sur <strong>les variables CSS, les grilles</strong> et <code>clip-path</code>.
+ Cette dernière propriété est la plus importante.
+</p>
+
+<ol>
+ <li>
+  Sur le <strong>tableau</strong>, les échelles sont indiquées&nbsp;:
+  <ul>
+   <li>
+    <var>--y</var> définit l’échelle des <strong>ordonnées</strong>, utilisée
+    pour indiquer l’échelle en arrière-plan mais aussi placer
+    les points sur la courbe&nbsp;;
+   </li>
+   <li>
+    <var>--x</var> correspond à l’échelle des <strong>abscisses</strong>, exprimée
+    simplement comme le nombre de colonnes à afficher&nbsp;;
+   </li>
+  </ul>
+ </li>
+ <li>
+  Chaque ligne <code>&lt;tr></code> dans <code>&lt;tbody></code> porte une palanquée
+  de variables, correspondant à toutes les valeurs qu’elle contient.
+  Dans un pseudo-élément <code>::before</code>, une position est définie pour chaque valeur
+  au sein de la fonction <code>polygon()</code> de <code>clip-path</code>.
+  <ul>
+   <li>
+    Étant donné que cette fonction accepte <strong>deux valeurs en pourcentage
+    chaque point</strong>, la méthode est relativement simple.
+    La position en abscisse est le nombre de colonnes (le décalage depuis la gauche, donc)
+    et la position en ordonnée est le ratio de la valeur sur l’échelle, le tout <strong>formulé ainsi</strong>&nbsp;:
+    <code>calc( ( 100% / var(--x) * 1 ) + var(--offset) ) calc( 100% - ( var(--1) / var(--y) * 100% ) )</code>,
+    où <var>* 1</var> et <var>var(--1)</var> correspondent à l’index de la valeur dans l’ensemble,
+    et <var>var(--offset)</var> est la valeur d’une demi-colonne, pour placer le point au milieu
+    de sa colonne.
+   </li>
+   <li>
+    Vous l’aurez peut-être compris, <strong>le principal écueil de ce graphique est qu’il
+    nécessite de connaître le nombre de points par avance</strong>.
+   </li>
+  </ul>
+ </li>
+ <li>
+  Chaque cellule <code>&lt;td></code> dans <code>&lt;tbody></code> porte un pseudo-élément
+  <code>::after</code> qui sert à <strong>récapituler</strong> ses entêtes et valeur dans
+  une infobulle simulée, et un pseudo-élément <code>::before</code> pour gérer un calque interactif sur la cellule&nbsp;:
+  <ul>
+   <li>
+    l’affichage multiligne repose sur <a hreflang="en"
+    href="https://lea.verou.me/2012/02/flexible-multiline-definition-lists-with-2-lines-of-css/">une
+    astuce de <cite>Lea Verou</cite> utilisant <code>white-space: pre;</code> et le caractère
+    <code>\A</code></a>&nbsp;;
+   </li>
+   <li>
+    l’affichage de propriétés personnalisées dans un pseudo-élément n’est pas si triviale&nbsp;:
+    cette propriété n’accepte que les chaînes de caractères, et nos propriétés personnalisées contiennent…
+    des entiers. Encore une fois on recycle <a hreflang="en" href="https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab">
+    une astuce de <cite>Cassie Evans</cite> basée sur <code>counter-reset</code> et sa valeur par défaut
+    pour <strong>convertir</strong> notre variable <var>--value</var> en chaîne</a>.
+   </li>
+  </ul>
+ </li>
+ <li>
+  Tout le reste n’est que décoration&nbsp;:
+  <ul>
+   <li>
+    un <code>padding-top</code> important sur le tableau pour
+    réserver l’espace d’affichage des graphiques —&nbsp;<strong>attention</strong>&nbsp;:
+    il est nécessaire d’appliquer <code>border-collapse: separate;</code> sur le tableau
+    afin que le <code>padding</code> ait un impact&nbsp;;
+   </li>
+   <li>le <code>::before</code> de chaque ligne est étiré afin d’occuper tout l’espace réservé&nbsp;;</li>
+   <li>un arrière-plan dégradé pour représenter la surface pleine du même <code>::before</code>&nbsp;;</li>
+   <li>
+    un <code>repeating-linear-gradient()</code> pour représenter l’échelle verticale,
+    en arrière-plan du tableau&nbsp;;
+   </li>
+   <li>
+    et des interactions au survol pour mettre en exergue la valeur survolée&nbsp;:
+    sa colonne à l’aide d’un pseudo-élément —&nbsp;positionné à l’aide de de savants calculs&nbsp;—
+    et <code>mix-blend-mode</code> pour un effet waouh.
+   </li>
+  </ul>
+ </li>
+</ol>
+
+{% import 'macros/_table-line.html' as table %}
+
+<div class="table-container line-container" role="group" aria-labelledby="caption-3">
+ <div class="fieldset d-flex sm-hidden">
+  <p class="label no-margin">
+   <strong id="label-3">Interrupteur</strong><br>
+   <span id="description-3">Permet de désactiver les styles sur le tableau suivant.</span>
+  </p>
+  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
+      role="switch" aria-checked="true"
+      aria-labelledby="label-3" aria-describedby="description-3">
+   <span>Guilleret</span>
+   <span>Sobre</span>
+  </button>
+ </div>
+
+ <table class="table-charts line" id="line"
+     style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Fév.'; --t-3: 'Mar.'; --t-4: 'Avr.'; --t-5: 'Mai'; --t-6: 'Juin';
+        --t-7: 'Juil.'; --t-8: 'Août'; --t-9: 'Sept.'; --t-10: 'Oct.'; --t-11: 'Nov.'; --t-12: 'Déc.';">
+  <caption id="caption-3">Température mensuelle moyenne en 2017</caption>
+  <thead>
+   <tr>
+    <th scope="col">Année</th>
+    <th scope="col">Jan.</th>
+    <th scope="col">Fév.</th>
+    <th scope="col">Mars</th>
+    <th scope="col">Avr.</th>
+    <th scope="col">Mai</th>
+    <th scope="col">Juin</th>
+    <th scope="col">Juil.</th>
+    <th scope="col">Août</th>
+    <th scope="col">Sep.</th>
+    <th scope="col">Oct.</th>
+    <th scope="col">Nov.</th>
+    <th scope="col">Déc.</th>
+   </tr>
+  </thead>
+  <tbody>
+   <tr style="--year: '2017'; --1: 8; --2: 6; --3: 9; --4: 12; --5: 15; --6: 21; --7: 24; --8: 25; --9: 22; --10: 19; --11: 14; --12: 9;">
+    <th scope="row">2017</th>
+    {{ table.line('8', '°C', 'Degré Celsius') }}
+    {{ table.line('6', '°C', 'Degré Celsius') }}
+    {{ table.line('9', '°C', 'Degré Celsius') }}
+    {{ table.line('12', '°C', 'Degré Celsius') }}
+    {{ table.line('15', '°C', 'Degré Celsius') }}
+    {{ table.line('21', '°C', 'Degré Celsius') }}
+    {{ table.line('24', '°C', 'Degré Celsius') }}
+    {{ table.line('25', '°C', 'Degré Celsius') }}
+    {{ table.line('22', '°C', 'Degré Celsius') }}
+    {{ table.line('19', '°C', 'Degré Celsius') }}
+    {{ table.line('14', '°C', 'Degré Celsius') }}
+    {{ table.line('9', '°C', 'Degré Celsius') }}
+   </tr>
+  </tbody>
+ </table>
+</div>
+
+<details>
+ <summary>Le <abbr lang="en" title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
+ <div>
+  <pre>
+   <code class="language-markup">
+&lt;table class="table-charts line" style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Fév.'; […]">
+ &lt;caption id="caption-3">Température mensuelle moyenne en 2017&lt;/caption>
+ &lt;thead>
+   &lt;tr>
+     &lt;th scope="col">Année&lt;/th>
+     &lt;th scope="col">Jan.&lt;/th>
+     &lt;th scope="col">[…]&lt;/th>
+   &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+   &lt;tr style="--year: '2017'; --1: 8; --2: 6; --3: 9; --4: 12; --5: 15; --6: 21; --7: 24; --8: 25; --9: 22; --10: 19; --11: 14; --12: 9;">
+     &lt;th scope="row">2017&lt;/th>
+     &lt;td>
+       8&nbsp;&lt;abbr title="Degré Celsius" aria-label="Degré Celsius">°C&lt;/abbr>
+     &lt;/td>
+     &lt;td>[…]&lt;/td>
+   &lt;/tr>
+ &lt;/tbody>
+&lt;/table></code>
+  </pre>
+ </div>
+</details>
+<details>
+ <summary>Le <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
+ <div>
+  <pre>
+   <code class="language-css">
+@supports (clip-path: polygon(0% calc( 100% - ( var(--1) * 100% / var(--y) )) )) {
+ .table-charts.line {
+   --offset: calc( ( 100% / var(--x) ) / 2 );
+   --height: calc( 32em - 2rem );
+   --bottom: calc( 100% - var(--height) );
+   padding: var(--height) 0 1rem;
+   position: relative;
+   transition:
+     background .3s cubic-bezier(.5, 0, .5, 1),
+     color .3s cubic-bezier(.5, 0, .5, 1);
+ }
+
+ .table-charts.line::after {
+   --scale: calc( ( 100% - ( var(--y) * 1px) ) / var(--y) );
+   background:
+     repeating-linear-gradient(
+       to bottom,
+       white, white var(--scale),
+       rgba(0, 0, 0, .25) calc( var(--scale) + 1px)
+     );
+   bottom: var(--bottom);
+   content: "";
+   position: absolute;
+   top: 0;
+   width: 100%;
+   z-index: 1;
+ }
+
+ .table-charts.line tr::before {
+   content: "";
+   position: absolute;
+ }
+
+ .table-charts.line [scope="row"],
+ .table-charts.line thead th:first-child {
+   color: var(--color, currentColor);
+   text-align: left;
+ }
+
+ .table-charts.line [style]::before {
+   bottom: var(--bottom);
+   background: linear-gradient(to top, deepskyblue, crimson 75%);
+   clip-path: polygon(
+     0% 100%,
+     calc( ( 100% / var(--x) * 1) ) 100%,
+     calc( ( 100% / var(--x) * 1) ) calc( 100% - ( var(--1) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 1) + var(--offset) ) calc( 100% - ( var(--1) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 2) + var(--offset) ) calc( 100% - ( var(--2) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 3) + var(--offset) ) calc( 100% - ( var(--3) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 4) + var(--offset) ) calc( 100% - ( var(--4) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 5) + var(--offset) ) calc( 100% - ( var(--5) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 6) + var(--offset) ) calc( 100% - ( var(--6) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 7) + var(--offset) ) calc( 100% - ( var(--7) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 8) + var(--offset) ) calc( 100% - ( var(--8) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 9) + var(--offset) ) calc( 100% - ( var(--9) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 10) + var(--offset) ) calc( 100% - ( var(--10) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 11) + var(--offset) ) calc( 100% - ( var(--11) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 12) + var(--offset) ) calc( 100% - ( var(--12) / var(--y) * 100% ) ),
+     100% calc( 100% - ( var(--12) / var(--y) * 100% ) ),
+     100% 100%,
+     0% 100%
+   );
+   content: "";
+   position: absolute;
+   top: 0;
+   width: 100%;
+   z-index: 2;
+ }
+
+ .table-charts.line th,
+ .table-charts.line td {
+   background: white;
+   font-weight: bold;
+   text-align: center;
+   width: calc( 100% / var(--x) );
+   width: 7.69%;
+ }
+
+ .table-charts.line th:hover,
+ .table-charts.line td:hover {
+   color: mediumblue;
+ }
+
+ .table-charts.line [scope="col"]:not(:first-child)::after {
+   background: white var(--stripes);
+   background-blend-mode: exclusion;
+   bottom: 4rem;
+   content: "";
+   height: calc( 100% - 4rem );
+   mix-blend-mode: soft-light;
+   opacity: 0;
+   position: absolute;
+   transition: opacity .3s cubic-bezier(.5, 0, .5, 1);
+   width: inherit;
+   z-index: 3;
+ }
+
+ .table-charts.line th[scope="col"]:nth-child(3)::after {
+   left: calc( 100% / var(--x) * 2 );
+ }
+
+ .table-charts.line [scope="col"]:hover::after {
+  opacity: .75;
+ }
+
+ .table-charts.line td {
+   --value: var(--1);
+   --term: var(--t-1);
+   line-height: 1.5;
+ }
+
+ .table-charts.line td::before {
+   content: '';
+   height: 1.5rem;
+   position: absolute;
+   transform: translateX(-50%);
+   width: inherit;
+   z-index: 10;
+ }
+
+ .table-charts.line td::after {
+   --arrow: calc(100% - .25rem);
+   --top: calc( var(--height) - ( var(--value) / var(--y) * var(--height) ) );
+   background-color: #444;
+   counter-reset: value var(--value);
+   content: var(--term) " " var(--year) "\A " counter(value) "\A0°C";
+   color: #fff;
+   clip-path: polygon(
+     0% 0%,
+     100% 0%,
+     100% var(--arrow),
+     calc(50% - .25rem) var(--arrow),
+     50% 100%,
+     calc(50% + .25rem) var(--arrow),
+     0% var(--arrow)
+   );
+   opacity: 0;
+   padding: .5rem;
+   left: calc( var(--offset) * 3 );
+   pointer-events: none;
+   position: absolute;
+   top: var(--top, 100);
+   transform-origin: 50% calc(100% + 10px);
+   transform:
+     translate3d(-50%, -125%, 0)
+     perspective(1000px)
+     rotate3d(1, 0, 0, 45deg);
+   transition:
+     opacity .2s cubic-bezier(0, .5, .5, 1),
+     transform .2s cubic-bezier(0, .5, .5, 1);
+   will-change: opacity, transform;
+   white-space: pre;
+   z-index: 5;
+ }
+
+ .table-charts.line td:nth-child(3)::after {
+   --value: var(--2);
+   --term: var(--t-2);
+   left: calc( ( 100% / var(--x) * 2 ) + var(--offset) );
+ }
+
+ .table-charts.line td:hover::after {
+   opacity: 1;
+   transform:
+     translate3d(-50%, -125%, 0)
+     perspective(1000px)
+     rotate3d(1, 0, 0, 0deg);
+   transition:
+     opacity .2s cubic-bezier(.5, 0, 1, .5),
+     transform .2s cubic-bezier(.5, 0, 1, .5);
+ }
+
+ @media screen and (-ms-high-contrast: active) {
+   .table-charts.line tr[style]::before {
+     background: linear-gradient(to top, ButtonHighlight, Highlight 75%);
+   }
+ }
+}</code>
+  </pre>
+ </div>
+</details>
+<details>
+ <summary>Le calcul tordu</summary>
+ <h3>Le tracé du <code>polygon()</code></h3>
+ <p>
+  Pour commencer, il faut bien intégrer que <code>clip-path</code> est un tracé,
+  au même titre qu’une forme vectorielle. Il doit donc <strong>être fermé</strong>.
+  Ainsi le tracé démarre à <var>0% 100%</var> —&nbsp;en bas à gauche, fait sa vie
+  de tracé, bascule à <var>100% 100%</var> et revient boucler à <var>0% 100%</var>.
+ </p>
+ <p>Et dans son chemin, chaque point doit être positionné en abscisses et en ordonnées.</p>
+ <h4>La position en abscisse</h4>
+ <p>
+  La première position est simple&nbsp;: on divise <code>100%</code> par l’échelle
+  <var>var(--x)</var>, et on <strong>multiplie par l’index</strong> de l’élément. Par exemple&nbsp;:
+  <code>calc( ( 100% / var(--x) * 1) )</code>.
+  Pour placer chaque point <strong>au milieu de sa colonne</strong>, on le décale d’une demi-colonne
+  —&nbsp;ce que l’on fait en ajoutant au calcul précédent <var>var(--offset)</var>, qui correspond
+  à <code>calc( ( 100% / var(--x) ) / 2 )</code>.<br>
+  La position finale est donc, ici pour le troisième point&nbsp;:<br>
+  <code>calc( ( 100% / var(--x) * 3) + var(--offset) )</code>.
+ </p>
+ <h4>La position en ordonnée</h4>
+ <p>
+  Dans ce graphique, l’ordonnée est l’axe le plus important. Ainsi pour placer le point,
+  on commence par calculer <strong>le ratio de sa valeur sur l’échelle</strong> —&nbsp;formulé
+  ainsi&nbsp;: <code>var(--1) / var(--y)</code>. Et parce que <code>polygon()</code> utilise
+  des valeurs en pourcentage, on rapporte ce calcul sur 100%&nbsp;:
+  <code>( var(--1) / var(--y) * 100% )</code>.<br>
+  Et pour finir, les référentiels du polygone partant d’en haut à gauche, <strong>la position
+  doit être définie en fonction du haut de la boîte</strong>. La formule finale ressemble
+  alors à ça —&nbsp;toujours pour le troisième élément&nbsp;:<br>
+  <code>calc( 100% - ( var(--3) / var(--y) * 100% ) )</code>.
+ </p>
+</details>
+
+<h3>Graphique à point</h3>
+
+<p>Cette variante diffère finalement assez peu de la précédente mouture&nbsp;:</p>
+
+<ol>
+ <li>
+   le <code>polygon()</code> est <strong>poursuivi pour former une ligne</strong>,
+   en dupliquant chaque point avec un décalage de <var>4px</var>
+   —&nbsp;l’épaisseur du trait&nbsp;— et dans l’ordre inverse&nbsp;;
+ </li>
+ <li>
+  le pseudo-élément <code>::before</code> qui permet d’afficher l’infobulle prend ici la forme d’un
+  point sur la courbe —&nbsp;positionné à l’aide des mêmes calculs qui servent dans le polygone&nbsp;;
+ </li>
+ <li>
+  et surtout, puisque <code>clip-path</code> est appliqué <strong>sur la ligne</strong>
+  <code>&lt;tr></code>&nbsp;: vous pouvez en mettre <strong>plusieurs</strong>&nbsp;!
+  Il nous faut donc ajouter une combinaison de couleur et motif pour distinguer chaque ligne
+  et les associer visuellement à leur légende.
+ </li>
+</ol>
+
+<div class="table-container line-container" role="group" aria-labelledby="caption-4">
+ <div class="fieldset d-flex sm-hidden">
+  <p class="label no-margin">
+   <strong id="label-4">Interrupteur</strong><br>
+   <span id="description-4">Permet de désactiver les styles sur le tableau suivant.</span>
+  </p>
+  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
+      role="switch" aria-checked="true"
+      aria-labelledby="label-4" aria-describedby="description-4">
+   <span>Guilleret</span>
+   <span>Sobre</span>
+  </button>
+ </div>
+
+ <table class="table-charts line points" id="points"
+     style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Fév.'; --t-3: 'Mar.'; --t-4: 'Avr.'; --t-5: 'Mai'; --t-6: 'Juin';
+        --t-7: 'Juil.'; --t-8: 'Août'; --t-9: 'Sept.'; --t-10: 'Oct.'; --t-11: 'Nov.'; --t-12: 'Déc.';">
+  <caption id="caption-4">Température mensuelle moyenne par année</caption>
+  <thead>
+   <tr>
+    <th scope="col">Année</th>
+    <th scope="col">Jan.</th>
+    <th scope="col">Fév.</th>
+    <th scope="col">Mars</th>
+    <th scope="col">Avr.</th>
+    <th scope="col">Mai</th>
+    <th scope="col">Juin</th>
+    <th scope="col">Juil.</th>
+    <th scope="col">Août</th>
+    <th scope="col">Sep.</th>
+    <th scope="col">Oct.</th>
+    <th scope="col">Nov.</th>
+    <th scope="col">Déc.</th>
+   </tr>
+  </thead>
+  <tbody>
+   <tr style="--color: #0172f0; --year: '2017'; --1: 8; --2: 6; --3: 9; --4: 12; --5: 15; --6: 21; --7: 24; --8: 25; --9: 22; --10: 19; --11: 14; --12: 9;">
+    <th scope="row">2017</th>
+    {{ table.line('8', '°C', 'Degré Celsius') }}
+    {{ table.line('6', '°C', 'Degré Celsius') }}
+    {{ table.line('9', '°C', 'Degré Celsius') }}
+    {{ table.line('12', '°C', 'Degré Celsius') }}
+    {{ table.line('15', '°C', 'Degré Celsius') }}
+    {{ table.line('21', '°C', 'Degré Celsius') }}
+    {{ table.line('24', '°C', 'Degré Celsius') }}
+    {{ table.line('25', '°C', 'Degré Celsius') }}
+    {{ table.line('22', '°C', 'Degré Celsius') }}
+    {{ table.line('19', '°C', 'Degré Celsius') }}
+    {{ table.line('14', '°C', 'Degré Celsius') }}
+    {{ table.line('9', '°C', 'Degré Celsius') }}
+   </tr>
+   <tr style="--color: #ff2d40; --year: '2018'; --1: 10; --2: 4; --3: 7; --4: 13; --5: 17; --6: 20; --7: 22; --8: 23; --9: 26; --10: 17; --11: 14; --12: 10;">
+    <th scope="row">2018</th>
+    {{ table.line('10', '°C', 'Degré Celsius') }}
+    {{ table.line('4', '°C', 'Degré Celsius') }}
+    {{ table.line('7', '°C', 'Degré Celsius') }}
+    {{ table.line('13', '°C', 'Degré Celsius') }}
+    {{ table.line('17', '°C', 'Degré Celsius') }}
+    {{ table.line('20', '°C', 'Degré Celsius') }}
+    {{ table.line('22', '°C', 'Degré Celsius') }}
+    {{ table.line('23', '°C', 'Degré Celsius') }}
+    {{ table.line('26', '°C', 'Degré Celsius') }}
+    {{ table.line('17', '°C', 'Degré Celsius') }}
+    {{ table.line('14', '°C', 'Degré Celsius') }}
+    {{ table.line('10', '°C', 'Degré Celsius') }}
+   </tr>
+  </tbody>
+ </table>
+</div>
+
+<details>
+ <summary>Le <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
+ <div>
+  <pre>
+   <code class="language-css">
+@supports (clip-path: polygon(0% calc(100% - (var(--1) * 100% / var(--y))))) {
+ .table-charts.points [style]::before {
+   background: var(--color, currentColor) var(--background);
+   clip-path: polygon(
+     calc( ( 100% / var(--x) * 1 ) + var(--offset) ) calc( 100% - ( var(--1) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 2 ) + var(--offset) ) calc( 100% - ( var(--2) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 3 ) + var(--offset) ) calc( 100% - ( var(--3) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 4 ) + var(--offset) ) calc( 100% - ( var(--4) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 5 ) + var(--offset) ) calc( 100% - ( var(--5) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 6 ) + var(--offset) ) calc( 100% - ( var(--6) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 7 ) + var(--offset) ) calc( 100% - ( var(--7) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 8 ) + var(--offset) ) calc( 100% - ( var(--8) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 9 ) + var(--offset) ) calc( 100% - ( var(--9) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 10 ) + var(--offset) ) calc( 100% - ( var(--10) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 11 ) + var(--offset) ) calc( 100% - ( var(--11) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 12 ) + var(--offset) ) calc( 100% - ( var(--12) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 13 ) + var(--offset) ) calc( 100% - ( var(--12) / var(--y) * 100% ) ),
+     100% calc( 100% - ( var(--12) / var(--y) * 100% ) ),
+     100% calc( ( 100% + 4rem ) - ( var(--12) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 13 ) + var(--offset) ) calc( ( 100% + 4rem ) - ( var(--12) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 12 ) + var(--offset) ) calc( ( 100% + 4rem ) - ( var(--12) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 11 ) + var(--offset) ) calc( ( 100% + 4rem ) - ( var(--11) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 10 ) + var(--offset) ) calc( ( 100% + 4rem ) - ( var(--10) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 9 ) + var(--offset) ) calc( ( 100% + 4rem ) - ( var(--9) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 8 ) + var(--offset) ) calc( ( 100% + 4rem ) - ( var(--8) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 7 ) + var(--offset) ) calc( ( 100% + 4rem ) - ( var(--7) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 6 ) + var(--offset) ) calc( ( 100% + 4rem ) - ( var(--6) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 5 ) + var(--offset) ) calc( ( 100% + 4rem ) - ( var(--5) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 4 ) + var(--offset) ) calc( ( 100% + 4rem ) - ( var(--4) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 3 ) + var(--offset) ) calc( ( 100% + 4rem ) - ( var(--3) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 2 ) + var(--offset) ) calc( ( 100% + 4rem ) - ( var(--2) / var(--y) * 100% ) ),
+     calc( ( 100% / var(--x) * 1 ) + var(--offset) ) calc( ( 100% + 4rem ) - ( var(--1) / var(--y) * 100% ) )
+   );
+   transition: opacity .3s cubic-bezier(.5, 0, .5, 1);
+ }
+
+ .table-charts.points [style] th::before {
+   background: var(--color, currentColor) var(--background);
+   content: "";
+   display: inline-block;
+   height: 1rem;
+   transform: translate3d(-.2rem, .1rem, 0);
+   width: 1rem;
+ }
+
+ .table-charts.points [style] td::before {
+   --size: 1rem;
+   --top: calc( var(--height) - ( var(--value) / var(--y) * var(--height) ) );
+   background: var(--color, currentColor) var(--background);
+   border: 2px solid white;
+   border-radius: 50%;
+   box-shadow: 0 0 4rem rgba(0, 0, 0, .5);
+   content: "";
+   height: var(--size);
+   left: calc( var(--offset) * 3 );
+   position: absolute;
+   top: var(--top, 100);
+   transform: translate3d(calc( var(--size) / -2), calc( var(--size) / -2), 0);
+   transition:
+     opacity .3s cubic-bezier(.5, 0, .5, 1),
+     transform .3s cubic-bezier(.5, 0, .5, 1);
+   width: var(--size);
+   z-index: 4;
+ }
+
+ .table-charts.points [style] td:nth-of-type(2)::before {
+   --value: var(--2);
+   left: calc( ( 100% / var(--x) * 2 ) + var(--offset) );
+ }
+
+ /* @note À répéter pour chaque ligne, afin de les distinguer grâce à un motif */
+ .table-charts.points [style]:nth-child( 2n + 2 ) {
+   --background: var(--stripes);
+ }
+
+ .table-charts.points tbody:hover [style]::before,
+ .table-charts.points tbody:hover [style] td::before {
+   opacity: .25;
+ }
+
+ .table-charts.points tbody:hover [style]:hover::before,
+ .table-charts.points tbody:hover [style]:hover td::before {
+   opacity: 1;
+ }
+
+ .table-charts.points tbody:hover [style]:hover td::before {
+   transform:
+     translate3d( calc( var(--size) / -2 ), calc( var(--size ) / -2), 0 )
+     scale( 1.25 );
+ }
+
+ .table-charts.points [scope="col"]::after {
+   mix-blend-mode: multiply;
+ }
+
+ .table-charts.points [scope="col"]:hover::after {
+   opacity: .5;
+ }
+}</code>
+  </pre>
+ </div>
+</details>
+
+<div class="note">
+ <h3>Note</h3>
+ <p>
+  Pour jouer d’avantage et vous familiariser avec <code>clip-path</code>,
+  <cite>Bennett Feely</cite> a créé
+  <a hreflang="en" href="http://bennettfeely.com/clippy/" hreflang="en">clippy</a>.
+ </p>
+</div>
+{% endblock %}

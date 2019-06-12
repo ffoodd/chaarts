@@ -1,0 +1,285 @@
+{% extends "index.html" %}
+
+{% block meta %}
+ <title>chaarts — Bar charts</title>
+ <meta property="og:url" content="https://ffoodd.github.io/chaarts/bar-charts.html">
+ <meta property="og:title" content="chaarts — Bar charts">
+ <meta property="og:type" content="article">
+ <meta property="og:description"
+    name="description" content="Charts with HTML & CSS">
+ <meta name="twitter:card" content="summary">
+{% endblock %}
+
+{% block navigation %}
+<ul class="fly-out">
+  <li><a href="./index.html">Accueil</a></li>
+  <li><a aria-current="page">Graphique en barre</a></li>
+  <li><a href="./line-charts.html">Graphique linéaire</a></li>
+  <li><a href="./column-charts.html">Histogramme</a></li>
+  <li><a href="./pie-charts.html">Graphique en tarte</a></li>
+  <li><a href="./radar-charts.html">Graphique radar</a></li>
+</ul>
+{% endblock %}
+
+{% block main %}
+  <h1>Graphique en barre</h1>
+
+  <p>
+   Ce type de graphique sert à représenter <strong>des données à une dimension</strong>
+   (dans notre exemple, une ligne de temps).
+   Il repose sur les <strong>grilles et les variables CSS</strong>,
+   technique inspirée
+   d’<a hreflang="en" href="https://css-tricks.com/css-charts-grid-custom-properties/">un article de <cite>Miriam Suzanne</cite> sur
+   <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">CSS</abbr> Tricks</a>
+   légèrement agrémentée pour en améliorer l’accessibilité.
+   Pour vous en servir, c’est simple&nbsp;:
+  </p>
+
+  <ol>
+   <li>
+    Sur le <strong>tableau</strong>, une variable <var>--scale</var> permet de définir la valeur maximale du graphique,
+    afin d’en déterminer l’échelle. Concrètement, une grille va être générée avec&nbsp;:
+    <ul>
+     <li>la première colonne pour les entêtes <code>&lt;th></code> arbitrairement fixée à <code>12.5em</code>&nbsp;;</li>
+     <li>puis la fonction CSS <code>repeat()</code> crée une colonne par unité de l’échelle —&nbsp;dans l’exemple, 3000 colonnes&nbsp;;</li>
+     <li>enfin une dernière colonne mesurant <code>10ch</code>, soit l’espace suffisant pour dix lettres.</li>
+    </ul>
+   </li>
+   <li>
+    <strong>Sur chaque cellule</strong> <code>&lt;td></code>, une variable <var>--value</var> permet de la placer sur la grille,
+    appliquée à <code>grid-column-end</code>.
+    De plus grâce à de savants calculs reposant sur cette valeur, le dégradé en arrière-plan est dimensionné et positionné de façon à
+    refléter la proportion représentée par cette valeur sur l’échelle donnée (du vert pour presque rien au rouge pour presque tout).
+   </li>
+   <li>
+    <strong>Dans chaque cellule</strong>, le contenu doit reprendre la valeur et son unité dans un élément <code>&lt;span></code>, éventuellement
+    balisée avec <code>&lt;abbr></code> (et <code>aria-label</code> pour suppléer <code>title</code>) si un intitulé peut être explicité pour l’unité.
+    Cette valeur est poussée à droite de la grille, et son texte
+    sert de masque pour le dégradé en arrière-plan —&nbsp;lui permettant d’être de la couleur correspondante à la fin du dégradé pour la position donnée.
+   </li>
+  </ol>
+
+  {% import 'macros/_table-bar.html' as table %}
+   <div class="table-container bar-container" role="group" aria-labelledby="caption-1">
+   <div class="fieldset d-flex sm-hidden">
+    <p class="label no-margin">
+     <strong id="label-1">Interrupteur</strong><br>
+     <span id="description-1">Permet de désactiver les styles sur le tableau suivant.</span>
+    </p>
+    <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
+        role="switch" aria-checked="true"
+        aria-labelledby="label-1" aria-describedby="description-1">
+     <span>Guilleret</span>
+     <span>Sobre</span>
+    </button>
+   </div>
+
+   <table class="table-charts bar" style="--scale: 3000" id="bar">
+    <caption id="caption-1">Temps de chargement pour <a href="https://www.ffoodd.fr" target="_blank" rel="noopener noreferrer">ffoodd.fr</a></caption>
+    <thead class="sr-only">
+     <tr>
+      <td></td>
+      <th scope="col">Temps de chargement cumulé</th>
+     </tr>
+    </thead>
+    <tbody>
+     {{ table.bar('Temps : backend', '4', 'ms', 'Milliseconde', 'table') }}
+     {{ table.bar('Temps : Frontend', '96', 'ms', 'Milliseconde', 'table') }}
+     {{ table.bar('Délai : premier octet', '102', 'ms', 'Milliseconde', 'table') }}
+     {{ table.bar('Délai : dernier octet', '129', 'ms', 'Milliseconde', 'table') }}
+     {{ table.bar('Délai : première image', '188', 'ms', 'Milliseconde', 'table') }}
+     {{ table.bar('Délai : premier CSS', '194', 'ms', 'Milliseconde', 'table') }}
+     {{ table.bar('Délai : premier JS', '326', 'ms', 'Milliseconde', 'table') }}
+     {{ table.bar('DOM Interactif', '836', 'ms', 'Milliseconde', 'table') }}
+     {{ table.bar('Chargement du DOM', '836', 'ms', 'Milliseconde', 'table') }}
+     {{ table.bar('DOM complet', '2561', 'ms', 'Milliseconde', 'table') }}
+     {{ table.bar('Trafic HTTP terminé', '2980', 'ms', 'Milliseconde', 'table') }}
+    </tbody>
+   </table>
+  </div>
+
+  <details>
+   <summary>Le <abbr lang="en" title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
+   <div>
+    <pre>
+     <code class="language-markup">
+  &lt;table class="table-charts bar" style="--scale: 3000">
+   &lt;caption id="caption-1">Temps de chargement pour ffoodd.fr&lt;/caption>
+   &lt;thead class="sr-only">
+     &lt;tr>
+       &lt;td>&lt;/td>
+       &lt;th scope="col">Temps de chargement cumulé&lt;/th>
+     &lt;/tr>
+   &lt;/thead>
+   &lt;tbody>
+     &lt;tr>
+       &lt;th scope="row">Temps&nbsp;: backend&lt;/th>
+       &lt;td style="--value: 4">
+         &lt;span>4&nbsp;&lt;abbr title="Milliseconde" aria-label="Milliseconde">ms&lt;/abbr>&lt;/span>
+       &lt;/td>
+     &lt;/tr>
+     &lt;tr>[…]&lt;/tr>
+   &lt;/tbody>
+  &lt;/table>
+     </code>
+    </pre>
+   </div>
+  </details>
+  <details>
+   <summary>Le <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
+   <div>
+    <pre>
+     <code class="language-css">
+  @supports (grid-template-columns: repeat( var(--scale, 100), minmax(0, 1fr) )) {
+   .table-charts.bar caption {
+     text-align: initial;
+     text-indent: 13.5rem;
+   }
+
+   .table-charts.bar tr {
+     display: grid;
+     grid-auto-rows: 1fr;
+     grid-row-gap: .5rem;
+     grid-template-columns: minmax(min-content, em( 200 ) ) repeat( var(--scale, 100), minmax(0, 1fr) ) 10ch;
+     transition: opacity .2s cubic-bezier(.5, 0, .5, 1);
+   }
+
+   .table-charts.bar th {
+     grid-column: 1 / 1;
+     margin: .5rem 0 0;
+     padding: 0 1rem 0 0;
+     text-align: right;
+   }
+
+   .table-charts.bar td {
+     --size: calc( var(--scale, 100) * 100% );
+     --position: calc( var(--value, 0) / var(--scale, 100) * 100% );
+     background-blend-mode: hard-light;
+     background-position: var(--position) 0%, center;
+     background-size: var(--size) 100%, contain;
+     grid-column: 2 / var(--value, 0);
+     margin: .5rem 0 0;
+     position: relative;
+   }
+
+   .table-charts.bar span {
+     background: inherit;
+     -webkit-text-fill-color: transparent;
+     -webkit-background-clip: text;
+     font-weight: bold;
+     left: 100%;
+     line-height: 1.5;
+     position: absolute;
+   }
+
+   /* @note À répéter pour chaque ligne, afin de les distinguer grâce à un motif */
+   .table-charts.bar tr:nth-child(2n + 2) td {
+     background-image:
+       linear-gradient(to right,
+         #01ac49,
+         #444,
+         mediumblue,
+         rebeccapurple,
+         crimson
+       ),
+      var(--stripes);
+   }
+
+   .table-charts.bar tbody:hover tr {
+     opacity: .5;
+   }
+
+   .table-charts.bar tbody:hover tr:hover {
+     opacity: 1;
+   }
+
+   @media screen and (-ms-high-contrast: active) {
+     .table-charts.bar tr:nth-child(2n + 2) td {
+       background-image:
+         linear-gradient(to right,
+            Window,
+            ButtonFace,
+            ButtonShadow,
+            ButtonText,
+            highlight
+         ),
+       var(--stripes);
+     }
+   }
+  }</code>
+    </pre>
+   </div>
+  </details>
+
+  <h2>Graphique en chute d’eau</h2>
+
+  <p>
+   Le principe est le même pour cette variante, à un détail près&nbsp;:
+   on gère également <strong>le point de départ</strong> pour chaque mesure
+   —&nbsp;qui est, très simplement, la valeur du point précédent…
+   Il faut cependant passer toutes les valeurs en tant que variables sur
+   le parent <code>&lt;table></code>.
+  </p>
+
+   <div class="table-container bar-container" role="group" aria-labelledby="caption-2">
+   <div class="fieldset d-flex sm-hidden">
+    <p class="label no-margin">
+     <strong id="label-2">Interrupteur</strong><br>
+     <span id="description-2">Permet de désactiver les styles sur le tableau suivant.</span>
+    </p>
+    <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
+        role="switch" aria-checked="true"
+        aria-labelledby="label-2" aria-describedby="description-2">
+     <span>Guilleret</span>
+     <span>Sobre</span>
+    </button>
+   </div>
+
+   <table class="table-charts bar waterfall" id="waterfall" style="--scale: 3000; --1: 4; --2: 96; --3: 102; --4: 129; --5: 188; --6: 194; --7: 326; --8: 836; --9: 836; --10: 2561; --11: 2980;">
+    <caption id="caption-2">Temps de chargement pour <a href="https://www.ffoodd.fr" target="_blank" rel="noopener noreferrer">ffoodd.fr</a></caption>
+    <thead class="sr-only">
+     <tr>
+      <td></td>
+      <th scope="col">Temps de chargement cumulé</th>
+     </tr>
+    </thead>
+    <tbody>
+     {{ table.bar('Temps : backend', '4', 'ms', 'Milliseconde', 'waterfall') }}
+     {{ table.bar('Temps : Frontend', '96', 'ms', 'Milliseconde', 'waterfall') }}
+     {{ table.bar('Délai : premier octet', '102', 'ms', 'Milliseconde', 'waterfall') }}
+     {{ table.bar('Délai : dernier octet', '129', 'ms', 'Milliseconde', 'waterfall') }}
+     {{ table.bar('Délai : première image', '188', 'ms', 'Milliseconde', 'waterfall') }}
+     {{ table.bar('Délai : premier CSS', '194', 'ms', 'Milliseconde', 'waterfall') }}
+     {{ table.bar('Délai : premier JS', '326', 'ms', 'Milliseconde', 'waterfall') }}
+     {{ table.bar('DOM Interactif', '836', 'ms', 'Milliseconde', 'waterfall') }}
+     {{ table.bar('Chargement du DOM', '836', 'ms', 'Milliseconde', 'waterfall') }}
+     {{ table.bar('DOM complet', '2561', 'ms', 'Milliseconde', 'waterfall') }}
+     {{ table.bar('Trafic HTTP terminé', '2980', 'ms', 'Milliseconde', 'waterfall') }}
+    </tbody>
+   </table>
+  </div>
+
+  <details>
+   <summary>Le <abbr lang="en" title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
+   <div>
+    <pre>
+     <code class="language-markup">
+  &lt;table class="table-charts bar waterfall"
+     style="--scale: 3000; --1: 4; --2: 96; --3: 102; --4: 129; --5: 188; --6: 194; --7: 326; --8: 836; --9: 836; --10: 2561; --11: 2980;">
+  &lt;/table>
+     </code>
+    </pre>
+   </div>
+  </details>
+  <details>
+   <summary>Le <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
+   <div>
+    <pre>
+     <code class="language-css">
+  .bar.waterfall tr:nth-of-type(2) td {
+   grid-column: var(--1, 0) / var(--value, 0);
+  }</code>
+    </pre>
+   </div>
+  </details>
+{% endblock %}

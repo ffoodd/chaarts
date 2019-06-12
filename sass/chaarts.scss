@@ -1,0 +1,87 @@
+/* ==================== */
+/* == Charts
+/* ==================== */
+.table-container {
+  margin: $gutter * 2 0;
+}
+
+.table-container .fieldset {
+  display: none !important;
+  padding: 0 $gutter;
+}
+
+[class*="charts"] {
+  [role="presentation"] {
+    display: none;
+  }
+
+  abbr[title] {
+    border-bottom: 0;
+    font-size: small;
+    font-weight: normal;
+    text-transform: none;
+  }
+}
+
+.table-charts {
+  caption-side: bottom;
+  empty-cells: hide;
+  margin: 1.5em auto;
+  overflow: hidden;
+  padding: 1em;
+
+  /**
+   * @note Defining a CSS custom property for each inlined SVG pattern
+   * @author Trys Mudford
+   * @link https://www.trysmudford.com/blog/using-css-custom-properties/
+   * @via Jeremy Keith
+   * @link https://adactio.com/journal/15075
+   */
+  @each $name, $pattern in $patterns {
+    --#{$name}: url("#{$pattern}");
+  }
+
+  > caption:first-child {
+    background: inherit;
+    font-style: normal;
+    padding: $gutter 0;
+  }
+}
+
+table:not(.table-charts) .sr-only {
+  clip: auto !important;
+	clip-path: none !important;
+	height: auto !important;
+	overflow: visible !important;
+  position: static !important;
+	width: auto !important;
+	white-space: normal !important;
+}
+
+@media screen and (min-width: em(480)) {
+  .table-charts {
+    border-collapse: separate;
+    border-spacing: 0;
+    /**
+     * @note Trying to improve paint & layout performances
+     * @link https://developer.mozilla.org/fr/docs/Web/CSS/contain
+     */
+    contain: content;
+
+    th,
+    td {
+      border: 0;
+      padding: 0;
+
+      &:empty {
+        display: none !important;
+      }
+    }
+  }
+
+  @import "charts-bar";
+  @import "charts-pie";
+  @import "charts-line";
+  @import "charts-column";
+  @import "charts-radar";
+}
