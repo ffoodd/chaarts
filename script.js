@@ -11,7 +11,7 @@
 
       if (this.classList.contains('disable-css')) {
         var chart = this.parentNode.nextElementSibling;
-        chart.classList.toggle('table-charts');
+        chart.classList.toggle('chaarts');
       }
     });
   });

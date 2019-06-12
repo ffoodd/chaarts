@@ -30,6 +30,11 @@ function move() {
     .pipe(gulp.dest(options.paths.docs))
 }
 
+function script() {
+  return gulp.src(options.paths.root + 'script.min.js')
+    .pipe(gulp.dest(options.paths.docs + 'js'))
+}
+
 function js() {
     return gulp.src(options.paths.src + 'js/**/*.js')
       .pipe(newer(options.paths.docs + 'js'))
@@ -77,4 +82,4 @@ function template() {
       .pipe(gulp.dest(options.paths.docs));
 }
 
-module.exports = gulp.series( sseeeedd, move, gulp.parallel( css, img, js, template ) );
+module.exports = gulp.series( sseeeedd, script, move, gulp.parallel( css, img, js, template ) );
