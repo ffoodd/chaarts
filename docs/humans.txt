@@ -1,0 +1,10 @@
+# humanstxt.org/
+
+# TEAM
+
+  Gaël Poupard — Initiateur du projet : développement, intégration, conception — @ffoodd_fr
+
+# TECHNOLOGY COLOPHON
+
+  HTML5, CSS3, JS
+  a11y.css

@@ -22,7 +22,7 @@
   "main": "script.min.js",
   "scripts": {
     "gulp": "node node_modules/gulp/bin/gulp.js",
-    "pretest": "npm run gulp build",
+    "pretest": "npm run gulp doc",
     "test": "npm run gulp test",
     "start": "npm run gulp"
   },

@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="fr" class="no-js">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        
+ <title>chaarts — Column charts</title>
+ <meta property="og:url" content="https://ffoodd.github.io/chaarts/column-charts.html">
+ <meta property="og:title" content="chaarts — Column charts">
+ <meta property="og:type" content="article">
+ <meta property="og:description"
+    name="description" content="Charts with HTML & CSS">
+ <meta name="twitter:card" content="summary">
+
+        <script>
+          document.documentElement.classList.remove('no-js');
+          document.documentElement.classList.add('js');
+        </script>
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="css/styles.min.css" media="all">
+        <link rel="stylesheet" href="css/print.min.css" media="print">
+        <link rel="stylesheet" href="../chaarts.min.css" media="all">
+    </head>
+    <body itemscope itemtype="http://schema.org/WebPage">
+      <header role="banner">
+        
+          <div>
+            <a href="#nav" class="sr-only sr-only-focusable">Aller à la navigation</a>
+            <a href="#main" class="sr-only sr-only-focusable">Aller au contenu</a>
+          </div>
+        
+
+        <nav role="navigation" id="nav" aria-label="Navigation principale">
+          
+<ul class="fly-out">
+  <li><a href="./index.html">Accueil</a></li>
+  <li><a href="./bar-charts.html">Graphique en barre</a></li>
+  <li><a href="./line-charts.html">Graphique linéaire</a></li>
+  <li><a aria-current="page">Histogramme</a></li>
+  <li><a href="./pie-charts.html">Graphique en tarte</a></li>
+  <li><a href="./radar-charts.html">Graphique radar</a></li>
+</ul>
+
+        </nav>
+      </header>
+
+      <main role="main" id="main" tabindex="-1" itemprop="mainContentOfPage">
+        
+<h1>Histogramme</h1>
+
+<p>
+ L’histogramme sert pour <strong>les distributions de valeurs</strong>.
+ La structure du tableau est tout à fait ordinaire, cependant sa mise en forme repose
+ sur <code>display: grid;</code> et surtout <code>display: contents;</code> pour
+ <strong>faciliter le placement des cellules</strong> —&nbsp;technique inspirée par
+ <a href="https://hiddedevries.nl/en/blog/2018-04-21-more-accessible-markup-with-display-contents" hreflang="en">l’article
+ de <cite>Hidde De Vries</cite> <q lang="en">More accessible markup with <code>display: contents</code></q></a>,
+ et clarifiée par <a href="https://bitsofco.de/how-display-contents-works/" hreflang="en">l’article de
+ <cite>Ire Aderinokun</cite> <q lang="en">How <code>display: contents</code> works</q></a>.
+</p>
+
+<p>Le principe de base est le même que <a href="#bar-chart">le graphique en barre</a>&nbsp;:</p>
+<ol>
+ <li>
+  la fonction <code>repeat()</code> appliquée avec la variable <var>--scale</var>
+  permet de gérer une échelle dynamique&nbsp;;
+ </li>
+ <li>
+  les conteneurs <code>&lt;thead></code>, <code>&lt;tbody></code> et <code>&lt;tr></code>
+  sont neutralisés dans la gestion de la grille à l’aide de <code>display: contents</code>&nbsp;;
+ <li>
+  chaque cellule est placée sur la grille en fonction de <var>--value</var>
+  —&nbsp;sa valeur, donc —&nbsp;sa couleur d’arrière-plan dépend également de
+  sa valeur&nbsp;;
+ </li>
+ <li>
+  et finalement la valeur textuelle —&nbsp;contenue dans un élément
+  <code>&lt;span&gt;</code>&nbsp;— est positionnée en haut de la colonne
+  à l’aide de la même astuce que dans le graphique en barre.
+ </li>
+</ol>
+
+<div class="table-container column-container" role="group" aria-labelledby="caption-7">
+ <div class="fieldset d-flex sm-hidden">
+  <p class="label no-margin">
+   <strong id="label-7">Interrupteur</strong><br>
+   <span id="description-7">Permet de désactiver les styles sur le tableau suivant.</span>
+  </p>
+  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
+      role="switch" aria-checked="true"
+      aria-labelledby="label-7" aria-describedby="description-7">
+   <span>Guilleret</span>
+   <span>Sobre</span>
+  </button>
+ </div>
+
+ <table class="table-charts column-single" id="column" style="--y: 7;">
+  <caption id="caption-7">Parts de marché navigateurs en France en janvier 2019</caption>
+  <thead>
+   <tr>
+    <th scope="row">Navigateur</th>
+    <th scope="col" style="--value: 62;">Chrome</th>
+    <th scope="col" style="--value: 15;">Firefox</th>
+    <th scope="col" style="--value: 9;">Safari</th>
+    <th scope="col" style="--value: 5;">Edge</th>
+    <th scope="col" style="--value: 6;">IE</th>
+    <th scope="col" style="--value: 3;">Autres</th>
+   </tr>
+  </thead>
+  <tbody>
+   <tr>
+    <th scope="row">Parts de marché</th>
+    <td style="--value: 62;"><span>62&nbsp;%</span></td>
+    <td style="--value: 15;"><span>15&nbsp;%</span></td>
+    <td style="--value: 9;"><span>9&nbsp;%</span></td>
+    <td style="--value: 5;"><span>5&nbsp;%</span></td>
+    <td style="--value: 6;"><span>6&nbsp;%</span></td>
+    <td style="--value: 3;"><span>3&nbsp;%</span></td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+
+<details>
+ <summary>Le <abbr lang="en" title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
+ <div>
+  <pre>
+   <code class="language-markup">
+&lt;table class="table-charts column" id="column" style="--y: 7;">
+&lt;caption id="caption-7">Parts de marché navigateurs en France en janvier 2019&lt;/caption>
+&lt;thead>
+ &lt;tr>
+  &lt;th scope="row">Ressource&lt;/th>
+  &lt;th scope="col" style="--value: 62;">Chrome&lt;/th>
+  &lt;th scope="col" style="--value: 15;">Firefox&lt;/th>
+ &lt;/tr>
+&lt;/thead>
+&lt;tbody>
+ &lt;tr>
+  &lt;th scope="row">Parts de marché&lt;/th>
+  &lt;td style="--value: 62;">&lt;span>62&nbsp;%&lt;/span>&lt;/td>
+  &lt;td style="--value: 15;">&lt;span>15&nbsp;%&lt;/span>&lt;/td>
+ &lt;/tr>
+&lt;/tbody>
+&lt;/table></code>
+  </pre>
+ </div>
+</details>
+<details>
+ <summary>Le <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
+ <div>
+  <pre>
+   <code class="language-css">
+@supports (display: contents) {
+ .table-charts[class*="column"] {
+   --gap: .5rem;
+   --size: calc(var(--scale, 100) * 100%);
+   --width: calc(64em / var(--y) - 1rem);
+   display: grid;
+   grid-column-gap: var(--gap);
+   max-height: 64em;
+   position: relative;
+ }
+
+ .table-charts[class*="column"] td,
+ .table-charts[class*="column"] th {
+   margin: 0;
+ }
+
+ .table-charts[class*="column"] tr > * + * {
+   text-align: center;
+ }
+
+ .table-charts[class*="column"] tr,
+ .table-charts[class*="column"] tbody,
+ .table-charts[class*="column"] thead {
+   display: contents;
+ }
+
+ .table-charts[class*="column"] caption {
+   grid-column: 1 / span var(--y);
+   grid-row: -1;
+ }
+
+ .table-charts[class*="column"] td {
+   grid-row: calc( 100 - var(--value) ) / -3;
+   pointer-events: none;
+   position: relative;
+   transition: opacity .2s cubic-bezier(.5, 0, .5, 1);
+ }
+
+ .table-charts[class*="column"] span {
+   background: inherit;
+   -webkit-text-fill-color: transparent;
+   -webkit-background-clip: text;
+   font-weight: bold;
+   bottom: 100%;
+   left: 0;
+   line-height: 1.5;
+   pointer-events: auto;
+   position: absolute;
+   right: 0;
+ }
+
+ /* @note À répéter pour chaque colonne, afin de les distinguer grâce à un motif */
+ .table-charts[class*="column"] td:nth-of-type(2) {
+   grid-column: 3;
+ }
+
+ .table-charts.column-single {
+   grid-auto-columns: 1fr;
+   grid-template-rows: repeat(var(--scale, 100), minmax(0, .25rem)) minmax(min-content, 2rem);
+ }
+
+ .table-charts.column-single tbody th {
+   grid-row: -6 / -3;
+   grid-column: 1;
+   line-height: 1;
+ }
+
+ .table-charts.column-single thead * {
+   grid-row: -2;
+ }
+
+ .table-charts.column-single td {
+   --position: calc(var(--value, 0) / var(--scale, 100) * 100%);
+   background-blend-mode: hard-light;
+     linear-gradient(to top,
+       #01ac49,
+       #444,
+       mediumblue,
+       rebeccapurple,
+       crimson
+     ) 0% var(--position) / 100% var(--size),
+     var(--background) center / $gutter;
+ }
+
+ .table-charts.column-single [scope="col"]::after {
+   background: whitesmoke var(--stripes);
+   background-blend-mode: exclusion;
+   bottom: 4rem;
+   content: "";
+   mix-blend-mode: multiply;
+   opacity: 0;
+   position: absolute;
+   transition: opacity .3s cubic-bezier(.5, 0, .5, 1);
+   top: 1rem;
+   width: var(--width);
+   z-index: 0;
+ }
+
+ .table-charts.column-single [scope="col"]:hover::after {
+   opacity: .5;
+ }
+
+ /* @note À répéter pour chaque colonne, afin d’en disposer l’arrière-plan au bon endroit */
+ .table-charts.column-single [scope="col"]:nth-child(3)::after {
+   left: calc(1em + (var(--width) * 2) + (var(--gap) * 2));
+ }
+
+ /* @note À répéter pour chaque colonne, afin de les distinguer grâce à un motif */
+ .table-charts.column-single td:nth-of-type(2n + 2) {
+   --background: var(--stripes);
+ }
+
+ @media screen and (-ms-high-contrast: active) {
+   .table-charts.column-single td {
+     background-image:
+       linear-gradient(to top,
+         Window,
+         ButtonFace,
+         ButtonShadow,
+         ButtonText,
+         highlight
+       ),
+       var(--background);
+   }
+ }
+}</code>
+  </pre>
+ </div>
+</details>
+
+<h2>Colonnes multiples</h2>
+
+<p>
+ Pour disposer de <var>deux</var> valeurs pour chaque colonne principale, nous devons également
+ disposer de <var>deux</var> sous-titres.
+ Concrètement parlant&nbsp;:
+</p>
+
+<ol>
+ <li>
+  on ajoute <strong>une seconde ligne dans l’entête</strong> <code>&lt;thead></code>&nbsp;:
+  <ul>
+   <li>
+    avec <var>deux</var> cellules d’entête de colonne <code>&lt;th scope="col"></code>
+    pour chaque cellule d’entête de colonne dans la première ligne d’entête&nbsp;;
+   </li>
+   <li>
+    n’oublions pas d’ajouter un <code>colspan="2"</code> sur les cellules d’entête de
+    la première ligne pour faire correspondre la structure du tableau&nbsp;;
+   </li>
+   <li>
+    et enfin ajouter un <strong>identifiant</strong> à chaque cellule d’entête
+    afin de les référencer sur les cellules de données concernées —&nbsp;à l’aide
+    de l’attribut <code>headers</code>, par exemple pour la première cellule&nbsp;:
+    <code>headers="navigateur chrome annee chrome-2018"</code> où chaque valeur est un
+    identifiant de cellule d’entête.
+   </li>
+  </ul>
+ </li>
+ <li>
+  Côté <strong>styles</strong>&nbsp;:
+  <ul>
+   <li>
+    les cellules d’entête de premier niveau doivent s’étendre sur deux colonnes de la grille,
+    comme le réclame leur attribut <code>colspan</code> pour la structure du tableau. Il est
+    malheureusement <strong>impossible d’utiliser la valeur d’un attribut</strong> dans une autre
+    propriété que <code>content</code> — sinon nous pourrions simplement écrire
+    <code>grid-column: 2 / span attr(colspan);</code> et ça serait magnifique…
+   </li>
+   <li>
+    mais non&nbsp;! Ainsi, une variable <var>--span</var> est ajoutée sur <code>&lt;table></code>,
+    et doit correspondre à la valeur des attributs <code>colspan</code> cités plus tôt&nbsp;:
+    elle sert donc à étendre les entêtes de premier niveau sur le nombre de colonnes adéquat.
+   </li>
+   <li>
+    les <strong>couleurs et motifs</strong> ne sont plus appliqués en fonction
+    de chaque valeur, mais en fonction de chaque colonne —&nbsp;dans l’exemple, un élément
+    sur <var>deux</var> (puisque nous avons <var>deux</var> entrées par colonne).
+    Là aussi, si nous pouvions utiliser une valeur d’attribut ou une propriété personnalisée
+    <strong>dans un sélecteur</strong>, ce serait génial. Imaginez un peu
+    <code>tbody td:nth-of-type(var(--span)n + var(--span))</code> ou encore
+    <code>tbody td:nth-of-type(attr(colspan)n + attr(colspan))</code>&nbsp;!
+   </li>
+  </ul>
+ </li>
+</ol>
+
+<div class="table-container column-container" role="group" aria-labelledby="caption-8">
+ <div class="fieldset d-flex sm-hidden">
+  <p class="label no-margin">
+   <strong id="label-8">Interrupteur</strong><br>
+   <span id="description-8">Permet de désactiver les styles sur le tableau suivant.</span>
+  </p>
+  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
+      role="switch" aria-checked="true"
+      aria-labelledby="label-8" aria-describedby="description-8">
+   <span>Guilleret</span>
+   <span>Sobre</span>
+  </button>
+ </div>
+
+ <table class="table-charts column-multiple" id="column-multiple" style="--y: 11; --span: 2;">
+  <caption id="caption-8">Parts de marché navigateurs en France en janvier 2019</caption>
+  <thead>
+   <tr>
+    <th scope="row" id="navigateur">Navigateur</th>
+    <th scope="col" colspan="2" id="chrome">Chrome</th>
+    <th scope="col" colspan="2" id="firefox">Firefox</th>
+    <th scope="col" colspan="2" id="safari">Safari</th>
+    <th scope="col" colspan="2" id="edge">Edge</th>
+    <th scope="col" colspan="2" id="ie">IE</th>
+   </tr>
+   <tr>
+    <th scope="row" id="annee">Année</th>
+    <th scope="col" id="chrome-2018">2018</th>
+    <th scope="col" id="chrome-2019">2019</th>
+    <th scope="col" id="firefox-2018">2018</th>
+    <th scope="col" id="firefox-2019">2019</th>
+    <th scope="col" id="safari-2018">2018</th>
+    <th scope="col" id="safari-2019">2019</th>
+    <th scope="col" id="edge-2018">2018</th>
+    <th scope="col" id="edge-2019">2019</th>
+    <th scope="col" id="ie-2018">2018</th>
+    <th scope="col" id="ie-2019">2019</th>
+   </tr>
+  </thead>
+  <tbody>
+   <tr>
+    <th scope="row" id="parts">Parts de marché</th>
+    <td style="--value: 50;" headers="navigateur chrome annee chrome-2018"><span>49.6&nbsp;%</span></td>
+    <td style="--value: 57;" headers="navigateur chrome annee chrome-2019"><span>57&nbsp;%</span></td>
+    <td style="--value: 12;" headers="navigateur firefox annee firefox-2018"><span>11.74&nbsp;%</span></td>
+    <td style="--value: 10;" headers="navigateur firefox annee firefox-2019"><span>9.59&nbsp;%</span></td>
+    <td style="--value: 22;" headers="navigateur safari annee safari-2018"><span>21.53&nbsp;%</span></td>
+    <td style="--value: 19;" headers="navigateur safari annee safari-2019"><span>18.78&nbsp;%</span></td>
+    <td style="--value: 4;" headers="navigateur edge annee edge-2018"><span>3.72&nbsp;%</span></td>
+    <td style="--value: 3;" headers="navigateur edge annee edge-2019"><span>3.5&nbsp;%</span></td>
+    <td style="--value: 4;" headers="navigateur ie annee ie-2018"><span>4.46&nbsp;%</span></td>
+    <td style="--value: 3.66;" headers="navigateur ie annee ie-2019"><span>3.66&nbsp;%</span></td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+
+<details>
+ <summary>Le <abbr lang="en" title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
+ <div>
+  <pre>
+   <code class="language-markup">
+&lt;table class="table-charts column-multiple" id="column-multiple" style="--y: 11; --span: 2;">
+ &lt;caption id="caption-8">Parts de marché navigateurs en France en janvier 2019&lt;/caption>
+ &lt;thead>
+   &lt;tr>
+     &lt;th scope="row" id="navigateur">Navigateur&lt;/th>
+     &lt;th scope="col" colspan="2" id="chrome">Chrome&lt;/th>
+   &lt;/tr>
+   &lt;tr>
+     &lt;th scope="row" id="annee">Année&lt;/th>
+     &lt;th scope="col" id="chrome-2018">2018&lt;/th>
+     &lt;th scope="col" id="chrome-2019">2019&lt;/th>
+   &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+   &lt;tr>
+     &lt;th scope="row" id="parts">Parts de marché&lt;/th>
+     &lt;td style="--value: 50;" headers="navigateur chrome annee chrome-2018">&lt;span>49.6&nbsp;%&lt;/span>&lt;/td>
+     &lt;td style="--value: 57;" headers="navigateur chrome annee chrome-2019">&lt;span>57&nbsp;%&lt;/span>&lt;/td>
+   &lt;/tr>
+ &lt;/tbody>
+&lt;/table></code>
+  </pre>
+ </div>
+</details>
+<details>
+ <summary>Le <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
+ <div>
+  <pre>
+   <code class="language-css">
+@supports (display: contents) {
+ .table-charts.column-multiple {
+   grid-template-columns: minmax(min-content, 14ch) repeat(calc(var(--y) - 1), 1fr);
+   grid-template-rows: repeat(var(--scale, 100), minmax(0, .25rem)) repeat(2, minmax(min-content, 2rem));
+ }
+
+ .table-charts.column-multiple tbody th {
+   grid-row: -10 / span 4;
+ }
+
+ .table-charts.column-multiple thead tr * {
+   grid-row: -2;
+   grid-column: 1;
+ }
+
+ .table-charts.column-multiple thead tr *:nth-of-type(2) {
+   grid-column: calc(4 - var(--span)) / span var(--span);
+ }
+
+ .table-charts.column-multiple thead tr + tr * {
+   font-weight: normal;
+   grid-row: -3;
+ }
+
+ .table-charts.column-multiple thead tr + tr *:nth-of-type(2) {
+   grid-column: 2;
+ }
+
+ .table-charts.column-multiple tr:first-child [scope="col"]:nth-child(even)::after {
+   background: whitesmoke var(--stripes);
+   background-blend-mode: exclusion;
+   bottom: 4rem;
+   content: "";
+   mix-blend-mode: multiply;
+   opacity: .25;
+   position: absolute;
+   transition: opacity .3s cubic-bezier(.5, 0, .5, 1);
+   top: 1rem;
+   width: calc((var(--width) * 2) + (var(--gap) / 2) + 1px);
+   z-index: 0;
+ }
+
+ .table-charts.column-multiple tr:first-child [scope="col"]:nth-child(4)::after {
+   left: calc(14ch + 1em + (((var(--width) * 2) + (var(--gap) / 2) + 1px) * 2) + (var(--gap) * 3));
+ }
+
+ .table-charts.column-multiple td {
+   background: #e11a81 var(--zig);
+ }
+
+ /* @note Oh boy, if we could use var(--span) in selector… */
+ .table-charts.column-multiple td:nth-of-type(2n + 2) {
+   background: #0172f0 var(--triangles);
+ }
+
+ @media screen and (-ms-high-contrast: active) {
+   .table-charts.column-multiple td {
+     background-color: Window;
+   }
+
+   .table-charts.column-multiple td:nth-of-type(2n + 2) {
+     background-color: Highlight;
+   }
+ }
+}</code>
+  </pre>
+ </div>
+</details>
+
+<div class="note">
+ <h3>Bug dans Chromium</h3>
+ <p>
+  Il y a en ce moment un bug dans Chromium —&nbsp;j’ai saisi
+  <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=938927" hreflang="en"
+  target="_blank" rel="noopener noreferrer">un ticket sur bugs.chromium.org</a>&nbsp;—
+  lors de <strong>l’utilisation d’une valeur décimale pour le placement sur la grille</strong>.
+  Je ne sais pas si c’est une implication de la décimale, du calcul, de la propriété personnalisée…
+  mais pour le moment, ça ne fonctionne pas&nbsp;!
+</div>
+
+      </main>
+
+      
+        <script src="../script.min.js" async></script>
+        <script src="js/prism.min.js"></script>
+      
+
+      
+      
+    </body>
+</html>

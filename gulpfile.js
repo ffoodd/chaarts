@@ -30,7 +30,7 @@ function reload(done) {
 function sync(done) {
     browser.init({
       server: {
-         baseDir: options.paths.dest
+         baseDir: options.paths.docs
       }
     });
     done();
@@ -50,7 +50,7 @@ function watch() {
   gulp.watch( options.paths.src  + 'datas/**/*.json',  gulp.series( 'doc', reload ) );
 }
 exports.watch   = watch;
-exports.default = gulp.series( 'docs', sync, watch );
+exports.default = gulp.series( 'doc', sync, watch );
 
 
 /**
