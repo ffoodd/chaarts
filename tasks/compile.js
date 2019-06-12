@@ -5,7 +5,6 @@ const csso     = require('gulp-csso');
 const prefix   = require('gulp-autoprefixer');
 const rename   = require('gulp-rename');
 const newer    = require('gulp-newer');
-const purge    = require('gulp-purgecss');
 const babel    = require('gulp-babel');
 const uglify   = require('gulp-uglify');
 const options  = require('./options');
@@ -19,7 +18,7 @@ function js() {
         this.emit('end');
       }))
       .pipe(rename({suffix: '.min'}))
-      .pipe(gulp.dest(options.paths.root + 'js'));
+      .pipe(gulp.dest(options.paths.root));
 }
 
 function css() {
@@ -29,7 +28,6 @@ function css() {
       .pipe(sass().on('error', sass.logError))
       .pipe(prefix(options.browsers))
       .pipe(csso(options.csso))
-      .pipe(purge(options.purge))
       .pipe(rename({suffix: '.min'}))
       .pipe(maps.write())
       .pipe(gulp.dest(options.paths.root));

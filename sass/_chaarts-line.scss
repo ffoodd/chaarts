@@ -14,7 +14,7 @@
      display: flex !important;
    }
 
-   .table-charts.line {
+   .chaarts.line {
      --offset: calc( ( 100% / var(--x) ) / 2 );
      --height: calc( #{$width / 2} - #{$gutter * 2} );
      --bottom: calc( 100% - var(--height) );
@@ -199,7 +199,7 @@
      }
    }
 
-   .table-charts.points {
+   .chaarts.points {
        [style] {
            &::before {
              background: var(--color, currentColor) var(--background);
@@ -316,7 +316,7 @@
     * @link http://www.gwhitworth.com/blog/2017/04/how-to-use-ms-high-contrast
     */
    @media screen and (-ms-high-contrast: active) {
-     .table-charts.line [style]::before {
+     .chaarts.line [style]::before {
        background: linear-gradient(to top, ButtonHighlight, Highlight 75%);
      }
    }

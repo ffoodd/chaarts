@@ -6,7 +6,7 @@
     display: flex !important;
   }
 
-  .table-charts.pie {
+  .chaarts.pie {
     --radius: 32em;
     margin: 0 auto;
     padding-top: calc(var(--radius) - #{$gutter * 2});
@@ -167,7 +167,7 @@
     }
   }
 
-  .table-charts.polar {
+  .chaarts.polar {
     td::before {
       --zoom: 50;
       transform:
@@ -181,7 +181,7 @@
     }
   }
 
-   .table-charts.donut {
+   .chaarts.donut {
      mask-image: radial-gradient(
        circle at 50% calc(50% - #{$gutter * 2}),
        transparent 0%,
@@ -201,7 +201,7 @@
    * @link http://www.gwhitworth.com/blog/2017/04/how-to-use-ms-high-contrast
    */
   @media screen and (-ms-high-contrast: active) {
-    .table-charts.pie {
+    .chaarts.pie {
       tbody tr *::before {
         background-color: Window;
       }

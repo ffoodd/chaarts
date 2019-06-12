@@ -7,7 +7,7 @@
     display: flex !important;
   }
 
-  .table-charts[class*="radar"] {
+  .chaarts[class*="radar"] {
     --radius: #{$width / 5};
     --unitless-radius: calc( 1024 / 16 / 5 );
     --size: calc( var(--radius) / var(--scale) );
@@ -141,7 +141,7 @@
     }
   }
 
-  .table-charts.radar [scope="col"] {
+  .chaarts.radar [scope="col"] {
     &::after {
       color: palette( accent );
       display: block;
@@ -163,7 +163,7 @@
     }
   }
 
-  .table-charts.radar-multiple {
+  .chaarts.radar-multiple {
     margin-bottom: $gutter * 12;
 
     tbody {

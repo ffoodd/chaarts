@@ -11,7 +11,7 @@
     display: flex !important;
   }
 
-  .table-charts[class*="column"] {
+  .chaarts[class*="column"] {
     --gap: #{$gutter / 2};
     --size: calc(var(--scale, 100) * 100%);
     --width: calc(#{$width} / var(--y) - #{$gutter});

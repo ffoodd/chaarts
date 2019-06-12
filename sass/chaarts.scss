@@ -1,4 +1,11 @@
 /* ==================== */
+/* == Abstracts
+/* ==================== */
+@import "abstracts/functions";
+@import "abstracts/variables";
+@import "abstracts/mixins";
+
+/* ==================== */
 /* == Charts
 /* ==================== */
 .table-container {
@@ -10,7 +17,7 @@
   padding: 0 $gutter;
 }
 
-[class*="charts"] {
+[class*="chaarts"] {
   [role="presentation"] {
     display: none;
   }
@@ -23,7 +30,7 @@
   }
 }
 
-.table-charts {
+.chaarts {
   caption-side: bottom;
   empty-cells: hide;
   margin: 1.5em auto;
@@ -48,7 +55,7 @@
   }
 }
 
-table:not(.table-charts) .sr-only {
+table:not(.chaarts) .sr-only {
   clip: auto !important;
 	clip-path: none !important;
 	height: auto !important;
@@ -59,7 +66,7 @@ table:not(.table-charts) .sr-only {
 }
 
 @media screen and (min-width: em(480)) {
-  .table-charts {
+  .chaarts {
     border-collapse: separate;
     border-spacing: 0;
     /**
@@ -79,9 +86,9 @@ table:not(.table-charts) .sr-only {
     }
   }
 
-  @import "charts-bar";
-  @import "charts-pie";
-  @import "charts-line";
-  @import "charts-column";
-  @import "charts-radar";
+  @import "chaarts-bar";
+  @import "chaarts-pie";
+  @import "chaarts-line";
+  @import "chaarts-column";
+  @import "chaarts-radar";
 }
