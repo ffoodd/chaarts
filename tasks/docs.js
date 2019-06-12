@@ -16,7 +16,6 @@ const options  = require('./options');
 
 function sseeeedd() {
   return gulp.src(options.paths.node + '/sseeeedd/docs/css/styles.min.css')
-    .pipe(newer(options.paths.src + 'scss/vendors/_sseeeedd.scss'))
     .pipe(rename({
       prefix: '_',
       basename: 'sseeeedd',
