@@ -42,10 +42,12 @@ function markup(done) {
 
         let messages = JSON.parse(data);
         let results  = messages.messages.reduce((results, value, key) => { results[key] = value; return results; }, {});
+        let errors   = 0;
 
         for (let result in results) {
           let test = new Object(results[result]);
           if ('error' == results[result].type) {
+            errors++;
             test.status = results[result].type;
             test.name   = results[result].message;
             if (!results[result].firstLine) {
@@ -54,6 +56,10 @@ function markup(done) {
             test.value  = `From line ${results[result].firstLine}, column ${results[result].firstColumn}; to line ${results[result].lastLine}, column ${results[result].lastColumn}`;
             displayTest(test)
           }
+        }
+
+        if (0 == errors) {
+          console.log(chalk`${symbols.success} {green The HTML document validates according to the W3C}`);
         }
       })
       .catch(error => {
