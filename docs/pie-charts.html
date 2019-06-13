@@ -259,7 +259,7 @@
  &lt;/thead>
  &lt;tbody>
    &lt;tr style="--color: #734bf9; --term: 'HTML';">
-     &lt;th scope="row">HTML</th>
+     &lt;th scope="row">HTML&lt;/th>
      &lt;td style="--value: 2; --start: 0;">
      2&nbsp;%
      &lt;/td>
@@ -276,27 +276,27 @@
   <pre>
    <code class="language-css">
 @supports (clip-path: polygon( 50% calc( 50% + ( var(--gt-25, 0) ) ) )) {
- .table-charts.pie {
+ .chaarts.pie {
    --radius: 32em;
    margin: 0 auto;
    padding-top: calc(var(--radius) - 2rem);
    position: relative;
  }
 
- .table-charts.pie tbody {
+ .chaarts.pie tbody {
    display: table-row;
  }
 
- .table-charts.pie tr {
+ .chaarts.pie tr {
    display: table-cell;
    transition: opacity .3s cubic-bezier(.5, 0, .5, 1);
  }
 
- .table-charts.pie [scope="row"] {
+ .chaarts.pie [scope="row"] {
    padding-right: .5rem;
  }
 
- .table-charts.pie [scope="row"]::before {
+ .chaarts.pie [scope="row"]::before {
    background: var(--color, currentColor);
    content: "";
    display: inline-block;
@@ -305,19 +305,19 @@
    width: 1rem;
  }
 
- .table-charts.pie td {
+ .chaarts.pie td {
    --position: calc(var(--start, 0) * .01turn);
  }
 
- .table-charts.pie td::after,
- .table-charts.pie td::before {
+ .chaarts.pie td::after,
+ .chaarts.pie td::before {
    left: 50%;
    position: absolute;
    top: 40%;
    transform-origin: center center;
  }
 
- .table-charts.pie td::before {
+ .chaarts.pie td::before {
    /* L’inclinaison, pour se placer au bon endroit */
    --position: calc(var(--start, 0) * .01turn);
    --zoom: .75;
@@ -382,28 +382,28 @@
    width: var(--radius);
  }
 
- .table-charts.pie tr:hover td::before {
+ .chaarts.pie tr:hover td::before {
    --zoom: .8;
  }
 
- .table-charts.pie tr:nth-child(2n + 2) *::before {
+ .chaarts.pie tr:nth-child(2n + 2) *::before {
    background-image: var(--stripes);
  }
 
- .table-charts.pie tbody:hover tr {
+ .chaarts.pie tbody:hover tr {
    opacity: .75;
  }
 
- .table-charts.pie tbody:hover tr:hover {
+ .chaarts.pie tbody:hover tr:hover {
    opacity: 1;
  }
 
  @media screen and (-ms-high-contrast: active) {
-   .table-charts.pie tr *::before {
+   .chaarts.pie tr *::before {
      background-color: Window;
    }
 
-   .table-charts.pie tr:nth-of-type(odd) *::before {
+   .chaarts.pie tr:nth-of-type(odd) *::before {
      background-color: WindowText;
    }
  }
@@ -484,7 +484,7 @@
  </p>
  <ul class="grid-3 no-padding">
    <li>
-     <figure role="figure" aria-label="Capture d’écran du tracé pour 44%.">
+     <figure role="group" aria-label="Capture d’écran du tracé pour 44%.">
        <img src="img/tarte-1.jpg" alt="Tracé pour clip-path avec une valeur de 44% : six points visibles." width="264" height="264" />
        <figcaption>
          Capture d’écran du tracé pour <var>44%</var><br>
@@ -494,7 +494,7 @@
      </figure>
    </li>
    <li>
-     <figure role="figure" aria-label="Capture d’écran du tracé pour 64%.">
+     <figure role="group" aria-label="Capture d’écran du tracé pour 64%.">
        <img src="img/tarte-2.jpg" alt="Tracé pour clip-path avec une valeur de 64% : 7 points visibles." width="264" height="264" />
        <figcaption>
          Capture d’écran du tracé pour <var>64%</var><br>
@@ -504,7 +504,7 @@
      </figure>
    </li>
    <li>
-     <figure role="figure" aria-label="Capture d’écran du tracé pour 88%.">
+     <figure role="group" aria-label="Capture d’écran du tracé pour 88%.">
        <img src="img/tarte-3.jpg" alt="Tracé pour clip-path avec une valeur de 88% : 9 points visibles." width="264" height="264" />
        <figcaption>
          Capture d’écran du tracé pour <var>88%</var><br>
@@ -583,15 +583,15 @@
     </table>
   </div>
 
-  <div class="table-container pie-container" role="group" aria-labelledby="caption-12">
+  <div class="table-container pie-container" role="group" aria-labelledby="caption-13">
     <div class="fieldset d-flex sm-hidden">
      <p class="label no-margin">
-      <strong id="label-12">Interrupteur</strong><br>
-      <span id="description-12">Permet de désactiver les styles sur le tableau suivant.</span>
+      <strong id="label-13">Interrupteur</strong><br>
+      <span id="description-13">Permet de désactiver les styles sur le tableau suivant.</span>
      </p>
      <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
          role="switch" aria-checked="true"
-         aria-labelledby="label-12" aria-describedby="description-12">
+         aria-labelledby="label-13" aria-describedby="description-13">
       <span>Guilleret</span>
       <span>Sobre</span>
      </button>
@@ -763,7 +763,7 @@
  <div>
   <pre>
    <code class="language-css">
-.table-charts.donut {
+.chaarts.donut {
  mask-image: radial-gradient(
    circle at 50% calc(50% - 2rem),
    transparent 0%,
@@ -773,7 +773,7 @@
  );
 }
 
-.table-charts.donut td::after {
+.chaarts.donut td::after {
  --away: calc( var(--radius) / 2 - 2.5rem );
 }</code>
   </pre>
@@ -900,7 +900,7 @@
  <div>
   <pre>
    <code class="language-css">
-.table-charts.polar td::before {
+.chaarts.polar td::before {
  --zoom: 50;
  transform:
    translate3d( -50%, -50%, 0 )
@@ -908,11 +908,11 @@
    scale( calc( ( var(--zoom) + ( var(--value) / ( 100 / var(--zoom) ) ) ) / 100 ) );
 }
 
-.table-charts.polar tr:hover td::before {
+.chaarts.polar tr:hover td::before {
  --zoom: 50;
 }
 
-.table-charts.polar tbody:hover tr {
+.chaarts.polar tbody:hover tr {
  opacity: .5;
 }</code>
   </pre>

@@ -274,7 +274,7 @@
   <pre>
    <code class="language-css">
 @supports (clip-path: polygon(0% calc( 100% - ( var(--1) * 100% / var(--y) )) )) {
- .table-charts.line {
+ .chaarts.line {
    --offset: calc( ( 100% / var(--x) ) / 2 );
    --height: calc( 32em - 2rem );
    --bottom: calc( 100% - var(--height) );
@@ -285,7 +285,7 @@
      color .3s cubic-bezier(.5, 0, .5, 1);
  }
 
- .table-charts.line::after {
+ .chaarts.line::after {
    --scale: calc( ( 100% - ( var(--y) * 1px) ) / var(--y) );
    background:
      repeating-linear-gradient(
@@ -301,18 +301,18 @@
    z-index: 1;
  }
 
- .table-charts.line tr::before {
+ .chaarts.line tr::before {
    content: "";
    position: absolute;
  }
 
- .table-charts.line [scope="row"],
- .table-charts.line thead th:first-child {
+ .chaarts.line [scope="row"],
+ .chaarts.line thead th:first-child {
    color: var(--color, currentColor);
    text-align: left;
  }
 
- .table-charts.line [style]::before {
+ .chaarts.line [style]::before {
    bottom: var(--bottom);
    background: linear-gradient(to top, deepskyblue, crimson 75%);
    clip-path: polygon(
@@ -342,8 +342,8 @@
    z-index: 2;
  }
 
- .table-charts.line th,
- .table-charts.line td {
+ .chaarts.line th,
+ .chaarts.line td {
    background: white;
    font-weight: bold;
    text-align: center;
@@ -351,12 +351,12 @@
    width: 7.69%;
  }
 
- .table-charts.line th:hover,
- .table-charts.line td:hover {
+ .chaarts.line th:hover,
+ .chaarts.line td:hover {
    color: mediumblue;
  }
 
- .table-charts.line [scope="col"]:not(:first-child)::after {
+ .chaarts.line [scope="col"]:not(:first-child)::after {
    background: white var(--stripes);
    background-blend-mode: exclusion;
    bottom: 4rem;
@@ -370,21 +370,21 @@
    z-index: 3;
  }
 
- .table-charts.line th[scope="col"]:nth-child(3)::after {
+ .chaarts.line th[scope="col"]:nth-child(3)::after {
    left: calc( 100% / var(--x) * 2 );
  }
 
- .table-charts.line [scope="col"]:hover::after {
+ .chaarts.line [scope="col"]:hover::after {
   opacity: .75;
  }
 
- .table-charts.line td {
+ .chaarts.line td {
    --value: var(--1);
    --term: var(--t-1);
    line-height: 1.5;
  }
 
- .table-charts.line td::before {
+ .chaarts.line td::before {
    content: '';
    height: 1.5rem;
    position: absolute;
@@ -393,7 +393,7 @@
    z-index: 10;
  }
 
- .table-charts.line td::after {
+ .chaarts.line td::after {
    --arrow: calc(100% - .25rem);
    --top: calc( var(--height) - ( var(--value) / var(--y) * var(--height) ) );
    background-color: #444;
@@ -428,13 +428,13 @@
    z-index: 5;
  }
 
- .table-charts.line td:nth-child(3)::after {
+ .chaarts.line td:nth-child(3)::after {
    --value: var(--2);
    --term: var(--t-2);
    left: calc( ( 100% / var(--x) * 2 ) + var(--offset) );
  }
 
- .table-charts.line td:hover::after {
+ .chaarts.line td:hover::after {
    opacity: 1;
    transform:
      translate3d(-50%, -125%, 0)
@@ -446,7 +446,7 @@
  }
 
  @media screen and (-ms-high-contrast: active) {
-   .table-charts.line tr[style]::before {
+   .chaarts.line tr[style]::before {
      background: linear-gradient(to top, ButtonHighlight, Highlight 75%);
    }
  }
@@ -683,7 +683,7 @@
   <pre>
    <code class="language-css">
 @supports (clip-path: polygon(0% calc(100% - (var(--1) * 100% / var(--y))))) {
- .table-charts.points [style]::before {
+ .chaarts.points [style]::before {
    background: var(--color, currentColor) var(--background);
    clip-path: polygon(
      calc( ( 100% / var(--x) * 1 ) + var(--offset) ) calc( 100% - ( var(--1) / var(--y) * 100% ) ),
@@ -718,7 +718,7 @@
    transition: opacity .3s cubic-bezier(.5, 0, .5, 1);
  }
 
- .table-charts.points [style] th::before {
+ .chaarts.points [style] th::before {
    background: var(--color, currentColor) var(--background);
    content: "";
    display: inline-block;
@@ -727,7 +727,7 @@
    width: 1rem;
  }
 
- .table-charts.points [style] td::before {
+ .chaarts.points [style] td::before {
    --size: 1rem;
    --top: calc( var(--height) - ( var(--value) / var(--y) * var(--height) ) );
    background: var(--color, currentColor) var(--background);
@@ -747,37 +747,37 @@
    z-index: 4;
  }
 
- .table-charts.points [style] td:nth-of-type(2)::before {
+ .chaarts.points [style] td:nth-of-type(2)::before {
    --value: var(--2);
    left: calc( ( 100% / var(--x) * 2 ) + var(--offset) );
  }
 
  /* @note À répéter pour chaque ligne, afin de les distinguer grâce à un motif */
- .table-charts.points [style]:nth-child( 2n + 2 ) {
+ .chaarts.points [style]:nth-child( 2n + 2 ) {
    --background: var(--stripes);
  }
 
- .table-charts.points tbody:hover [style]::before,
- .table-charts.points tbody:hover [style] td::before {
+ .chaarts.points tbody:hover [style]::before,
+ .chaarts.points tbody:hover [style] td::before {
    opacity: .25;
  }
 
- .table-charts.points tbody:hover [style]:hover::before,
- .table-charts.points tbody:hover [style]:hover td::before {
+ .chaarts.points tbody:hover [style]:hover::before,
+ .chaarts.points tbody:hover [style]:hover td::before {
    opacity: 1;
  }
 
- .table-charts.points tbody:hover [style]:hover td::before {
+ .chaarts.points tbody:hover [style]:hover td::before {
    transform:
      translate3d( calc( var(--size) / -2 ), calc( var(--size ) / -2), 0 )
      scale( 1.25 );
  }
 
- .table-charts.points [scope="col"]::after {
+ .chaarts.points [scope="col"]::after {
    mix-blend-mode: multiply;
  }
 
- .table-charts.points [scope="col"]:hover::after {
+ .chaarts.points [scope="col"]:hover::after {
    opacity: .5;
  }
 }</code>
@@ -790,7 +790,7 @@
  <p>
   Pour jouer d’avantage et vous familiariser avec <code>clip-path</code>,
   <cite>Bennett Feely</cite> a créé
-  <a hreflang="en" href="http://bennettfeely.com/clippy/" hreflang="en">clippy</a>.
+  <a hreflang="en" href="http://bennettfeely.com/clippy/">clippy</a>.
  </p>
 </div>
 

@@ -17,7 +17,7 @@
   <li><a href="./line-charts.html">Graphique linéaire</a></li>
   <li><a href="./column-charts.html">Histogramme</a></li>
   <li><a href="./pie-charts.html">Graphique en tarte</a></li>
-  <li><a ria-current="page">Graphique radar</a></li>
+  <li><a aria-current="page">Graphique radar</a></li>
 </ul>
 {% endblock %}
 
@@ -180,7 +180,7 @@
   <pre>
    <code class="language-css">
 @supports(clip-path: polygon(calc( 0% 0%, 100% - ( var(--1) * 100% / var(--scale) ) ) 100%, 100% 100%)) {
- .table-charts[class*="radar"] {
+ .chaarts[class*="radar"] {
    --radius: 12.8rem;
    --unitless-radius: calc( 1024 / 16 / 5 );
    --size: calc( var(--radius) / var(--scale) );
@@ -211,13 +211,13 @@
    width: calc( var(--radius) * 2 );
  }
 
- .table-charts[class*="radar"] caption {
+ .chaarts[class*="radar"] caption {
    background: none;
    bottom: -10rem;
    position: absolute;
  }
 
- .table-charts[class*="radar"] [scope="col"] {
+ .chaarts[class*="radar"] [scope="col"] {
    --away: calc( (var(--radius) * -1) - 50% );
    left: 50%;
    margin: 0;
@@ -231,11 +231,11 @@
      rotate( calc(var(--part) * var(--index, 1) * -1) );
  }
 
- .table-charts[class*="radar"] tr > *:nth-of-type(2) {
+ .chaarts[class*="radar"] tr > *:nth-of-type(2) {
    --index: 2;
  }
 
- .table-charts[class*="radar"] td {
+ .chaarts[class*="radar"] td {
    --skew: calc( 90deg - var(--part) );
    border-bottom: 1px solid blueviolet;
    height: 50%;
@@ -250,7 +250,7 @@
    width: 50%;
  }
 
- .table-charts[class*="radar"] span {
+ .chaarts[class*="radar"] span {
    --opposite: calc( 180 - (90 + (90 - (360 / var(--items)))) );
    --angle: calc( var(--opposite) * 0.01745329251 );
    --sin-term-angle-1: var(--angle);
@@ -272,7 +272,7 @@
    width: 100%;
  }
 
- .table-charts[class*="radar"] td:nth-of-type(2) span {
+ .chaarts[class*="radar"] td:nth-of-type(2) span {
    --pos: calc( 100% - (var(--3) * 100% / (var(--scale) * var(--ratio) ) ) );
    clip-path: polygon(
      100% var(--pos),
@@ -281,19 +281,19 @@
    );
  }
 
- .table-charts[class*="radar"] td::after,
- .table-charts[class*="radar"] td::before {
+ .chaarts[class*="radar"] td::after,
+ .chaarts[class*="radar"] td::before {
    display: none;
  }
 
- .table-charts.radar [scope="col"]::after {
+ .chaarts.radar [scope="col"]::after {
    color: rebeccapurple;
    display: block;
    font-size: small;
    font-weight: 400;
  }
 
- .table-charts.radar [scope="col"]:nth-child(2)::after {
+ .chaarts.radar [scope="col"]:nth-child(2)::after {
    counter-reset: value var(--2);
    content: counter(value) "\A0/\A0" counter(scale);
  }
@@ -301,6 +301,8 @@
   </pre>
  </div>
 </details>
+
+<h2>Quelques détails</h2>
 
 <div class="grid-2-1">
   <div class="note">
@@ -315,7 +317,7 @@
     sur la balise <code>&lt;table></code> de ces exemples&nbsp;!
    </p>
   </div>
-  <figure role="figure" aria-label="Capture d’écran de la déformation provoquée par skew.">
+  <figure role="group" aria-label="Capture d’écran de la déformation provoquée par skew.">
     <img src="img/hypothenuse.jpg" alt="La fonction skew() déforme l’élément en l’inclinant." width="277" height="202" />
     <figcaption>
       Capture d’écran de la déformation provoquée par <code>skew()</code>.
@@ -448,23 +450,23 @@
  <div>
   <pre>
    <code class="language-css">
-.table-charts.radar-multiple {
+.chaarts.radar-multiple {
  margin-bottom: 12rem;
 }
 
-.table-charts.radar-multiple tbody {
+.chaarts.radar-multiple tbody {
  columns: var(--areas);
  vertical-align: bottom;
 }
 
-.table-charts.radar-multiple [scope="row"] {
+.chaarts.radar-multiple [scope="row"] {
  bottom: -8rem;
  height: 2rem;
  left: 1rem;
  position: absolute;
 }
 
-.table-charts.radar-multiple [scope="row"]::before {
+.chaarts.radar-multiple [scope="row"]::before {
  background: var(--color, currentColor);
  content: "";
  display: inline-block;
@@ -475,11 +477,11 @@
 }
 
 /* Pour obtenir une deuxième zone : */
-.table-charts.radar-multiple tr:nth-child(2) [scope="row"] {
+.chaarts.radar-multiple tr:nth-child(2) [scope="row"] {
  left: calc( 1rem + (100% / var(--areas)) * 1);
 }
 
-.table-charts.radar-multiple td {
+.chaarts.radar-multiple td {
  align-items: flex-end;
  border-color: var(--color, currentColor);
  display: flex;
@@ -491,7 +493,7 @@
  z-index: 0;
 }
 
-.table-charts.radar-multiple td::after {
+.chaarts.radar-multiple td::after {
  color: var(--color, currentColor);
  display: block;
  font-size: small;
@@ -507,38 +509,38 @@
  white-space: nowrap;
 }
 
-.table-charts.radar-multiple td:nth-of-type(2)::after {
+.chaarts.radar-multiple td:nth-of-type(2)::after {
  counter-reset: value var(--2);
  content: counter(value);
  width: calc( var(--2) * 100% / var(--scale) );
 }
 
-.table-charts.radar-multiple span {
+.chaarts.radar-multiple span {
  background: var(--color, currentColor);
  pointer-events: auto;
 }
 
 @supports ( mask-image: url() ) {
- .table-charts.radar-multiple span {
+ .chaarts.radar-multiple span {
    mask-image: radial-gradient(circle at bottom right, rgba(0,0,0,1), rgba(0,0,0,.5));
  }
 }
 
 @media (hover: hover) {
- .table-charts.radar-multiple td {
+ .chaarts.radar-multiple td {
    opacity: .25;
  }
 
- .table-charts.radar-multiple td::after {
+ .chaarts.radar-multiple td::after {
    opacity: 0;
  }
 
- .table-charts.radar-multiple tr:hover td {
+ .chaarts.radar-multiple tr:hover td {
    opacity: 1;
    z-index: 1;
  }
 
- .table-charts.radar-multiple tr:hover td::after {
+ .chaarts.radar-multiple tr:hover td::after {
    opacity: inherit;
  }
 }</code>

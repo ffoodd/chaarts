@@ -59,7 +59,7 @@
  <cite>Ire Aderinokun</cite> <q lang="en">How <code>display: contents</code> works</q></a>.
 </p>
 
-<p>Le principe de base est le même que <a href="#bar-chart">le graphique en barre</a>&nbsp;:</p>
+<p>Le principe de base est le même que <a href="./bar-charts.html">le graphique en barre</a>&nbsp;:</p>
 <ol>
  <li>
   la fonction <code>repeat()</code> appliquée avec la variable <var>--scale</var>
@@ -152,7 +152,7 @@
   <pre>
    <code class="language-css">
 @supports (display: contents) {
- .table-charts[class*="column"] {
+ .chaarts[class*="column"] {
    --gap: .5rem;
    --size: calc(var(--scale, 100) * 100%);
    --width: calc(64em / var(--y) - 1rem);
@@ -162,34 +162,34 @@
    position: relative;
  }
 
- .table-charts[class*="column"] td,
- .table-charts[class*="column"] th {
+ .chaarts[class*="column"] td,
+ .chaarts[class*="column"] th {
    margin: 0;
  }
 
- .table-charts[class*="column"] tr > * + * {
+ .chaarts[class*="column"] tr > * + * {
    text-align: center;
  }
 
- .table-charts[class*="column"] tr,
- .table-charts[class*="column"] tbody,
- .table-charts[class*="column"] thead {
+ .chaarts[class*="column"] tr,
+ .chaarts[class*="column"] tbody,
+ .chaarts[class*="column"] thead {
    display: contents;
  }
 
- .table-charts[class*="column"] caption {
+ .chaarts[class*="column"] caption {
    grid-column: 1 / span var(--y);
    grid-row: -1;
  }
 
- .table-charts[class*="column"] td {
+ .chaarts[class*="column"] td {
    grid-row: calc( 100 - var(--value) ) / -3;
    pointer-events: none;
    position: relative;
    transition: opacity .2s cubic-bezier(.5, 0, .5, 1);
  }
 
- .table-charts[class*="column"] span {
+ .chaarts[class*="column"] span {
    background: inherit;
    -webkit-text-fill-color: transparent;
    -webkit-background-clip: text;
@@ -203,26 +203,26 @@
  }
 
  /* @note À répéter pour chaque colonne, afin de les distinguer grâce à un motif */
- .table-charts[class*="column"] td:nth-of-type(2) {
+ .chaarts[class*="column"] td:nth-of-type(2) {
    grid-column: 3;
  }
 
- .table-charts.column-single {
+ .chaarts.column-single {
    grid-auto-columns: 1fr;
    grid-template-rows: repeat(var(--scale, 100), minmax(0, .25rem)) minmax(min-content, 2rem);
  }
 
- .table-charts.column-single tbody th {
+ .chaarts.column-single tbody th {
    grid-row: -6 / -3;
    grid-column: 1;
    line-height: 1;
  }
 
- .table-charts.column-single thead * {
+ .chaarts.column-single thead * {
    grid-row: -2;
  }
 
- .table-charts.column-single td {
+ .chaarts.column-single td {
    --position: calc(var(--value, 0) / var(--scale, 100) * 100%);
    background-blend-mode: hard-light;
      linear-gradient(to top,
@@ -235,7 +235,7 @@
      var(--background) center / $gutter;
  }
 
- .table-charts.column-single [scope="col"]::after {
+ .chaarts.column-single [scope="col"]::after {
    background: whitesmoke var(--stripes);
    background-blend-mode: exclusion;
    bottom: 4rem;
@@ -249,22 +249,22 @@
    z-index: 0;
  }
 
- .table-charts.column-single [scope="col"]:hover::after {
+ .chaarts.column-single [scope="col"]:hover::after {
    opacity: .5;
  }
 
  /* @note À répéter pour chaque colonne, afin d’en disposer l’arrière-plan au bon endroit */
- .table-charts.column-single [scope="col"]:nth-child(3)::after {
+ .chaarts.column-single [scope="col"]:nth-child(3)::after {
    left: calc(1em + (var(--width) * 2) + (var(--gap) * 2));
  }
 
  /* @note À répéter pour chaque colonne, afin de les distinguer grâce à un motif */
- .table-charts.column-single td:nth-of-type(2n + 2) {
+ .chaarts.column-single td:nth-of-type(2n + 2) {
    --background: var(--stripes);
  }
 
  @media screen and (-ms-high-contrast: active) {
-   .table-charts.column-single td {
+   .chaarts.column-single td {
      background-image:
        linear-gradient(to top,
          Window,
@@ -430,34 +430,34 @@
   <pre>
    <code class="language-css">
 @supports (display: contents) {
- .table-charts.column-multiple {
+ .chaarts.column-multiple {
    grid-template-columns: minmax(min-content, 14ch) repeat(calc(var(--y) - 1), 1fr);
    grid-template-rows: repeat(var(--scale, 100), minmax(0, .25rem)) repeat(2, minmax(min-content, 2rem));
  }
 
- .table-charts.column-multiple tbody th {
+ .chaarts.column-multiple tbody th {
    grid-row: -10 / span 4;
  }
 
- .table-charts.column-multiple thead tr * {
+ .chaarts.column-multiple thead tr * {
    grid-row: -2;
    grid-column: 1;
  }
 
- .table-charts.column-multiple thead tr *:nth-of-type(2) {
+ .chaarts.column-multiple thead tr *:nth-of-type(2) {
    grid-column: calc(4 - var(--span)) / span var(--span);
  }
 
- .table-charts.column-multiple thead tr + tr * {
+ .chaarts.column-multiple thead tr + tr * {
    font-weight: normal;
    grid-row: -3;
  }
 
- .table-charts.column-multiple thead tr + tr *:nth-of-type(2) {
+ .chaarts.column-multiple thead tr + tr *:nth-of-type(2) {
    grid-column: 2;
  }
 
- .table-charts.column-multiple tr:first-child [scope="col"]:nth-child(even)::after {
+ .chaarts.column-multiple tr:first-child [scope="col"]:nth-child(even)::after {
    background: whitesmoke var(--stripes);
    background-blend-mode: exclusion;
    bottom: 4rem;
@@ -471,25 +471,25 @@
    z-index: 0;
  }
 
- .table-charts.column-multiple tr:first-child [scope="col"]:nth-child(4)::after {
+ .chaarts.column-multiple tr:first-child [scope="col"]:nth-child(4)::after {
    left: calc(14ch + 1em + (((var(--width) * 2) + (var(--gap) / 2) + 1px) * 2) + (var(--gap) * 3));
  }
 
- .table-charts.column-multiple td {
+ .chaarts.column-multiple td {
    background: #e11a81 var(--zig);
  }
 
  /* @note Oh boy, if we could use var(--span) in selector… */
- .table-charts.column-multiple td:nth-of-type(2n + 2) {
+ .chaarts.column-multiple td:nth-of-type(2n + 2) {
    background: #0172f0 var(--triangles);
  }
 
  @media screen and (-ms-high-contrast: active) {
-   .table-charts.column-multiple td {
+   .chaarts.column-multiple td {
      background-color: Window;
    }
 
-   .table-charts.column-multiple td:nth-of-type(2n + 2) {
+   .chaarts.column-multiple td:nth-of-type(2n + 2) {
      background-color: Highlight;
    }
  }

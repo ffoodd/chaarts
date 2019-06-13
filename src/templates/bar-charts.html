@@ -131,12 +131,12 @@
     <pre>
      <code class="language-css">
   @supports (grid-template-columns: repeat( var(--scale, 100), minmax(0, 1fr) )) {
-   .table-charts.bar caption {
+   .chaarts.bar caption {
      text-align: initial;
      text-indent: 13.5rem;
    }
 
-   .table-charts.bar tr {
+   .chaarts.bar tr {
      display: grid;
      grid-auto-rows: 1fr;
      grid-row-gap: .5rem;
@@ -144,14 +144,14 @@
      transition: opacity .2s cubic-bezier(.5, 0, .5, 1);
    }
 
-   .table-charts.bar th {
+   .chaarts.bar th {
      grid-column: 1 / 1;
      margin: .5rem 0 0;
      padding: 0 1rem 0 0;
      text-align: right;
    }
 
-   .table-charts.bar td {
+   .chaarts.bar td {
      --size: calc( var(--scale, 100) * 100% );
      --position: calc( var(--value, 0) / var(--scale, 100) * 100% );
      background-blend-mode: hard-light;
@@ -162,7 +162,7 @@
      position: relative;
    }
 
-   .table-charts.bar span {
+   .chaarts.bar span {
      background: inherit;
      -webkit-text-fill-color: transparent;
      -webkit-background-clip: text;
@@ -173,7 +173,7 @@
    }
 
    /* @note À répéter pour chaque ligne, afin de les distinguer grâce à un motif */
-   .table-charts.bar tr:nth-child(2n + 2) td {
+   .chaarts.bar tr:nth-child(2n + 2) td {
      background-image:
        linear-gradient(to right,
          #01ac49,
@@ -185,16 +185,16 @@
       var(--stripes);
    }
 
-   .table-charts.bar tbody:hover tr {
+   .chaarts.bar tbody:hover tr {
      opacity: .5;
    }
 
-   .table-charts.bar tbody:hover tr:hover {
+   .chaarts.bar tbody:hover tr:hover {
      opacity: 1;
    }
 
    @media screen and (-ms-high-contrast: active) {
-     .table-charts.bar tr:nth-child(2n + 2) td {
+     .chaarts.bar tr:nth-child(2n + 2) td {
        background-image:
          linear-gradient(to right,
             Window,
