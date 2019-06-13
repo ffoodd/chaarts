@@ -2,39 +2,6 @@
 /* ==================== */
 /* == Abstracts
 /* ==================== */
-/* ----------------------------- */
-/* Table of contents */
-/* ----------------------------- */
-/*
-  == Paths
-  == Colors
-  == Timing functions
-  == Spacings
-  == Patterns
-  == Formage
-*/
-/* ==================== */
-/* == Paths
-/* ==================== */
-/* ==================== */
-/* == Colors
-/* ==================== */
-/* ==================== */
-/* == Timing functions
- *
- * @note Simple cubic-bezier curves for timing functions
- * @author David K. Piano
- * @link https://twitter.com/DavidKPiano/status/965704092545900544
-/* ==================== */
-/* ==================== */
-/* == Spacings
-/* ==================== */
-/* ==================== */
-/* == Patterns
- *
- * @note SVG inline patterns coming from:
- * @link http://www.heropatterns.com/
-/* ==================== */
 /* ==================== */
 /* == Tables
 /* ==================== */
@@ -196,13 +163,6 @@ table:not(.chaarts) .sr-only {
     .bar-container .fieldset {
       display: flex !important;
     }
-    .chaarts.bar {
-      /**
-     * @note Custom color palette for WHCM
-     * @note Inspired by Greg Whitworth's post
-     * @link http://www.gwhitworth.com/blog/2017/04/how-to-use-ms-high-contrast
-     */
-    }
     .chaarts.bar caption {
       text-align: initial;
       text-indent: 13.5rem;
@@ -217,27 +177,21 @@ table:not(.chaarts) .sr-only {
     }
     .chaarts.bar tr:nth-child(1n + 1) {
       --background: var(--checkers);
-      /* 1 */
     }
     .chaarts.bar tr:nth-child(2n + 2) {
       --background: var(--hexagons);
-      /* 1 */
     }
     .chaarts.bar tr:nth-child(3n + 3) {
       --background: var(--triangles);
-      /* 1 */
     }
     .chaarts.bar tr:nth-child(4n + 4) {
       --background: var(--zig);
-      /* 1 */
     }
     .chaarts.bar tr:nth-child(5n + 5) {
       --background: var(--stripes);
-      /* 1 */
     }
     .chaarts.bar tr:nth-child(6n + 6) {
       --background: var(--dots);
-      /* 1 */
     }
     .chaarts.bar th {
       grid-column: 1 / 1;
@@ -271,6 +225,11 @@ table:not(.chaarts) .sr-only {
     }
     @media screen and (-ms-high-contrast: active) {
       .chaarts.bar td {
+        /**
+         * @note Custom color palette for WHCM
+         * @note Inspired by Greg Whitworth's post
+         * @link http://www.gwhitworth.com/blog/2017/04/how-to-use-ms-high-contrast
+         */
         background-image: linear-gradient(to right, Window, ButtonFace, ButtonShadow, ButtonText, highlight), var(--background);
       }
     }
@@ -407,27 +366,21 @@ table:not(.chaarts) .sr-only {
     }
     .chaarts.pie tr:nth-child(1n + 1) {
       --background: var(--checkers);
-      /* 1 */
     }
     .chaarts.pie tr:nth-child(2n + 2) {
       --background: var(--hexagons);
-      /* 1 */
     }
     .chaarts.pie tr:nth-child(3n + 3) {
       --background: var(--triangles);
-      /* 1 */
     }
     .chaarts.pie tr:nth-child(4n + 4) {
       --background: var(--zig);
-      /* 1 */
     }
     .chaarts.pie tr:nth-child(5n + 5) {
       --background: var(--stripes);
-      /* 1 */
     }
     .chaarts.pie tr:nth-child(6n + 6) {
       --background: var(--dots);
-      /* 1 */
     }
     .chaarts.pie td::after {
       --arrow: calc(100% - 0.25rem);
@@ -470,13 +423,13 @@ table:not(.chaarts) .sr-only {
     .chaarts.donut td::after {
       --away: calc( var(--radius) / 2 - 2.5rem );
     }
-    /**
-   * @note Custom color palette for WHCM
-   * @note Inspired by Greg Whitworth's post
-   * @link http://www.gwhitworth.com/blog/2017/04/how-to-use-ms-high-contrast
-   */
     @media screen and (-ms-high-contrast: active) {
       .chaarts.pie tbody tr *::before {
+        /**
+         * @note Custom color palette for WHCM
+         * @note Inspired by Greg Whitworth's post
+         * @link http://www.gwhitworth.com/blog/2017/04/how-to-use-ms-high-contrast
+         */
         background-color: Window;
       }
       .chaarts.pie tbody tr:nth-of-type(odd) *::before {
@@ -550,6 +503,7 @@ table:not(.chaarts) .sr-only {
       bottom: 4rem;
       content: "";
       height: calc(100% - 4rem);
+      left: calc(100% / var(--x) * var(--index));
       mix-blend-mode: soft-light;
       opacity: 0;
       position: absolute;
@@ -558,40 +512,40 @@ table:not(.chaarts) .sr-only {
       z-index: 3;
     }
     .chaarts.line [scope="col"]:nth-child(2)::after {
-      left: calc(100% / var(--x) * 1);
+      --index: 1;
     }
     .chaarts.line [scope="col"]:nth-child(3)::after {
-      left: calc(100% / var(--x) * 2);
+      --index: 2;
     }
     .chaarts.line [scope="col"]:nth-child(4)::after {
-      left: calc(100% / var(--x) * 3);
+      --index: 3;
     }
     .chaarts.line [scope="col"]:nth-child(5)::after {
-      left: calc(100% / var(--x) * 4);
+      --index: 4;
     }
     .chaarts.line [scope="col"]:nth-child(6)::after {
-      left: calc(100% / var(--x) * 5);
+      --index: 5;
     }
     .chaarts.line [scope="col"]:nth-child(7)::after {
-      left: calc(100% / var(--x) * 6);
+      --index: 6;
     }
     .chaarts.line [scope="col"]:nth-child(8)::after {
-      left: calc(100% / var(--x) * 7);
+      --index: 7;
     }
     .chaarts.line [scope="col"]:nth-child(9)::after {
-      left: calc(100% / var(--x) * 8);
+      --index: 8;
     }
     .chaarts.line [scope="col"]:nth-child(10)::after {
-      left: calc(100% / var(--x) * 9);
+      --index: 9;
     }
     .chaarts.line [scope="col"]:nth-child(11)::after {
-      left: calc(100% / var(--x) * 10);
+      --index: 10;
     }
     .chaarts.line [scope="col"]:nth-child(12)::after {
-      left: calc(100% / var(--x) * 11);
+      --index: 11;
     }
     .chaarts.line [scope="col"]:nth-child(13)::after {
-      left: calc(100% / var(--x) * 12);
+      --index: 12;
     }
     .chaarts.line [scope="col"]:hover::after {
       opacity: .75;
@@ -631,9 +585,7 @@ table:not(.chaarts) .sr-only {
               clip-path: polygon(0% 0%, 100% 0%, 100% var(--arrow), calc(50% - 0.25rem) var(--arrow), 50% 100%, calc(50% + 0.25rem) var(--arrow), 0% var(--arrow));
       color: white;
       content: var(--term) " " var(--year) "\a" counter(value) " °C";
-      /* 1 */
       counter-reset: value var(--value);
-      /* 2 */
       opacity: 0;
       padding: 0.5rem;
       left: calc( var(--offset) * 3);
@@ -647,65 +599,68 @@ table:not(.chaarts) .sr-only {
       white-space: pre;
       z-index: 5;
     }
+    .chaarts.line td + td::after {
+      left: calc( ( 100% / var(--x) * var(--index) ) + var(--offset));
+    }
     .chaarts.line td:nth-child(2)::after {
       --value: var(--1);
       --term: var(--t-1);
-      left: calc( ( 100% / var(--x) * 1 ) + var(--offset));
+      --index: 1;
     }
     .chaarts.line td:nth-child(3)::after {
       --value: var(--2);
       --term: var(--t-2);
-      left: calc( ( 100% / var(--x) * 2 ) + var(--offset));
+      --index: 2;
     }
     .chaarts.line td:nth-child(4)::after {
       --value: var(--3);
       --term: var(--t-3);
-      left: calc( ( 100% / var(--x) * 3 ) + var(--offset));
+      --index: 3;
     }
     .chaarts.line td:nth-child(5)::after {
       --value: var(--4);
       --term: var(--t-4);
-      left: calc( ( 100% / var(--x) * 4 ) + var(--offset));
+      --index: 4;
     }
     .chaarts.line td:nth-child(6)::after {
       --value: var(--5);
       --term: var(--t-5);
-      left: calc( ( 100% / var(--x) * 5 ) + var(--offset));
+      --index: 5;
     }
     .chaarts.line td:nth-child(7)::after {
       --value: var(--6);
       --term: var(--t-6);
-      left: calc( ( 100% / var(--x) * 6 ) + var(--offset));
+      --index: 6;
     }
     .chaarts.line td:nth-child(8)::after {
       --value: var(--7);
       --term: var(--t-7);
-      left: calc( ( 100% / var(--x) * 7 ) + var(--offset));
+      --index: 7;
     }
     .chaarts.line td:nth-child(9)::after {
       --value: var(--8);
       --term: var(--t-8);
-      left: calc( ( 100% / var(--x) * 8 ) + var(--offset));
+      --index: 8;
     }
     .chaarts.line td:nth-child(10)::after {
       --value: var(--9);
       --term: var(--t-9);
-      left: calc( ( 100% / var(--x) * 9 ) + var(--offset));
+      --index: 9;
     }
     .chaarts.line td:nth-child(11)::after {
       --value: var(--10);
       --term: var(--t-10);
-      left: calc( ( 100% / var(--x) * 10 ) + var(--offset));
+      --index: 10;
     }
     .chaarts.line td:nth-child(12)::after {
       --value: var(--11);
       --term: var(--t-11);
-      left: calc( ( 100% / var(--x) * 11 ) + var(--offset));
+      --index: 11;
     }
     .chaarts.line td:nth-child(13)::after {
       --value: var(--12);
       --term: var(--t-12);
-      left: calc( ( 100% / var(--x) * 12 ) + var(--offset));
+      --index: 12;
     }
     .chaarts.line td:hover::after {
       opacity: 1;
@@ -743,73 +698,70 @@ table:not(.chaarts) .sr-only {
       width: var(--size);
       z-index: 4;
     }
+    .chaarts.points [style] td + td::before {
+      left: calc( ( 100% / var(--x) * var(--index) ) + var(--offset));
+    }
     .chaarts.points [style] td:nth-of-type(2)::before {
       --value: var(--2);
-      left: calc( ( 100% / var(--x) * 2 ) + var(--offset));
+      --index: 2;
     }
     .chaarts.points [style] td:nth-of-type(3)::before {
       --value: var(--3);
-      left: calc( ( 100% / var(--x) * 3 ) + var(--offset));
+      --index: 3;
     }
     .chaarts.points [style] td:nth-of-type(4)::before {
       --value: var(--4);
-      left: calc( ( 100% / var(--x) * 4 ) + var(--offset));
+      --index: 4;
     }
     .chaarts.points [style] td:nth-of-type(5)::before {
       --value: var(--5);
-      left: calc( ( 100% / var(--x) * 5 ) + var(--offset));
+      --index: 5;
     }
     .chaarts.points [style] td:nth-of-type(6)::before {
       --value: var(--6);
-      left: calc( ( 100% / var(--x) * 6 ) + var(--offset));
+      --index: 6;
     }
     .chaarts.points [style] td:nth-of-type(7)::before {
       --value: var(--7);
-      left: calc( ( 100% / var(--x) * 7 ) + var(--offset));
+      --index: 7;
     }
     .chaarts.points [style] td:nth-of-type(8)::before {
       --value: var(--8);
-      left: calc( ( 100% / var(--x) * 8 ) + var(--offset));
+      --index: 8;
     }
     .chaarts.points [style] td:nth-of-type(9)::before {
       --value: var(--9);
-      left: calc( ( 100% / var(--x) * 9 ) + var(--offset));
+      --index: 9;
     }
     .chaarts.points [style] td:nth-of-type(10)::before {
       --value: var(--10);
-      left: calc( ( 100% / var(--x) * 10 ) + var(--offset));
+      --index: 10;
     }
     .chaarts.points [style] td:nth-of-type(11)::before {
       --value: var(--11);
-      left: calc( ( 100% / var(--x) * 11 ) + var(--offset));
+      --index: 11;
     }
     .chaarts.points [style] td:nth-of-type(12)::before {
       --value: var(--12);
-      left: calc( ( 100% / var(--x) * 12 ) + var(--offset));
+      --index: 12;
     }
     .chaarts.points [style]:nth-child(1n + 1) {
       --background: var(--checkers);
-      /* 1 */
     }
     .chaarts.points [style]:nth-child(2n + 2) {
       --background: var(--hexagons);
-      /* 1 */
     }
     .chaarts.points [style]:nth-child(3n + 3) {
       --background: var(--triangles);
-      /* 1 */
     }
     .chaarts.points [style]:nth-child(4n + 4) {
       --background: var(--zig);
-      /* 1 */
     }
     .chaarts.points [style]:nth-child(5n + 5) {
       --background: var(--stripes);
-      /* 1 */
     }
     .chaarts.points [style]:nth-child(6n + 6) {
       --background: var(--dots);
-      /* 1 */
     }
     .chaarts.points tbody:hover [style]::before,
     .chaarts.points tbody:hover [style] td::before {
@@ -828,13 +780,13 @@ table:not(.chaarts) .sr-only {
     .chaarts.points [scope="col"]:not(:first-child):hover::after {
       opacity: .5;
     }
-    /**
-    * @note Custom color palette for WHCM
-    * @note Inspired by Greg Whitworth's post
-    * @link http://www.gwhitworth.com/blog/2017/04/how-to-use-ms-high-contrast
-    */
     @media screen and (-ms-high-contrast: active) {
       .chaarts.line [style]::before {
+        /**
+        * @note Custom color palette for WHCM
+        * @note Inspired by Greg Whitworth's post
+        * @link http://www.gwhitworth.com/blog/2017/04/how-to-use-ms-high-contrast
+        */
         background: linear-gradient(to top, ButtonHighlight, Highlight 75%);
       }
     }
@@ -923,11 +875,6 @@ table:not(.chaarts) .sr-only {
       grid-auto-columns: 1fr;
       grid-template-rows: repeat(var(--scale, 100), minmax(0, 0.25rem)) minmax(-webkit-min-content, 2rem);
       grid-template-rows: repeat(var(--scale, 100), minmax(0, 0.25rem)) minmax(min-content, 2rem);
-      /**
-       * @note Custom color palette for WHCM
-       * @note Inspired by Greg Whitworth's post
-       * @link http://www.gwhitworth.com/blog/2017/04/how-to-use-ms-high-contrast
-       */
     }
     .chaarts[class*="column"].column-single tbody th {
       grid-row: -6 / -3;
@@ -996,6 +943,11 @@ table:not(.chaarts) .sr-only {
     }
     @media screen and (-ms-high-contrast: active) {
       .chaarts[class*="column"].column-single td {
+        /**
+           * @note Custom color palette for WHCM
+           * @note Inspired by Greg Whitworth's post
+           * @link http://www.gwhitworth.com/blog/2017/04/how-to-use-ms-high-contrast
+           */
         background-image: linear-gradient(to top, Window, ButtonFace, ButtonShadow, ButtonText, highlight), var(--background);
       }
     }
@@ -1198,39 +1150,32 @@ table:not(.chaarts) .sr-only {
       width: 50%;
     }
     .chaarts[class*="radar"] td:nth-of-type(1) span {
+      --point: var(--1);
       --pos: calc( 100% - (var(--2) * 100% / (var(--scale) * var(--ratio) ) ) );
-      -webkit-clip-path: polygon(100% var(--pos), calc( 100% - ( var(--1) * 100% / var(--scale) )) 100%, 100% 100%);
-              clip-path: polygon(100% var(--pos), calc( 100% - ( var(--1) * 100% / var(--scale) )) 100%, 100% 100%);
     }
     .chaarts[class*="radar"] td:nth-of-type(2) span {
+      --point: var(--2);
       --pos: calc( 100% - (var(--3) * 100% / (var(--scale) * var(--ratio) ) ) );
-      -webkit-clip-path: polygon(100% var(--pos), calc( 100% - ( var(--2) * 100% / var(--scale) )) 100%, 100% 100%);
-              clip-path: polygon(100% var(--pos), calc( 100% - ( var(--2) * 100% / var(--scale) )) 100%, 100% 100%);
     }
     .chaarts[class*="radar"] td:nth-of-type(3) span {
+      --point: var(--3);
       --pos: calc( 100% - (var(--4) * 100% / (var(--scale) * var(--ratio) ) ) );
-      -webkit-clip-path: polygon(100% var(--pos), calc( 100% - ( var(--3) * 100% / var(--scale) )) 100%, 100% 100%);
-              clip-path: polygon(100% var(--pos), calc( 100% - ( var(--3) * 100% / var(--scale) )) 100%, 100% 100%);
     }
     .chaarts[class*="radar"] td:nth-of-type(4) span {
+      --point: var(--4);
       --pos: calc( 100% - (var(--5) * 100% / (var(--scale) * var(--ratio) ) ) );
-      -webkit-clip-path: polygon(100% var(--pos), calc( 100% - ( var(--4) * 100% / var(--scale) )) 100%, 100% 100%);
-              clip-path: polygon(100% var(--pos), calc( 100% - ( var(--4) * 100% / var(--scale) )) 100%, 100% 100%);
     }
     .chaarts[class*="radar"] td:nth-of-type(5) span {
+      --point: var(--5);
       --pos: calc( 100% - (var(--6) * 100% / (var(--scale) * var(--ratio) ) ) );
-      -webkit-clip-path: polygon(100% var(--pos), calc( 100% - ( var(--5) * 100% / var(--scale) )) 100%, 100% 100%);
-              clip-path: polygon(100% var(--pos), calc( 100% - ( var(--5) * 100% / var(--scale) )) 100%, 100% 100%);
     }
     .chaarts[class*="radar"] td:nth-of-type(6) span {
+      --point: var(--6);
       --pos: calc( 100% - (var(--7) * 100% / (var(--scale) * var(--ratio) ) ) );
-      -webkit-clip-path: polygon(100% var(--pos), calc( 100% - ( var(--6) * 100% / var(--scale) )) 100%, 100% 100%);
-              clip-path: polygon(100% var(--pos), calc( 100% - ( var(--6) * 100% / var(--scale) )) 100%, 100% 100%);
     }
     .chaarts[class*="radar"] td:nth-of-type(7) span {
+      --point: var(--7);
       --pos: calc( 100% - (var(--8) * 100% / (var(--scale) * var(--ratio) ) ) );
-      -webkit-clip-path: polygon(100% var(--pos), calc( 100% - ( var(--7) * 100% / var(--scale) )) 100%, 100% 100%);
-              clip-path: polygon(100% var(--pos), calc( 100% - ( var(--7) * 100% / var(--scale) )) 100%, 100% 100%);
     }
     .chaarts[class*="radar"] td::after, .chaarts[class*="radar"] td::before {
       display: none;
@@ -1247,20 +1192,20 @@ table:not(.chaarts) .sr-only {
       --hypo: calc( var(--unitless-radius) / var(--sin-angle) );
       --ratio: calc( var(--hypo) / var(--unitless-radius) );
       background: linear-gradient(to top left, blueviolet 10%, DarkBlue 75%);
+      -webkit-clip-path: polygon(100% var(--pos), calc( 100% - ( var(--point) * 100% / var(--scale) )) 100%, 100% 100%);
+              clip-path: polygon(100% var(--pos), calc( 100% - ( var(--point) * 100% / var(--scale) )) 100%, 100% 100%);
       -webkit-filter: drop-shadow(0 0 1rem indigo);
               filter: drop-shadow(0 0 1rem indigo);
       height: 100%;
       position: absolute;
       width: 100%;
     }
-    .chaarts.radar [scope="col"] {
-      /**
-     * 1.
-     * @note Display CSS integers custom properties with a trick using counters
-     * @author Cassie Evans
-     * @link https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab
-     */
-    }
+    /**
+   * 1.
+   * @note Display CSS integers custom properties with a trick using counters
+   * @author Cassie Evans
+   * @link https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab
+   */
     .chaarts.radar [scope="col"]::after {
       color: rebeccapurple;
       display: block;
@@ -1269,45 +1214,31 @@ table:not(.chaarts) .sr-only {
     }
     .chaarts.radar [scope="col"]:nth-child(1)::after {
       counter-reset: value var(--1);
-      /* 1 */
       content: counter(value) " / " counter(scale);
-      /* 1 */
     }
     .chaarts.radar [scope="col"]:nth-child(2)::after {
       counter-reset: value var(--2);
-      /* 1 */
       content: counter(value) " / " counter(scale);
-      /* 1 */
     }
     .chaarts.radar [scope="col"]:nth-child(3)::after {
       counter-reset: value var(--3);
-      /* 1 */
       content: counter(value) " / " counter(scale);
-      /* 1 */
     }
     .chaarts.radar [scope="col"]:nth-child(4)::after {
       counter-reset: value var(--4);
-      /* 1 */
       content: counter(value) " / " counter(scale);
-      /* 1 */
     }
     .chaarts.radar [scope="col"]:nth-child(5)::after {
       counter-reset: value var(--5);
-      /* 1 */
       content: counter(value) " / " counter(scale);
-      /* 1 */
     }
     .chaarts.radar [scope="col"]:nth-child(6)::after {
       counter-reset: value var(--6);
-      /* 1 */
       content: counter(value) " / " counter(scale);
-      /* 1 */
     }
     .chaarts.radar [scope="col"]:nth-child(7)::after {
       counter-reset: value var(--7);
-      /* 1 */
       content: counter(value) " / " counter(scale);
-      /* 1 */
     }
     .chaarts.radar-multiple {
       margin-bottom: 12rem;
@@ -1357,51 +1288,37 @@ table:not(.chaarts) .sr-only {
     }
     .chaarts.radar-multiple td:nth-of-type(1)::after {
       counter-reset: value var(--1);
-      /* 1 */
       content: counter(value);
-      /* 1 */
       width: calc( var(--1) * 100% / var(--scale));
     }
     .chaarts.radar-multiple td:nth-of-type(2)::after {
       counter-reset: value var(--2);
-      /* 1 */
       content: counter(value);
-      /* 1 */
       width: calc( var(--2) * 100% / var(--scale));
     }
     .chaarts.radar-multiple td:nth-of-type(3)::after {
       counter-reset: value var(--3);
-      /* 1 */
       content: counter(value);
-      /* 1 */
       width: calc( var(--3) * 100% / var(--scale));
     }
     .chaarts.radar-multiple td:nth-of-type(4)::after {
       counter-reset: value var(--4);
-      /* 1 */
       content: counter(value);
-      /* 1 */
       width: calc( var(--4) * 100% / var(--scale));
     }
     .chaarts.radar-multiple td:nth-of-type(5)::after {
       counter-reset: value var(--5);
-      /* 1 */
       content: counter(value);
-      /* 1 */
       width: calc( var(--5) * 100% / var(--scale));
     }
     .chaarts.radar-multiple td:nth-of-type(6)::after {
       counter-reset: value var(--6);
-      /* 1 */
       content: counter(value);
-      /* 1 */
       width: calc( var(--6) * 100% / var(--scale));
     }
     .chaarts.radar-multiple td:nth-of-type(7)::after {
       counter-reset: value var(--7);
-      /* 1 */
       content: counter(value);
-      /* 1 */
       width: calc( var(--7) * 100% / var(--scale));
     }
     .chaarts.radar-multiple span {

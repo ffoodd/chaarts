@@ -104,12 +104,8 @@
 
       @each $number in 1, 2, 3, 4, 5, 6, 7 {
         &:nth-of-type(#{$number}) span {
+          --point: var(--#{$number});
           --pos: calc( 100% - (var(--#{$number + 1}) * 100% / (var(--scale) * var(--ratio) ) ) );
-          clip-path: polygon(
-            100% var(--pos),
-            calc( 100% - ( var(--#{$number}) * 100% / var(--scale) ) ) 100%,
-            100% 100%
-          );
         }
       }
 
@@ -134,6 +130,11 @@
         palette( accent, light ) 10%,
         palette( secondary, dark ) 75%
       );
+      clip-path: polygon(
+        100% var(--pos),
+        calc( 100% - ( var(--point) * 100% / var(--scale) ) ) 100%,
+        100% 100%
+      );
       filter: drop-shadow( 0 0 $gutter palette( accent, dark ) );
       height: 100%;
       position: absolute;
@@ -141,6 +142,12 @@
     }
   }
 
+  /**
+   * 1.
+   * @note Display CSS integers custom properties with a trick using counters
+   * @author Cassie Evans
+   * @link https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab
+   */
   .chaarts.radar [scope="col"] {
     &::after {
       color: palette( accent );
@@ -149,16 +156,10 @@
       font-weight: 400;
     }
 
-    /**
-     * 1.
-     * @note Display CSS integers custom properties with a trick using counters
-     * @author Cassie Evans
-     * @link https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab
-     */
     @each $number in 1, 2, 3, 4, 5, 6, 7 {
       &:nth-child(#{$number})::after {
-        counter-reset: value var(--#{$number});           /* 1 */
-        content: counter(value) "\A0/\A0" counter(scale); /* 1 */
+        counter-reset: value var(--#{$number});           // 1
+        content: counter(value) "\A0/\A0" counter(scale); // 1
       }
     }
   }
@@ -220,8 +221,8 @@
 
       @each $number in 1, 2, 3, 4, 5, 6, 7 {
         &:nth-of-type(#{$number})::after {
-          counter-reset: value var(--#{$number}); /* 1 */
-          content: counter(value);                /* 1 */
+          counter-reset: value var(--#{$number}); // 1
+          content: counter(value);                // 1
           width: calc( var(--#{$number}) * 100% / var(--scale) );
         }
       }

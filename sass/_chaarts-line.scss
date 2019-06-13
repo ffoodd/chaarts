@@ -96,6 +96,7 @@
          bottom: $gutter * 4;
          content: "";
          height: calc(100% - #{$gutter * 4});
+         left: calc(100% / var(--x) * var(--index));
          mix-blend-mode: soft-light;
          opacity: 0;
          position: absolute;
@@ -106,7 +107,7 @@
 
        @each $number in 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 {
          &:nth-child(#{$number})::after {
-           left: calc(100% / var(--x) * #{$number - 1});
+           --index: #{$number - 1};
          }
        }
 
@@ -157,8 +158,8 @@
            0% var(--arrow)
          );
          color: palette( dominant, contrast );
-         content: var(--term) " " var(--year) "\A " counter(value) "\A0°C"; /* 1 */
-         counter-reset: value var(--value);                                 /* 2 */
+         content: var(--term) " " var(--year) "\A " counter(value) "\A0°C"; // 1
+         counter-reset: value var(--value);                                 // 2
          opacity: 0;
          padding: $gutter / 2;
          left: calc( var(--offset) * 3 );
@@ -178,11 +179,15 @@
          z-index: 5;
        }
 
+       + td::after {
+         left: calc( ( 100% / var(--x) * var(--index) ) + var(--offset) );
+       }
+
        @each $number in 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 {
          &:nth-child(#{$number})::after {
            --value: var(--#{$number - 1});
            --term: var(--t-#{$number - 1});
-           left: calc( ( 100% / var(--x) * #{$number - 1} ) + var(--offset) );
+           --index: #{$number - 1};
          }
        }
 
@@ -266,10 +271,14 @@
                z-index: 4;
              }
 
+             + td::before {
+               left: calc( ( 100% / var(--x) * var(--index) ) + var(--offset));
+             }
+
              @each $number in 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 {
                &:nth-of-type(#{$number})::before {
                  --value: var(--#{$number});
-                 left: calc( ( 100% / var(--x) * #{$number} ) + var(--offset) );
+                 --index: #{$number};
                }
              }
            }
@@ -279,7 +288,7 @@
         $i: index($patterns, ($name $pattern));
 
         [style]:nth-child(#{$i}n + #{$i}) {
-            --background: var(--#{$name}); /* 1 */
+            --background: var(--#{$name}); // 1
         }
       }
 
@@ -310,13 +319,13 @@
        }
      }
 
-   /**
-    * @note Custom color palette for WHCM
-    * @note Inspired by Greg Whitworth's post
-    * @link http://www.gwhitworth.com/blog/2017/04/how-to-use-ms-high-contrast
-    */
    @media screen and (-ms-high-contrast: active) {
      .chaarts.line [style]::before {
+       /**
+        * @note Custom color palette for WHCM
+        * @note Inspired by Greg Whitworth's post
+        * @link http://www.gwhitworth.com/blog/2017/04/how-to-use-ms-high-contrast
+        */
        background: linear-gradient(to top, ButtonHighlight, Highlight 75%);
      }
    }

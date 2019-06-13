@@ -115,7 +115,7 @@
       $i: index($patterns, ($name $pattern));
 
       tr:nth-child(#{$i}n + #{$i}) {
-        --background: var(--#{$name}); /* 1 */
+        --background: var(--#{$name}); // 1
       }
     }
 
@@ -195,14 +195,14 @@
      }
    }
 
-  /**
-   * @note Custom color palette for WHCM
-   * @note Inspired by Greg Whitworth's post
-   * @link http://www.gwhitworth.com/blog/2017/04/how-to-use-ms-high-contrast
-   */
   @media screen and (-ms-high-contrast: active) {
     .chaarts.pie {
       tbody tr *::before {
+        /**
+         * @note Custom color palette for WHCM
+         * @note Inspired by Greg Whitworth's post
+         * @link http://www.gwhitworth.com/blog/2017/04/how-to-use-ms-high-contrast
+         */
         background-color: Window;
       }
 

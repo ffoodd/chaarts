@@ -10453,13 +10453,13 @@
     "testRunner": {
       "name": "axe"
     },
-    "timestamp": 1560429394036,
+    "timestamp": 1560439651813,
     "toolOptions": {
       "reporter": "v1"
     },
     "url": "./docs/bar-charts.html",
     "violations": [],
-    "time": 696
+    "time": 748
   },
   {
     "inapplicable": [
@@ -20160,13 +20160,13 @@
     "testRunner": {
       "name": "axe"
     },
-    "timestamp": 1560429395034,
+    "timestamp": 1560439652781,
     "toolOptions": {
       "reporter": "v1"
     },
     "url": "./docs/column-charts.html",
     "violations": [],
-    "time": 902
+    "time": 868
   },
   {
     "inapplicable": [
@@ -31008,13 +31008,13 @@
     "testRunner": {
       "name": "axe"
     },
-    "timestamp": 1560429395600,
+    "timestamp": 1560439653406,
     "toolOptions": {
       "reporter": "v1"
     },
     "url": "./docs/index.html",
     "violations": [],
-    "time": 431
+    "time": 502
   },
   {
     "inapplicable": [
@@ -45338,13 +45338,13 @@
     "testRunner": {
       "name": "axe"
     },
-    "timestamp": 1560429397393,
+    "timestamp": 1560439655183,
     "toolOptions": {
       "reporter": "v1"
     },
     "url": "./docs/line-charts.html",
     "violations": [],
-    "time": 1627
+    "time": 1616
   },
   {
     "inapplicable": [
@@ -59788,13 +59788,13 @@
     "testRunner": {
       "name": "axe"
     },
-    "timestamp": 1560429398848,
+    "timestamp": 1560439656660,
     "toolOptions": {
       "reporter": "v1"
     },
     "url": "./docs/pie-charts.html",
     "violations": [],
-    "time": 1240
+    "time": 1198
   },
   {
     "inapplicable": [
@@ -69579,12 +69579,12 @@
     "testRunner": {
       "name": "axe"
     },
-    "timestamp": 1560429400047,
+    "timestamp": 1560439657902,
     "toolOptions": {
       "reporter": "v1"
     },
     "url": "./docs/radar-charts.html",
     "violations": [],
-    "time": 1010
+    "time": 1044
   }
 ]
