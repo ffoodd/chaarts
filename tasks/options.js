@@ -8,9 +8,18 @@ module.exports = {
   },
   test: {
       all: './docs/*.html',
-      css: './chaarts.min.css',
+      arr: [
+        './docs/index.html',
+        './docs/pie-charts.html',
+        './docs/bar-charts.html',
+        './docs/column-charts.html',
+        './docs/line-charts.html',
+        './docs/radar-charts.html'
+      ],
+      css: './chaarts.css',
       live: 'http://localhost:3000/index.html',
-      home: './docs/index.html'
+      home: './docs/index.html',
+      pie: './docs/pie-charts.html'
   },
   files: [
     './src/favicon.ico',

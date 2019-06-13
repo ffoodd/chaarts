@@ -23,6 +23,14 @@ function js() {
 
 function css() {
     return gulp.src(options.paths.root + 'sass/*.scss')
+      .pipe(newer(options.paths.root + 'chaarts.css'))
+      .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
+      .pipe(prefix(options.browsers))
+      .pipe(gulp.dest(options.paths.root));
+}
+
+function mincss() {
+    return gulp.src(options.paths.root + 'sass/*.scss')
       .pipe(newer(options.paths.root + 'chaarts.min.css'))
       .pipe(maps.init())
       .pipe(sass().on('error', sass.logError))
@@ -33,4 +41,4 @@ function css() {
       .pipe(gulp.dest(options.paths.root));
 }
 
-module.exports = gulp.parallel( js, css );
+module.exports = gulp.parallel( js, css, mincss );

@@ -41,10 +41,8 @@ function sync(done) {
  * @section Watch
  */
 function watch() {
-  gulp.watch( options.paths.root + 'sass/**/*.scss',   gulp.series( 'compile', reload ) );
-  gulp.watch( options.paths.root + '*.js',             gulp.series( 'compile', reload ) );
-  gulp.watch( options.paths.src  + 'scss/**/*.scss',   gulp.series( 'doc', reload ) );
-  gulp.watch( options.paths.src  + 'js/**/*.js',       gulp.series( 'doc', reload ) );
+  gulp.watch( options.paths.root + 'sass/**/*.scss',   gulp.series( 'compile', 'doc', reload ) );
+  gulp.watch( options.paths.root + '*.js',             gulp.series( 'compile', 'doc', reload ) );
   gulp.watch( options.paths.src  + 'img/**/*.*',       gulp.series( 'doc', reload ) );
   gulp.watch( options.paths.src  + 'templates/*.html', gulp.series( 'doc', reload ) );
   gulp.watch( options.paths.src  + 'datas/**/*.json',  gulp.series( 'doc', reload ) );
