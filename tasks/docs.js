@@ -53,7 +53,7 @@ function css() {
       .pipe(sass().on('error', sass.logError))
       .pipe(prefix(options.browsers))
       .pipe(csso(options.csso))
-      //.pipe(purge(options.purge))
+      .pipe(purge(options.purge))
       .pipe(rename({suffix: '.min'}))
       .pipe(maps.write())
       .pipe(gulp.dest(options.paths.docs + 'css'));
@@ -62,7 +62,7 @@ function css() {
 function img() {
     return gulp.src(options.paths.src + 'img/*')
       .pipe(newer(options.paths.docs + 'img'))
-      .pipe(imgmin())
+      .pipe(imgmin({verbose: true}))
       .pipe(gulp.dest(options.paths.docs + 'img'));
 }
 
