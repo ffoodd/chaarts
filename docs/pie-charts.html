@@ -482,35 +482,92 @@
    montrent les points du polygone dans les différents cas. Vous pouvez consulter pour chaque valeur citée
    le polygone résolu pour <code>clip-path</code> —&nbsp;et constater le basculement des valeurs dynamiques d’une position à une autre.
  </p>
- <ul class="grid-3 no-padding">
+ <ul class="no-list">
    <li>
-     <figure role="group" aria-label="Capture d’écran du tracé pour 44%.">
-       <img src="img/tarte-1.jpg" alt="Tracé pour clip-path avec une valeur de 44% : six points visibles." width="264" height="264" />
-       <figcaption>
-         Capture d’écran du tracé pour <var>44%</var><br>
-         —&nbsp;<a href="https://github.com/ffoodd/sseeeedd/blob/wip/static-pies/src/scss/components/_charts-pie.scss#L105" hreflang="en">
-         valeur résolue pour <code>clip-path</code></a>.
-       </figcaption>
+     <figure role="group" aria-label="Exemple de rendu pour 44%.">
+       <figcaption class="no-padding h5">Exemple de rendu pour <var>44%</var></figcaption>
+       <div class="grid-2">
+         <figure role="group" aria-label="Capture d’écran du tracé pour 44%." class="mb-0 pb-0">
+           <img src="img/pie-1.jpg" alt="Tracé pour clip-path avec une valeur de 44% : six points visibles." width="264" height="264" />
+           <figcaption>Capture d’écran du tracé pour <var>44%</var>.</figcaption>
+         </figure>
+         <figure role="group" aria-label="Code généré pour 44%." class="mb-0 pb-0">
+           <pre data-line="8"><code class="language-css">td[style*="--value: 44;"]::before {
+  clip-path: polygon(
+    50% 50%,
+    50% 0%,
+    100% 0%,
+    100% 50%,
+    100% 100%,
+    95.2413525% 71.2889645%,
+    50% 50%,
+    50% 50%,
+    50% 50%,
+    50% 50%,
+    50% 50%
+  );
+}</code></pre>
+           <figcaption>Code généré pour <var>44%</var>.</figcaption>
+         </figure>
+       </div>
      </figure>
    </li>
    <li>
-     <figure role="group" aria-label="Capture d’écran du tracé pour 64%.">
-       <img src="img/tarte-2.jpg" alt="Tracé pour clip-path avec une valeur de 64% : 7 points visibles." width="264" height="264" />
-       <figcaption>
-         Capture d’écran du tracé pour <var>64%</var><br>
-         —&nbsp;<a href="https://github.com/ffoodd/sseeeedd/blob/wip/static-pies/src/scss/components/_charts-pie.scss#L122" hreflang="en">
-         valeur résolue pour <code>clip-path</code></a>.
-       </figcaption>
+     <figure role="group" aria-label="Exemple de rendu pour 64%.">
+       <figcaption class="no-padding h5">Exemple de rendu pour <var>64%</var></figcaption>
+       <div class="grid-2">
+         <figure role="group" aria-label="Capture d’écran du tracé pour 64%." class="mb-0 pb-0">
+           <img src="img/pie-2.jpg" alt="Tracé pour clip-path avec une valeur de 64% : sept points visibles." width="264" height="264" />
+           <figcaption>Capture d’écran du tracé pour <var>64%</var>.</figcaption>
+         </figure>
+         <figure role="group" aria-label="Code généré pour 64%." class="mb-0 pb-0">
+           <pre data-line="10"><code class="language-css">td[style*="--value: 64;"]::before {
+  clip-path: polygon(
+    50% 50%,
+    50% 0%,
+    100% 0%,
+    100% 50%,
+    100% 100%,
+    100% 100%,
+    0% 100%,
+    11.474338% 81.8711995%,
+    50% 50%,
+    50% 50%,
+    50% 50%
+  );
+}</code></pre>
+           <figcaption>Code généré pour <var>64%</var>.</figcaption>
+         </figure>
+       </div>
      </figure>
    </li>
    <li>
-     <figure role="group" aria-label="Capture d’écran du tracé pour 88%.">
-       <img src="img/tarte-3.jpg" alt="Tracé pour clip-path avec une valeur de 88% : 9 points visibles." width="264" height="264" />
-       <figcaption>
-         Capture d’écran du tracé pour <var>88%</var><br>
-         —&nbsp;<a href="https://github.com/ffoodd/sseeeedd/blob/wip/static-pies/src/scss/components/_charts-pie.scss#L138" hreflang="en">
-         valeur résolue pour <code>clip-path</code></a>.
-       </figcaption>
+     <figure role="group" aria-label="Exemple de rendu pour 88%.">
+       <figcaption class="no-padding h5">Exemple de rendu pour <var>88%</var></figcaption>
+       <div class="grid-2">
+         <figure role="group" aria-label="Capture d’écran du tracé pour 88%." class="mb-0 pb-0">
+           <img src="img/pie-3.jpg" alt="Tracé pour clip-path avec une valeur de 88% : neuf points visibles." width="264" height="264" />
+           <figcaption>Capture d’écran du tracé pour <var>88%</var>.</figcaption>
+         </figure>
+         <figure role="group" aria-label="Code généré pour 88%." class="mb-0 pb-0">
+           <pre data-line="12"><code class="language-css">td[style*="--value: 88;"]::before {
+  clip-path: polygon(
+    50% 50%,
+    50% 0%,
+    100% 0%,
+    100% 50%,
+    100% 100%,
+    100% 100%,
+    0% 100%,
+    0% 50%,
+    0% 0%,
+    15.7726445% 13.5515685%,
+    50% 50%
+  );
+}</code></pre>
+           <figcaption>Code généré pour <var>88%</var>.</figcaption>
+         </figure>
+       </div>
      </figure>
    </li>
  </ul>
