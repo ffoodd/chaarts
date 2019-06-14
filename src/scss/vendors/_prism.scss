@@ -1,0 +1,30 @@
+/* PrismJS 1.16.0
+ * @link https://prismjs.com/download.html#themes=prism-dark&languages=markup+css+clike+javascript+css-extras+scss+sass&plugins=line-highlight
+ * @author Lea Verou
+ */
+pre[data-line] {
+	position: relative;
+}
+
+.line-highlight {
+	position: absolute;
+	left: 0;
+	right: 0;
+	padding: .25em;
+	margin-top: 3.15em;
+	background: white;
+  mix-blend-mode: soft-light;
+	pointer-events: none;
+	line-height: inherit;
+	white-space: pre;
+}
+
+.line-highlight::before {
+	content: attr(data-start);
+	position: absolute;
+	top: .4em;
+	left: .5em;
+	min-width: 1ch;
+	color: black;
+  font-weight: 700;
+}
