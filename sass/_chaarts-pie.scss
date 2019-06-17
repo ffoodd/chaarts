@@ -99,16 +99,11 @@
         scale( var(--zoom) );
       transition: transform .2s map-get( $timing-functions, 'move' );
       width: var(--radius);
-      will-change: transform, filter;
-    }
-
-    tbody:hover td::before {
-      filter: grayscale(50%);
+      will-change: transform;
     }
 
     tr:hover td::before {
       --zoom: .8;
-      filter: none;
     }
 
     @each $name, $pattern in $patterns {
