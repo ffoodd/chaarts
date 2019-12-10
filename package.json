@@ -69,6 +69,7 @@
     "stylelint-scss": "^3.8.0"
   },
   "dependencies": {
+    "gulp-sri-hash": "^2.2.1",
     "normalize.css": "^8.0.1",
     "sseeeedd": "^0.1.4"
   }

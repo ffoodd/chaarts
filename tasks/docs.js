@@ -66,17 +66,8 @@ function img() {
       .pipe(gulp.dest(options.paths.docs + 'img'));
 }
 
-
-/*function getCards() {
- return {
-   deck: JSON.parse(fs.readFileSync('./src/datas/deck.json'))
- };
-}*/
-
 function template() {
     return gulp.src(options.paths.src + 'templates/*.html')
-      //.pipe(data(getCards))
-      .pipe(newer(options.paths.docs))
       .pipe(nunjucks(options.nunjucks))
       .pipe(gulp.dest(options.paths.docs));
 }
