@@ -353,16 +353,10 @@ table:not(.chaarts) .sr-only {
       transform: translate3d(-50%, -50%, 0) rotate(var(--position)) scale(var(--zoom));
       transition: transform 0.2s cubic-bezier(0.5, 0, 0.5, 1);
       width: var(--radius);
-      will-change: transform, filter;
-    }
-    .chaarts.pie tbody:hover td::before {
-      -webkit-filter: grayscale(50%);
-              filter: grayscale(50%);
+      will-change: transform;
     }
     .chaarts.pie tr:hover td::before {
       --zoom: .8;
-      -webkit-filter: none;
-              filter: none;
     }
     .chaarts.pie tr:nth-child(1n + 1) {
       --background: var(--checkers);

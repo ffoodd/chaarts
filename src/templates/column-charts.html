@@ -42,7 +42,7 @@
   permet de gérer une échelle dynamique&nbsp;;
  </li>
  <li>
-  les conteneurs <code>&lt;thead></code>, <code>&lt;tbody></code> et <code>&lt;tr></code>
+  les conteneurs <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code> et <code>&lt;tr&gt;</code>
   sont neutralisés dans la gestion de la grille à l’aide de <code>display: contents</code>&nbsp;;
  <li>
   chaque cellule est placée sur la grille en fonction de <var>--value</var>
@@ -118,7 +118,7 @@
   &lt;td style="--value: 15;">&lt;span>15&nbsp;%&lt;/span>&lt;/td>
  &lt;/tr>
 &lt;/tbody>
-&lt;/table></code>
+&lt;/table&gt;</code>
   </pre>
  </div>
 </details>
@@ -267,10 +267,10 @@
 
 <ol>
  <li>
-  on ajoute <strong>une seconde ligne dans l’entête</strong> <code>&lt;thead></code>&nbsp;:
+  on ajoute <strong>une seconde ligne dans l’entête</strong> <code>&lt;thead&gt;</code>&nbsp;:
   <ul>
    <li>
-    avec <var>deux</var> cellules d’entête de colonne <code>&lt;th scope="col"></code>
+    avec <var>deux</var> cellules d’entête de colonne <code>&lt;th scope="col"&gt;</code>
     pour chaque cellule d’entête de colonne dans la première ligne d’entête&nbsp;;
    </li>
    <li>
@@ -297,7 +297,7 @@
     <code>grid-column: 2 / span attr(colspan);</code> et ça serait magnifique…
    </li>
    <li>
-    mais non&nbsp;! Ainsi, une variable <var>--span</var> est ajoutée sur <code>&lt;table></code>,
+    mais non&nbsp;! Ainsi, une variable <var>--span</var> est ajoutée sur <code>&lt;table&gt;</code>,
     et doit correspondre à la valeur des attributs <code>colspan</code> cités plus tôt&nbsp;:
     elle sert donc à étendre les entêtes de premier niveau sur le nombre de colonnes adéquat.
    </li>
@@ -396,7 +396,7 @@
      &lt;td style="--value: 57;" headers="navigateur chrome annee chrome-2019">&lt;span>57&nbsp;%&lt;/span>&lt;/td>
    &lt;/tr>
  &lt;/tbody>
-&lt;/table></code>
+&lt;/table&gt;</code>
   </pre>
  </div>
 </details>

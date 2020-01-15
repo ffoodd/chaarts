@@ -40,20 +40,20 @@
     Sur le <strong>tableau</strong>, une variable <var>--scale</var> permet de définir la valeur maximale du graphique,
     afin d’en déterminer l’échelle. Concrètement, une grille va être générée avec&nbsp;:
     <ul>
-     <li>la première colonne pour les entêtes <code>&lt;th></code> arbitrairement fixée à <code>12.5em</code>&nbsp;;</li>
+     <li>la première colonne pour les entêtes <code>&lt;th&gt;</code> arbitrairement fixée à <code>12.5em</code>&nbsp;;</li>
      <li>puis la fonction CSS <code>repeat()</code> crée une colonne par unité de l’échelle —&nbsp;dans l’exemple, 3000 colonnes&nbsp;;</li>
      <li>enfin une dernière colonne mesurant <code>10ch</code>, soit l’espace suffisant pour dix lettres.</li>
     </ul>
    </li>
    <li>
-    <strong>Sur chaque cellule</strong> <code>&lt;td></code>, une variable <var>--value</var> permet de la placer sur la grille,
+    <strong>Sur chaque cellule</strong> <code>&lt;td&gt;</code>, une variable <var>--value</var> permet de la placer sur la grille,
     appliquée à <code>grid-column-end</code>.
     De plus grâce à de savants calculs reposant sur cette valeur, le dégradé en arrière-plan est dimensionné et positionné de façon à
     refléter la proportion représentée par cette valeur sur l’échelle donnée (du vert pour presque rien au rouge pour presque tout).
    </li>
    <li>
-    <strong>Dans chaque cellule</strong>, le contenu doit reprendre la valeur et son unité dans un élément <code>&lt;span></code>, éventuellement
-    balisée avec <code>&lt;abbr></code> (et <code>aria-label</code> pour suppléer <code>title</code>) si un intitulé peut être explicité pour l’unité.
+    <strong>Dans chaque cellule</strong>, le contenu doit reprendre la valeur et son unité dans un élément <code>&lt;span&gt;</code>, éventuellement
+    balisée avec <code>&lt;abbr&gt;</code> (et <code>aria-label</code> pour suppléer <code>title</code>) si un intitulé peut être explicité pour l’unité.
     Cette valeur est poussée à droite de la grille, et son texte
     sert de masque pour le dégradé en arrière-plan —&nbsp;lui permettant d’être de la couleur correspondante à la fin du dégradé pour la position donnée.
    </li>
@@ -218,7 +218,7 @@
    on gère également <strong>le point de départ</strong> pour chaque mesure
    —&nbsp;qui est, très simplement, la valeur du point précédent…
    Il faut cependant passer toutes les valeurs en tant que variables sur
-   le parent <code>&lt;table></code>.
+   le parent <code>&lt;table&gt;</code>.
   </p>
 
    <div class="table-container bar-container" role="group" aria-labelledby="caption-2">

@@ -1,13 +1,16 @@
-<!DOCTYPE html><html lang="fr" class="no-js"><head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!DOCTYPE html>
+<html lang="fr" class="no-js">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         
  <title>chaarts — Radar charts</title>
  <meta property="og:url" content="https://ffoodd.github.io/chaarts/radar-charts.html">
  <meta property="og:title" content="chaarts — Radar charts">
  <meta property="og:type" content="article">
- <meta property="og:description" name="description" content="Charts with HTML & CSS">
+ <meta property="og:description"
+    name="description" content="Charts with HTML & CSS">
  <meta name="twitter:card" content="summary">
 
         <script>
@@ -15,8 +18,8 @@
           document.documentElement.classList.add('js');
         </script>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="css/styles.min.css" media="all" integrity="sha384-pUsSu6bIEy4e4b17jBjH4SpmojL+d5MeHKW6S92//ZN3x6smha6IF4HQVWQrV6hH" crossorigin="anonymous">
-        <link rel="stylesheet" href="css/print.min.css" media="print" integrity="sha384-7aH1oMIjSvKIBeXPCudP673TBEx4w/HEse7vdJM+NIHzWMy46dWgpGZvsdMSGdXs" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/styles.min.css" media="all">
+        <link rel="stylesheet" href="css/print.min.css" media="print">
     </head>
     <body itemscope itemtype="http://schema.org/WebPage">
       <header role="banner">
@@ -48,88 +51,88 @@
 <p>
  Celui-ci est plutôt amusant. On définit quelques variables
  <abbr lang="en" title="Cascading StyleSheet">CSS</abbr> sur le tableau
-  : l’échelle (et les paliers), le nombre d’éléments, et les valeurs.
+ &nbsp;: l’échelle (et les paliers), le nombre d’éléments, et les valeurs.
 </p>
 
 <p>
- Côté <abbr lang="en" title="Cascading StyleSheet">CSS</abbr>, ça se complique :
+ Côté <abbr lang="en" title="Cascading StyleSheet">CSS</abbr>, ça se complique&nbsp;:
 </p>
 
 <ul>
  <li>
-  sur l’élément <code><table></code>, on crée l’échelle circulaire à l’aide de deux
-  <code>repeating-radial-gradient()</code> successifs — en fonction des variables
-  <var>--scale</var> et <var>--step</var> ;
+  sur l’élément <code>&lt;table&gt;</code>, on crée l’échelle circulaire à l’aide de deux
+  <code>repeating-radial-gradient()</code> successifs —&nbsp;en fonction des variables
+  <var>--scale</var> et <var>--step</var>&nbsp;;
  </li>
  <li>
-  chaque élément <code><th></code> est déplacé à l’extérieur du cercle ainsi formé,
+  chaque élément <code>&lt;th&gt;</code> est déplacé à l’extérieur du cercle ainsi formé,
   grâce à une technique empruntée à
   <a href="https://stackoverflow.com/questions/12813573/position-icons-into-circle" hreflang="en">
-  <cite>Ana Tudor</cite>, qui l’explique sur StackOverflow</a> ;
+  <cite>Ana Tudor</cite>, qui l’explique sur StackOverflow</a>&nbsp;;
  </li>
  <li>
-  puis — toujours sur les cellules d’entête — la valeur correspondant à chaque colonne
+  puis —&nbsp;toujours sur les cellules d’entête&nbsp;— la valeur correspondant à chaque colonne
   est affichée dans un pseudo-élément <code>::after</code> à l’aide
   <a hreflang="en" href="https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab">d’une
   astuce de <cite>Cassie Evans</cite>, utilisant <code>counter-reset</code> et <code>counter()</code>
   pour afficher une variable numérique dans la propriété <code>content</code></a>.
- </li><li>
-  Puis la magie opère sur les éléments <code><td></code> :
+ <li>
+  Puis la magie opère sur les éléments <code>&lt;td&gt;</code>&nbsp;:
   <ol>
    <li>
     chacun est ajusté pour former <strong>un carré dont le côté est égal au rayon
-    du cercle</strong> en arrière-plan ;
+    du cercle</strong> en arrière-plan&nbsp;;
    </li>
    <li>
     puis transformé de façon à représenter une portion du cercle en fonction du nombre
-    d’éléments — précisé avec <var>--items</var> — grâce à
+    d’éléments —&nbsp;précisé avec <var>--items</var>&nbsp;— grâce à
     <a href="https://tympanus.net/codrops/2013/08/09/building-a-circular-navigation-with-css-transforms/" hreflang="en">
     une technique partagée par <cite>Sara Soueidan</cite> sur Codrops</a>,
    </li>
-   <li>chacun se voit décoré d’une bordure, en bas ;</li>
+   <li>chacun se voit décoré d’une bordure, en bas&nbsp;;</li>
    <li>
     puis on utilise de nouveau <code>clip-path</code> et la fonction <code>polygon()</code>
-    sur chaque enfant direct <code><span></code> — étendu pour occuper toute la surface
-    de son <code><td></code> de parent — afin de former un triangle, basé pour un côté
+    sur chaque enfant direct <code>&lt;span&gt;</code> —&nbsp;étendu pour occuper toute la surface
+    de son <code>&lt;td&gt;</code> de parent&nbsp;— afin de former un triangle, basé pour un côté
     sur le ratio valeur de l’élément courant / échelle, et sur un autre côté un ratio basé sur
     la valeur de l’élément suivant (miam les <code>calc()</code>)
-    — mais sur une autre échelle…
+    —&nbsp;mais sur une autre échelle…
    </li>
    <li>
     car pour <strong>compenser la distorsion</strong> due à la fonction <code>skew()</code>,
     nous devons corriger l’échelle sur laquelle est calculée le second ratio à l’aide d’un peu
-    de trigonométrie :
+    de trigonométrie&nbsp;:
     <ul>
      <li>
       nous connaissons un côté du triangle rectangle obtenu après la déformation,
-      ainsi que deux angles — le droit, bien entendu, et nous déduisons le deuxième de
-      l’angle utilisé pour déformer l’élément ;
+      ainsi que deux angles —&nbsp;le droit, bien entendu, et nous déduisons le deuxième de
+      l’angle utilisé pour déformer l’élément&nbsp;;
      </li>
      <li>
       nous pouvons donc <strong>calculer l’hypothénuse</strong> en utilisant la loi des sinus,
-      — comme précédemment dans le graphique en tarte ;
+      —&nbsp;comme précédemment dans le graphique en tarte&nbsp;;
      </li>
      <li>
       et finalement, il ne nous reste qu’à calculer le ratio entre la dimension initiale
-      — le côté — et la dimension finale — l’hypothénuse — et appliquer ce ratio
+      —&nbsp;le côté&nbsp;— et la dimension finale —&nbsp;l’hypothénuse&nbsp;— et appliquer ce ratio
       à l’échelle sur laquelle est placée le deuxième point du polygone.
      </li>
     </ul>
    </li>
    <li>
     le troisième point du polygône est l’angle en bas à droite, dont les coordonnées sont
-    <code>100% 100%</code> ;
+    <code>100% 100%</code>&nbsp;;
    </li>
   </ol>
-  </li><li>
-   une dernière astuce est nécessaire pour fermer la forme  vous l’avez vu, nous utilisons
+  <li>
+   une dernière astuce est nécessaire pour fermer la forme&nbsp; vous l’avez vu, nous utilisons
    la valeur courante et la valeur suivante pour chaque élément. Mais arrivé au dernier élément,
-   il n’y a plus de suivant ! Il faut donc <strong>ajouter une valeur</strong>,
-   à laquelle on attribue la première valeur — dans cet exemple, <var>--8: var(--1);</var>.
+   il n’y a plus de suivant&nbsp;! Il faut donc <strong>ajouter une valeur</strong>,
+   à laquelle on attribue la première valeur —&nbsp;dans cet exemple, <var>--8: var(--1);</var>.
  </li>
 </ul>
 
-<p>Et voilà, c’est tout !</p>
+<p>Et voilà, c’est tout&nbsp;!</p>
 
 <div class="table-container radar-container" role="group" aria-labelledby="caption-9">
  <div class="fieldset d-flex sm-hidden">
@@ -137,7 +140,9 @@
    <strong id="label-9">Interrupteur</strong><br>
    <span id="description-9">Permet de désactiver les styles sur le tableau suivant.</span>
   </p>
-  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css" role="switch" aria-checked="true" aria-labelledby="label-9" aria-describedby="description-9">
+  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
+      role="switch" aria-checked="true"
+      aria-labelledby="label-9" aria-describedby="description-9">
    <span>Guilleret</span>
    <span>Sobre</span>
   </button>
@@ -173,29 +178,31 @@
 <details>
  <summary>Le <abbr lang="en" title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
  <div>
-  <pre>   <code class="language-markup">
-<table class="chaarts radar" id="radar" style="--scale: 20; --step: 5; --items: 7; --1: 14; --2: 11; --3: 13; --4: 16; --5: 10; --6: 12; --7: 4; --8: var(--1);">
- <caption id="caption-9">Niveau d’intérêt par domaine, sur 20</caption>
- <thead>
-   <tr>
-     <th scope="col">Accessibilité</th>
-     <th scope="col">Référencement</th>
-   </tr>
- </thead>
- <tbody>
-   <tr>
-     <td><span>14</span></td>
-     <td><span>11</span></td>
-   </tr>
- </tbody>
-</table></code>
+  <pre>
+   <code class="language-markup">
+&lt;table class="chaarts radar" id="radar" style="--scale: 20; --step: 5; --items: 7; --1: 14; --2: 11; --3: 13; --4: 16; --5: 10; --6: 12; --7: 4; --8: var(--1);">
+ &lt;caption id="caption-9">Niveau d’intérêt par domaine, sur 20&lt;/caption>
+ &lt;thead>
+   &lt;tr>
+     &lt;th scope="col">Accessibilité&lt;/th>
+     &lt;th scope="col">Référencement&lt;/th>
+   &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+   &lt;tr>
+     &lt;td>&lt;span>14&lt;/span>&lt;/td>
+     &lt;td>&lt;span>11&lt;/span>&lt;/td>
+   &lt;/tr>
+ &lt;/tbody>
+&lt;/table&gt;</code>
   </pre>
  </div>
 </details>
 <details>
  <summary>Le <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
  <div>
-  <pre>   <code class="language-css">
+  <pre>
+   <code class="language-css">
 @supports(clip-path: polygon(calc( 0% 0%, 100% - ( var(--1) * 100% / var(--scale) ) ) 100%, 100% 100%)) {
  .chaarts[class*="radar"] {
    --radius: 12.8rem;
@@ -325,16 +332,17 @@
   <div class="note">
    <h3>Bug dans Chromium</h3>
    <p>
-    Il y a en ce moment un bug dans Chromium — j’ai saisi
-    <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=939728" hreflang="en" target="_blank" rel="noopener noreferrer">un ticket sur bugs.chromium.org</a> —
-    lors de l’utilisation de la propriété <code>border-spacing</code> sur le tableau :
+    Il y a en ce moment un bug dans Chromium —&nbsp;j’ai saisi
+    <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=939728" hreflang="en"
+    target="_blank" rel="noopener noreferrer">un ticket sur bugs.chromium.org</a>&nbsp;—
+    lors de l’utilisation de la propriété <code>border-spacing</code> sur le tableau&nbsp;:
     cela <strong>empêche Chrome de définir les dimensions du tableau</strong>…
     Pour les utilisateurs de Chrome, utilisez l’inspecteur pour décocher cette propriété
-    sur la balise <code><table></code> de ces exemples !
+    sur la balise <code>&lt;table&gt;</code> de ces exemples&nbsp;!
    </p>
   </div>
   <figure role="group" aria-label="Capture d’écran de la déformation provoquée par skew.">
-    <img src="img/hypothenuse.jpg" alt="La fonction skew() déforme l’élément en l’inclinant." width="277" height="202">
+    <img src="img/hypothenuse.jpg" alt="La fonction skew() déforme l’élément en l’inclinant." width="277" height="202" />
     <figcaption>
       Capture d’écran de la déformation provoquée par <code>skew()</code>.
     </figcaption>
@@ -344,34 +352,34 @@
 
 <h2>Radars superposés</h2>
 
-<p>Très peu de changements par rapport à la version précédente :</p>
+<p>Très peu de changements par rapport à la version précédente&nbsp;:</p>
 
 <ol>
  <li>
-  l’élément <code><table></code> ne porte plus les valeurs, mais dispose d’une nouvelle
-  variable <var>--areas</var> pour indiquer le nombre de lignes dans le tableau ;
+  l’élément <code>&lt;table&gt;</code> ne porte plus les valeurs, mais dispose d’une nouvelle
+  variable <var>--areas</var> pour indiquer le nombre de lignes dans le tableau&nbsp;;
  </li>
  <li>
-  en revanche on multiplie le nombre de lignes dans le corps du tableau :
+  en revanche on multiplie le nombre de lignes dans le corps du tableau&nbsp;:
   <ul>
    <li>
-    chacune porte plusieurs variables :
-    <var>--color</var> puis les valeurs — <var>--1</var>, etc. ;
+    chacune porte plusieurs variables&nbsp;:
+    <var>--color</var> puis les valeurs —&nbsp;<var>--1</var>, etc.&nbsp;;
    </li>
    <li>
-    et contient plusieurs cellules : une d’entête de ligne <code><th scope="row"></code>
-    et des cellules de données <code><td></code> ;
-  </li></ul>
+    et contient plusieurs cellules&nbsp;: une d’entête de ligne <code>&lt;th scope="row"&gt;</code>
+    et des cellules de données <code>&lt;td&gt;</code>&nbsp;;
+  </ul>
  </li>
  <li>
-  le reste est relativement commun désormais — si vous avez parcourus les exemples précédents :
+  le reste est relativement commun désormais —&nbsp;si vous avez parcourus les exemples précédents&nbsp;:
   <ol>
    <li>
     une couleur pour chaque ligne, présentée sur les cellules d’entête et servant d’arrière-plan aux
-    cellules de données ;
+    cellules de données&nbsp;;
    </li>
    <li>
-    un effet distinctif au <strong>survol</strong> de chaque ligne : les valeurs apparaissent
+    un effet distinctif au <strong>survol</strong> de chaque ligne&nbsp;: les valeurs apparaissent
     textuellement au survol, et la ligne survolée est mise en exergue. Afin de ne pas priver les utilisateurs
     n’ayant pas de pointeur doué pour le survol, cet effet est une <strong>amélioration progressive</strong>
     basé sur la <em lang="en">media query</em> <code>@media (hover: hover) { … }</code>.
@@ -387,7 +395,9 @@
    <strong id="label-11">Interrupteur</strong><br>
    <span id="description-11">Permet de désactiver les styles sur le tableau suivant.</span>
   </p>
-  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css" role="switch" aria-checked="true" aria-labelledby="label-11" aria-describedby="description-11">
+  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
+      role="switch" aria-checked="true"
+      aria-labelledby="label-11" aria-describedby="description-11">
    <span>Guilleret</span>
    <span>Sobre</span>
   </button>
@@ -435,33 +445,35 @@
 <details>
  <summary>Le <abbr lang="en" title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
  <div>
-  <pre>   <code class="language-markup">
-<table class="chaarts radar-multiple" id="radar-multiple" style="--scale: 20; --step: 5; --items: 7; --areas: 2;">
- <caption id="caption-9">Niveau d’intérêt par domaine, sur 20</caption>
- <thead>
-   <tr>
-     <th scope="col">Accessibilité</th>
-     <th scope="col">Référencement</th>
-   </tr>
- </thead>
- <tbody>
-   <tr style="--color: #734bf9; --1: 14; --2: 11; --3: 13; --4: 16; --5: 14; --6: 10; --7: 4; --8: var(--1);">
-     <th scope="row">Gaël</th>
-     <td><span>14</span></td>
-   </tr>
-   <tr style="-color: #e11a81; --1: 18; --2: 10; --3: 11; --4: 16; --5: 10; --6: 12; --7: 11; --8: var(--1);">
-     <th scope="row">Luc</th>
-     <td><span>18</span></td>
-   </tr>
- </tbody>
-</table></code>
+  <pre>
+   <code class="language-markup">
+&lt;table class="chaarts radar-multiple" id="radar-multiple" style="--scale: 20; --step: 5; --items: 7; --areas: 2;">
+ &lt;caption id="caption-9">Niveau d’intérêt par domaine, sur 20&lt;/caption>
+ &lt;thead>
+   &lt;tr>
+     &lt;th scope="col">Accessibilité&lt;/th>
+     &lt;th scope="col">Référencement&lt;/th>
+   &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+   &lt;tr style="--color: #734bf9; --1: 14; --2: 11; --3: 13; --4: 16; --5: 14; --6: 10; --7: 4; --8: var(--1);">
+     &lt;th scope="row">Gaël&lt;/th>
+     &lt;td>&lt;span>14&lt;/span>&lt;/td>
+   &lt;/tr>
+   &lt;tr style="-color: #e11a81; --1: 18; --2: 10; --3: 11; --4: 16; --5: 10; --6: 12; --7: 11; --8: var(--1);">
+     &lt;th scope="row">Luc&lt;/th>
+     &lt;td>&lt;span>18&lt;/span>&lt;/td>
+   &lt;/tr>
+ &lt;/tbody>
+&lt;/table&gt;</code>
   </pre>
  </div>
 </details>
 <details>
  <summary>Le <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
  <div>
-  <pre>   <code class="language-css">
+  <pre>
+   <code class="language-css">
 .chaarts.radar-multiple {
  margin-bottom: 12rem;
 }
@@ -563,12 +575,11 @@
       </main>
 
       
-        <script src="js/script.min.js" integrity="sha384-GSFLTHfMgenmEx6jFpCPYPrICTc7v02GoC3xiIvkFqR7kyjirVQ6f2MHDkHnBlKB" crossorigin="anonymous"></script>
-        <script src="js/prism.min.js" integrity="sha384-0MFjDwTZ/C2v2TidAUN+xb3jb62cO99R2DqFEVRGsb06KJUzbcBaxDdWlG4gnjrv" crossorigin="anonymous"></script>
+        <script src="js/script.min.js"></script>
+        <script src="js/prism.min.js"></script>
       
 
       
       
-    
-
-</body></html>
+    </body>
+</html>

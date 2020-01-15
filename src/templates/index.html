@@ -50,7 +50,7 @@
 
           <p>
            Les différentes versions de graphiques présentées pour le moment reposent uniquement
-           sur un balisage sémantique —&nbsp;à base de <code>&lt;table></code>&nbsp;—
+           sur un balisage sémantique —&nbsp;à base de <code>&lt;table&gt;</code>&nbsp;—
            et une tartine de <strong>variables CSS portées par les balises</strong>.
            Aucun JavaScript n’est requis pour l’affichage, et les styles sont
            <strong>améliorés progressivement</strong> selon les capacités de votre navigateur.
@@ -81,18 +81,18 @@
           <p>Piqure de rappel&nbsp;:</p>
 
           <ul>
-           <li>un tableau doit démarrer par un <code>&lt;caption></code>&nbsp;;</li>
+           <li>un tableau doit démarrer par un <code>&lt;caption&gt;</code>&nbsp;;</li>
            <li>
-            les cellules d’en-tête <code>&lt;th></code> doivent porter un attribut <code>scope</code>,
+            les cellules d’en-tête <code>&lt;th&gt;</code> doivent porter un attribut <code>scope</code>,
             avec une valeur <var>row</var> ou <var>col</var> selon le cas&nbsp;;
            </li>
            <li>
             et vous aurez généralement besoin de distinguer l’entête du corps grâce à
-            <code>&lt;thead></code> et <code>&lt;tbody></code>&nbsp;;
+            <code>&lt;thead&gt;</code> et <code>&lt;tbody&gt;</code>&nbsp;;
            </li>
            <li>
             pour les valeurs disposant d’une unité&nbsp;: si vous vous aventurez à utiliser l’élement
-            <code>&lt;abbr></code> pour utiliser sa version abrégée, pensez à doubler l’attribut
+            <code>&lt;abbr&gt;</code> pour utiliser sa version abrégée, pensez à doubler l’attribut
             <code>title</code> avec l’attribut <code>aria-label</code> —&nbsp;cela en améliorera
             considérablement l’intérêt pour de nombreux internautes.
            </li>
@@ -200,7 +200,7 @@
           <h3><code>display</code> et sémantique</h3>
           <p>
            <cite>Adrian Roselli</cite> explique que jouer avec le <code>display</code> d’un élément
-           <code>&lt;table></code> ou <code>&lt;dl></code> met en péril sa sémantique.
+           <code>&lt;table&gt;</code> ou <code>&lt;dl&gt;</code> met en péril sa sémantique.
            Cette dernière est donc «&nbsp;verrouillée&nbsp;» à l’aide des rôles
            <abbr lang="en" title="Accessible Rich Internet Application" aria-label="Accessible Rich Internet Application">aria</abbr>
            dédiés —&nbsp;comme il l’explique

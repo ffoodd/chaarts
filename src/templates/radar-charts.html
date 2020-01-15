@@ -36,12 +36,12 @@
 
 <ul>
  <li>
-  sur l’élément <code>&lt;table></code>, on crée l’échelle circulaire à l’aide de deux
+  sur l’élément <code>&lt;table&gt;</code>, on crée l’échelle circulaire à l’aide de deux
   <code>repeating-radial-gradient()</code> successifs —&nbsp;en fonction des variables
   <var>--scale</var> et <var>--step</var>&nbsp;;
  </li>
  <li>
-  chaque élément <code>&lt;th></code> est déplacé à l’extérieur du cercle ainsi formé,
+  chaque élément <code>&lt;th&gt;</code> est déplacé à l’extérieur du cercle ainsi formé,
   grâce à une technique empruntée à
   <a href="https://stackoverflow.com/questions/12813573/position-icons-into-circle" hreflang="en">
   <cite>Ana Tudor</cite>, qui l’explique sur StackOverflow</a>&nbsp;;
@@ -53,7 +53,7 @@
   astuce de <cite>Cassie Evans</cite>, utilisant <code>counter-reset</code> et <code>counter()</code>
   pour afficher une variable numérique dans la propriété <code>content</code></a>.
  <li>
-  Puis la magie opère sur les éléments <code>&lt;td></code>&nbsp;:
+  Puis la magie opère sur les éléments <code>&lt;td&gt;</code>&nbsp;:
   <ol>
    <li>
     chacun est ajusté pour former <strong>un carré dont le côté est égal au rayon
@@ -68,8 +68,8 @@
    <li>chacun se voit décoré d’une bordure, en bas&nbsp;;</li>
    <li>
     puis on utilise de nouveau <code>clip-path</code> et la fonction <code>polygon()</code>
-    sur chaque enfant direct <code>&lt;span></code> —&nbsp;étendu pour occuper toute la surface
-    de son <code>&lt;td></code> de parent&nbsp;— afin de former un triangle, basé pour un côté
+    sur chaque enfant direct <code>&lt;span&gt;</code> —&nbsp;étendu pour occuper toute la surface
+    de son <code>&lt;td&gt;</code> de parent&nbsp;— afin de former un triangle, basé pour un côté
     sur le ratio valeur de l’élément courant / échelle, et sur un autre côté un ratio basé sur
     la valeur de l’élément suivant (miam les <code>calc()</code>)
     —&nbsp;mais sur une autre échelle…
@@ -170,7 +170,7 @@
      &lt;td>&lt;span>11&lt;/span>&lt;/td>
    &lt;/tr>
  &lt;/tbody>
-&lt;/table></code>
+&lt;/table&gt;</code>
   </pre>
  </div>
 </details>
@@ -314,7 +314,7 @@
     lors de l’utilisation de la propriété <code>border-spacing</code> sur le tableau&nbsp;:
     cela <strong>empêche Chrome de définir les dimensions du tableau</strong>…
     Pour les utilisateurs de Chrome, utilisez l’inspecteur pour décocher cette propriété
-    sur la balise <code>&lt;table></code> de ces exemples&nbsp;!
+    sur la balise <code>&lt;table&gt;</code> de ces exemples&nbsp;!
    </p>
   </div>
   <figure role="group" aria-label="Capture d’écran de la déformation provoquée par skew.">
@@ -332,7 +332,7 @@
 
 <ol>
  <li>
-  l’élément <code>&lt;table></code> ne porte plus les valeurs, mais dispose d’une nouvelle
+  l’élément <code>&lt;table&gt;</code> ne porte plus les valeurs, mais dispose d’une nouvelle
   variable <var>--areas</var> pour indiquer le nombre de lignes dans le tableau&nbsp;;
  </li>
  <li>
@@ -343,8 +343,8 @@
     <var>--color</var> puis les valeurs —&nbsp;<var>--1</var>, etc.&nbsp;;
    </li>
    <li>
-    et contient plusieurs cellules&nbsp;: une d’entête de ligne <code>&lt;th scope="row"></code>
-    et des cellules de données <code>&lt;td></code>&nbsp;;
+    et contient plusieurs cellules&nbsp;: une d’entête de ligne <code>&lt;th scope="row"&gt;</code>
+    et des cellules de données <code>&lt;td&gt;</code>&nbsp;;
   </ul>
  </li>
  <li>
@@ -441,7 +441,7 @@
      &lt;td>&lt;span>18&lt;/span>&lt;/td>
    &lt;/tr>
  &lt;/tbody>
-&lt;/table></code>
+&lt;/table&gt;</code>
   </pre>
  </div>
 </details>
