@@ -14,16 +14,6 @@ const rename   = require('gulp-rename');
 const purge    = require('gulp-purgecss');
 const options  = require('./options');
 
-function sseeeedd() {
-  return gulp.src(options.paths.node + '/sseeeedd/docs/css/styles.min.css')
-    .pipe(rename({
-      prefix: '_',
-      basename: 'sseeeedd',
-      extname: '.scss'
-    }))
-    .pipe(gulp.dest(options.paths.src + 'scss/vendors'));
-}
-
 function move() {
   return gulp.src(options.files)
     .pipe(gulp.dest(options.paths.docs))
@@ -50,10 +40,12 @@ function css() {
     return gulp.src(options.paths.src + 'scss/*.scss')
       .pipe(newer(options.paths.docs + 'css'))
       .pipe(maps.init())
-      .pipe(sass().on('error', sass.logError))
+      .pipe(sass({
+        includePaths: [options.paths.node]
+      }).on('error', sass.logError))
       .pipe(prefix(options.browsers))
       .pipe(csso(options.csso))
-      .pipe(purge(options.purge))
+      //.pipe(purge(options.purge))
       .pipe(rename({suffix: '.min'}))
       .pipe(maps.write())
       .pipe(gulp.dest(options.paths.docs + 'css'));
@@ -72,4 +64,4 @@ function template() {
       .pipe(gulp.dest(options.paths.docs));
 }
 
-module.exports = gulp.series( sseeeedd, script, move, gulp.parallel( css, img, js, template ) );
+module.exports = gulp.series( script, move, gulp.parallel( css, img, js, template ) );
