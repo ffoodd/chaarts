@@ -59,7 +59,10 @@ function img() {
 }
 
 function template() {
-    return gulp.src(options.paths.src + 'templates/*.html')
+    return gulp.src([
+        options.paths.src + 'templates/**/*.html',
+        '!' + options.paths.src + 'templates/macros/*.html'
+      ])
       .pipe(nunjucks(options.nunjucks))
       .pipe(gulp.dest(options.paths.docs));
 }

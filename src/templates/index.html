@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="fr" class="no-js">
+<html lang="{% block lang %}en{% endblock %}" class="no-js">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta http-equiv="x-ua-compatible" content="ie=edge">
+        {% block base %}
+        <base href="/">
+        {% endblock %}
         {% block meta %}
           <title>chaarts</title>
           <meta property="og:url" content="https://ffoodd.github.io/chaarts/">
@@ -12,6 +15,7 @@
           <meta property="og:description"
                 name="description" content="Charts with HTML & CSS">
           <meta name="twitter:card" content="summary">
+          <link rel="alternate" hreflang="fr" href="https://ffoodd.github.io/chaarts/fr/index.html"/>
         {% endblock %}
         <script>
           document.documentElement.classList.remove('no-js');
@@ -30,7 +34,7 @@
           </div>
         {% endblock %}
 
-        <nav role="navigation" id="nav" aria-label="Navigation principale">
+        <nav role="navigation" id="nav" aria-label="{% block label %}Navigation principale{% endblock %}">
           {% block navigation %}
             <ul class="fly-out">
               <li><a aria-current="page">Accueil</a></li>
