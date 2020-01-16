@@ -1,6 +1,8 @@
-<!DOCTYPE html><html lang="en" class="no-js"><head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         
         <base href="/">
@@ -10,17 +12,18 @@
           <meta property="og:url" content="https://ffoodd.github.io/chaarts/">
           <meta property="og:title" content="chaarts">
           <meta property="og:type" content="article">
-          <meta property="og:description" name="description" content="Charts with HTML & CSS">
+          <meta property="og:description"
+                name="description" content="Charts with HTML & CSS">
           <meta name="twitter:card" content="summary">
-          <link rel="alternate" hreflang="fr" href="https://ffoodd.github.io/chaarts/fr/index.html">
+          <link rel="alternate" hreflang="fr" href="https://ffoodd.github.io/chaarts/fr/index.html"/>
         
         <script>
           document.documentElement.classList.remove('no-js');
           document.documentElement.classList.add('js');
         </script>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="css/styles.min.css" media="all" integrity="sha384-lGYaFIu0PY1TqLcRwfv2qH5iTPTcX+CVHnIfUBwqZRZCk+W1zGIlJTHAxh1YQMzs" crossorigin="anonymous">
-        <link rel="stylesheet" href="css/print.min.css" media="print" integrity="sha384-i3dRwmp8zXRlpUnJTD27rKIBzSEdYbc0YEFwuULfvleZ4Vm0RG81i/6HXy96jet8" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/styles.min.css" media="all">
+        <link rel="stylesheet" href="css/print.min.css" media="print">
     </head>
     <body itemscope itemtype="http://schema.org/WebPage">
       <header role="banner">
@@ -51,16 +54,16 @@
 
           <p>
            Les différentes versions de graphiques présentées pour le moment reposent uniquement
-           sur un balisage sémantique — à base de <code><table></code> —
+           sur un balisage sémantique —&nbsp;à base de <code>&lt;table&gt;</code>&nbsp;—
            et une tartine de <strong>variables CSS portées par les balises</strong>.
            Aucun JavaScript n’est requis pour l’affichage, et les styles sont
            <strong>améliorés progressivement</strong> selon les capacités de votre navigateur.
           </p>
 
           <p>
-           <strong>Note</strong> : en vertu du caractère <strong>expérimental</strong>
+           <strong>Note</strong>&nbsp;: en vertu du caractère <strong>expérimental</strong>
            de ces techniques et d’une <strong>fondation solide</strong> améliorée progressivement,
-           je ne précise pas le <strong>support navigateur</strong> de chaque exemple — mais
+           je ne précise pas le <strong>support navigateur</strong> de chaque exemple —&nbsp;mais
            il va de soi que ce n’est pas magique, et que seuls les navigateurs modernes répondent à l’appel,
            <a hreflang="en" href="https://caniuse.com/#search=clip-path">à l’exception notable de Edge
            qui ne supporte pas (encore) <code>clip-path</code></a>.
@@ -72,29 +75,29 @@
           <p>
            Un effort conséquent a été porté à l’accessibilité.
            Comme évoqué précédement, <strong>un balisage sémantique et structuré est un pré-requis</strong>
-           — mais ça ne suffit pas. Les <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">CSS</abbr>
+           —&nbsp;mais ça ne suffit pas. Les <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">CSS</abbr>
            sont appliqués aussi progressivement que possible, afin de garantir le meilleur affichage
            possible des données pour chaque internaute.
           </p>
 
           <h3>Tableau accessible</h3>
 
-          <p>Piqure de rappel :</p>
+          <p>Piqure de rappel&nbsp;:</p>
 
           <ul>
-           <li>un tableau doit démarrer par un <code><caption></code> ;</li>
+           <li>un tableau doit démarrer par un <code>&lt;caption&gt;</code>&nbsp;;</li>
            <li>
-            les cellules d’en-tête <code><th></code> doivent porter un attribut <code>scope</code>,
-            avec une valeur <var>row</var> ou <var>col</var> selon le cas ;
+            les cellules d’en-tête <code>&lt;th&gt;</code> doivent porter un attribut <code>scope</code>,
+            avec une valeur <var>row</var> ou <var>col</var> selon le cas&nbsp;;
            </li>
            <li>
             et vous aurez généralement besoin de distinguer l’entête du corps grâce à
-            <code><thead></code> et <code><tbody></code> ;
+            <code>&lt;thead&gt;</code> et <code>&lt;tbody&gt;</code>&nbsp;;
            </li>
            <li>
-            pour les valeurs disposant d’une unité : si vous vous aventurez à utiliser l’élement
-            <code><abbr></code> pour utiliser sa version abrégée, pensez à doubler l’attribut
-            <code>title</code> avec l’attribut <code>aria-label</code> — cela en améliorera
+            pour les valeurs disposant d’une unité&nbsp;: si vous vous aventurez à utiliser l’élement
+            <code>&lt;abbr&gt;</code> pour utiliser sa version abrégée, pensez à doubler l’attribut
+            <code>title</code> avec l’attribut <code>aria-label</code> —&nbsp;cela en améliorera
             considérablement l’intérêt pour de nombreux internautes.
            </li>
           </ul>
@@ -112,17 +115,17 @@
            <abbr lang="en" title="Scalable Vector Graphics" aria-label="Scalable Vector Graphics">svg</abbr>
            est appliqué en
            <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr>
-           — vous en trouverez quelques-uns sur le site
-           <a hreflang="en" lang="en" href="https://www.heropatterns.com/">Hero Patterns</a> :
+           —&nbsp;vous en trouverez quelques-uns sur le site
+           <a hreflang="en" lang="en" href="https://www.heropatterns.com/">Hero Patterns</a>&nbsp;:
           </p>
           <ol>
            <li>
             afin d’améliorer <strong>le mélange avec les couleurs ou dégradés d’arrière-plan</strong>, la propriété
-            <code>background-blend-mode</code> est utilisée avec la valeur <code>hard-light</code> ;
+            <code>background-blend-mode</code> est utilisée avec la valeur <code>hard-light</code>&nbsp;;
            </li>
            <li>
             les <strong>tailles et positions du motif</strong> dépendent directement de la valeur et de l’échelle du graphique,
-            selon le type de graphique ;
+            selon le type de graphique&nbsp;;
            </li>
            <li>
             pour ne pas embarquer trop de fichiers externes, on utilise
@@ -130,25 +133,26 @@
             proposée par <cite>Trys Mudford</cite> pour inclure nos
             <abbr lang="en" title="Scalable Vector Graphics" aria-label="Scalable Vector Graphics">svg</abbr>
             en <i lang="en">data URi</i> dans une variable
-            <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr> chacun</a> ;
+            <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr> chacun</a>&nbsp;;
             ainsi, une liste finie de motifs est utilisée dans le thème, sans jamais répéter le <abbr lang="en" title="Scalable Vector Graphics" aria-label="Scalable Vector Graphics">svg</abbr>.
            </li>
           </ol>
 
           <div class="note">
-           <h4>Qu’encoder ?</h4>
+           <h4>Qu’encoder&nbsp;?</h4>
            <p>
             <a hreflang="en" href="https://codepen.io/tigt/post/optimizing-svgs-in-data-uris"><cite>Taylor Hunt</cite>
             a rédigé un article complet sur l’optimisation des
             <abbr lang="en" title="Scalable Vector Graphics" aria-label="Scalable Vector Graphics">svg</abbr>
             passés en <i lang="en">data URi</i></a>. En résumé, seuls les chevrons et le
-            caracère « # » ont besoin d’être encodés dans le
+            caracère «&nbsp;#&nbsp;» ont besoin d’être encodés dans le
             <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr>.
             Ne vous fatiguez pas avec les autres caractères, leur encodage nuit sérieusement à la lisibilité.
            </p>
           </div>
 
-          <pre><code class="language-css">
+          <pre>
+<code class="language-css">
 .chaarts {
  --stripes: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff99' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
 }
@@ -170,13 +174,13 @@
           <h3>Respect des préférences</h3>
           <p>
            Afin de respecter autant que possible les préférences des visiteurs,
-           de nombreux éléments ont été adaptés :
+           de nombreux éléments ont été adaptés&nbsp;:
           </p>
           <ol>
            <li>
             les dimensions sont en unités relatives (<code>em</code> ou <code>rem</code> selon les cas),
             afin de s’ajuster de manière cohérente au corps de texte hérité du navigateur et de pouvoir
-            être agrandi ou réduit sans perte ;
+            être agrandi ou réduit sans perte&nbsp;;
            </li>
            <li>
             les couleurs sont adaptées lorsque le <strong>mode de contrastes élevés</strong> de Windows est détecté à l’aide de
@@ -185,11 +189,11 @@
             l’article de <cite>Greg Whitworth</cite></a> sur le sujet. Je vous conseille d’ailleurs
             <a hreflang="en" href="http://www.iangraham.org/books/xhtml1/appd/update-23feb2000.html">
             l’increvable page <q lang="en">Test of System Colors Specified in CSS 2</q> rédigée
-            par <cite>Ian Graham</cite></a>, éditée en… 2000 !
+            par <cite>Ian Graham</cite></a>, éditée en… 2000&nbsp;!
            </li>
            <li>
             les <strong>animations et transitions sont désactivées</strong> lorsque le système
-            expose cette préférence grâce à <code>prefers-reduced-motion: reduce</code> ;
+            expose cette préférence grâce à <code>prefers-reduced-motion: reduce</code>&nbsp;;
            </li>
            <li>
             les <strong>effets de survol</strong> dont l’état initial consiste à masquer du contenu
@@ -200,19 +204,20 @@
           <h3><code>display</code> et sémantique</h3>
           <p>
            <cite>Adrian Roselli</cite> explique que jouer avec le <code>display</code> d’un élément
-           <code><table></code> ou <code><dl></code> met en péril sa sémantique.
-           Cette dernière est donc « verrouillée » à l’aide des rôles
+           <code>&lt;table&gt;</code> ou <code>&lt;dl&gt;</code> met en péril sa sémantique.
+           Cette dernière est donc «&nbsp;verrouillée&nbsp;» à l’aide des rôles
            <abbr lang="en" title="Accessible Rich Internet Application" aria-label="Accessible Rich Internet Application">aria</abbr>
-           dédiés — comme il l’explique
+           dédiés —&nbsp;comme il l’explique
            <a href="http://adrianroselli.com/2018/02/tables-css-display-properties-and-aria.html" hreflang="en">dans un article détaillé</a>.
           </p>
           <p>
-           C’est pourquoi chaque tableau est précédé d’un interrupteur — basé sur
+           C’est pourquoi chaque tableau est précédé d’un interrupteur —&nbsp;basé sur
            <a hreflang="en" href="https://inclusive-components.design/toggle-button/">le composant inclusif
-           conçu par <cite>Heydon Pickering</cite></a> —
-           dont le seul et unique rôle est de désactiver les styles supplémentaires :
+           conçu par <cite>Heydon Pickering</cite></a>&nbsp;—
+           dont le seul et unique rôle est de désactiver les styles supplémentaires&nbsp;:
           </p>
-          <pre>           <code class="language-javascript">
+          <pre>
+           <code class="language-javascript">
 document.addEventListener( "DOMContentLoaded", function () {
  var switches = document.querySelectorAll( '[role="switch"]' );
 
@@ -230,18 +235,17 @@ document.addEventListener( "DOMContentLoaded", function () {
 
           <p>
            Voilà, nous sommes prêts à entrer dans le vif du sujet.<br>
-           <strong>Faites chauffer votre inspecteur !</strong>
+           <strong>Faites chauffer votre inspecteur&nbsp;!</strong>
           </p>
         
       </main>
 
       
-        <script src="js/script.min.js" integrity="sha384-GSFLTHfMgenmEx6jFpCPYPrICTc7v02GoC3xiIvkFqR7kyjirVQ6f2MHDkHnBlKB" crossorigin="anonymous"></script>
-        <script src="js/prism.min.js" integrity="sha384-0MFjDwTZ/C2v2TidAUN+xb3jb62cO99R2DqFEVRGsb06KJUzbcBaxDdWlG4gnjrv" crossorigin="anonymous"></script>
+        <script src="js/script.min.js"></script>
+        <script src="js/prism.min.js"></script>
       
 
       
       
-    
-
-</body></html>
+    </body>
+</html>
