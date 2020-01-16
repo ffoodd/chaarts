@@ -23,7 +23,6 @@ module.exports = {
   },
   files: [
     './src/favicon.ico',
-    './src/.htaccess',
     './src/humans.txt',
     './src/fonts/*.{woff,woff2}'
   ],
