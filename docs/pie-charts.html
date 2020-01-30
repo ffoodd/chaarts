@@ -49,55 +49,54 @@
 
       <main role="main" id="main" tabindex="-1" itemprop="mainContentOfPage">
         
-<h1>Graphique en tarte</h1>
+<h1>Pie charts</h1>
 
 <p>
- Le graphique en tarte sert pour <strong>les représentations de proportions en pourcentage</strong>.
- Il s’appuie sur des variables CSS, un abus outrancier de <code>calc()</code>,
+ The pie chart is used for <strong>representations of percentage proportions</strong>.
+ It relies on CSS variables, an outrageous abuse of <code>calc()</code>,
  <code>display: table-*</code>, <code>clip-path</code>, <code>mask-image</code>,
- <code>transform</code> et un tantinet de <abbr lang="en" title="Scalable Vectors Graphics">SVG</abbr>
- pour distinguer chaque zone. Oui, je sais rigoler. Comment qu’on s’en sert&nbsp;?
+ <code>transform</code> and a bit of <abbr title="Scalable Vectors Graphics">SVG</abbr>
+ to distinguish each area. Yes, I know how to laugh. How do we use it?
 </p>
 
 <ol>
  <li>
-  <strong>Sur chaque entête</strong> <code>&lt;th&gt;</code>, une variable <var>--color</var>
-  permet d’attribuer, et bien… une couleur.
+  <strong>On each header</strong> <code>&lt;th&gt;</code>, a <var>--color</var>
+  custom property allows you to assign, well… a color.
  </li>
  <li>
-  <strong>Puis chaque cellule</strong> <code>&lt;td&gt;</code> doit contenir la valeur et son unité,
-  ainsi qu’un attribut <code>style</code> pour porter quelques variables&nbsp;:
+  <strong>Then each cell</strong> <code>&lt;td&gt;</code> must contain the value
+  and its unit, as well as a <code>style</code> attribute to carry some variables:
   <ol>
    <li>
-    <var>--value</var> correspond à la valeur en pourcentage,
-    utile pour déterminer <strong>l’angle</strong> que doit occuper l’élément sur le cercle.
-    Tous les points du <code>polygon()</code> de <code>clip-path</code> dépendent de cette
-    valeur —&nbsp;lire la note technique après l’exemple pour le détail des calculs.
+    <var>--value</var> is the percentage value,
+    useful for determining <strong>the angle</strong> the element should occupy on the circle.
+    All points of the <code>clip-path</code> <code>polygon()</code> depend on this
+    value —&nbsp;read the technical note after the example for details of the calculations.
    </li>
    <li>
-    <var>--start</var> permet de définir le <strong>point de départ</strong> de l’arc
-    sur le cercle. Il s’agit de la somme des précédentes définitions, et est appliqué
-    à la fonction <code>rotate()</code> de la propriété <code>transform</code>.
+    <var>--start</var> is used to define the <strong>starting point</strong>
+    of the arc on the circle. It's the sum of the previous definitions, and is applied
+    to the <code>rotate()</code> function of the <code>transform</code> poperty.
    </li>
    <li>
-    Et enfin une série de variables <em>booléennes</em> valant chacune <var>0</var> ou <var>1</var>
-    —&nbsp;d’après une idée de <a hreflang="en" href="https://www.kizu.ru/conditions-for-css-variables/">
-    <cite>Roman Komarov</cite> dans son article <em lang="en">"Conditions for CSS variables"</em></a>&nbsp;—
-    dépendent de la valeur&nbsp;: <var>--lt-25</var>, <var>--gt-25</var>, <var>--lt-50</var>…
-    Elles permettent de <strong>faire basculer les points</strong> de leur position d’origine
-    (<code>50% 50%</code>) à leur position calculée, en s’additionnant ou se soustrayant
-    à la valeur initiale&nbsp;;
+    And finally a series of <em>pseudo-boolean</em> variables, each worthing <var>0</var> or <var>1</var>
+    —&nbsp;according to and idea of <a href="https://www.kizu.ru/conditions-for-css-variables/">
+    <cite>Roman Komarov</cite> in <em>"Conditions for CSS variables"</em></a>&nbsp;—
+    depend on the value: <var>--lt-25</var>, <var>--gt-25</var>, <var>--lt-50</var>…
+    They allow to <strong>toggle the points</strong> from their original position
+    (<code>50% 50%</code>) to their calculated position, by adding or subtracting from the initial value;
    </li>
   </ol>
  </li>
  <li>
-  un <strong>pseudo-élément</strong> sur chaque cellule <code>&lt;td&gt;</code> est mis en forme
-  de savante manière en fonction de toutes nos variables, avec notamment <code>transform</code>,
-  <code>clip-path</code> et <code>mask-image</code>.
+  a <strong>pseudo-element</strong> on each cell <code>&lt;td&gt;</code>is formatted
+  in a clever way according to all our variables, including <code>transform</code>,
+  <code>clip-path</code> and <code>mask-image</code>.
  </li>
  <li>
-  Et finalement <strong>un motif</strong> est appliqué sur l’arrière-plan, afin de mieux
-  l’associer visuellement avec la légende correspondante.
+  And finally <strong>a pattern</strong> is applied to the background,
+  in order to better associate it visually with the corresponding legend.
  </li>
 </ol>
 
@@ -106,22 +105,22 @@
  <div class="table-container pie-container" role="group" aria-labelledby="caption-5">
  <div class="fieldset d-flex sm-hidden">
   <p class="label no-margin">
-   <strong id="label-5">Interrupteur</strong><br>
-   <span id="description-5">Permet de désactiver les styles sur le tableau suivant.</span>
+   <strong id="label-5">Switch</strong><br>
+   <span id="description-5">Allows you to disable the styles on the following table.</span>
   </p>
   <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
       role="switch" aria-checked="true"
       aria-labelledby="label-5" aria-describedby="description-5">
-   <span>Guilleret</span>
-   <span>Sobre</span>
+   <span>Funny</span>
+   <span>Sober</span>
   </button>
  </div>
 
  <table class="chaarts pie" id="pie">
-  <caption id="caption-5">Répartition du poids des ressources pour <a href="https://www.ffoodd.fr" target="_blank" rel="noopener noreferrer">ffoodd.fr</a></caption>
+  <caption id="caption-5">Distribution of the weight of resources for <a href="https://www.ffoodd.fr" target="_blank" rel="noopener noreferrer">ffoodd.fr</a></caption>
   <thead class="sr-only">
    <tr>
-    <th scope="col">Ressource</th>
+    <th scope="col">Resource</th>
     <th scope="col">Proportion</th>
    </tr>
   </thead>
@@ -187,8 +186,8 @@
   </td>
 
    
-<tr style="--color: #585462;--term: 'Autres';">
-  <th scope="row">Autres</th>
+<tr style="--color: #585462;--term: 'Other';">
+  <th scope="row">Other</th>
   
     
   
@@ -209,7 +208,7 @@
   </p>
   <p>
    Pour ce faire, je divise le cercle en quatre carrés. La position du point sur le cercle peut ainsi
-   être calculée en utilisant les propriétés du triangle rectangle formé par&nbsp;:
+   être calculée en utilisant les propriétés du triangle rectangle formé par:
   </p>
   <ol>
    <li>le centre du cercle,</li>
@@ -219,8 +218,8 @@
   <p>
    Nous connaissons <strong>l’hypoténuse</strong> de ce triangle —&nbsp;le rayon du cercle&nbsp;—,
    et <strong>l’angle formé par l’hypoténuse et partant du centre du cercle</strong>
-   (en ramenant la valeur sur 90 degrés, puisque le cercle est divisé en quatre secteurs carrés&nbsp;:
-   si la valeur est supérieure à 25&nbsp;: moins 90°, etc.)
+   (en ramenant la valeur sur 90 degrés, puisque le cercle est divisé en quatre secteurs carrés:
+   si la valeur est supérieure à 25: moins 90°, etc.)
    —&nbsp;plus un angle droit, bien entendu.
   </p>
   <h2>La loi des sinus</h2>
@@ -228,8 +227,8 @@
    Nous pouvons donc <a href="https://fr.wikihow.com/calculer-la-longueur-de-l%27hypot%C3%A9nuse">utiliser la loi des sinus</a> pour mesurer chaque côté,
    et ainsi obtenir la position du point sur le cercle.
    Cela implique de calculer le sinus… Fort heureusement,
-   <a href="https://gist.github.com/stereokai/7666bfe93929b14c2dced148c79e0e97" hreflang="en"><cite>Stereokai</cite> a implémenté pour nous
-   la représentation polynomiale de Taylor/Maclaurin en CSS</a> —&nbsp;que j’ai implémentée sour forme d’un <em lang="en">mixin</em>&nbsp;:
+   <a href="https://gist.github.com/stereokai/7666bfe93929b14c2dced148c79e0e97"><cite>Stereokai</cite> a implémenté pour nous
+   la représentation polynomiale de Taylor/Maclaurin en CSS</a> —&nbsp;que j’ai implémentée sour forme d’un <em>mixin</em>:
   </p>
   <pre>
    <code class="language-scss">
@@ -248,15 +247,15 @@
  </div>
 </details>
 <details>
- <summary>Le <abbr lang="en" title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
+ <summary>Le <abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
  <div>
   <pre>
    <code class="language-markup">
 &lt;table class="chaarts pie">
- &lt;caption id="caption-5">Répartition du poids des ressources pour ffoodd.fr&lt;/caption>
+ &lt;caption id="caption-5">Distribution of the weight of resources for ffoodd.fr&lt;/caption>
  &lt;thead class="sr-only">
    &lt;tr>
-     &lt;th scope="col">Ressource&lt;/th>
+     &lt;th scope="col">Resource&lt;/th>
      &lt;th scope="col">Proportion&lt;/th>
    &lt;/tr>
  &lt;/thead>
@@ -274,7 +273,7 @@
  </div>
 </details>
 <details>
- <summary>Le <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
+ <summary>Le <abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
  <div>
   <pre>
    <code class="language-css">
@@ -419,31 +418,31 @@
  <h3>Les positions du polygone</h3>
  <p>
   L’utilisation de variables pseudo-booléennes rend ce calcul pseudo-algorithmiques.
-  Démarrons par un pré-requis essentiel&nbsp;: le polygone étant un tracé fermé et CSS
+  Démarrons par un pré-requis essentiel: le polygone étant un tracé fermé et CSS
   n’étant pas magique, <strong>les points doivent pré-exister</strong>.
-  <em lang="en">Spoiler</em>, il nous faut onze points&nbsp;:
+  <em>Spoiler</em>, il nous faut onze points:
  </p>
  <ol>
   <li>
-   <strong>L’axe initial</strong>, du centre vers le milieu en haut&nbsp;: <code>50% 50%</code>
+   <strong>L’axe initial</strong>, du centre vers le milieu en haut: <code>50% 50%</code>
    et <code>50% 0%</code>.
   </li>
   <li>
-   <strong>Un point pour chaque angle</strong> aux extrémités&nbsp;: le premier est fixe, à
+   <strong>Un point pour chaque angle</strong> aux extrémités: le premier est fixe, à
    <code>100% 0%</code> (en haut à droite) —&nbsp;puis chacun des autres angles
-   a <strong>deux états</strong>, atteint ou non. Quelques détails&nbsp;:
+   a <strong>deux états</strong>, atteint ou non. Quelques détails:
    <ul>
     <li>
      Par exemple le point en bas à droite concerne
-     les valeurs entre 25% et 50%&nbsp;: si la valeur est inférieure à 25%, il doit
+     les valeurs entre 25% et 50%: si la valeur est inférieure à 25%, il doit
      être au centre (pour ne pas gêner le tracé), et dans le cas contraire être
-     dans son coin. ce qui s’exprime ainsi&nbsp;:
+     dans son coin. ce qui s’exprime ainsi:
      <code>calc( 50% + ( var(--gt-25, 0) * 50% ) ) calc( 50% + ( var(--gt-25, 0) * 50% ) )</code><br>
      Ainsi la valeur calculée sera <code>50% 50%</code> si <var>--gt-25</var> vaut 0,
      et <code>100% 100%</code> si <var>--gt-25</var> vaut 1.
     </li>
     <li>
-     De plus, chaque angle a sa coordonnée cible&nbsp;:
+     De plus, chaque angle a sa coordonnée cible:
      <code>100% 100%</code> pour en bas à droite, <code>0% 100%</code> pour en bas à gauche,
      <code>0% 0%</code> pour en en haut à gauche. Il faut donc <strong>tantôt soustraire et
      tantôt ajouter 50%</strong> à la valeur intitiale <code>50% 50%</code>
@@ -454,7 +453,7 @@
   <li>
    <strong>Un point pour chaque position possible par quart de cercle</strong>, correspondant à
    chaque tranche de 25%. À l’instar des points aux angles, ces points doivent être au centre
-   s’ils ne sont pas utilisés. C’est là qu’on rigole le plus&nbsp;:
+   s’ils ne sont pas utilisés. C’est là qu’on rigole le plus:
    <ul>
     <li>on part de <code>50%</code>, auxquels on ajoute ou soustrait la suite du calcul&nbsp;;</li>
     <li>
@@ -464,7 +463,7 @@
      grâce à <var>* var(--lt-25, 1)</var>, par exemple.<br>
      <small>
       Remarquez le seconde valeur dans <code>var()</code>, qui est la valeur par défaut
-      si la variable n’est pas définie. Cool, non&nbsp;?
+      si la variable n’est pas définie. Cool, non?
      </small>
     </li>
     <li>
@@ -580,14 +579,14 @@
   <div class="table-container pie-container" role="group" aria-labelledby="caption-12">
     <div class="fieldset d-flex sm-hidden">
      <p class="label no-margin">
-      <strong id="label-12">Interrupteur</strong><br>
-      <span id="description-12">Permet de désactiver les styles sur le tableau suivant.</span>
+      <strong id="label-12">Switch</strong><br>
+      <span id="description-12">Allows you to disable the styles on the following table.</span>
      </p>
      <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
          role="switch" aria-checked="true"
          aria-labelledby="label-12" aria-describedby="description-12">
-      <span>Guilleret</span>
-      <span>Sobre</span>
+      <span>Funny</span>
+      <span>Sober</span>
      </button>
    </div>
 
@@ -595,7 +594,7 @@
      <caption id="caption-12">Exemple de tarte avec une valeur entre 50 et 75%</caption>
      <thead class="sr-only">
       <tr>
-       <th scope="col">Ressource</th>
+       <th scope="col">Resource</th>
        <th scope="col">Proportion</th>
       </tr>
      </thead>
@@ -646,14 +645,14 @@
   <div class="table-container pie-container" role="group" aria-labelledby="caption-13">
     <div class="fieldset d-flex sm-hidden">
      <p class="label no-margin">
-      <strong id="label-13">Interrupteur</strong><br>
-      <span id="description-13">Permet de désactiver les styles sur le tableau suivant.</span>
+      <strong id="label-13">Switch</strong><br>
+      <span id="description-13">Allows you to disable the styles on the following table.</span>
      </p>
      <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
          role="switch" aria-checked="true"
          aria-labelledby="label-13" aria-describedby="description-13">
-      <span>Guilleret</span>
-      <span>Sobre</span>
+      <span>Funny</span>
+      <span>Sober</span>
      </button>
    </div>
 
@@ -661,7 +660,7 @@
      <caption id="caption-13">Exemple de tarte avec une valeur supérieure à 75%</caption>
      <thead class="sr-only">
       <tr>
-       <th scope="col">Ressource</th>
+       <th scope="col">Resource</th>
        <th scope="col">Proportion</th>
       </tr>
      </thead>
@@ -711,35 +710,35 @@
   </div>
 </div>
 
-<h2><i lang="en">Donut</i></h2>
+<h2><i>Donut</i></h2>
 
 <p>
  Sur l’élément <code>&lt;table&gt;</code>, on ajoute une variable <var>--offset</var>
- qui permet de déterminer la dimension du trou du <em lang="en">donut</em>,
+ qui permet de déterminer la dimension du trou du <em>donut</em>,
  généré à l’aide de <code>mask-image</code> et <code>radial-gradient()</code>.
- <cite>Ana Tudor</cite> a réalisé <a href="https://codepen.io/thebabydino/pens/tags/?selected_tag=mask" hreflang="en">de très nombreux exemples
+ <cite>Ana Tudor</cite> a réalisé <a href="https://codepen.io/thebabydino/pens/tags/?selected_tag=mask">de très nombreux exemples
  d’utilisation des <code>mask-*</code> sur CodePen</a>, jetez-y un œil&nbsp;!
 </p>
 
 <div class="table-container pie-container" role="group" aria-labelledby="caption-6">
  <div class="fieldset d-flex sm-hidden">
   <p class="label no-margin">
-   <strong id="label-6">Interrupteur</strong><br>
-   <span id="description-6">Permet de désactiver les styles sur le tableau suivant.</span>
+   <strong id="label-6">Switch</strong><br>
+   <span id="description-6">Allows you to disable the styles on the following table.</span>
   </p>
   <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
       role="switch" aria-checked="true"
       aria-labelledby="label-6" aria-describedby="description-6">
-   <span>Guilleret</span>
-   <span>Sobre</span>
+   <span>Funny</span>
+   <span>Sober</span>
   </button>
  </div>
 
  <table class="chaarts pie donut" id="donut" style="--offset: 8rem;">
-  <caption id="caption-6">Répartition du poids des ressources pour <a href="https://www.ffoodd.fr" target="_blank" rel="noopener noreferrer">ffoodd.fr</a></caption>
+  <caption id="caption-6">Distribution of the weight of resources for <a href="https://www.ffoodd.fr" target="_blank" rel="noopener noreferrer">ffoodd.fr</a></caption>
   <thead class="sr-only">
    <tr>
-    <th scope="col">Ressource</th>
+    <th scope="col">Resource</th>
     <th scope="col">Proportion</th>
    </tr>
   </thead>
@@ -805,8 +804,8 @@
   </td>
 
    
-<tr style="--color: #585462;--term: 'Autres';">
-  <th scope="row">Autres</th>
+<tr style="--color: #585462;--term: 'Other';">
+  <th scope="row">Other</th>
   
     
   
@@ -819,7 +818,7 @@
 </div>
 
 <details>
- <summary>Le <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
+ <summary>Le <abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
  <div>
   <pre>
    <code class="language-css">
@@ -845,8 +844,8 @@
  <p>
   L’utilisation de <code>conic-gradient()</code> est prometteuse pour ce cas précis.
   Vous en trouverez des exemples réalisés par <cite>Ana Tudor</cite> ou <cite>Léa Verou</cite> —&nbsp;qui a carrément rédigé la spécification,
-  et conçu <a href="https://leaverou.github.io/conic-gradient/" hreflang="en">un <em lang="en">polyfill</em></a>.
-  Cependant le <a href="https://caniuse.com/#search=conic-gradient" hreflang="en">support limité aux navigateurs basés sur WebKit</a> est déprimant, et pose tout de même quelques questions
+  et conçu <a href="https://leaverou.github.io/conic-gradient/">un <em>polyfill</em></a>.
+  Cependant le <a href="https://caniuse.com/#search=conic-gradient">support limité aux navigateurs basés sur WebKit</a> est déprimant, et pose tout de même quelques questions
   en <strong>matière d’accessibilité</strong> puisqu’on ne peut pas affecter un motif à chaque couleur du dégradé conique.
  </p>
 </div>
@@ -854,29 +853,29 @@
 <h2>Polaire</h2>
 
 <p>
- Pour cette déclinaison, on ne change presque rien&nbsp;: seulement la variable <var>--zoom</var>
+ Pour cette déclinaison, on ne change presque rien: seulement la variable <var>--zoom</var>
  et son implication dans la <strong>mise à l’échelle</strong> des portions à l’aide de <code>scale()</code>.
 </p>
 
 <div class="table-container pie-container" role="group" aria-labelledby="caption-10">
  <div class="fieldset d-flex sm-hidden">
   <p class="label no-margin">
-   <strong id="label-10">Interrupteur</strong><br>
-   <span id="description-10">Permet de désactiver les styles sur le tableau suivant.</span>
+   <strong id="label-10">Switch</strong><br>
+   <span id="description-10">Allows you to disable the styles on the following table.</span>
   </p>
   <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
       role="switch" aria-checked="true"
       aria-labelledby="label-10" aria-describedby="description-10">
-   <span>Guilleret</span>
-   <span>Sobre</span>
+   <span>Funny</span>
+   <span>Sober</span>
   </button>
  </div>
 
  <table class="chaarts pie polar" id="polar">
-  <caption id="caption-10">Répartition du poids des ressources pour <a href="https://www.ffoodd.fr" target="_blank" rel="noopener noreferrer">ffoodd.fr</a></caption>
+  <caption id="caption-10">Distribution of the weight of resources for <a href="https://www.ffoodd.fr" target="_blank" rel="noopener noreferrer">ffoodd.fr</a></caption>
   <thead class="sr-only">
    <tr>
-    <th scope="col">Ressource</th>
+    <th scope="col">Resource</th>
     <th scope="col">Proportion</th>
    </tr>
   </thead>
@@ -942,8 +941,8 @@
   </td>
 
    
-<tr style="--color: #585462;--term: 'Autres';">
-  <th scope="row">Autres</th>
+<tr style="--color: #585462;--term: 'Other';">
+  <th scope="row">Other</th>
   
     
   
@@ -956,7 +955,7 @@
 </div>
 
 <details>
- <summary>Le <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
+ <summary>Le <abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
  <div>
   <pre>
    <code class="language-css">
