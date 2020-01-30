@@ -156,8 +156,8 @@
  </div>
 
  <table class="chaarts line" id="line"
-     style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Feb.'; --t-3: 'Mar.'; --t-4: 'Apr.'; --t-5: 'Mai'; --t-6: 'Juin';
-        --t-7: 'Juil.'; --t-8: 'Août'; --t-9: 'Sept.'; --t-10: 'Oct.'; --t-11: 'Nov.'; --t-12: 'Déc.';">
+     style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Feb.'; --t-3: 'Mar.'; --t-4: 'Apr.'; --t-5: 'May'; --t-6: 'June';
+        --t-7: 'July'; --t-8: 'Aug.'; --t-9: 'Sept.'; --t-10: 'Oct.'; --t-11: 'Nov.'; --t-12: 'Dec.';">
   <caption id="caption-3">Average monthly temperature in 2017</caption>
   <thead>
    <tr>
@@ -458,59 +458,61 @@
  </div>
 </details>
 <details>
- <summary>Le calcul tordu</summary>
- <h3>Le tracé du <code>polygon()</code></h3>
+ <summary>The calculation twist</summary>
+ <h3>The <code>polygon()</code> path</h3>
  <p>
-  Pour commencer, il faut bien intégrer que <code>clip-path</code> est un tracé,
-  au même titre qu’une forme vectorielle. Il doit donc <strong>être fermé</strong>.
-  Ainsi le tracé démarre à <var>0% 100%</var> —&nbsp;en bas à gauche, fait sa vie
-  de tracé, bascule à <var>100% 100%</var> et revient boucler à <var>0% 100%</var>.
+  To begin with, you need to understand that <code>clip-path</code> is a path,
+  just like a vector shape. It must therefore <strong>be closed</strong>.
+  So the path starts at <var>0% 100%</var> —&nbsp;bottom left, does its path life,
+  toggles to <var>100% 100%</var> and comes back looping at <var>0% 100%</var>.
  </p>
- <p>Et dans son chemin, chaque point doit être positionné en abscisses et en ordonnées.</p>
- <h4>La position en abscisse</h4>
+ <p>And in its path, each point must be positioned in abscissa and ordinate.</p>
+ <h4>The X-axis position</h4>
  <p>
-  La première position est simple: on divise <code>100%</code> par l’échelle
-  <var>var(--x)</var>, et on <strong>multiplie par l’index</strong> de l’élément. Par exemple:
-  <code>calc( ( 100% / var(--x) * 1) )</code>.
-  Pour placer chaque point <strong>au milieu de sa colonne</strong>, on le décale d’une demi-colonne
-  —&nbsp;ce que l’on fait en ajoutant au calcul précédent <var>var(--offset)</var>, qui correspond
-  à <code>calc( ( 100% / var(--x) ) / 2 )</code>.<br>
-  La position finale est donc, ici pour le troisième point:<br>
+  The first position is simple: divide <code>100%</code> by the
+  <var>var(--x)</var> scale, and <strong>multiply by the index</strong> of the element.
+  For example: <code>calc( ( 100% / var(--x) * 1) )</code>.
+  To place each point <strong>in the middle of its column</strong>, we shift it by half a column
+  —&nbsp;which we do by adding to the previous calculation <var>var(--offset)</var>,
+  which corresponds to <code>calc( ( 100% / var(--x) ) / 2 )</code>.<br>
+  The final position is therefore, here for the third point:<br>
   <code>calc( ( 100% / var(--x) * 3) + var(--offset) )</code>.
  </p>
- <h4>La position en ordonnée</h4>
+ <h4>The Y-axis position</h4>
  <p>
-  Dans ce graphique, l’ordonnée est l’axe le plus important. Ainsi pour placer le point,
-  on commence par calculer <strong>le ratio de sa valeur sur l’échelle</strong> —&nbsp;formulé
-  ainsi: <code>var(--1) / var(--y)</code>. Et parce que <code>polygon()</code> utilise
-  des valeurs en pourcentage, on rapporte ce calcul sur 100%:
+  In this graph, the Y-axis is the most important axis. So to place the point,
+  we start by calculating <strong>the ratio of its value on the scale</strong>
+  —&nbsp;formulated as follows: <code>var(--1) / var(--y)</code>. And because
+  <code>polygon()</code> uses percentage values, we report this calculation on 100%:
   <code>( var(--1) / var(--y) * 100% )</code>.<br>
-  Et pour finir, les référentiels du polygone partant d’en haut à gauche, <strong>la position
-  doit être définie en fonction du haut de la boîte</strong>. La formule finale ressemble
-  alors à ça —&nbsp;toujours pour le troisième élément:<br>
+  And finally, since the polygon's datums start from the top left, <strong>the position
+  position must be defined according to the top of the box</strong>.
+  The final formula then looks like this —&nbsp;again for the third element:
   <code>calc( 100% - ( var(--3) / var(--y) * 100% ) )</code>.
  </p>
+ <br>
 </details>
 
-<h3>Graphique à point</h3>
+<h3>Line chart with dots</h3>
 
-<p>Cette variante diffère finalement assez peu de la précédente mouture:</p>
+<p>In the end, this variant differs little from the previous version:</p>
 
 <ol>
  <li>
-   le <code>polygon()</code> est <strong>poursuivi pour former une ligne</strong>,
-   en dupliquant chaque point avec un décalage de <var>4px</var>
-   —&nbsp;l’épaisseur du trait&nbsp;— et dans l’ordre inverse;
+   the <code>polygon()</code> is <strong>continued to form a line</strong>,
+   duplicating each point with an offset of <var>4px</var>
+   —&nbsp;the line thickness&nbsp;— and in the reverse order;
  </li>
  <li>
-  le pseudo-élément <code>::before</code> qui permet d’afficher l’infobulle prend ici la forme d’un
-  point sur la courbe —&nbsp;positionné à l’aide des mêmes calculs qui servent dans le polygone;
+  the <code>::before</code> pseudo-element that displays the tooltip takes
+  here the form of a point on the curve
+  —&nbsp;positioned using the same calculations that are used in the polygon;
  </li>
  <li>
-  et surtout, puisque <code>clip-path</code> est appliqué <strong>sur la ligne</strong>
-  <code>&lt;tr&gt;</code>: vous pouvez en mettre <strong>plusieurs</strong>&nbsp;!
-  Il nous faut donc ajouter une combinaison de couleur et motif pour distinguer chaque ligne
-  et les associer visuellement à leur légende.
+  and especially, since <code>clip-path</code> is applied <strong>in the line</strong>
+  <code>&lt;tr&gt;</code>: you can put <strong>more than one</strong>&nbsp;!
+  So we need to add a combination of color and pattern to distinguish each line
+  and associate them visually with their caption.
  </li>
 </ol>
 
@@ -529,9 +531,9 @@
  </div>
 
  <table class="chaarts line points" id="points"
-     style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Feb.'; --t-3: 'Mar.'; --t-4: 'Apr.'; --t-5: 'Mai'; --t-6: 'Juin';
-        --t-7: 'Juil.'; --t-8: 'Août'; --t-9: 'Sept.'; --t-10: 'Oct.'; --t-11: 'Nov.'; --t-12: 'Déc.';">
-  <caption id="caption-4">Température mensuelle moyenne par année</caption>
+     style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Feb.'; --t-3: 'Mar.'; --t-4: 'Apr.'; --t-5: 'May'; --t-6: 'June';
+        --t-7: 'July'; --t-8: 'Aug.'; --t-9: 'Sept.'; --t-10: 'Oct.'; --t-11: 'Nov.'; --t-12: 'Dec.';">
+  <caption id="caption-4">Average monthly temperature per year</caption>
   <thead>
    <tr>
     <th scope="col">Year</th>
@@ -681,7 +683,7 @@
 </div>
 
 <details>
- <summary>Le <abbr  title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
+ <summary><abbr  title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
  <div>
   <pre>
    <code class="language-css">
@@ -755,7 +757,7 @@
    left: calc( ( 100% / var(--x) * 2 ) + var(--offset) );
  }
 
- /* @note À répéter pour chaque ligne, afin de les distinguer grâce à un motif */
+ /* @note To be repeated for each line, in order to distinguish them with a pattern */
  .chaarts.points [style]:nth-child( 2n + 2 ) {
    --background: var(--stripes);
  }
@@ -791,8 +793,8 @@
 <div class="note">
  <h3>Note</h3>
  <p>
-  Pour jouer d’avantage et vous familiariser avec <code>clip-path</code>,
-  <cite>Bennett Feely</cite> a créé
+  To play more and familiarize yourself with <code>clip-path</code>,
+  <cite>Bennett Feely</cite> created
   <a href="http://bennettfeely.com/clippy/">clippy</a>.
  </p>
 </div>
