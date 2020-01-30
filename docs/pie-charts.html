@@ -200,35 +200,35 @@
 </div>
 
 <details>
- <summary>Un peu de trigonométrie</summary>
+ <summary>A bit of trigonometry</summary>
  <div>
   <p>
-   Dans ce graphique, chaque portion représente un arc de cercle basé sur un angle (une partie de 360 degrés).
-   Pour définir la forme de cette portion, il faut donc placer un point <strong>sur le cercle</strong>.
+   In this graph, each portion represents an arc of a circle based on an angle (part of 360 degrees).
+   To define the shape of this portion, a point must be placed <strong>on the circle</strong>.
   </p>
   <p>
-   Pour ce faire, je divise le cercle en quatre carrés. La position du point sur le cercle peut ainsi
-   être calculée en utilisant les propriétés du triangle rectangle formé par:
+   To do this, I divide the circle into four squares. The position of the point on the circle
+   can then be calculated using the properties of the right-angled triangle formed by:
   </p>
   <ol>
-   <li>le centre du cercle,</li>
-   <li>le point que nous cherchons à positionner,</li>
-   <li>et le point perpendiculaire au rayon et passant par notre point cible.</li>
+   <li>the center of the circle,</li>
+   <li>the point we're trying to position,</li>
+   <li>and the point perpendicular to the radius and passing through our target point.</li>
   </ol>
   <p>
-   Nous connaissons <strong>l’hypoténuse</strong> de ce triangle —&nbsp;le rayon du cercle&nbsp;—,
-   et <strong>l’angle formé par l’hypoténuse et partant du centre du cercle</strong>
-   (en ramenant la valeur sur 90 degrés, puisque le cercle est divisé en quatre secteurs carrés:
-   si la valeur est supérieure à 25: moins 90°, etc.)
-   —&nbsp;plus un angle droit, bien entendu.
+   We know <strong>the hypotenuse</strong> of this triangle —&nbsp;the radius of the circle&nbsp;—,
+   and <strong>the angle formed by the hypotenuse and starting from the center of the circle</strong>
+   (reducing the value to 90 degrees, since the circle is divided into four square sectors:
+   if the value is greater than 25: minus 90°, etc.)
+   —&nbsp;plus a right angle, of course.
   </p>
-  <h2>La loi des sinus</h2>
+  <h2>Law of sines</h2>
   <p>
-   Nous pouvons donc <a href="https://fr.wikihow.com/calculer-la-longueur-de-l%27hypot%C3%A9nuse">utiliser la loi des sinus</a> pour mesurer chaque côté,
-   et ainsi obtenir la position du point sur le cercle.
-   Cela implique de calculer le sinus… Fort heureusement,
-   <a href="https://gist.github.com/stereokai/7666bfe93929b14c2dced148c79e0e97"><cite>Stereokai</cite> a implémenté pour nous
-   la représentation polynomiale de Taylor/Maclaurin en CSS</a> —&nbsp;que j’ai implémentée sour forme d’un <em>mixin</em>:
+   We can therefore <a href="https://en.wikipedia.org/wiki/Law_of_sines">use the sine law</a>
+   to measure each side, and thus obtain the position of the point on the circle.
+   Meaning we need to calculate the sine… Fortunately,
+   <a href="https://gist.github.com/stereokai/7666bfe93929b14c2dced148c79e0e97"><cite>Stereokai</cite> implemented for us
+   the Taylor/Maclaurin polynomial representation in CSS</a> —&nbsp;which I implemented as a mixin:
   </p>
   <pre>
    <code class="language-scss">
@@ -242,12 +242,12 @@
 }</code>
   </pre>
   <p>
-   Il ne reste plus qu’à utiliser ces dimensions pour placer les points du polygône.
-   <strong>Un vrai jeu d’enfants&nbsp;!</strong>
+   All that remains is to use these dimensions to place the points of the polygon.
+   <strong>It's child's play!</strong>
  </div>
 </details>
 <details>
- <summary>Le <abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
+ <summary><abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
  <div>
   <pre>
    <code class="language-markup">
@@ -273,7 +273,7 @@
  </div>
 </details>
 <details>
- <summary>Le <abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
+ <summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
  <div>
   <pre>
    <code class="language-css">
@@ -320,20 +320,20 @@
  }
 
  .chaarts.pie td::before {
-   /* L’inclinaison, pour se placer au bon endroit */
+   /* The inclination, to be in the right place */
    --position: calc(var(--start, 0) * .01turn);
    --zoom: .75;
-   /* L’angle représenté par la valeur : 3.6 = 360deg / 100 */
-   /* Puisque nous utilisons une valeur en pourcentage */
+   /* The angle represented by the value: 3.6 = 360deg / 100 */
+   /* Since we're using a percentage value */
    --part: calc( var(--value) * 3.6 );
-   /* L’angle « utile » pour le calcul, nécessairement inférieur à 90deg */
-   /* On soustrait donc 90deg (= ¼ × 360deg) par tranche de 25% (= ¼ × 100%, oui oui) */
+   /* The "useful" angle for the calculation, necessarily less than 90deg */
+   /*  We therefore subtract 90deg (= ¼ × 360deg) per 25% (= ¼ × 100%, indeed) */
    --main-angle: calc( var(--part) - ( 90 * ( var(--gt-25, 0) + var(--gt-50, 0) + var(--gt-75, 0) ) ) );
-   /* L’angle principal, exprimé en radian */
+   /* Main angle, in radian */
    --β: calc( var(--main-angle) * 0.01745329251 );
-   /* Le dernier angle en radian, par déduction puisque dans un triangle rectangle */
+   /* The last angle in radian, by deduction since in a right-angled triangle */
    --α: calc( ( 90 - var(--main-angle) ) * 0.01745329251 );
-   /* La magie de Stereokai, pour obtenir le sinus de ces angles */
+   /* The magic of Stereokai, to get the sinus from these angles… */
    --sin-term-β-1: var(--β);
    --sin-term-β-2: calc((var(--β) * var(--β) * var(--β)) / 6);
    --sin-term-β-3: calc((var(--β) * var(--β) * var(--β) * var(--β) * var(--β)) / 120);
@@ -346,8 +346,8 @@
    --sin-term-α-4: calc((var(--α) * var(--α) * var(--α) * var(--α) * var(--α) * var(--α) * var(--α)) / 5040);
    --sin-term-α-5: calc((var(--α) * var(--α) * var(--α) * var(--α) * var(--α) * var(--α) * var(--α) * var(--α) * var(--α)) / 362880);
    --sin-α: calc(var(--sin-term-α-1) - var(--sin-term-α-2) + var(--sin-term-α-3) - var(--sin-term-α-4) + var(--sin-term-α-5));
-   /* Enfin, la position exprimée en % de l’hypothénuse, et divisée par 2 pour s’inscrire dans ¼ du cercle
-    * soit après simplification, divisé par 50 */
+   /* Finally, the position expressed in %, of the hypothenuse, divided by 2 to fit in ¼ of the circle
+    * or after simplification, divided by 50 */
    --pos-B: calc( var(--sin-β) * 50 );
    --pos-A: calc( var(--sin-α) * 50 );
    background-color: var(--color, currentColor);
@@ -414,8 +414,8 @@
  </div>
 </details>
 <details>
- <summary>Le calcul tordu</summary>
- <h3>Les positions du polygone</h3>
+ <summary>The calculation twist</summary>
+ <h3>The positions of the polygon</h3>
  <p>
   L’utilisation de variables pseudo-booléennes rend ce calcul pseudo-algorithmiques.
   Démarrons par un pré-requis essentiel: le polygone étant un tracé fermé et CSS
