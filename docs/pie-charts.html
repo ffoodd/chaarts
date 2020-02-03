@@ -417,83 +417,83 @@
  <summary>The calculation twist</summary>
  <h3>The positions of the polygon</h3>
  <p>
-  L’utilisation de variables pseudo-booléennes rend ce calcul pseudo-algorithmiques.
-  Démarrons par un pré-requis essentiel: le polygone étant un tracé fermé et CSS
-  n’étant pas magique, <strong>les points doivent pré-exister</strong>.
-  <em>Spoiler</em>, il nous faut onze points:
+  The use of pseudo-Boolean variables makes this calculation pseudo-algorithmic.
+  Let's start with an essential pre-requisite: the polygon being a closed shape and CSS
+  not being magical, <strong>points must pre-exist</strong>.
+  Spoiler, we need eleven points:
  </p>
  <ol>
   <li>
-   <strong>L’axe initial</strong>, du centre vers le milieu en haut: <code>50% 50%</code>
-   et <code>50% 0%</code>.
+   <strong>The initial axis</strong>, from centre upwards: <code>50% 50%</code>
+   and <code>50% 0%</code>.
   </li>
   <li>
-   <strong>Un point pour chaque angle</strong> aux extrémités: le premier est fixe, à
-   <code>100% 0%</code> (en haut à droite) —&nbsp;puis chacun des autres angles
-   a <strong>deux états</strong>, atteint ou non. Quelques détails:
+   <strong>One point for each angle</strong> at the ends: the first one is fixed, at
+   <code>100% 0%</code> (top right) —&nbsp;then each of the other angles has
+   <strong>two states</strong>, reached or not reached. Some insights:
    <ul>
     <li>
-     Par exemple le point en bas à droite concerne
-     les valeurs entre 25% et 50%: si la valeur est inférieure à 25%, il doit
-     être au centre (pour ne pas gêner le tracé), et dans le cas contraire être
-     dans son coin. ce qui s’exprime ainsi:
+     For example, the point at the bottom right concerns values between 25% and 50%:
+     if the value is less than 25%, it must be in the centre (so as not to interfere
+     with the drawing), and if not, it must be in its corner:
      <code>calc( 50% + ( var(--gt-25, 0) * 50% ) ) calc( 50% + ( var(--gt-25, 0) * 50% ) )</code><br>
-     Ainsi la valeur calculée sera <code>50% 50%</code> si <var>--gt-25</var> vaut 0,
-     et <code>100% 100%</code> si <var>--gt-25</var> vaut 1.
+     Thus the calculated value will be <code>50% 50%</code> if <var>--gt-25</var> is 0,
+     and <code>100% 100%</code> if <var>--gt-25</var> is 1.
     </li>
     <li>
-     De plus, chaque angle a sa coordonnée cible:
-     <code>100% 100%</code> pour en bas à droite, <code>0% 100%</code> pour en bas à gauche,
-     <code>0% 0%</code> pour en en haut à gauche. Il faut donc <strong>tantôt soustraire et
-     tantôt ajouter 50%</strong> à la valeur intitiale <code>50% 50%</code>
-     pour basculer sur le bon point.
+     In addition, each angle has its target coordinate:
+     <code>100% 100%</code> for bottom right, <code>0% 100%</code> for bottom left,
+     <code>0% 0%</code> for top left. It is therefore necessary <strong>to sometimes subtract
+     and sometimes add</strong> to the initial value <code>50% 50%</code>
+     to switch to the right point.
     </li>
    </ul>
   </li>
   <li>
-   <strong>Un point pour chaque position possible par quart de cercle</strong>, correspondant à
-   chaque tranche de 25%. À l’instar des points aux angles, ces points doivent être au centre
-   s’ils ne sont pas utilisés. C’est là qu’on rigole le plus:
+   <strong>One point for each possible position per quarter circle</strong>, corresponding
+   to each 25% slice. Like the points at the corners, these points must be in the centre
+   if they are not used. That's where we laugh the most:
    <ul>
-    <li>on part de <code>50%</code>, auxquels on ajoute ou soustrait la suite du calcul&nbsp;;</li>
+    <li>we start from <code>50%</code>, to which we add or subtract the following calculation;</li>
     <li>
-     on utilise <em>enfin</em> <strong>la position calculée</strong> —&nbsp;<var>--pos-A</var>
-     ou <var>--pos-B</var> selon le cas&nbsp;— qu’on convertit en pourcentages à l’aide de
-     <code>* 1%</code>, et qu’on rend inerte si la valeur est inférieure à la tranche concernée
-     grâce à <var>* var(--lt-25, 1)</var>, par exemple.<br>
+     then <strong>the calculated position</strong> is used —&nbsp;<var>--pos-A</var>
+     or <var>--pos-B</var> as the case may be&nbsp;— which is converted into percentages using
+     <code>* 1%</code>, and rendered inert if the value is less than the range concerned
+     using <var>* var(--lt-25, 1)</var>, for example.<br>
      <small>
-      Remarquez le seconde valeur dans <code>var()</code>, qui est la valeur par défaut
-      si la variable n’est pas définie. Cool, non?
+      Notice the second value in <code>var()</code>?
+      This is the default value if the variable is not defined. Cool, isn't it?
      </small>
     </li>
     <li>
-     et finalement <strong>lorsque la tranche est dépassée</strong>, le point bascule vers
-     <code>0%</code> ou <code>100%</code> selon le cas.
+     finally <strong>when the range is exceeded</strong>, the point switches to
+     <code>0%</code> or <code>100%</code> as appropriate.
     </li>
    </ul>
   </li>
   <li>
-   Et enfin, on <strong>referme le tracé en revenant au centre</strong> du cercle,
-   à <code>50% 50%</code>.
+   And lastly, we <strong>lose the path by going back to the centre</strong> of the circle,
+   at <code>50% 50%</code>.
   </li>
  </ol>
- <p>C’est tout&nbsp;!</p>
- <h4>Les positions illustrées</h4>
+ <p>That's it!</p>
+ <h4>The positions illustrated</h4>
  <p>
-   Ces captures d’écran —&nbsp;effectuées dans l’éditeur de formes des outils de développement de Firefox&nbsp;—
-   montrent les points du polygone dans les différents cas. Vous pouvez consulter pour chaque valeur citée
-   le polygone résolu pour <code>clip-path</code> —&nbsp;et constater le basculement des valeurs dynamiques d’une position à une autre.
+   These screenshots —&nbsp;taken in the shape editor of the Firefox development tools&nbsp;—
+   show the points of the polygon in the different cases.
+   You can see for each cited value the resolved polygon for <code>clip-path</code>
+   —&nbsp;and see how the dynamic values tilt from one position to another.
  </p>
  <ul class="no-list">
    <li>
-     <figure role="group" aria-label="Exemple de rendu pour 44%.">
-       <figcaption class="no-padding h5">Exemple de rendu pour <var>44%</var></figcaption>
+     <figure role="group" aria-label="Rendering example for 44%.">
+       <figcaption class="no-padding h5">Rendering example for <var>44%</var></figcaption>
        <div class="grid-2">
-         <figure role="group" aria-label="Capture d’écran du tracé pour 44%." class="mb-0 pb-0">
-           <img src="img/pie-1.jpg" alt="Tracé pour clip-path avec une valeur de 44% : six points visibles." width="264" height="264" />
-           <figcaption>Capture d’écran du tracé pour <var>44%</var>.</figcaption>
+         <figure role="group" aria-label="Shape screenshot for  44%." class="mb-0 pb-0">
+           <img src="img/pie-1.jpg" alt="clip-path shape with a value of 44%: six visible points." width="264" height="264" />
+           <figcaption>Shape screenshot for <var>44%</var>.</figcaption>
          </figure>
-         <figure role="group" aria-label="Code généré pour 44%." class="mb-0 pb-0">
+         <figure role="group" aria-label="Code generated for 44%." class="mb-0 pb-0">
            <pre data-line="8"><code class="language-css">td[style*="--value: 44;"]::before {
   clip-path: polygon(
     50% 50%,
@@ -509,20 +509,20 @@
     50% 50%
   );
 }</code></pre>
-           <figcaption>Code généré pour <var>44%</var>.</figcaption>
+           <figcaption>Code generated for <var>44%</var>.</figcaption>
          </figure>
        </div>
      </figure>
    </li>
    <li>
-     <figure role="group" aria-label="Exemple de rendu pour 64%.">
-       <figcaption class="no-padding h5">Exemple de rendu pour <var>64%</var></figcaption>
+     <figure role="group" aria-label="Rendering example for 64%.">
+       <figcaption class="no-padding h5">Rendering example for <var>64%</var></figcaption>
        <div class="grid-2">
-         <figure role="group" aria-label="Capture d’écran du tracé pour 64%." class="mb-0 pb-0">
-           <img src="img/pie-2.jpg" alt="Tracé pour clip-path avec une valeur de 64% : sept points visibles." width="264" height="264" />
-           <figcaption>Capture d’écran du tracé pour <var>64%</var>.</figcaption>
+         <figure role="group" aria-label="Shape screenshot for  64%." class="mb-0 pb-0">
+           <img src="img/pie-2.jpg" alt="clip-path shape with a value of 64%: seven visible points." width="264" height="264" />
+           <figcaption>Shape screenshot for <var>64%</var>.</figcaption>
          </figure>
-         <figure role="group" aria-label="Code généré pour 64%." class="mb-0 pb-0">
+         <figure role="group" aria-label="Code generated for 64%." class="mb-0 pb-0">
            <pre data-line="10"><code class="language-css">td[style*="--value: 64;"]::before {
   clip-path: polygon(
     50% 50%,
@@ -538,20 +538,20 @@
     50% 50%
   );
 }</code></pre>
-           <figcaption>Code généré pour <var>64%</var>.</figcaption>
+           <figcaption>Code generated for <var>64%</var>.</figcaption>
          </figure>
        </div>
      </figure>
    </li>
    <li>
-     <figure role="group" aria-label="Exemple de rendu pour 88%.">
-       <figcaption class="no-padding h5">Exemple de rendu pour <var>88%</var></figcaption>
+     <figure role="group" aria-label="Rendering example for 88%.">
+       <figcaption class="no-padding h5">Rendering example for <var>88%</var></figcaption>
        <div class="grid-2">
-         <figure role="group" aria-label="Capture d’écran du tracé pour 88%." class="mb-0 pb-0">
-           <img src="img/pie-3.jpg" alt="Tracé pour clip-path avec une valeur de 88% : neuf points visibles." width="264" height="264" />
-           <figcaption>Capture d’écran du tracé pour <var>88%</var>.</figcaption>
+         <figure role="group" aria-label="Shape screenshot for  88%." class="mb-0 pb-0">
+           <img src="img/pie-3.jpg" alt="clip-path shape with a value of 88%: nine visible points." width="264" height="264" />
+           <figcaption>Shape screenshot for <var>88%</var>.</figcaption>
          </figure>
-         <figure role="group" aria-label="Code généré pour 88%." class="mb-0 pb-0">
+         <figure role="group" aria-label="Code generated for 88%." class="mb-0 pb-0">
            <pre data-line="12"><code class="language-css">td[style*="--value: 88;"]::before {
   clip-path: polygon(
     50% 50%,
@@ -567,7 +567,7 @@
     50% 50%
   );
 }</code></pre>
-           <figcaption>Code généré pour <var>88%</var>.</figcaption>
+           <figcaption>Code generated for <var>88%</var>.</figcaption>
          </figure>
        </div>
      </figure>
@@ -591,7 +591,7 @@
    </div>
 
    <table class="chaarts pie">
-     <caption id="caption-12">Exemple de tarte avec une valeur entre 50 et 75%</caption>
+     <caption id="caption-12">Pie chart example with a value between 50 and 75%</caption>
      <thead class="sr-only">
       <tr>
        <th scope="col">Resource</th>
@@ -657,7 +657,7 @@
    </div>
 
    <table class="chaarts pie">
-     <caption id="caption-13">Exemple de tarte avec une valeur supérieure à 75%</caption>
+     <caption id="caption-13">Pie chart example with a value greater than 75%</caption>
      <thead class="sr-only">
       <tr>
        <th scope="col">Resource</th>
@@ -710,14 +710,14 @@
   </div>
 </div>
 
-<h2><i>Donut</i></h2>
+<h2>Donut</h2>
 
 <p>
- Sur l’élément <code>&lt;table&gt;</code>, on ajoute une variable <var>--offset</var>
- qui permet de déterminer la dimension du trou du <em>donut</em>,
- généré à l’aide de <code>mask-image</code> et <code>radial-gradient()</code>.
- <cite>Ana Tudor</cite> a réalisé <a href="https://codepen.io/thebabydino/pens/tags/?selected_tag=mask">de très nombreux exemples
- d’utilisation des <code>mask-*</code> sur CodePen</a>, jetez-y un œil&nbsp;!
+ On the <code>&lt;table&gt;</code> element, we add an <var>--offset</var> variable
+ that allows us to determine the size of the hole of the donut,
+ generated using <code>mask-image</code> and <code>radial-gradient()</code>.
+ <a href="https://codepen.io/thebabydino/pens/tags/?selected_tag=mask"><cite>Ana Tudor</cite> has made
+ many examples of using <code>mask-*</code> on CodePen</a>, have a look!
 </p>
 
 <div class="table-container pie-container" role="group" aria-labelledby="caption-6">
@@ -818,7 +818,7 @@
 </div>
 
 <details>
- <summary>Le <abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
+ <summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
  <div>
   <pre>
    <code class="language-css">
@@ -840,21 +840,23 @@
 </details>
 
 <div class="note">
- <h3>Dégradé conique</h3>
+ <h3>Conical gradient</h3>
  <p>
-  L’utilisation de <code>conic-gradient()</code> est prometteuse pour ce cas précis.
-  Vous en trouverez des exemples réalisés par <cite>Ana Tudor</cite> ou <cite>Léa Verou</cite> —&nbsp;qui a carrément rédigé la spécification,
-  et conçu <a href="https://leaverou.github.io/conic-gradient/">un <em>polyfill</em></a>.
-  Cependant le <a href="https://caniuse.com/#search=conic-gradient">support limité aux navigateurs basés sur WebKit</a> est déprimant, et pose tout de même quelques questions
-  en <strong>matière d’accessibilité</strong> puisqu’on ne peut pas affecter un motif à chaque couleur du dégradé conique.
+  The use of <code>conic-gradient()</code> is promising for this case.
+  You'll find examples made by <cite>Ana Tudor</cite> and <cite>Léa Verou</cite>
+  —&nbsp;who actually wrote the specification, and designed
+  <a href="https://leaverou.github.io/conic-gradient/">a polyfill</a>.
+  However, <a href="https://caniuse.com/#search=conic-gradient">current support is limited to WebKit based browsers</a>
+  is depressing, and still raises some <strong>accessibility issues</strong>
+  since you can't assign a pattern to each color of the <code>conic-gradient()</code>.
  </p>
 </div>
 
-<h2>Polaire</h2>
+<h2>Polar chart</h2>
 
 <p>
- Pour cette déclinaison, on ne change presque rien: seulement la variable <var>--zoom</var>
- et son implication dans la <strong>mise à l’échelle</strong> des portions à l’aide de <code>scale()</code>.
+ For this variant, wa change almost nothing: only the <var>--zoom</var> variable
+ and its implication in <strong>the scaling</strong> of portions using <code>scale()</code>.
 </p>
 
 <div class="table-container pie-container" role="group" aria-labelledby="caption-10">
@@ -955,7 +957,7 @@
 </div>
 
 <details>
- <summary>Le <abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
+ <summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
  <div>
   <pre>
    <code class="language-css">
