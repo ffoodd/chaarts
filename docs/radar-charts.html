@@ -140,7 +140,7 @@
  <div class="fieldset d-flex sm-hidden">
   <p class="label no-margin">
    <strong id="label-9">Switch</strong><br>
-   <span id="description-9">Allows you to disable the styles on the following table.</span>
+   <span id="description-9">Allows you to disable styles on the following table.</span>
   </p>
   <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
       role="switch" aria-checked="true"
@@ -352,39 +352,39 @@
 </div>
 
 
-<h2>Radars superposés</h2>
+<h2>Overlapping radars</h2>
 
-<p>Très peu de changements par rapport à la version précédente:</p>
+<p>Very few changes compared to the previous version:</p>
 
 <ol>
  <li>
-  l’element <code>&lt;table&gt;</code> ne porte plus les valeurs, mais dispose d’une nouvelle
-  variable <var>--areas</var> pour indiquer le nombre de lignes dans le tableau;
+  the <code>&lt;table&gt;</code> element no longer carries the values,
+  but has a new <var>--areas</var> custom property to indicate the number of rows in the table;
  </li>
  <li>
-  en revanche on multiplie le nombre de lignes dans le corps du tableau:
+  however we multiply the number of rows in the body of the table:
   <ul>
    <li>
-    chacune porte plusieurs variables:
-    <var>--color</var> puis les valeurs —&nbsp;<var>--1</var>, etc.;
+    each one carries several variables:
+    <var>--color</var> then the values —&nbsp;<var>--1</var>, etc.;
    </li>
    <li>
-    et contient plusieurs cellules: une d’entête de ligne <code>&lt;th scope="row"&gt;</code>
-    et des cellules de données <code>&lt;td&gt;</code>;
+    and contains several cells: a <code>&lt;th scope="row"&gt;</code> row header cell
+    and <code>&lt;td&gt;</code> data cells;
   </ul>
  </li>
  <li>
-  le reste est relativement commun désormais —&nbsp;si vous avez parcourus les exemples précédents:
+  the rest is relatively common now —&nbsp;if you've gone through the previous examples:
   <ol>
    <li>
-    une couleur pour chaque ligne, présentée sur les cellules d’entête et servant d’arrière-plan aux
-    cellules de données;
+    a color for each row, presented on the header cells
+    and serving as a background for the data cells;
    </li>
    <li>
-    un effet distinctif au <strong>survol</strong> de chaque ligne: les valeurs apparaissent
-    textuellement au survol, et la ligne survolée est mise en exergue. Afin de ne pas priver les utilisateurs
-    n’ayant pas de pointeur doué pour le survol, cet effet est une <strong>amélioration progressive</strong>
-    basé sur la <em>media query</em> <code>@media (hover: hover) { … }</code>.
+    a distinctive <strong>hover</strong> effect over each row: the values appear
+    verbatim on hovering, and the hovered row is highlighted. In order not to deprive users
+    who do not have a good hover pointer, this effect is a <strong>progressive enhancement</strong>
+    based on the <code>@media (hover: hover) { … }</code> media query.
    </li>
   </ol>
  </li>
@@ -395,7 +395,7 @@
  <div class="fieldset d-flex sm-hidden">
   <p class="label no-margin">
    <strong id="label-11">Switch</strong><br>
-   <span id="description-11">Allows you to disable the styles on the following table.</span>
+   <span id="description-11">Allows you to disable styles on the following table.</span>
   </p>
   <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
       role="switch" aria-checked="true"
@@ -445,7 +445,7 @@
 </div>
 
 <details>
- <summary>Le <abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
+ <summary><abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
  <div>
   <pre>
    <code class="language-markup">
@@ -472,7 +472,7 @@
  </div>
 </details>
 <details>
- <summary>Le <abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
+ <summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
  <div>
   <pre>
    <code class="language-css">
@@ -502,7 +502,7 @@
  width: 1rem;
 }
 
-/* Pour obtenir une deuxième zone : */
+/* To get a second area: */
 .chaarts.radar-multiple tr:nth-child(2) [scope="row"] {
  left: calc( 1rem + (100% / var(--areas)) * 1);
 }
