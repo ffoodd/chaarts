@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html lang="en" class="no-js">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         
         <base href="/">
@@ -14,15 +12,15 @@
   <meta property="og:type" content="article">
   <meta property="og:description" name="description" content="Charts with HTML & CSS">
   <meta name="twitter:card" content="summary">
-  <link rel="alternate" hreflang="fr" href="https://ffoodd.github.io/chaarts/fr/histogramme.html"/>
+  <link rel="alternate" hreflang="fr" href="https://ffoodd.github.io/chaarts/fr/histogramme.html">
 
         <script>
           document.documentElement.classList.remove('no-js');
           document.documentElement.classList.add('js');
         </script>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="css/styles.min.css" media="all">
-        <link rel="stylesheet" href="css/print.min.css" media="print">
+        <link rel="stylesheet" href="css/styles.min.css" media="all" integrity="sha384-fTUO5/vwpXk8SWmwE2Hm8BUgEiKqcB/C/4lnj19eTFR5bCeNV/WWXwrZlAlIv8kc" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/print.min.css" media="print" integrity="sha384-i3dRwmp8zXRlpUnJTD27rKIBzSEdYbc0YEFwuULfvleZ4Vm0RG81i/6HXy96jet8" crossorigin="anonymous">
     </head>
     <body itemscope itemtype="http://schema.org/WebPage">
       <header role="banner">
@@ -42,8 +40,7 @@
   <li><a aria-current="page">Column charts</a></li>
   <li><a href="./pie-charts.html">Pie charts</a></li>
   <li><a href="./radar-charts.html">Radar charts</a></li>
-  <li class="ml-auto"><a rel="alternate" hreflang="fr" lang="fr" href="./fr/histogramme.html"
-         aria-label="Version française" title="Version française">FR</a></li>
+  <li class="ml-auto"><a rel="alternate" hreflang="fr" lang="fr" href="./fr/histogramme.html" aria-label="Version française" title="Version française">FR</a></li>
 </ul>
 
         </nav>
@@ -57,7 +54,7 @@
  Column chart is used for <strong>value distributions</strong>.
  The structure of the table is quite ordinary, but its formatting is based on
  <code>display: grid;</code> and especially <code>display: contents;</code> to
- <strong>facilitate the placement of the cells</strong> —&nbsp;technique inspired by
+ <strong>facilitate the placement of the cells</strong> — technique inspired by
  <a href="https://hiddedevries.nl/en/blog/2018-04-21-more-accessible-markup-with-display-contents">
  <cite>Hidde De Vries</cite>'s article <q>More accessible markup with <code>display: contents</code></q></a>,
  and clarified by <a href="https://bitsofco.de/how-display-contents-works/">
@@ -71,14 +68,14 @@
   enables us to handle a dynamic scale;
  </li>
  <li>
-  <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code> and <code>&lt;tr&gt;</code> containers
+  <code><thead></code>, <code><tbody></code> and <code><tr></code> containers
   are neutralized in the grid structure using <code>display: contents</code>;
- <li>
+ </li><li>
   each cell is placed on the grid depending its <var>--value</var>
-  —&nbsp;its background color also depending on its value;
+  — its background color also depending on its value;
  </li>
  <li>
-  and finally its text value —&nbsp;wrapped in a <code>&lt;span&gt;</code> element&nbsp;—
+  and finally its text value — wrapped in a <code><span></code> element —
   is positioned at the top of the column using the same trick as in the bar chart.
  </li>
 </ol>
@@ -89,9 +86,7 @@
    <strong id="label-7">Switch</strong><br>
    <span id="description-7">Allows you to disable styles on the following table.</span>
   </p>
-  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
-      role="switch" aria-checked="true"
-      aria-labelledby="label-7" aria-describedby="description-7">
+  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css" role="switch" aria-checked="true" aria-labelledby="label-7" aria-describedby="description-7">
    <span>Funny</span>
    <span>Sober</span>
   </button>
@@ -127,33 +122,31 @@
 <details>
  <summary><abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
  <div>
-  <pre>
-   <code class="language-markup">
-&lt;table class="chaarts column" id="column" style="--y: 7;">
-&lt;caption id="caption-7">Browser market shares in France in January 2019&lt;/caption>
-&lt;thead>
- &lt;tr>
-  &lt;th scope="row">Browser&lt;/th>
-  &lt;th scope="col" style="--value: 62;">Chrome&lt;/th>
-  &lt;th scope="col" style="--value: 15;">Firefox&lt;/th>
- &lt;/tr>
-&lt;/thead>
-&lt;tbody>
- &lt;tr>
-  &lt;th scope="row">Market shares&lt;/th>
-  &lt;td style="--value: 62;">&lt;span>62%&lt;/span>&lt;/td>
-  &lt;td style="--value: 15;">&lt;span>15%&lt;/span>&lt;/td>
- &lt;/tr>
-&lt;/tbody>
-&lt;/table&gt;</code>
+  <pre>   <code class="language-markup">
+<table class="chaarts column" id="column" style="--y: 7;">
+<caption id="caption-7">Browser market shares in France in January 2019</caption>
+<thead>
+ <tr>
+  <th scope="row">Browser</th>
+  <th scope="col" style="--value: 62;">Chrome</th>
+  <th scope="col" style="--value: 15;">Firefox</th>
+ </tr>
+</thead>
+<tbody>
+ <tr>
+  <th scope="row">Market shares</th>
+  <td style="--value: 62;"><span>62%</span></td>
+  <td style="--value: 15;"><span>15%</span></td>
+ </tr>
+</tbody>
+</table></code>
   </pre>
  </div>
 </details>
 <details>
  <summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
  <div>
-  <pre>
-   <code class="language-css">
+  <pre>   <code class="language-css">
 @supports (display: contents) {
  .chaarts[class*="column"] {
    --gap: .5rem;
@@ -293,10 +286,10 @@
 
 <ol>
  <li>
-  we add <strong>a second row</strong> in <code>&lt;thead&gt;</code>:
+  we add <strong>a second row</strong> in <code><thead></code>:
   <ul>
    <li>
-    with <var>two</var> column header cells <code>&lt;th scope="col"&gt;</code>
+    with <var>two</var> column header cells <code><th scope="col"></code>
     for each column header cell in the first row;
    </li>
    <li>
@@ -305,7 +298,7 @@
    </li>
    <li>
     and finally add an <strong>identifier</strong> to each header cell
-    to referenced them to the relevant data cells —&nbsp;using the
+    to referenced them to the relevant data cells — using the
     <code>headers</code> attribute, par exemple pour la première cellule:
     <code>headers="browser chrome year chrome-2018"</code> where each value
     is a header cell's identifier.
@@ -319,17 +312,17 @@
     the first-level header cells must span two columns of the grid,
     as required by their <code>colspan</code> for the table layout. It is
     unfortunately <strong>impossible to use an attribute value</strong> in another
-    property than <code>content</code> —&nbsp;otherwise we could simply write
+    property than <code>content</code> — otherwise we could simply write
     <code>grid-column: 2 / span attr(colspan);</code>, and <strong>that</strong> would be awesome…
    </li>
    <li>
-    but no! Thus, a <var>--span</var> custom property is added on <code>&lt;table&gt;</code>,
+    but no! Thus, a <var>--span</var> custom property is added on <code><table></code>,
     and must match the <code>colspan</code> attributes values mentionned earlier:
     it is therefore used to extend the first level headers to the appropriate number of columns.
    </li>
    <li>
     <strong>Colors and patterns</strong> are no longer applied according to each value,
-    but according to each column —&nbsp;in the example, every second element
+    but according to each column — in the example, every second element
     (since we have <var>two</var> entries per column).
     Again, if we could use an attribute value or a custom property
     <strong>in a selector</strong>, that would be great. Imagine
@@ -346,9 +339,7 @@
    <strong id="label-8">Switch</strong><br>
    <span id="description-8">Allows you to disable styles on the following table.</span>
   </p>
-  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
-      role="switch" aria-checked="true"
-      aria-labelledby="label-8" aria-describedby="description-8">
+  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css" role="switch" aria-checked="true" aria-labelledby="label-8" aria-describedby="description-8">
    <span>Funny</span>
    <span>Sober</span>
   </button>
@@ -400,37 +391,35 @@
 <details>
  <summary><abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
  <div>
-  <pre>
-   <code class="language-markup">
-&lt;table class="chaarts column-multiple" id="column-multiple" style="--y: 11; --span: 2;">
- &lt;caption id="caption-8">Browser market shares in France in January 2019&lt;/caption>
- &lt;thead>
-   &lt;tr>
-     &lt;th scope="row" id="browser">Browser&lt;/th>
-     &lt;th scope="col" colspan="2" id="chrome">Chrome&lt;/th>
-   &lt;/tr>
-   &lt;tr>
-     &lt;th scope="row" id="year">Year&lt;/th>
-     &lt;th scope="col" id="chrome-2018">2018&lt;/th>
-     &lt;th scope="col" id="chrome-2019">2019&lt;/th>
-   &lt;/tr>
- &lt;/thead>
- &lt;tbody>
-   &lt;tr>
-     &lt;th scope="row" id="parts">Market shares&lt;/th>
-     &lt;td style="--value: 50;" headers="browser chrome year chrome-2018">&lt;span>49.6%&lt;/span>&lt;/td>
-     &lt;td style="--value: 57;" headers="browser chrome year chrome-2019">&lt;span>57%&lt;/span>&lt;/td>
-   &lt;/tr>
- &lt;/tbody>
-&lt;/table&gt;</code>
+  <pre>   <code class="language-markup">
+<table class="chaarts column-multiple" id="column-multiple" style="--y: 11; --span: 2;">
+ <caption id="caption-8">Browser market shares in France in January 2019</caption>
+ <thead>
+   <tr>
+     <th scope="row" id="browser">Browser</th>
+     <th scope="col" colspan="2" id="chrome">Chrome</th>
+   </tr>
+   <tr>
+     <th scope="row" id="year">Year</th>
+     <th scope="col" id="chrome-2018">2018</th>
+     <th scope="col" id="chrome-2019">2019</th>
+   </tr>
+ </thead>
+ <tbody>
+   <tr>
+     <th scope="row" id="parts">Market shares</th>
+     <td style="--value: 50;" headers="browser chrome year chrome-2018"><span>49.6%</span></td>
+     <td style="--value: 57;" headers="browser chrome year chrome-2019"><span>57%</span></td>
+   </tr>
+ </tbody>
+</table></code>
   </pre>
  </div>
 </details>
 <details>
  <summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
  <div>
-  <pre>
-   <code class="language-css">
+  <pre>   <code class="language-css">
 @supports (display: contents) {
  .chaarts.column-multiple {
    grid-template-columns: minmax(min-content, 14ch) repeat(calc(var(--y) - 1), 1fr);
@@ -503,22 +492,22 @@
 <div class="note">
  <h3>Chromium bug</h3>
  <p>
-  There's a bug in Chromium at the time of writing —&nbsp;already filled
-  <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=938927"
-  target="_blank" rel="noopener noreferrer">a ticket on bugs.chromium.org</a>&nbsp;—
+  There's a bug in Chromium at the time of writing — already filled
+  <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=938927" target="_blank" rel="noopener noreferrer">a ticket on bugs.chromium.org</a> —
   when <strong>using a decimal value for grid placement</strong>.
   I don't know if it's an implication of the decimal, of the calculation, of the custom property…
   but at the moment, it doesn't work!
-</div>
+</p></div>
 
       </main>
 
       
-        <script src="js/script.min.js"></script>
-        <script src="js/prism.min.js"></script>
+        <script src="js/script.min.js" integrity="sha384-GSFLTHfMgenmEx6jFpCPYPrICTc7v02GoC3xiIvkFqR7kyjirVQ6f2MHDkHnBlKB" crossorigin="anonymous"></script>
+        <script src="js/prism.min.js" integrity="sha384-0MFjDwTZ/C2v2TidAUN+xb3jb62cO99R2DqFEVRGsb06KJUzbcBaxDdWlG4gnjrv" crossorigin="anonymous"></script>
       
 
       
       
-    </body>
-</html>
+    
+
+</body></html>
