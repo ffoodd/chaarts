@@ -174,7 +174,6 @@
          transition:
            opacity .2s map-get( $timing-functions, 'enter' ),
            transform .2s map-get( $timing-functions, 'enter' );
-         will-change: opacity, transform;
          white-space: pre;
          z-index: 5;
        }

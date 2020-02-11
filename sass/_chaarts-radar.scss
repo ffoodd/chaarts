@@ -241,12 +241,10 @@
       td {
         opacity: .25;
         transition: opacity .2s map-get( $timing-functions, 'move' );
-        will-change: opacity;
 
         &::after {
           opacity: 0;
           transition: inherit;
-          will-change: inherit;
         }
       }
 
