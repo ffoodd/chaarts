@@ -8,13 +8,13 @@
         <base href="/">
         
         
-  <title>Radar charts — chaarts</title>
-  <meta property="og:url" content="https://ffoodd.github.io/chaarts/radar-charts.html">
-  <meta property="og:title" content="Radar charts — chaarts">
+  <title>Radar — chaarts</title>
+  <meta property="og:url" content="https://ffoodd.github.io/chaarts/fr/radar.html">
+  <meta property="og:title" content="Radar — chaarts">
   <meta property="og:type" content="article">
-  <meta property="og:description" name="description" content="Charts with HTML & CSS">
+  <meta property="og:description" name="description" content="Graphiques de données avec HTML & CSS">
   <meta name="twitter:card" content="summary">
-  <link rel="alternate" hreflang="fr" href="https://ffoodd.github.io/chaarts/fr/radar.html"/>
+  <link rel="alternate" hreflang="en" href="https://ffoodd.github.io/chaarts/radar-charts.html"/>
 
         <script>
           document.documentElement.classList.remove('no-js');
@@ -36,14 +36,14 @@
         <nav role="navigation" id="nav" aria-label="Main navigation">
           
 <ul class="fly-out">
-  <li><a href="./index.html">Home</a></li>
-  <li><a href="./bar-charts.html">Bar charts</a></li>
-  <li><a href="./line-charts.html">Line charts</a></li>
-  <li><a href="./column-charts.html">Column charts</a></li>
-  <li><a href="./pie-charts.html">Pie charts</a></li>
-  <li><a aria-current="page">Radar charts</a></li>
-  <li class="ml-auto"><a rel="alternate" hreflang="fr" lang="fr" href="./fr/radar.html"
-         aria-label="Version française" title="Version française">FR</a></li>
+  <li><a href="./index.html">Accueil</a></li>
+  <li><a href="./barres.html">Barre</a></li>
+  <li><a href="./courbe.html">Courbe</a></li>
+  <li><a href="./histogramme.html">Histogramme</a></li>
+  <li><a href="./camembert.html">Camembert</a></li>
+  <li><a aria-current="page">Radar</a></li>
+  <li class="ml-auto"><a rel="alternate" hreflang="en" lang="en" href="../radar-charts.html"
+         aria-label="English version" title="English version">EN</a></li>
 </ul>
 
         </nav>
@@ -51,117 +51,118 @@
 
       <main role="main" id="main" tabindex="-1" itemprop="mainContentOfPage">
         
-<h1>Radar charts</h1>
+<h1>Graphique radar</h1>
 
 <p>
- This one's kind of fun. We define some <abbr title="Cascading StyleSheet">CSS</abbr>
- variables on the table: the scale (and tiers), the number of elements, and the values.
+ Celui-ci est plutôt amusant. On définit quelques variables
+ <abbr lang="en" title="Cascading StyleSheet">CSS</abbr> sur le tableau
+ &nbsp;: l’échelle (et les paliers), le nombre d’éléments, et les valeurs.
 </p>
 
 <p>
- On the <abbr title="Cascading StyleSheet">CSS</abbr> side, it's getting complicated:
+ Côté <abbr lang="en" title="Cascading StyleSheet">CSS</abbr>, ça se complique&nbsp;:
 </p>
 
 <ul>
  <li>
-  on the <code>&lt;table&gt;</code> element, the circular scale is created using two successive
-  <code>repeating-radial-gradient()</code> —&nbsp;depending on the
-  <var>--scale</var> and <var>--step</var> variables;
+  sur l’élément <code>&lt;table&gt;</code>, on crée l’échelle circulaire à l’aide de deux
+  <code>repeating-radial-gradient()</code> successifs —&nbsp;en fonction des variables
+  <var>--scale</var> et <var>--step</var>&nbsp;;
  </li>
  <li>
-  each element <code>&lt;th&gt;</code> is moved outside the circle thus formed,
-  thanks to a technique borrowed from
-  <a href="https://stackoverflow.com/questions/12813573/position-icons-into-circle">
-  <cite>Ana Tudor</cite>, who explains it on StackOverflow</a>;
+  chaque élément <code>&lt;th&gt;</code> est déplacé à l’extérieur du cercle ainsi formé,
+  grâce à une technique empruntée à
+  <a href="https://stackoverflow.com/questions/12813573/position-icons-into-circle" hreflang="en">
+  <cite>Ana Tudor</cite>, qui l’explique sur StackOverflow</a>&nbsp;;
  </li>
  <li>
-  then —&nbsp;still on header cells&nbsp;— the value corresponding to each column
-  is displayed in a pseudo-element <code>::after</code> using
-  <a href="https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab">a
-  trick from <cite>Cassie Evans</cite>, using <code>counter-reset</code> and <code>counter()</code>
-  to display a numerical variable in the <code>content</code> property</a>.
+  puis —&nbsp;toujours sur les cellules d’entête&nbsp;— la valeur correspondant à chaque colonne
+  est affichée dans un pseudo-élément <code>::after</code> à l’aide
+  <a hreflang="en" href="https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab">d’une
+  astuce de <cite>Cassie Evans</cite>, utilisant <code>counter-reset</code> et <code>counter()</code>
+  pour afficher une variable numérique dans la propriété <code>content</code></a>.
  <li>
-  Then the magic works on the <code>&lt;td&gt;</code> elements:
+  Puis la magie opère sur les éléments <code>&lt;td&gt;</code>&nbsp;:
   <ol>
    <li>
-    each of which is adjusted to form <strong>a square with a side equal
-    to the radius of the circle</strong> on the background;
+    chacun est ajusté pour former <strong>un carré dont le côté est égal au rayon
+    du cercle</strong> en arrière-plan&nbsp;;
    </li>
    <li>
-    then transformed to represent a portion of the circle according to
-    the number of elements —&nbsp;specified with <var>--items</var>&nbsp;— using
-    <a href="https://tympanus.net/codrops/2013/08/09/building-a-circular-navigation-with-css-transforms/">
-    a trick shared by <cite>Sara Soueidan</cite> on Codrops</a>,
+    puis transformé de façon à représenter une portion du cercle en fonction du nombre
+    d’éléments —&nbsp;précisé avec <var>--items</var>&nbsp;— grâce à
+    <a href="https://tympanus.net/codrops/2013/08/09/building-a-circular-navigation-with-css-transforms/" hreflang="en">
+    une technique partagée par <cite>Sara Soueidan</cite> sur Codrops</a>,
    </li>
-   <li>each one is decorated with a border at the bottom;</li>
+   <li>chacun se voit décoré d’une bordure, en bas&nbsp;;</li>
    <li>
-    then we use again <code>clip-path</code> <code>polygon()</code> function
-    on each direct child <code>&lt;span&gt;</code> —&nbsp; extended to occupy the whole surface
-    of its parent <code>&lt;td&gt;</code>&nbsp;— in order to form a triangle, based for one side
-    on the ratio value of the current element / scale, and on another side a ratio based on the
-    value of the next element (yum <code>calc()</code>)
-    —&nbsp;but on another scale…
+    puis on utilise de nouveau <code>clip-path</code> et la fonction <code>polygon()</code>
+    sur chaque enfant direct <code>&lt;span&gt;</code> —&nbsp;étendu pour occuper toute la surface
+    de son <code>&lt;td&gt;</code> de parent&nbsp;— afin de former un triangle, basé pour un côté
+    sur le ratio valeur de l’élément courant / échelle, et sur un autre côté un ratio basé sur
+    la valeur de l’élément suivant (miam les <code>calc()</code>)
+    —&nbsp;mais sur une autre échelle…
    </li>
    <li>
-    because to <strong>compensate for the distortion</strong> due to the <code>skew()</code>,
-    we need to correct the scale on which the second ratio is calculated
-    using a little trigonometry:
+    car pour <strong>compenser la distorsion</strong> due à la fonction <code>skew()</code>,
+    nous devons corriger l’échelle sur laquelle est calculée le second ratio à l’aide d’un peu
+    de trigonométrie&nbsp;:
     <ul>
      <li>
-      we know one side of the right-angled triangle obtained after the deformation,
-      as well as two angles —&nbsp;the right one, of course, and we deduce
-      the second from the angle used to deform the element;
+      nous connaissons un côté du triangle rectangle obtenu après la déformation,
+      ainsi que deux angles —&nbsp;le droit, bien entendu, et nous déduisons le deuxième de
+      l’angle utilisé pour déformer l’élément&nbsp;;
      </li>
      <li>
-      so we can <strong>calculate the hypothenuse</strong> using the sine law,
-      —&nbsp;as before in the pie chart;
+      nous pouvons donc <strong>calculer l’hypothénuse</strong> en utilisant la loi des sinus,
+      —&nbsp;comme précédemment dans le graphique en tarte&nbsp;;
      </li>
      <li>
-      and finally, all we have to do is calculate the ratio between the initial dimension
-      —&nbsp;the side&nbsp;— and the final dimension —&nbsp;the hypothenuse&nbsp;—
-      and apply this ratio to the scale on which the second point of the polygon is placed.
+      et finalement, il ne nous reste qu’à calculer le ratio entre la dimension initiale
+      —&nbsp;le côté&nbsp;— et la dimension finale —&nbsp;l’hypothénuse&nbsp;— et appliquer ce ratio
+      à l’échelle sur laquelle est placée le deuxième point du polygone.
      </li>
     </ul>
    </li>
    <li>
-    The third point of the polygon is the bottom right corner, whose coordinates are
-    <code>100% 100%</code>;
+    le troisième point du polygône est l’angle en bas à droite, dont les coordonnées sont
+    <code>100% 100%</code>&nbsp;;
    </li>
   </ol>
   <li>
-   one last trick is necessary to close the shape you have seen,
-   we use the current and next value for each element. But when we get to the last element,
-   there is no next! So we need to <strong>add a value</strong>, to which we assign
-   the first value —&nbsp;in this example, <var>--8: var(--1);</var>.
+   une dernière astuce est nécessaire pour fermer la forme&nbsp; vous l’avez vu, nous utilisons
+   la valeur courante et la valeur suivante pour chaque élément. Mais arrivé au dernier élément,
+   il n’y a plus de suivant&nbsp;! Il faut donc <strong>ajouter une valeur</strong>,
+   à laquelle on attribue la première valeur —&nbsp;dans cet exemple, <var>--8: var(--1);</var>.
  </li>
 </ul>
 
-<p>And that's it!</p>
+<p>Et voilà, c’est tout&nbsp;!</p>
 
 <div class="table-container radar-container" role="group" aria-labelledby="caption-9">
  <div class="fieldset d-flex sm-hidden">
   <p class="label no-margin">
-   <strong id="label-9">Switch</strong><br>
-   <span id="description-9">Allows you to disable styles on the following table.</span>
+   <strong id="label-9">Interrupteur</strong><br>
+   <span id="description-9">Permet de désactiver les styles sur le tableau suivant.</span>
   </p>
   <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
       role="switch" aria-checked="true"
       aria-labelledby="label-9" aria-describedby="description-9">
-   <span>Funny</span>
-   <span>Sober</span>
+   <span>Guilleret</span>
+   <span>Sobre</span>
   </button>
  </div>
 
  <table class="chaarts radar" id="radar" style="--scale: 20; --step: 5; --items: 7; --1: 14; --2: 11; --3: 13; --4: 16; --5: 10; --6: 12; --7: 4; --8: var(--1);">
-  <caption id="caption-9">Level of interest by domain, out of 20</caption>
+  <caption id="caption-9">Niveau d’intérêt par domaine, sur 20</caption>
   <thead>
    <tr>
-    <th scope="col">Accessibility</th>
-    <th scope="col">SEO</th>
+    <th scope="col">Accessibilité</th>
+    <th scope="col">Référencement</th>
     <th scope="col">Performance</th>
-    <th scope="col">Compatibility</th>
-    <th scope="col">Security</th>
-    <th scope="col">Code quality</th>
+    <th scope="col">Compatibilité</th>
+    <th scope="col">Sécurité</th>
+    <th scope="col">Qualité de code</th>
     <th scope="col">Test</th>
    </tr>
   </thead>
@@ -180,16 +181,16 @@
 </div>
 
 <details>
- <summary><abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
+ <summary>Le <abbr lang="en" title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
  <div>
   <pre>
    <code class="language-markup">
 &lt;table class="chaarts radar" id="radar" style="--scale: 20; --step: 5; --items: 7; --1: 14; --2: 11; --3: 13; --4: 16; --5: 10; --6: 12; --7: 4; --8: var(--1);">
- &lt;caption id="caption-9">Level of interest by domain, out of 20&lt;/caption>
+ &lt;caption id="caption-9">Niveau d’intérêt par domaine, sur 20&lt;/caption>
  &lt;thead>
    &lt;tr>
-     &lt;th scope="col">Accessibility&lt;/th>
-     &lt;th scope="col">SEO&lt;/th>
+     &lt;th scope="col">Accessibilité&lt;/th>
+     &lt;th scope="col">Référencement&lt;/th>
    &lt;/tr>
  &lt;/thead>
  &lt;tbody>
@@ -203,7 +204,7 @@
  </div>
 </details>
 <details>
- <summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
+ <summary>Le <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
  <div>
   <pre>
    <code class="language-css">
@@ -330,63 +331,63 @@
  </div>
 </details>
 
-<h2>Some details</h2>
+<h2>Quelques détails</h2>
 
 <div class="grid-2-1">
-  <div class="note no-margin">
-   <h3>A Chromium bug</h3>
+  <div class="note">
+   <h3>Bug dans Chromium</h3>
    <p>
-    There is currently a bug in Chromium —&nbsp;I filled
-    <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=939728"
-    target="_blank" rel="noopener noreferrer">an issue on bugs.chromium.org</a>&nbsp;—
-    when using the <code>border-spacing</code> roperty on the table:
-    it <strong>prevents Chrome to define the dimensions of the table</strong>…
-    For Chrome user, use the inspector to uncheck this property on the
-    <code>&lt;table&gt;</code> tag of these examples!
+    Il y a en ce moment un bug dans Chromium —&nbsp;j’ai saisi
+    <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=939728" hreflang="en"
+    target="_blank" rel="noopener noreferrer">un ticket sur bugs.chromium.org</a>&nbsp;—
+    lors de l’utilisation de la propriété <code>border-spacing</code> sur le tableau&nbsp;:
+    cela <strong>empêche Chrome de définir les dimensions du tableau</strong>…
+    Pour les utilisateurs de Chrome, utilisez l’inspecteur pour décocher cette propriété
+    sur la balise <code>&lt;table&gt;</code> de ces exemples&nbsp;!
    </p>
   </div>
-  <figure role="group" class="no-margin" aria-label="Screenshot of the deformation caused by skew.">
-    <img src="img/hypothenuse.jpg" alt="The skew() function deforms the element by tilting it." width="277" height="202" />
+  <figure role="group" aria-label="Capture d’écran de la déformation provoquée par skew.">
+    <img src="img/hypothenuse.jpg" alt="La fonction skew() déforme l’élément en l’inclinant." width="277" height="202" />
     <figcaption>
-      Screenshot of the deformation caused by <code>skew()</code>.
+      Capture d’écran de la déformation provoquée par <code>skew()</code>.
     </figcaption>
   </figure>
 </div>
 
 
-<h2>Overlapping radars</h2>
+<h2>Radars superposés</h2>
 
-<p>Very few changes compared to the previous version:</p>
+<p>Très peu de changements par rapport à la version précédente&nbsp;:</p>
 
 <ol>
  <li>
-  the <code>&lt;table&gt;</code> element no longer carries the values,
-  but has a new <var>--areas</var> custom property to indicate the number of rows in the table;
+  l’élément <code>&lt;table&gt;</code> ne porte plus les valeurs, mais dispose d’une nouvelle
+  variable <var>--areas</var> pour indiquer le nombre de lignes dans le tableau&nbsp;;
  </li>
  <li>
-  however we multiply the number of rows in the body of the table:
+  en revanche on multiplie le nombre de lignes dans le corps du tableau&nbsp;:
   <ul>
    <li>
-    each one carries several variables:
-    <var>--color</var> then the values —&nbsp;<var>--1</var>, etc.;
+    chacune porte plusieurs variables&nbsp;:
+    <var>--color</var> puis les valeurs —&nbsp;<var>--1</var>, etc.&nbsp;;
    </li>
    <li>
-    and contains several cells: a <code>&lt;th scope="row"&gt;</code> row header cell
-    and <code>&lt;td&gt;</code> data cells;
+    et contient plusieurs cellules&nbsp;: une d’entête de ligne <code>&lt;th scope="row"&gt;</code>
+    et des cellules de données <code>&lt;td&gt;</code>&nbsp;;
   </ul>
  </li>
  <li>
-  the rest is relatively common now —&nbsp;if you've gone through the previous examples:
+  le reste est relativement commun désormais —&nbsp;si vous avez parcourus les exemples précédents&nbsp;:
   <ol>
    <li>
-    a color for each row, presented on the header cells
-    and serving as a background for the data cells;
+    une couleur pour chaque ligne, présentée sur les cellules d’entête et servant d’arrière-plan aux
+    cellules de données&nbsp;;
    </li>
    <li>
-    a distinctive <strong>hover</strong> effect over each row: the values appear
-    verbatim on hovering, and the hovered row is highlighted. In order not to deprive users
-    who do not have a good hover pointer, this effect is a <strong>progressive enhancement</strong>
-    based on the <code>@media (hover: hover) { … }</code> media query.
+    un effet distinctif au <strong>survol</strong> de chaque ligne&nbsp;: les valeurs apparaissent
+    textuellement au survol, et la ligne survolée est mise en exergue. Afin de ne pas priver les utilisateurs
+    n’ayant pas de pointeur doué pour le survol, cet effet est une <strong>amélioration progressive</strong>
+    basé sur la <em lang="en">media query</em> <code>@media (hover: hover) { … }</code>.
    </li>
   </ol>
  </li>
@@ -396,28 +397,28 @@
 <div class="table-container radar-container" role="group" aria-labelledby="caption-11">
  <div class="fieldset d-flex sm-hidden">
   <p class="label no-margin">
-   <strong id="label-11">Switch</strong><br>
-   <span id="description-11">Allows you to disable styles on the following table.</span>
+   <strong id="label-11">Interrupteur</strong><br>
+   <span id="description-11">Permet de désactiver les styles sur le tableau suivant.</span>
   </p>
   <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
       role="switch" aria-checked="true"
       aria-labelledby="label-11" aria-describedby="description-11">
-   <span>Funny</span>
-   <span>Sober</span>
+   <span>Guilleret</span>
+   <span>Sobre</span>
   </button>
  </div>
 
  <table class="chaarts radar-multiple" id="radar-multiple" style="--scale: 20; --step: 5; --items: 7; --areas: 2;">
-  <caption id="caption-11">Level of interest by domain, out of 20</caption>
+  <caption id="caption-11">Niveau d’intérêt par domaine, sur 20</caption>
   <thead>
    <tr>
     <td></td>
-    <th scope="col">Accessibility</th>
-    <th scope="col">SEO</th>
+    <th scope="col">Accessibilité</th>
+    <th scope="col">Référencement</th>
     <th scope="col">Performance</th>
-    <th scope="col">Compatibility</th>
-    <th scope="col">Security</th>
-    <th scope="col">Code quality</th>
+    <th scope="col">Compatibilité</th>
+    <th scope="col">Sécurité</th>
+    <th scope="col">Qualité de code</th>
     <th scope="col">Test</th>
    </tr>
   </thead>
@@ -447,16 +448,16 @@
 </div>
 
 <details>
- <summary><abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
+ <summary>Le <abbr lang="en" title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
  <div>
   <pre>
    <code class="language-markup">
 &lt;table class="chaarts radar-multiple" id="radar-multiple" style="--scale: 20; --step: 5; --items: 7; --areas: 2;">
- &lt;caption id="caption-9">Level of interest by domain, out of 20&lt;/caption>
+ &lt;caption id="caption-9">Niveau d’intérêt par domaine, sur 20&lt;/caption>
  &lt;thead>
    &lt;tr>
-     &lt;th scope="col">Accessibility&lt;/th>
-     &lt;th scope="col">SEO&lt;/th>
+     &lt;th scope="col">Accessibilité&lt;/th>
+     &lt;th scope="col">Référencement&lt;/th>
    &lt;/tr>
  &lt;/thead>
  &lt;tbody>
@@ -474,7 +475,7 @@
  </div>
 </details>
 <details>
- <summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
+ <summary>Le <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
  <div>
   <pre>
    <code class="language-css">
@@ -504,7 +505,7 @@
  width: 1rem;
 }
 
-/* To get a second area: */
+/* Pour obtenir une deuxième zone : */
 .chaarts.radar-multiple tr:nth-child(2) [scope="row"] {
  left: calc( 1rem + (100% / var(--areas)) * 1);
 }

@@ -1,121 +1,121 @@
 {% extends "index.html" %}
 
 {% block meta %}
- <title>chaarts — Column charts</title>
- <meta property="og:url" content="https://ffoodd.github.io/chaarts/column-charts.html">
- <meta property="og:title" content="chaarts — Column charts">
- <meta property="og:type" content="article">
- <meta property="og:description"
-    name="description" content="Charts with HTML & CSS">
- <meta name="twitter:card" content="summary">
+  <title>Column charts — chaarts</title>
+  <meta property="og:url" content="https://ffoodd.github.io/chaarts/column-charts.html">
+  <meta property="og:title" content="Column charts — chaarts">
+  <meta property="og:type" content="article">
+  <meta property="og:description" name="description" content="Charts with HTML & CSS">
+  <meta name="twitter:card" content="summary">
+  <link rel="alternate" hreflang="fr" href="https://ffoodd.github.io/chaarts/fr/histogramme.html"/>
 {% endblock %}
 
 {% block navigation %}
 <ul class="fly-out">
-  <li><a href="./index.html">Accueil</a></li>
-  <li><a href="./bar-charts.html">Graphique en barre</a></li>
-  <li><a href="./line-charts.html">Graphique linéaire</a></li>
-  <li><a aria-current="page">Histogramme</a></li>
-  <li><a href="./pie-charts.html">Graphique en tarte</a></li>
-  <li><a href="./radar-charts.html">Graphique radar</a></li>
+  <li><a href="./index.html">Home</a></li>
+  <li><a href="./bar-charts.html">Bar charts</a></li>
+  <li><a href="./line-charts.html">Line charts</a></li>
+  <li><a aria-current="page">Column charts</a></li>
+  <li><a href="./pie-charts.html">Pie charts</a></li>
+  <li><a href="./radar-charts.html">Radar charts</a></li>
+  <li class="ml-auto"><a rel="alternate" hreflang="fr" lang="fr" href="./fr/histogramme.html"
+         aria-label="Version française" title="Version française">FR</a></li>
 </ul>
 {% endblock %}
 
 {% block main %}
-<h1>Histogramme</h1>
+<h1>Column charts</h1>
 
 <p>
- L’histogramme sert pour <strong>les distributions de valeurs</strong>.
- La structure du tableau est tout à fait ordinaire, cependant sa mise en forme repose
- sur <code>display: grid;</code> et surtout <code>display: contents;</code> pour
- <strong>faciliter le placement des cellules</strong> —&nbsp;technique inspirée par
- <a href="https://hiddedevries.nl/en/blog/2018-04-21-more-accessible-markup-with-display-contents" hreflang="en">l’article
- de <cite>Hidde De Vries</cite> <q lang="en">More accessible markup with <code>display: contents</code></q></a>,
- et clarifiée par <a href="https://bitsofco.de/how-display-contents-works/" hreflang="en">l’article de
- <cite>Ire Aderinokun</cite> <q lang="en">How <code>display: contents</code> works</q></a>.
+ Column chart is used for <strong>value distributions</strong>.
+ The structure of the table is quite ordinary, but its formatting is based on
+ <code>display: grid;</code> and especially <code>display: contents;</code> to
+ <strong>facilitate the placement of the cells</strong> —&nbsp;technique inspired by
+ <a href="https://hiddedevries.nl/en/blog/2018-04-21-more-accessible-markup-with-display-contents">
+ <cite>Hidde De Vries</cite>'s article <q>More accessible markup with <code>display: contents</code></q></a>,
+ and clarified by <a href="https://bitsofco.de/how-display-contents-works/">
+ <cite>Ire Aderinokun</cite>'s post <q>How <code>display: contents</code> works</q></a>.
 </p>
 
-<p>Le principe de base est le même que <a href="./bar-charts.html">le graphique en barre</a>&nbsp;:</p>
+<p>The basic principle is the same as <a href="./bar-charts.html">the bar charts</a>:</p>
 <ol>
  <li>
-  la fonction <code>repeat()</code> appliquée avec la variable <var>--scale</var>
-  permet de gérer une échelle dynamique&nbsp;;
+  the <code>repeat()</code> function applied with the <var>--scale</var> custom property
+  enables us to handle a dynamic scale;
  </li>
  <li>
-  les conteneurs <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code> et <code>&lt;tr&gt;</code>
-  sont neutralisés dans la gestion de la grille à l’aide de <code>display: contents</code>&nbsp;;
+  <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code> and <code>&lt;tr&gt;</code> containers
+  are neutralized in the grid structure using <code>display: contents</code>;
  <li>
-  chaque cellule est placée sur la grille en fonction de <var>--value</var>
-  —&nbsp;sa valeur, donc —&nbsp;sa couleur d’arrière-plan dépend également de
-  sa valeur&nbsp;;
+  each cell is placed on the grid depending its <var>--value</var>
+  —&nbsp;its background color also depending on its value;
  </li>
  <li>
-  et finalement la valeur textuelle —&nbsp;contenue dans un élément
-  <code>&lt;span&gt;</code>&nbsp;— est positionnée en haut de la colonne
-  à l’aide de la même astuce que dans le graphique en barre.
+  and finally its text value —&nbsp;wrapped in a <code>&lt;span&gt;</code> element&nbsp;—
+  is positioned at the top of the column using the same trick as in the bar chart.
  </li>
 </ol>
 
 <div class="table-container column-container" role="group" aria-labelledby="caption-7">
  <div class="fieldset d-flex sm-hidden">
   <p class="label no-margin">
-   <strong id="label-7">Interrupteur</strong><br>
-   <span id="description-7">Permet de désactiver les styles sur le tableau suivant.</span>
+   <strong id="label-7">Switch</strong><br>
+   <span id="description-7">Allows you to disable styles on the following table.</span>
   </p>
   <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
       role="switch" aria-checked="true"
       aria-labelledby="label-7" aria-describedby="description-7">
-   <span>Guilleret</span>
-   <span>Sobre</span>
+   <span>Funny</span>
+   <span>Sober</span>
   </button>
  </div>
 
  <table class="chaarts column-single" id="column" style="--y: 7;">
-  <caption id="caption-7">Parts de marché navigateurs en France en janvier 2019</caption>
+  <caption id="caption-7">Browser market shares in France in January 2019</caption>
   <thead>
    <tr>
-    <th scope="row">Navigateur</th>
+    <th scope="row">Browser</th>
     <th scope="col" style="--value: 62;">Chrome</th>
     <th scope="col" style="--value: 15;">Firefox</th>
     <th scope="col" style="--value: 9;">Safari</th>
     <th scope="col" style="--value: 5;">Edge</th>
     <th scope="col" style="--value: 6;">IE</th>
-    <th scope="col" style="--value: 3;">Autres</th>
+    <th scope="col" style="--value: 3;">Others</th>
    </tr>
   </thead>
   <tbody>
    <tr>
-    <th scope="row">Parts de marché</th>
-    <td style="--value: 62;"><span>62&nbsp;%</span></td>
-    <td style="--value: 15;"><span>15&nbsp;%</span></td>
-    <td style="--value: 9;"><span>9&nbsp;%</span></td>
-    <td style="--value: 5;"><span>5&nbsp;%</span></td>
-    <td style="--value: 6;"><span>6&nbsp;%</span></td>
-    <td style="--value: 3;"><span>3&nbsp;%</span></td>
+    <th scope="row">Market shares</th>
+    <td style="--value: 62;"><span>62%</span></td>
+    <td style="--value: 15;"><span>15%</span></td>
+    <td style="--value: 9;"><span>9%</span></td>
+    <td style="--value: 5;"><span>5%</span></td>
+    <td style="--value: 6;"><span>6%</span></td>
+    <td style="--value: 3;"><span>3%</span></td>
    </tr>
   </tbody>
  </table>
 </div>
 
 <details>
- <summary>Le <abbr lang="en" title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
+ <summary><abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
  <div>
   <pre>
    <code class="language-markup">
 &lt;table class="chaarts column" id="column" style="--y: 7;">
-&lt;caption id="caption-7">Parts de marché navigateurs en France en janvier 2019&lt;/caption>
+&lt;caption id="caption-7">Browser market shares in France in January 2019&lt;/caption>
 &lt;thead>
  &lt;tr>
-  &lt;th scope="row">Ressource&lt;/th>
+  &lt;th scope="row">Browser&lt;/th>
   &lt;th scope="col" style="--value: 62;">Chrome&lt;/th>
   &lt;th scope="col" style="--value: 15;">Firefox&lt;/th>
  &lt;/tr>
 &lt;/thead>
 &lt;tbody>
  &lt;tr>
-  &lt;th scope="row">Parts de marché&lt;/th>
-  &lt;td style="--value: 62;">&lt;span>62&nbsp;%&lt;/span>&lt;/td>
-  &lt;td style="--value: 15;">&lt;span>15&nbsp;%&lt;/span>&lt;/td>
+  &lt;th scope="row">Market shares&lt;/th>
+  &lt;td style="--value: 62;">&lt;span>62%&lt;/span>&lt;/td>
+  &lt;td style="--value: 15;">&lt;span>15%&lt;/span>&lt;/td>
  &lt;/tr>
 &lt;/tbody>
 &lt;/table&gt;</code>
@@ -123,7 +123,7 @@
  </div>
 </details>
 <details>
- <summary>Le <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
+ <summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
  <div>
   <pre>
    <code class="language-css">
@@ -178,7 +178,7 @@
    right: 0;
  }
 
- /* @note À répéter pour chaque colonne, afin de les distinguer grâce à un motif */
+ /* @note To repeat for each column, in order to distinguish them by a pattern */
  .chaarts[class*="column"] td:nth-of-type(2) {
    grid-column: 3;
  }
@@ -229,12 +229,12 @@
    opacity: .5;
  }
 
- /* @note À répéter pour chaque colonne, afin d’en disposer l’arrière-plan au bon endroit */
+ /* @note To repeat for each column, in order to position their background to the right place */
  .chaarts.column-single [scope="col"]:nth-child(3)::after {
    left: calc(1em + (var(--width) * 2) + (var(--gap) * 2));
  }
 
- /* @note À répéter pour chaque colonne, afin de les distinguer grâce à un motif */
+ /* @note To repeat for each column, in order to distinguish them by a pattern */
  .chaarts.column-single td:nth-of-type(2n + 2) {
    --background: var(--stripes);
  }
@@ -257,58 +257,57 @@
  </div>
 </details>
 
-<h2>Colonnes multiples</h2>
+<h2>Multiple columns</h2>
 
 <p>
- Pour disposer de <var>deux</var> valeurs pour chaque colonne principale, nous devons également
- disposer de <var>deux</var> sous-titres.
- Concrètement parlant&nbsp;:
+ In order to have <var>two</var> values for each main column, we must also have
+ <var>two</var> subheadings. Concretely speaking:
 </p>
 
 <ol>
  <li>
-  on ajoute <strong>une seconde ligne dans l’entête</strong> <code>&lt;thead&gt;</code>&nbsp;:
+  we add <strong>a second row</strong> in <code>&lt;thead&gt;</code>:
   <ul>
    <li>
-    avec <var>deux</var> cellules d’entête de colonne <code>&lt;th scope="col"&gt;</code>
-    pour chaque cellule d’entête de colonne dans la première ligne d’entête&nbsp;;
+    with <var>two</var> column header cells <code>&lt;th scope="col"&gt;</code>
+    for each column header cell in the first row;
    </li>
    <li>
-    n’oublions pas d’ajouter un <code>colspan="2"</code> sur les cellules d’entête de
-    la première ligne pour faire correspondre la structure du tableau&nbsp;;
+    remember to add <code>colspan="2"</code> on the first row's header cell
+    to match the new table layout;
    </li>
    <li>
-    et enfin ajouter un <strong>identifiant</strong> à chaque cellule d’entête
-    afin de les référencer sur les cellules de données concernées —&nbsp;à l’aide
-    de l’attribut <code>headers</code>, par exemple pour la première cellule&nbsp;:
-    <code>headers="navigateur chrome annee chrome-2018"</code> où chaque valeur est un
-    identifiant de cellule d’entête.
+    and finally add an <strong>identifier</strong> to each header cell
+    to referenced them to the relevant data cells —&nbsp;using the
+    <code>headers</code> attribute, par exemple pour la première cellule:
+    <code>headers="browser chrome year chrome-2018"</code> where each value
+    is a header cell's identifier.
    </li>
   </ul>
  </li>
  <li>
-  Côté <strong>styles</strong>&nbsp;:
+  <strong>Styles</strong>:
   <ul>
    <li>
-    les cellules d’entête de premier niveau doivent s’étendre sur deux colonnes de la grille,
-    comme le réclame leur attribut <code>colspan</code> pour la structure du tableau. Il est
-    malheureusement <strong>impossible d’utiliser la valeur d’un attribut</strong> dans une autre
-    propriété que <code>content</code> — sinon nous pourrions simplement écrire
-    <code>grid-column: 2 / span attr(colspan);</code> et ça serait magnifique…
+    the first-level header cells must span two columns of the grid,
+    as required by their <code>colspan</code> for the table layout. It is
+    unfortunately <strong>impossible to use an attribute value</strong> in another
+    property than <code>content</code> —&nbsp;otherwise we could simply write
+    <code>grid-column: 2 / span attr(colspan);</code>, and <strong>that</strong> would be awesome…
    </li>
    <li>
-    mais non&nbsp;! Ainsi, une variable <var>--span</var> est ajoutée sur <code>&lt;table&gt;</code>,
-    et doit correspondre à la valeur des attributs <code>colspan</code> cités plus tôt&nbsp;:
-    elle sert donc à étendre les entêtes de premier niveau sur le nombre de colonnes adéquat.
+    but no! Thus, a <var>--span</var> custom property is added on <code>&lt;table&gt;</code>,
+    and must match the <code>colspan</code> attributes values mentionned earlier:
+    it is therefore used to extend the first level headers to the appropriate number of columns.
    </li>
    <li>
-    les <strong>couleurs et motifs</strong> ne sont plus appliqués en fonction
-    de chaque valeur, mais en fonction de chaque colonne —&nbsp;dans l’exemple, un élément
-    sur <var>deux</var> (puisque nous avons <var>deux</var> entrées par colonne).
-    Là aussi, si nous pouvions utiliser une valeur d’attribut ou une propriété personnalisée
-    <strong>dans un sélecteur</strong>, ce serait génial. Imaginez un peu
-    <code>tbody td:nth-of-type(var(--span)n + var(--span))</code> ou encore
-    <code>tbody td:nth-of-type(attr(colspan)n + attr(colspan))</code>&nbsp;!
+    <strong>Colors and patterns</strong> are no longer applied according to each value,
+    but according to each column —&nbsp;in the example, every second element
+    (since we have <var>two</var> entries per column).
+    Again, if we could use an attribute value or a custom property
+    <strong>in a selector</strong>, that would be great. Imagine
+    <code>tbody td:nth-of-type(var(--span)n + var(--span))</code> or even
+    <code>tbody td:nth-of-type(attr(colspan)n + attr(colspan))</code>!
    </li>
   </ul>
  </li>
@@ -317,22 +316,22 @@
 <div class="table-container column-container" role="group" aria-labelledby="caption-8">
  <div class="fieldset d-flex sm-hidden">
   <p class="label no-margin">
-   <strong id="label-8">Interrupteur</strong><br>
-   <span id="description-8">Permet de désactiver les styles sur le tableau suivant.</span>
+   <strong id="label-8">Switch</strong><br>
+   <span id="description-8">Allows you to disable styles on the following table.</span>
   </p>
   <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
       role="switch" aria-checked="true"
       aria-labelledby="label-8" aria-describedby="description-8">
-   <span>Guilleret</span>
-   <span>Sobre</span>
+   <span>Funny</span>
+   <span>Sober</span>
   </button>
  </div>
 
  <table class="chaarts column-multiple" id="column-multiple" style="--y: 11; --span: 2;">
-  <caption id="caption-8">Parts de marché navigateurs en France en janvier 2019</caption>
+  <caption id="caption-8">Browser market shares in France in January 2019</caption>
   <thead>
    <tr>
-    <th scope="row" id="navigateur">Navigateur</th>
+    <th scope="row" id="browser">Browser</th>
     <th scope="col" colspan="2" id="chrome">Chrome</th>
     <th scope="col" colspan="2" id="firefox">Firefox</th>
     <th scope="col" colspan="2" id="safari">Safari</th>
@@ -340,7 +339,7 @@
     <th scope="col" colspan="2" id="ie">IE</th>
    </tr>
    <tr>
-    <th scope="row" id="annee">Année</th>
+    <th scope="row" id="year">Year</th>
     <th scope="col" id="chrome-2018">2018</th>
     <th scope="col" id="chrome-2019">2019</th>
     <th scope="col" id="firefox-2018">2018</th>
@@ -355,45 +354,45 @@
   </thead>
   <tbody>
    <tr>
-    <th scope="row" id="parts">Parts de marché</th>
-    <td style="--value: 50;" headers="navigateur chrome annee chrome-2018"><span>49.6&nbsp;%</span></td>
-    <td style="--value: 57;" headers="navigateur chrome annee chrome-2019"><span>57&nbsp;%</span></td>
-    <td style="--value: 12;" headers="navigateur firefox annee firefox-2018"><span>11.74&nbsp;%</span></td>
-    <td style="--value: 10;" headers="navigateur firefox annee firefox-2019"><span>9.59&nbsp;%</span></td>
-    <td style="--value: 22;" headers="navigateur safari annee safari-2018"><span>21.53&nbsp;%</span></td>
-    <td style="--value: 19;" headers="navigateur safari annee safari-2019"><span>18.78&nbsp;%</span></td>
-    <td style="--value: 4;" headers="navigateur edge annee edge-2018"><span>3.72&nbsp;%</span></td>
-    <td style="--value: 3;" headers="navigateur edge annee edge-2019"><span>3.5&nbsp;%</span></td>
-    <td style="--value: 4;" headers="navigateur ie annee ie-2018"><span>4.46&nbsp;%</span></td>
-    <td style="--value: 3.66;" headers="navigateur ie annee ie-2019"><span>3.66&nbsp;%</span></td>
+    <th scope="row" id="parts">Market shares</th>
+    <td style="--value: 50;" headers="browser chrome year chrome-2018"><span>49.6%</span></td>
+    <td style="--value: 57;" headers="browser chrome year chrome-2019"><span>57%</span></td>
+    <td style="--value: 12;" headers="browser firefox year firefox-2018"><span>11.74%</span></td>
+    <td style="--value: 10;" headers="browser firefox year firefox-2019"><span>9.59%</span></td>
+    <td style="--value: 22;" headers="browser safari year safari-2018"><span>21.53%</span></td>
+    <td style="--value: 19;" headers="browser safari year safari-2019"><span>18.78%</span></td>
+    <td style="--value: 4;" headers="browser edge year edge-2018"><span>3.72%</span></td>
+    <td style="--value: 3;" headers="browser edge year edge-2019"><span>3.5%</span></td>
+    <td style="--value: 4;" headers="browser ie year ie-2018"><span>4.46%</span></td>
+    <td style="--value: 3.66;" headers="browser ie year ie-2019"><span>3.66%</span></td>
    </tr>
   </tbody>
  </table>
 </div>
 
 <details>
- <summary>Le <abbr lang="en" title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
+ <summary><abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
  <div>
   <pre>
    <code class="language-markup">
 &lt;table class="chaarts column-multiple" id="column-multiple" style="--y: 11; --span: 2;">
- &lt;caption id="caption-8">Parts de marché navigateurs en France en janvier 2019&lt;/caption>
+ &lt;caption id="caption-8">Browser market shares in France in January 2019&lt;/caption>
  &lt;thead>
    &lt;tr>
-     &lt;th scope="row" id="navigateur">Navigateur&lt;/th>
+     &lt;th scope="row" id="browser">Browser&lt;/th>
      &lt;th scope="col" colspan="2" id="chrome">Chrome&lt;/th>
    &lt;/tr>
    &lt;tr>
-     &lt;th scope="row" id="annee">Année&lt;/th>
+     &lt;th scope="row" id="year">Year&lt;/th>
      &lt;th scope="col" id="chrome-2018">2018&lt;/th>
      &lt;th scope="col" id="chrome-2019">2019&lt;/th>
    &lt;/tr>
  &lt;/thead>
  &lt;tbody>
    &lt;tr>
-     &lt;th scope="row" id="parts">Parts de marché&lt;/th>
-     &lt;td style="--value: 50;" headers="navigateur chrome annee chrome-2018">&lt;span>49.6&nbsp;%&lt;/span>&lt;/td>
-     &lt;td style="--value: 57;" headers="navigateur chrome annee chrome-2019">&lt;span>57&nbsp;%&lt;/span>&lt;/td>
+     &lt;th scope="row" id="parts">Market shares&lt;/th>
+     &lt;td style="--value: 50;" headers="browser chrome year chrome-2018">&lt;span>49.6%&lt;/span>&lt;/td>
+     &lt;td style="--value: 57;" headers="browser chrome year chrome-2019">&lt;span>57%&lt;/span>&lt;/td>
    &lt;/tr>
  &lt;/tbody>
 &lt;/table&gt;</code>
@@ -401,7 +400,7 @@
  </div>
 </details>
 <details>
- <summary>Le <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
+ <summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
  <div>
   <pre>
    <code class="language-css">
@@ -475,13 +474,13 @@
 </details>
 
 <div class="note">
- <h3>Bug dans Chromium</h3>
+ <h3>Chromium bug</h3>
  <p>
-  Il y a en ce moment un bug dans Chromium —&nbsp;j’ai saisi
-  <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=938927" hreflang="en"
-  target="_blank" rel="noopener noreferrer">un ticket sur bugs.chromium.org</a>&nbsp;—
-  lors de <strong>l’utilisation d’une valeur décimale pour le placement sur la grille</strong>.
-  Je ne sais pas si c’est une implication de la décimale, du calcul, de la propriété personnalisée…
-  mais pour le moment, ça ne fonctionne pas&nbsp;!
+  There's a bug in Chromium at the time of writing —&nbsp;already filled
+  <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=938927"
+  target="_blank" rel="noopener noreferrer">a ticket on bugs.chromium.org</a>&nbsp;—
+  when <strong>using a decimal value for grid placement</strong>.
+  I don't know if it's an implication of the decimal, of the calculation, of the custom property…
+  but at the moment, it doesn't work!
 </div>
 {% endblock %}

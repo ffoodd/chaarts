@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="fr" class="no-js">
+<html lang="{% block lang %}en{% endblock %}" class="no-js">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta http-equiv="x-ua-compatible" content="ie=edge">
+        {% block base %}
+        <base href="/">
+        {% endblock %}
         {% block meta %}
           <title>chaarts</title>
           <meta property="og:url" content="https://ffoodd.github.io/chaarts/">
@@ -12,6 +15,7 @@
           <meta property="og:description"
                 name="description" content="Charts with HTML & CSS">
           <meta name="twitter:card" content="summary">
+          <link rel="alternate" hreflang="fr" href="https://ffoodd.github.io/chaarts/fr/index.html"/>
         {% endblock %}
         <script>
           document.documentElement.classList.remove('no-js');
@@ -25,20 +29,24 @@
       <header role="banner">
         {% block skiplinks %}
           <div>
-            <a href="#nav" class="sr-only sr-only-focusable">Aller à la navigation</a>
-            <a href="#main" class="sr-only sr-only-focusable">Aller au contenu</a>
+            <a href="#nav" class="sr-only sr-only-focusable">Skip to main navigation</a>
+            <a href="#main" class="sr-only sr-only-focusable">Skip to content</a>
           </div>
         {% endblock %}
 
-        <nav role="navigation" id="nav" aria-label="Navigation principale">
+        <nav role="navigation" id="nav" aria-label="{% block label %}Main navigation{% endblock %}">
           {% block navigation %}
             <ul class="fly-out">
-              <li><a aria-current="page">Accueil</a></li>
-              <li><a href="./bar-charts.html">Graphique en barre</a></li>
-              <li><a href="./line-charts.html">Graphique linéaire</a></li>
-              <li><a href="./column-charts.html">Histogramme</a></li>
-              <li><a href="./pie-charts.html">Graphique en tarte</a></li>
-              <li><a href="./radar-charts.html">Graphique radar</a></li>
+              <li><a aria-current="page">Home</a></li>
+              <li><a href="./bar-charts.html">Bar charts</a></li>
+              <li><a href="./line-charts.html">Line charts</a></li>
+              <li><a href="./column-charts.html">Column charts</a></li>
+              <li><a href="./pie-charts.html">Pie charts</a></li>
+              <li><a href="./radar-charts.html">Radar charts</a></li>
+              <li class="ml-auto">
+                <a rel="alternate" hreflang="fr" lang="fr" href="./fr/index.html"
+                   aria-label="Version française" title="Version française">FR</a>
+              </li>
             </ul>
           {% endblock %}
         </nav>
@@ -46,104 +54,100 @@
 
       <main role="main" id="main" tabindex="-1" itemprop="mainContentOfPage">
         {% block main %}
-          <h1>Graphiques</h1>
+          <h1>Chaarts</h1>
 
           <p>
-           Les différentes versions de graphiques présentées pour le moment reposent uniquement
-           sur un balisage sémantique —&nbsp;à base de <code>&lt;table&gt;</code>&nbsp;—
-           et une tartine de <strong>variables CSS portées par les balises</strong>.
-           Aucun JavaScript n’est requis pour l’affichage, et les styles sont
-           <strong>améliorés progressivement</strong> selon les capacités de votre navigateur.
+           Every charts in this project relies solely on semantic markup
+           —&nbsp;<code>&lt;table&gt;</code> based&nbsp;— and a spread of
+           <strong>CSS variables carried by the tags.</strong>.
+           No JavaScript required for display, and styles are
+           <strong>progressively enhanced</strong> depending on your browser's capabilities.
           </p>
 
           <p>
-           <strong>Note</strong>&nbsp;: en vertu du caractère <strong>expérimental</strong>
-           de ces techniques et d’une <strong>fondation solide</strong> améliorée progressivement,
-           je ne précise pas le <strong>support navigateur</strong> de chaque exemple —&nbsp;mais
-           il va de soi que ce n’est pas magique, et que seuls les navigateurs modernes répondent à l’appel,
-           <a hreflang="en" href="https://caniuse.com/#search=clip-path">à l’exception notable de Edge
-           qui ne supporte pas (encore) <code>clip-path</code></a>.
-           Les autres navigateurs affichent un tableau correctement stylé, et c’est chouette.
+           <strong>Note</strong>&nbsp;: by virtue of the <strong>experimental</strong>
+           nature of these techniques and a <strong>solid foundation</strong> enhanced progressively,
+           I don't mention <strong>browser support</strong> for each example —&nbsp;but
+           it goes without saying that this is not magic, and only modern browsers handle this right,
+           <a href="https://caniuse.com/#search=clip-path">with the notable exception of Edge
+           which does not (yet) support <code>clip-path</code></a>.
+           Other browsers display a properly styled table, and that's nice.
           </p>
 
-          <h2 id="accessibilite">L’accessibilité</h2>
+          <h2 id="accessibilite">Accessibility</h2>
 
           <p>
-           Un effort conséquent a été porté à l’accessibilité.
-           Comme évoqué précédement, <strong>un balisage sémantique et structuré est un pré-requis</strong>
-           —&nbsp;mais ça ne suffit pas. Les <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">CSS</abbr>
-           sont appliqués aussi progressivement que possible, afin de garantir le meilleur affichage
-           possible des données pour chaque internaute.
+           A major effort has been made to ensure accessibility.
+           As mentioned above, <strong>semantic and structured markup is a prerequisite</strong>
+           —&nbsp;but it's not enough. <abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">CSS</abbr>
+           is being applied as gradually as possible, in order to guarantee
+           the best possible display of data for each user.
           </p>
 
-          <h3>Tableau accessible</h3>
+          <h3>Accessible table</h3>
 
-          <p>Piqure de rappel&nbsp;:</p>
+          <p>Wakeup call&nbsp;:</p>
 
           <ul>
-           <li>un tableau doit démarrer par un <code>&lt;caption&gt;</code>&nbsp;;</li>
+           <li>a table must start with a <code>&lt;caption&gt;</code>;</li>
            <li>
-            les cellules d’en-tête <code>&lt;th&gt;</code> doivent porter un attribut <code>scope</code>,
-            avec une valeur <var>row</var> ou <var>col</var> selon le cas&nbsp;;
+            header cells <code>&lt;th&gt;</code> must carry a <code>scope</code> attribute,
+            with a <var>row</var> or <var>col</var> value;
            </li>
            <li>
-            et vous aurez généralement besoin de distinguer l’entête du corps grâce à
-            <code>&lt;thead&gt;</code> et <code>&lt;tbody&gt;</code>&nbsp;;
+            and you'll usually need to distinguish the head from the body through
+            <code>&lt;thead&gt;</code> and <code>&lt;tbody&gt;</code>;
            </li>
            <li>
-            pour les valeurs disposant d’une unité&nbsp;: si vous vous aventurez à utiliser l’élement
-            <code>&lt;abbr&gt;</code> pour utiliser sa version abrégée, pensez à doubler l’attribut
-            <code>title</code> avec l’attribut <code>aria-label</code> —&nbsp;cela en améliorera
-            considérablement l’intérêt pour de nombreux internautes.
-           </li>
+            for values with a unit&nbsp;: if you venture to use the
+            <code>&lt;abbr&gt;</code> element to use its abbreviated version, consider doubling the
+            <code>title</code> with the <code>aria-label</code> attribute —&nbsp;this will considerably
+            improve the interest for many users.
           </ul>
 
           <p>
-           Pour d’autres astuces utiles, je vous recommande chaleureusement la lecture
-           du <a hreflang="en" href="https://inclusive-components.design/data-tables/">
-           composant inclusif <em lang="en">Data Tables</em> de <cite>Heydon Pickering</cite></a>,
-           qui est une véritable mine d’or.
+           For other useful tips, I warmly recommend reading
+           <a href="https://inclusive-components.design/data-tables/">
+           <em>Data Tables</em> Inclusive Component by <cite>Heydon Pickering</cite></a>,
+           which is a real gold mine.
           </p>
 
-          <h3>Motifs</h3>
+          <h3>Patterns</h3>
           <p>
-           Pour <strong>distinguer les différentes zones autrement que par la couleur</strong>, un motif
-           <abbr lang="en" title="Scalable Vector Graphics" aria-label="Scalable Vector Graphics">svg</abbr>
-           est appliqué en
-           <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr>
-           —&nbsp;vous en trouverez quelques-uns sur le site
-           <a hreflang="en" lang="en" href="https://www.heropatterns.com/">Hero Patterns</a>&nbsp;:
+           To <strong>distinguish the different areas other than by colour</strong>, an
+           <abbr title="Scalable Vector Graphics" aria-label="Scalable Vector Graphics">svg</abbr>
+           pattern is applied in
+           <abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr>
+           —&nbsp;you can find some of them on the
+           <a href="https://www.heropatterns.com/">Hero Patterns</a> website:
           </p>
           <ol>
            <li>
-            afin d’améliorer <strong>le mélange avec les couleurs ou dégradés d’arrière-plan</strong>, la propriété
-            <code>background-blend-mode</code> est utilisée avec la valeur <code>hard-light</code>&nbsp;;
+            in order to <strong>improve blending with background colors or gradients</strong>, the
+            <code>background-blend-mode</code> proerty is used with the <code>hard-light</code> value;
            </li>
            <li>
-            les <strong>tailles et positions du motif</strong> dépendent directement de la valeur et de l’échelle du graphique,
-            selon le type de graphique&nbsp;;
+            <strong>pattern's size and position</strong> depends directly on the value and scale of the chart,
+            depending on the type of chart;
            </li>
            <li>
-            pour ne pas embarquer trop de fichiers externes, on utilise
-            <a hreflang="en" href="https://www.trysmudford.com/blog/using-css-custom-properties/">une technique
-            proposée par <cite>Trys Mudford</cite> pour inclure nos
-            <abbr lang="en" title="Scalable Vector Graphics" aria-label="Scalable Vector Graphics">svg</abbr>
-            en <i lang="en">data URi</i> dans une variable
-            <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr> chacun</a>&nbsp;;
-            ainsi, une liste finie de motifs est utilisée dans le thème, sans jamais répéter le <abbr lang="en" title="Scalable Vector Graphics" aria-label="Scalable Vector Graphics">svg</abbr>.
+            in order not to embed too many external files, we use a
+            <a href="https://www.trysmudford.com/blog/using-css-custom-properties/">
+            technique proposed by <cite>Trys Mudford</cite> to include each
+            <abbr title="Scalable Vector Graphics" aria-label="Scalable Vector Graphics">svg</abbr>
+            in data URi in a <abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr> variable</a>;
+            thus, a finite list of patterns is used in the theme, without ever repeating the svg.
            </li>
           </ol>
 
           <div class="note">
-           <h4>Qu’encoder&nbsp;?</h4>
+           <h4>What to encode?</h4>
            <p>
-            <a hreflang="en" href="https://codepen.io/tigt/post/optimizing-svgs-in-data-uris"><cite>Taylor Hunt</cite>
-            a rédigé un article complet sur l’optimisation des
-            <abbr lang="en" title="Scalable Vector Graphics" aria-label="Scalable Vector Graphics">svg</abbr>
-            passés en <i lang="en">data URi</i></a>. En résumé, seuls les chevrons et le
-            caracère «&nbsp;#&nbsp;» ont besoin d’être encodés dans le
-            <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr>.
-            Ne vous fatiguez pas avec les autres caractères, leur encodage nuit sérieusement à la lisibilité.
+            <a href="https://codepen.io/tigt/post/optimizing-svgs-in-data-uris"><cite>Taylor Hunt</cite>
+            a comprehensive article on optimizing past <abbr title="Scalable Vector Graphics" aria-label="Scalable Vector Graphics">svg</abbr>
+            in URi data</a>. In summary, only the chevrons and the "#" character need to be encoded
+            in the <abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr>.
+            Don't bother with the other characters, their encoding seriously affects readability.
            </p>
           </div>
 
@@ -167,50 +171,50 @@
 }</code>
           </pre>
 
-          <h3>Respect des préférences</h3>
+          <h3>User preferences</h3>
           <p>
-           Afin de respecter autant que possible les préférences des visiteurs,
-           de nombreux éléments ont été adaptés&nbsp;:
+            In order to respect as much as possible the preferences of the visitors,
+            many elements have been adapted:
           </p>
           <ol>
            <li>
-            les dimensions sont en unités relatives (<code>em</code> ou <code>rem</code> selon les cas),
-            afin de s’ajuster de manière cohérente au corps de texte hérité du navigateur et de pouvoir
-            être agrandi ou réduit sans perte&nbsp;;
+            dimensions are in relatives units (<code>em</code> or <code>rem</code> as the case may be),
+            in order to fit coherently with the body of text inherited from the browser and to be able
+            to be enlarged or reduced without loss;
            </li>
            <li>
-            les couleurs sont adaptées lorsque le <strong>mode de contrastes élevés</strong> de Windows est détecté à l’aide de
-            <code>-ms-high-contrast: active</code>, inspiré par
-            <a hreflang="en" href="https://www.gwhitworth.com/blog/2017/04/how-to-use-ms-high-contrast">
-            l’article de <cite>Greg Whitworth</cite></a> sur le sujet. Je vous conseille d’ailleurs
-            <a hreflang="en" href="http://www.iangraham.org/books/xhtml1/appd/update-23feb2000.html">
-            l’increvable page <q lang="en">Test of System Colors Specified in CSS 2</q> rédigée
-            par <cite>Ian Graham</cite></a>, éditée en… 2000&nbsp;!
+            colors are adjusted when <strong>Windows High Contrast Mode</strong> is detected using
+            <code>-ms-high-contrast: active</code>, inspired by
+            <a href="https://www.gwhitworth.com/blog/2017/04/how-to-use-ms-high-contrast">
+            <cite>Greg Whitworth</cite> article</a> on the topic. I also recommend you
+            <a href="http://www.iangraham.org/books/xhtml1/appd/update-23feb2000.html">
+            <q>Test of System Colors Specified in CSS 2</q> rustproof page written by
+            <cite>Ian Graham</cite></a>, published in… 2000!
            </li>
            <li>
-            les <strong>animations et transitions sont désactivées</strong> lorsque le système
-            expose cette préférence grâce à <code>prefers-reduced-motion: reduce</code>&nbsp;;
+            <strong>animations and transitions are disabled</strong>  when the system exposes
+            this preference through <code>prefers-reduced-motion: reduce</code>&nbsp;;
            </li>
            <li>
-            les <strong>effets de survol</strong> dont l’état initial consiste à masquer du contenu
-            sont activés contextuellement dans la requête média <code>@media (hover: hover) { … }</code>.
+            <strong>hover effects</strong> whose initial state consists in hiding content
+            are activated contextually in the <code>@media (hover: hover) { … }</code> media query.
            </li>
           </ol>
 
-          <h3><code>display</code> et sémantique</h3>
+          <h3><code>display</code> and semantics</h3>
           <p>
-           <cite>Adrian Roselli</cite> explique que jouer avec le <code>display</code> d’un élément
-           <code>&lt;table&gt;</code> ou <code>&lt;dl&gt;</code> met en péril sa sémantique.
-           Cette dernière est donc «&nbsp;verrouillée&nbsp;» à l’aide des rôles
-           <abbr lang="en" title="Accessible Rich Internet Application" aria-label="Accessible Rich Internet Application">aria</abbr>
-           dédiés —&nbsp;comme il l’explique
-           <a href="http://adrianroselli.com/2018/02/tables-css-display-properties-and-aria.html" hreflang="en">dans un article détaillé</a>.
+           <cite>Adrian Roselli</cite> explains that playing with a <code>&lt;table&gt;</code> or <code>&lt;dl&gt;</code>
+           element's <code>display</code> endangers its semantics.
+           The latter is therefoore "locked" using dedicated
+           <abbr title="Accessible Rich Internet Application" aria-label="Accessible Rich Internet Application">aria</abbr>
+           roles —&nbsp;as he explains
+           <a href="http://adrianroselli.com/2018/02/tables-css-display-properties-and-aria.html">in a detailed article</a>.
           </p>
           <p>
-           C’est pourquoi chaque tableau est précédé d’un interrupteur —&nbsp;basé sur
-           <a hreflang="en" href="https://inclusive-components.design/toggle-button/">le composant inclusif
-           conçu par <cite>Heydon Pickering</cite></a>&nbsp;—
-           dont le seul et unique rôle est de désactiver les styles supplémentaires&nbsp;:
+           That's why each table is preceded by a switch —&nbsp;based on
+           <a href="https://inclusive-components.design/toggle-button/"><cite>Heydon Pickering</cite>
+           inclusive toggle button</a>&nbsp;—
+           whose one and only role is to disable additional styles:
           </p>
           <pre>
            <code class="language-javascript">
@@ -230,8 +234,8 @@ document.addEventListener( "DOMContentLoaded", function () {
           </pre>
 
           <p>
-           Voilà, nous sommes prêts à entrer dans le vif du sujet.<br>
-           <strong>Faites chauffer votre inspecteur&nbsp;!</strong>
+           Well, we're ready to get to the heart of the matter.<br>
+           <strong>Warm up your dev tools!</strong>
           </p>
         {% endblock %}
       </main>

@@ -14,6 +14,10 @@
   padding-bottom: 0 !important;
 }
 
+.fly-out [rel]::before {
+  content: "\1F30D\A0";
+}
+
 /* ==================== */
 /* == Chaarts
 /* ==================== */
