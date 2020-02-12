@@ -216,115 +216,106 @@
 
   <details>
    <summary><abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
-   <div>
-    <pre>
-     <code class="language-markup">
-  &lt;table class="chaarts bar" style="--scale: 3000">
-   &lt;caption id="caption-1">Loading time for ffoodd.fr&lt;/caption>
-   &lt;thead class="sr-only">
-     &lt;tr>
-       &lt;td>&lt;/td>
-       &lt;th scope="col">Cumulative loading time&lt;/th>
-     &lt;/tr>
-   &lt;/thead>
-   &lt;tbody>
-     &lt;tr>
-       &lt;th scope="row">Time: backend&lt;/th>
-       &lt;td style="--value: 4">
-         &lt;span>4&nbsp;&lt;abbr title="Millisecond" aria-label="Millisecond">ms&lt;/abbr>&lt;/span>
-       &lt;/td>
-     &lt;/tr>
-     &lt;tr>[…]&lt;/tr>
-   &lt;/tbody>
-  &lt;/table>
-     </code>
-    </pre>
-   </div>
+   <div><pre><code class="language-markup">&lt;table class="chaarts bar" style="--scale: 3000">
+  &lt;caption id="caption-1">[…]&lt;/caption>
+  &lt;thead class="sr-only">
+   &lt;tr>
+     &lt;td>&lt;/td>
+     &lt;th scope="col">[…]&lt;/th>
+   &lt;/tr>
+  &lt;/thead>
+  &lt;tbody>
+   &lt;tr>
+     &lt;th scope="row">[…]&lt;/th>
+     &lt;td style="--value: 4">
+       &lt;span>[…]&lt;/span>
+     &lt;/td>
+   &lt;/tr>
+   &lt;tr>[…]&lt;/tr>
+  &lt;/tbody>
+&lt;/table></code></pre>
+</div>
   </details>
   <details>
    <summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
-   <div>
-    <pre>
-     <code class="language-css">
-  @supports (grid-template-columns: repeat( var(--scale, 100), minmax(0, 1fr) )) {
-   .chaarts.bar caption {
-     text-align: initial;
-     text-indent: 13.5rem;
-   }
+   <div><pre><code class="language-css">@supports (grid-template-columns: repeat( var(--scale, 100), minmax(0, 1fr) )) {
+  .chaarts.bar caption {
+   text-align: initial;
+   text-indent: 13.5rem;
+  }
 
-   .chaarts.bar tr {
-     display: grid;
-     grid-auto-rows: 1fr;
-     grid-row-gap: .5rem;
-     grid-template-columns: minmax(min-content, em( 200 ) ) repeat( var(--scale, 100), minmax(0, 1fr) ) 10ch;
-     transition: opacity .2s cubic-bezier(.5, 0, .5, 1);
-   }
+  .chaarts.bar tr {
+   display: grid;
+   grid-auto-rows: 1fr;
+   grid-row-gap: .5rem;
+   grid-template-columns: minmax(min-content, em( 200 ) ) repeat( var(--scale, 100), minmax(0, 1fr) ) 10ch;
+   transition: opacity .2s cubic-bezier(.5, 0, .5, 1);
+  }
 
-   .chaarts.bar th {
-     grid-column: 1 / 1;
-     margin: .5rem 0 0;
-     padding: 0 1rem 0 0;
-     text-align: right;
-   }
+  .chaarts.bar th {
+   grid-column: 1 / 1;
+   margin: .5rem 0 0;
+   padding: 0 1rem 0 0;
+   text-align: right;
+  }
 
-   .chaarts.bar td {
-     --size: calc( var(--scale, 100) * 100% );
-     --position: calc( var(--value, 0) / var(--scale, 100) * 100% );
-     background-blend-mode: hard-light;
-     background-position: var(--position) 0%, center;
-     background-size: var(--size) 100%, contain;
-     grid-column: 2 / var(--value, 0);
-     margin: .5rem 0 0;
-     position: relative;
-   }
+  .chaarts.bar td {
+   --size: calc( var(--scale, 100) * 100% );
+   --position: calc( var(--value, 0) / var(--scale, 100) * 100% );
+   background-blend-mode: hard-light;
+   background-position: var(--position) 0%, center;
+   background-size: var(--size) 100%, contain;
+   grid-column: 2 / var(--value, 0);
+   margin: .5rem 0 0;
+   position: relative;
+  }
 
-   .chaarts.bar span {
-     background: inherit;
-     -webkit-text-fill-color: transparent;
-     -webkit-background-clip: text;
-     font-weight: bold;
-     left: 100%;
-     line-height: 1.5;
-     position: absolute;
-   }
+  .chaarts.bar span {
+   background: inherit;
+   -webkit-text-fill-color: transparent;
+   -webkit-background-clip: text;
+   font-weight: bold;
+   left: 100%;
+   line-height: 1.5;
+   position: absolute;
+  }
 
-   /* @note To repeat for each line, in order to distinguish them by a pattern */
+  /* @note Sass @each() */
+  .chaarts.bar tr:nth-child(2n + 2) td {
+   background-image:
+     linear-gradient(to right,
+       #01ac49,
+       #444,
+       mediumblue,
+       rebeccapurple,
+       crimson
+     ),
+    var(--stripes);
+  }
+
+  .chaarts.bar tbody:hover tr {
+   opacity: .5;
+  }
+
+  .chaarts.bar tbody:hover tr:hover {
+   opacity: 1;
+  }
+
+  @media screen and (-ms-high-contrast: active) {
    .chaarts.bar tr:nth-child(2n + 2) td {
      background-image:
        linear-gradient(to right,
-         #01ac49,
-         #444,
-         mediumblue,
-         rebeccapurple,
-         crimson
+          Window,
+          ButtonFace,
+          ButtonShadow,
+          ButtonText,
+          highlight
        ),
-      var(--stripes);
+     var(--stripes);
    }
-
-   .chaarts.bar tbody:hover tr {
-     opacity: .5;
-   }
-
-   .chaarts.bar tbody:hover tr:hover {
-     opacity: 1;
-   }
-
-   @media screen and (-ms-high-contrast: active) {
-     .chaarts.bar tr:nth-child(2n + 2) td {
-       background-image:
-         linear-gradient(to right,
-            Window,
-            ButtonFace,
-            ButtonShadow,
-            ButtonText,
-            highlight
-         ),
-       var(--stripes);
-     }
-   }
-  }</code>
-    </pre>
-   </div>
+  }
+}</code></pre>
+</div>
   </details>
 
   <h2>Waterfall</h2>
@@ -453,26 +444,17 @@
 
   <details>
    <summary><abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
-   <div>
-    <pre>
-     <code class="language-markup">
-  &lt;table class="chaarts bar waterfall"
-     style="--scale: 3000; --1: 4; --2: 96; --3: 102; --4: 129; --5: 188; --6: 194; --7: 326; --8: 836; --9: 836; --10: 2561; --11: 2980;">
-  &lt;/table>
-     </code>
-    </pre>
-   </div>
+   <div><pre><code class="language-markup">&lt;table class="chaarts bar waterfall"
+ style="--scale: 3000; --1: 4; --2: 96; --3: 102; --4: 129; --5: 188; --6: 194; --7: 326; --8: 836; --9: 836; --10: 2561; --11: 2980;">
+&lt;/table></code></pre>
+</div>
   </details>
   <details>
    <summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
-   <div>
-    <pre>
-     <code class="language-css">
-  .bar.waterfall tr:nth-of-type(2) td {
-   grid-column: var(--1, 0) / var(--value, 0);
-  }</code>
-    </pre>
-   </div>
+   <div><pre><code class="language-css">.bar.waterfall tr:nth-of-type(2) td {
+  grid-column: var(--1, 0) / var(--value, 0);
+}</code></pre>
+</div>
   </details>
 
       </main>
