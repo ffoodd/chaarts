@@ -1,0 +1,77 @@
+<pre><code class="language-css">@supports (grid-template-columns: repeat( var(--scale, 100), minmax(0, 1fr) )) {
+  .chaarts.bar caption {
+    text-align: initial;
+    text-indent: 13.5rem;
+  }
+
+  .chaarts.bar tr {
+    display: grid;
+    grid-auto-rows: 1fr;
+    grid-row-gap: .5rem;
+    grid-template-columns: minmax(min-content, em( 200 ) ) repeat( var(--scale, 100), minmax(0, 1fr) ) 10ch;
+    transition: opacity .2s cubic-bezier(.5, 0, .5, 1);
+  }
+
+  .chaarts.bar th {
+    grid-column: 1 / 1;
+    margin: .5rem 0 0;
+    padding: 0 1rem 0 0;
+    text-align: right;
+  }
+
+  .chaarts.bar td {
+    --size: calc( var(--scale, 100) * 100% );
+    --position: calc( var(--value, 0) / var(--scale, 100) * 100% );
+    background-blend-mode: hard-light;
+    background-position: var(--position) 0%, center;
+    background-size: var(--size) 100%, contain;
+    grid-column: 2 / var(--value, 0);
+    margin: .5rem 0 0;
+    position: relative;
+  }
+
+  .chaarts.bar span {
+    background: inherit;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    font-weight: bold;
+    left: 100%;
+    line-height: 1.5;
+    position: absolute;
+  }
+
+  /* @note Sass @each() */
+  .chaarts.bar tr:nth-child(2n + 2) td {
+    background-image:
+      linear-gradient(to right,
+        #01ac49,
+        #444,
+        mediumblue,
+        rebeccapurple,
+        crimson
+      ),
+     var(--stripes);
+  }
+
+  .chaarts.bar tbody:hover tr {
+    opacity: .5;
+  }
+
+  .chaarts.bar tbody:hover tr:hover {
+    opacity: 1;
+  }
+
+  @media screen and (-ms-high-contrast: active) {
+    .chaarts.bar tr:nth-child(2n + 2) td {
+      background-image:
+        linear-gradient(to right,
+           Window,
+           ButtonFace,
+           ButtonShadow,
+           ButtonText,
+           highlight
+        ),
+      var(--stripes);
+    }
+  }
+}</code></pre>

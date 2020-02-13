@@ -1,0 +1,65 @@
+<pre><code class="language-css">@supports (display: contents) {
+  .chaarts.column-multiple {
+    grid-template-columns: minmax(min-content, 14ch) repeat(calc(var(--y) - 1), 1fr);
+    grid-template-rows: repeat(var(--scale, 100), minmax(0, .25rem)) repeat(2, minmax(min-content, 2rem));
+  }
+
+  .chaarts.column-multiple tbody th {
+    grid-row: -10 / span 4;
+  }
+
+  .chaarts.column-multiple thead tr * {
+    grid-row: -2;
+    grid-column: 1;
+  }
+
+  .chaarts.column-multiple thead tr *:nth-of-type(2) {
+    grid-column: calc(4 - var(--span)) / span var(--span);
+  }
+
+  .chaarts.column-multiple thead tr + tr * {
+    font-weight: normal;
+    grid-row: -3;
+  }
+
+  .chaarts.column-multiple thead tr + tr *:nth-of-type(2) {
+    grid-column: 2;
+  }
+
+  .chaarts.column-multiple tr:first-child [scope="col"]:nth-child(even)::after {
+    background: whitesmoke var(--stripes);
+    background-blend-mode: exclusion;
+    bottom: 4rem;
+    content: "";
+    mix-blend-mode: multiply;
+    opacity: .25;
+    position: absolute;
+    transition: opacity .3s cubic-bezier(.5, 0, .5, 1);
+    top: 1rem;
+    width: calc((var(--width) * 2) + (var(--gap) / 2) + 1px);
+    z-index: 0;
+  }
+
+  .chaarts.column-multiple tr:first-child [scope="col"]:nth-child(4)::after {
+    left: calc(14ch + 1em + (((var(--width) * 2) + (var(--gap) / 2) + 1px) * 2) + (var(--gap) * 3));
+  }
+
+  .chaarts.column-multiple td {
+    background: #e11a81 var(--zig);
+  }
+
+  /* @note Oh boy, if we could use var(--span) in selector… */
+  .chaarts.column-multiple td:nth-of-type(2n + 2) {
+    background: #0172f0 var(--triangles);
+  }
+
+  @media screen and (-ms-high-contrast: active) {
+    .chaarts.column-multiple td {
+      background-color: Window;
+    }
+
+    .chaarts.column-multiple td:nth-of-type(2n + 2) {
+      background-color: Highlight;
+    }
+  }
+}</code></pre>

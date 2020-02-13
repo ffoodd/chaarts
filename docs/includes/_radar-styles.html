@@ -1,0 +1,119 @@
+<pre><code class="language-css">@supports(clip-path: polygon(calc( 0% 0%, 100% - ( var(--1) * 100% / var(--scale) ) ) 100%, 100% 100%)) {
+  .chaarts[class*="radar"] {
+    --radius: 12.8rem;
+    --unitless-radius: calc( 1024 / 16 / 5 );
+    --size: calc( var(--radius) / var(--scale) );
+    --part: calc( 360deg / var(--items) );
+    background-image:
+      repeating-radial-gradient(
+        circle at 50%,
+        rgba(0, 0, 0, .2),
+        rgba(0, 0, 0, .2) 2px,
+        transparent 2px,
+        transparent calc(var(--size) * var(--step))
+      ),
+      repeating-radial-gradient(
+        circle at 50%,
+        rgba(0, 0, 0, .1),
+        rgba(0, 0, 0, .1) 2px,
+        transparent 2px,
+        transparent var(--size)
+      );
+    border: 2px solid;
+    border-radius: 50%;
+    contain: layout style;
+    counter-reset: scale var(--scale);
+    height: calc( var(--radius) * 2 );
+    margin: 6rem auto 12rem;
+    overflow: visible;
+    position: relative;
+    width: calc( var(--radius) * 2 );
+  }
+
+  .chaarts[class*="radar"] caption {
+    background: none;
+    bottom: -10rem;
+    position: absolute;
+  }
+
+  .chaarts[class*="radar"] [scope="col"] {
+    --away: calc( (var(--radius) * -1) - 50% );
+    left: 50%;
+    margin: 0;
+    padding: 0 1rem;
+    position: absolute;
+    top: 50%;
+    transform:
+      translate3d(-50%, -50%, 0)
+      rotate( calc(var(--part) * var(--index, 1)) )
+      translate( var(--away) )
+      rotate( calc(var(--part) * var(--index, 1) * -1) );
+  }
+
+  .chaarts[class*="radar"] tr > *:nth-of-type(2) {
+    --index: 2;
+  }
+
+  .chaarts[class*="radar"] td {
+    --skew: calc( 90deg - var(--part) );
+    border-bottom: 1px solid blueviolet;
+    height: 50%;
+    left: 0;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    transform:
+      rotate( calc(var(--part) * var(--index, 1)) )
+      skew( var(--skew) );
+    transform-origin: 100% 100%;
+    width: 50%;
+  }
+
+  .chaarts[class*="radar"] span {
+    --opposite: calc( 180 - (90 + (90 - (360 / var(--items)))) );
+    --angle: calc( var(--opposite) * 0.01745329251 );
+    --sin-term-angle-1: var(--angle);
+    --sin-term-angle-2: calc((var(--angle) * var(--angle) * var(--angle)) / 6);
+    --sin-term-angle-3: calc((var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle)) / 120);
+    --sin-term-angle-4: calc((var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle)) / 5040);
+    --sin-term-angle-5: calc((var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle)) / 362880);
+    --sin-angle: calc(var(--sin-term-angle-1) - var(--sin-term-angle-2) + var(--sin-term-angle-3) - var(--sin-term-angle-4) + var(--sin-term-angle-5));
+    --hypo: calc( var(--unitless-radius) / var(--sin-angle) );
+    --ratio: calc( var(--hypo) / var(--unitless-radius) );
+    background: linear-gradient(
+      to top left,
+      blueviolet 10%,
+      darkblue 75%
+    );
+    filter: drop-shadow( 0 0 1rem indigo );
+    height: 100%;
+    position: absolute;
+    width: 100%;
+  }
+
+  .chaarts[class*="radar"] td:nth-of-type(2) span {
+    --pos: calc( 100% - (var(--3) * 100% / (var(--scale) * var(--ratio) ) ) );
+    clip-path: polygon(
+      100% var(--pos),
+      calc( 100% - ( var(--2) * 100% / var(--scale) ) ) 100%,
+      100% 100%
+    );
+  }
+
+  .chaarts[class*="radar"] td::after,
+  .chaarts[class*="radar"] td::before {
+    display: none;
+  }
+
+  .chaarts.radar [scope="col"]::after {
+    color: rebeccapurple;
+    display: block;
+    font-size: small;
+    font-weight: 400;
+  }
+
+  .chaarts.radar [scope="col"]:nth-child(2)::after {
+    counter-reset: value var(--2);
+    content: counter(value) "\A0/\A0" counter(scale);
+  }
+}</code></pre>

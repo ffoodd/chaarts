@@ -239,17 +239,15 @@
    <a href="https://gist.github.com/stereokai/7666bfe93929b14c2dced148c79e0e97"><cite>Stereokai</cite> implemented for us
    the Taylor/Maclaurin polynomial representation in CSS</a> —&nbsp;which I implemented as a mixin:
   </p>
-  <pre>
-   <code class="language-scss">
-@mixin sin($angle) {
- --sin-term-#{$angle}-1: var(--#{$angle});
- --sin-term-#{$angle}-2: calc((var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle})) / 6);
- --sin-term-#{$angle}-3: calc((var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle})) / 120);
- --sin-term-#{$angle}-4: calc((var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle})) / 5040);
- --sin-term-#{$angle}-5: calc((var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle})) / 362880);
- --sin-#{$angle}: calc(var(--sin-term-#{$angle}-1) - var(--sin-term-#{$angle}-2) + var(--sin-term-#{$angle}-3) - var(--sin-term-#{$angle}-4) + var(--sin-term-#{$angle}-5));
-}</code>
-  </pre>
+  <pre><code class="language-scss">@mixin sin($angle) {
+  --sin-term-#{$angle}-1: var(--#{$angle});
+  --sin-term-#{$angle}-2: calc((var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle})) / 6);
+  --sin-term-#{$angle}-3: calc((var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle})) / 120);
+  --sin-term-#{$angle}-4: calc((var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle})) / 5040);
+  --sin-term-#{$angle}-5: calc((var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle})) / 362880);
+  --sin-#{$angle}: calc(var(--sin-term-#{$angle}-1) - var(--sin-term-#{$angle}-2) + var(--sin-term-#{$angle}-3) - var(--sin-term-#{$angle}-4) + var(--sin-term-#{$angle}-5));
+}</code></pre>
+
   <p>
    All that remains is to use these dimensions to place the points of the polygon.
    <strong>It's child's play!</strong>
@@ -257,29 +255,23 @@
 </details>
 <details>
  <summary><abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
- <div>
-  <pre>
-   <code class="language-markup">
-&lt;table class="chaarts pie">
- &lt;caption id="caption-5">Distribution of the weight of resources for ffoodd.fr&lt;/caption>
- &lt;thead class="sr-only">
-   &lt;tr>
-     &lt;th scope="col">Resource&lt;/th>
-     &lt;th scope="col">Proportion&lt;/th>
-   &lt;/tr>
- &lt;/thead>
- &lt;tbody>
-   &lt;tr style="--color: #734bf9; --term: 'HTML';">
-     &lt;th scope="row">HTML&lt;/th>
-     &lt;td style="--value: 2; --start: 0;">
-     2&nbsp;%
-     &lt;/td>
-   &lt;/tr>
-   &lt;tr>[…]&lt;/tr>
- &lt;/tbody>
-&lt;/table&gt;</code>
-  </pre>
- </div>
+ <div><pre><code class="language-markup">&lt;table class="chaarts pie">
+  &lt;caption id="caption-5">[…]&lt;/caption>
+  &lt;thead class="sr-only">
+    &lt;tr>
+      &lt;th scope="col">[…]&lt;/th>
+      &lt;th scope="col">[…]&lt;/th>
+    &lt;/tr>
+  &lt;/thead>
+  &lt;tbody>
+    &lt;tr style="--color: #734bf9; --term: 'HTML';">
+      &lt;th scope="row">HTML&lt;/th>
+      &lt;td style="--value: 2; --start: 0;">2&nbsp;%&lt;/td>
+    &lt;/tr>
+    &lt;tr>[…]&lt;/tr>
+  &lt;/tbody>
+&lt;/table&gt;</code></pre>
+</div>
 </details>
 <details>
  <summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
@@ -370,7 +362,7 @@
      calc( 50% - ( var(--gt-50, 0) * 50% ) )                      calc( 50% + ( var(--gt-50, 0) * 50% ) ),
      calc( 50% - ( var(--pos-B) * 1% * var(--lt-75, 1) ) - ( var(--gt-75, 0) * 50% ) ) calc( 50% + ( var(--pos-A) * 1% * var(--lt-75, 1) ) ),
      calc( 50% - ( var(--gt-75, 0) * 50% ) )                      calc( 50% - ( var(--gt-75, 0) * 50% ) ),
-     calc( 50% - ( var(--pos-A) * 1% * var(--gt-75, 0) ) )               calc( 50% - ( var(--pos-B) * 1% * var(--gt-75, 0) ) ),
+     calc( 50% - ( var(--pos-A) * 1% * var(--gt-75, 0) ) )        calc( 50% - ( var(--pos-B) * 1% * var(--gt-75, 0) ) ),
      50% 50%
    );
    content: '';
@@ -520,6 +512,7 @@
     50% 50%
   );
 }</code></pre>
+
            <figcaption>Code generated for <var>44%</var>.</figcaption>
          </figure>
        </div>
@@ -549,6 +542,7 @@
     50% 50%
   );
 }</code></pre>
+
            <figcaption>Code generated for <var>64%</var>.</figcaption>
          </figure>
        </div>
@@ -578,6 +572,7 @@
     50% 50%
   );
 }</code></pre>
+
            <figcaption>Code generated for <var>88%</var>.</figcaption>
          </figure>
        </div>
@@ -830,24 +825,20 @@
 
 <details>
  <summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
- <div>
-  <pre>
-   <code class="language-css">
-.chaarts.donut {
- mask-image: radial-gradient(
-   circle at 50% calc(50% - 2rem),
-   transparent 0%,
-   transparent var(--offset),
-   white calc(var(--offset) + 1px),
-   white 100%
- );
+ <div><pre><code class="language-css">.chaarts.donut {
+  mask-image: radial-gradient(
+    circle at 50% calc(50% - 2rem),
+    transparent 0%,
+    transparent var(--offset),
+    white calc(var(--offset) + 1px),
+    white 100%
+  );
 }
 
 .chaarts.donut td::after {
- --away: calc( var(--radius) / 2 - 2.5rem );
-}</code>
-  </pre>
- </div>
+  --away: calc( var(--radius) / 2 - 2.5rem );
+}</code></pre>
+</div>
 </details>
 
 <div class="note">
@@ -969,26 +960,22 @@
 
 <details>
  <summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
- <div>
-  <pre>
-   <code class="language-css">
-.chaarts.polar td::before {
- --zoom: 50;
- transform:
-   translate3d( -50%, -50%, 0 )
-   rotate( var(--position) )
-   scale( calc( ( var(--zoom) + ( var(--value) / ( 100 / var(--zoom) ) ) ) / 100 ) );
+ <div><pre><code class="language-css">.chaarts.polar td::before {
+  --zoom: 50;
+  transform:
+    translate3d( -50%, -50%, 0 )
+    rotate( var(--position) )
+    scale( calc( ( var(--zoom) + ( var(--value) / ( 100 / var(--zoom) ) ) ) / 100 ) );
 }
 
 .chaarts.polar tr:hover td::before {
- --zoom: 50;
+  --zoom: 50;
 }
 
 .chaarts.polar tbody:hover tr {
- opacity: .5;
-}</code>
-  </pre>
- </div>
+  opacity: .5;
+}</code></pre>
+</div>
 </details>
 
       </main>

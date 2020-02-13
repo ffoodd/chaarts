@@ -1,0 +1,99 @@
+<pre><code class="language-css">@supports (clip-path: polygon(0% calc(100% - (var(--1) * 100% / var(--y))))) {
+  .chaarts.points [style]::before {
+    background: var(--color, currentColor) var(--background);
+    clip-path: polygon(
+      calc( ( 100% / var(--x) * 1 ) + var(--offset) ) calc( 100% - ( var(--1) / var(--y) * 100% ) ),
+      calc( ( 100% / var(--x) * 2 ) + var(--offset) ) calc( 100% - ( var(--2) / var(--y) * 100% ) ),
+      calc( ( 100% / var(--x) * 3 ) + var(--offset) ) calc( 100% - ( var(--3) / var(--y) * 100% ) ),
+      calc( ( 100% / var(--x) * 4 ) + var(--offset) ) calc( 100% - ( var(--4) / var(--y) * 100% ) ),
+      calc( ( 100% / var(--x) * 5 ) + var(--offset) ) calc( 100% - ( var(--5) / var(--y) * 100% ) ),
+      calc( ( 100% / var(--x) * 6 ) + var(--offset) ) calc( 100% - ( var(--6) / var(--y) * 100% ) ),
+      calc( ( 100% / var(--x) * 7 ) + var(--offset) ) calc( 100% - ( var(--7) / var(--y) * 100% ) ),
+      calc( ( 100% / var(--x) * 8 ) + var(--offset) ) calc( 100% - ( var(--8) / var(--y) * 100% ) ),
+      calc( ( 100% / var(--x) * 9 ) + var(--offset) ) calc( 100% - ( var(--9) / var(--y) * 100% ) ),
+      calc( ( 100% / var(--x) * 10 ) + var(--offset) ) calc( 100% - ( var(--10) / var(--y) * 100% ) ),
+      calc( ( 100% / var(--x) * 11 ) + var(--offset) ) calc( 100% - ( var(--11) / var(--y) * 100% ) ),
+      calc( ( 100% / var(--x) * 12 ) + var(--offset) ) calc( 100% - ( var(--12) / var(--y) * 100% ) ),
+      calc( ( 100% / var(--x) * 13 ) + var(--offset) ) calc( 100% - ( var(--12) / var(--y) * 100% ) ),
+      100% calc( 100% - ( var(--12) / var(--y) * 100% ) ),
+      100% calc( ( 100% + 4rem ) - ( var(--12) / var(--y) * 100% ) ),
+      calc( ( 100% / var(--x) * 13 ) + var(--offset) ) calc( ( 100% + 4rem ) - ( var(--12) / var(--y) * 100% ) ),
+      calc( ( 100% / var(--x) * 12 ) + var(--offset) ) calc( ( 100% + 4rem ) - ( var(--12) / var(--y) * 100% ) ),
+      calc( ( 100% / var(--x) * 11 ) + var(--offset) ) calc( ( 100% + 4rem ) - ( var(--11) / var(--y) * 100% ) ),
+      calc( ( 100% / var(--x) * 10 ) + var(--offset) ) calc( ( 100% + 4rem ) - ( var(--10) / var(--y) * 100% ) ),
+      calc( ( 100% / var(--x) * 9 ) + var(--offset) ) calc( ( 100% + 4rem ) - ( var(--9) / var(--y) * 100% ) ),
+      calc( ( 100% / var(--x) * 8 ) + var(--offset) ) calc( ( 100% + 4rem ) - ( var(--8) / var(--y) * 100% ) ),
+      calc( ( 100% / var(--x) * 7 ) + var(--offset) ) calc( ( 100% + 4rem ) - ( var(--7) / var(--y) * 100% ) ),
+      calc( ( 100% / var(--x) * 6 ) + var(--offset) ) calc( ( 100% + 4rem ) - ( var(--6) / var(--y) * 100% ) ),
+      calc( ( 100% / var(--x) * 5 ) + var(--offset) ) calc( ( 100% + 4rem ) - ( var(--5) / var(--y) * 100% ) ),
+      calc( ( 100% / var(--x) * 4 ) + var(--offset) ) calc( ( 100% + 4rem ) - ( var(--4) / var(--y) * 100% ) ),
+      calc( ( 100% / var(--x) * 3 ) + var(--offset) ) calc( ( 100% + 4rem ) - ( var(--3) / var(--y) * 100% ) ),
+      calc( ( 100% / var(--x) * 2 ) + var(--offset) ) calc( ( 100% + 4rem ) - ( var(--2) / var(--y) * 100% ) ),
+      calc( ( 100% / var(--x) * 1 ) + var(--offset) ) calc( ( 100% + 4rem ) - ( var(--1) / var(--y) * 100% ) )
+    );
+    transition: opacity .3s cubic-bezier(.5, 0, .5, 1);
+  }
+
+  .chaarts.points [style] th::before {
+    background: var(--color, currentColor) var(--background);
+    content: "";
+    display: inline-block;
+    height: 1rem;
+    transform: translate3d(-.2rem, .1rem, 0);
+    width: 1rem;
+  }
+
+  .chaarts.points [style] td::before {
+    --size: 1rem;
+    --top: calc( var(--height) - ( var(--value) / var(--y) * var(--height) ) );
+    background: var(--color, currentColor) var(--background);
+    border: 2px solid white;
+    border-radius: 50%;
+    box-shadow: 0 0 4rem rgba(0, 0, 0, .5);
+    content: "";
+    height: var(--size);
+    left: calc( var(--offset) * 3 );
+    position: absolute;
+    top: var(--top, 100);
+    transform: translate3d(calc( var(--size) / -2), calc( var(--size) / -2), 0);
+    transition:
+      opacity .3s cubic-bezier(.5, 0, .5, 1),
+      transform .3s cubic-bezier(.5, 0, .5, 1);
+    width: var(--size);
+    z-index: 4;
+  }
+
+  .chaarts.points [style] td:nth-of-type(2)::before {
+    --value: var(--2);
+    left: calc( ( 100% / var(--x) * 2 ) + var(--offset) );
+  }
+
+  /* @note Sass @each() */
+  .chaarts.points [style]:nth-child( 2n + 2 ) {
+    --background: var(--stripes);
+  }
+
+  .chaarts.points tbody:hover [style]::before,
+  .chaarts.points tbody:hover [style] td::before {
+    opacity: .25;
+  }
+
+  .chaarts.points tbody:hover [style]:hover::before,
+  .chaarts.points tbody:hover [style]:hover td::before {
+    opacity: 1;
+  }
+
+  .chaarts.points tbody:hover [style]:hover td::before {
+    transform:
+      translate3d( calc( var(--size) / -2 ), calc( var(--size ) / -2), 0 )
+      scale( 1.25 );
+  }
+
+  .chaarts.points [scope="col"]::after {
+    mix-blend-mode: multiply;
+  }
+
+  .chaarts.points [scope="col"]:hover::after {
+    opacity: .5;
+  }
+}</code></pre>

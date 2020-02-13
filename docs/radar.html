@@ -189,153 +189,145 @@
 
 <details>
  <summary>Le <abbr lang="en" title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
- <div>
-  <pre>
-   <code class="language-markup">
-&lt;table class="chaarts radar" id="radar" style="--scale: 20; --step: 5; --items: 7; --1: 14; --2: 11; --3: 13; --4: 16; --5: 10; --6: 12; --7: 4; --8: var(--1);">
- &lt;caption id="caption-9">Niveau d’intérêt par domaine, sur 20&lt;/caption>
- &lt;thead>
-   &lt;tr>
-     &lt;th scope="col">Accessibilité&lt;/th>
-     &lt;th scope="col">Référencement&lt;/th>
-   &lt;/tr>
- &lt;/thead>
- &lt;tbody>
-   &lt;tr>
-     &lt;td>&lt;span>14&lt;/span>&lt;/td>
-     &lt;td>&lt;span>11&lt;/span>&lt;/td>
-   &lt;/tr>
- &lt;/tbody>
-&lt;/table&gt;</code>
-  </pre>
- </div>
+ <div><pre><code class="language-markup">&lt;table class="chaarts radar" id="radar" style="--scale: 20; --step: 5; --items: 7; --1: 14; --2: 11; --3: 13; --4: 16; --5: 10; --6: 12; --7: 4; --8: var(--1);">
+  &lt;caption id="caption-9">[…]&lt;/caption>
+  &lt;thead>
+    &lt;tr>
+      &lt;th scope="col">[…]&lt;/th>
+      &lt;th scope="col">[…]&lt;/th>
+    &lt;/tr>
+  &lt;/thead>
+  &lt;tbody>
+    &lt;tr>
+      &lt;td>&lt;span>14&lt;/span>&lt;/td>
+      &lt;td>&lt;span>11&lt;/span>&lt;/td>
+    &lt;/tr>
+  &lt;/tbody>
+&lt;/table&gt;</code></pre>
+</div>
 </details>
 <details>
  <summary>Le <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
- <div>
-  <pre>
-   <code class="language-css">
-@supports(clip-path: polygon(calc( 0% 0%, 100% - ( var(--1) * 100% / var(--scale) ) ) 100%, 100% 100%)) {
- .chaarts[class*="radar"] {
-   --radius: 12.8rem;
-   --unitless-radius: calc( 1024 / 16 / 5 );
-   --size: calc( var(--radius) / var(--scale) );
-   --part: calc( 360deg / var(--items) );
-   background-image:
-     repeating-radial-gradient(
-       circle at 50%,
-       rgba(0, 0, 0, .2),
-       rgba(0, 0, 0, .2) 2px,
-       transparent 2px,
-       transparent calc(var(--size) * var(--step))
-     ),
-     repeating-radial-gradient(
-       circle at 50%,
-       rgba(0, 0, 0, .1),
-       rgba(0, 0, 0, .1) 2px,
-       transparent 2px,
-       transparent var(--size)
-     );
-   border: 2px solid;
-   border-radius: 50%;
-   contain: layout style;
-   counter-reset: scale var(--scale);
-   height: calc( var(--radius) * 2 );
-   margin: 6rem auto 12rem;
-   overflow: visible;
-   position: relative;
-   width: calc( var(--radius) * 2 );
- }
+ <div><pre><code class="language-css">@supports(clip-path: polygon(calc( 0% 0%, 100% - ( var(--1) * 100% / var(--scale) ) ) 100%, 100% 100%)) {
+  .chaarts[class*="radar"] {
+    --radius: 12.8rem;
+    --unitless-radius: calc( 1024 / 16 / 5 );
+    --size: calc( var(--radius) / var(--scale) );
+    --part: calc( 360deg / var(--items) );
+    background-image:
+      repeating-radial-gradient(
+        circle at 50%,
+        rgba(0, 0, 0, .2),
+        rgba(0, 0, 0, .2) 2px,
+        transparent 2px,
+        transparent calc(var(--size) * var(--step))
+      ),
+      repeating-radial-gradient(
+        circle at 50%,
+        rgba(0, 0, 0, .1),
+        rgba(0, 0, 0, .1) 2px,
+        transparent 2px,
+        transparent var(--size)
+      );
+    border: 2px solid;
+    border-radius: 50%;
+    contain: layout style;
+    counter-reset: scale var(--scale);
+    height: calc( var(--radius) * 2 );
+    margin: 6rem auto 12rem;
+    overflow: visible;
+    position: relative;
+    width: calc( var(--radius) * 2 );
+  }
 
- .chaarts[class*="radar"] caption {
-   background: none;
-   bottom: -10rem;
-   position: absolute;
- }
+  .chaarts[class*="radar"] caption {
+    background: none;
+    bottom: -10rem;
+    position: absolute;
+  }
 
- .chaarts[class*="radar"] [scope="col"] {
-   --away: calc( (var(--radius) * -1) - 50% );
-   left: 50%;
-   margin: 0;
-   padding: 0 1rem;
-   position: absolute;
-   top: 50%;
-   transform:
-     translate3d(-50%, -50%, 0)
-     rotate( calc(var(--part) * var(--index, 1)) )
-     translate( var(--away) )
-     rotate( calc(var(--part) * var(--index, 1) * -1) );
- }
+  .chaarts[class*="radar"] [scope="col"] {
+    --away: calc( (var(--radius) * -1) - 50% );
+    left: 50%;
+    margin: 0;
+    padding: 0 1rem;
+    position: absolute;
+    top: 50%;
+    transform:
+      translate3d(-50%, -50%, 0)
+      rotate( calc(var(--part) * var(--index, 1)) )
+      translate( var(--away) )
+      rotate( calc(var(--part) * var(--index, 1) * -1) );
+  }
 
- .chaarts[class*="radar"] tr > *:nth-of-type(2) {
-   --index: 2;
- }
+  .chaarts[class*="radar"] tr > *:nth-of-type(2) {
+    --index: 2;
+  }
 
- .chaarts[class*="radar"] td {
-   --skew: calc( 90deg - var(--part) );
-   border-bottom: 1px solid blueviolet;
-   height: 50%;
-   left: 0;
-   margin: 0;
-   position: absolute;
-   top: 0;
-   transform:
-     rotate( calc(var(--part) * var(--index, 1)) )
-     skew( var(--skew) );
-   transform-origin: 100% 100%;
-   width: 50%;
- }
+  .chaarts[class*="radar"] td {
+    --skew: calc( 90deg - var(--part) );
+    border-bottom: 1px solid blueviolet;
+    height: 50%;
+    left: 0;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    transform:
+      rotate( calc(var(--part) * var(--index, 1)) )
+      skew( var(--skew) );
+    transform-origin: 100% 100%;
+    width: 50%;
+  }
 
- .chaarts[class*="radar"] span {
-   --opposite: calc( 180 - (90 + (90 - (360 / var(--items)))) );
-   --angle: calc( var(--opposite) * 0.01745329251 );
-   --sin-term-angle-1: var(--angle);
-   --sin-term-angle-2: calc((var(--angle) * var(--angle) * var(--angle)) / 6);
-   --sin-term-angle-3: calc((var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle)) / 120);
-   --sin-term-angle-4: calc((var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle)) / 5040);
-   --sin-term-angle-5: calc((var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle)) / 362880);
-   --sin-angle: calc(var(--sin-term-angle-1) - var(--sin-term-angle-2) + var(--sin-term-angle-3) - var(--sin-term-angle-4) + var(--sin-term-angle-5));
-   --hypo: calc( var(--unitless-radius) / var(--sin-angle) );
-   --ratio: calc( var(--hypo) / var(--unitless-radius) );
-   background: linear-gradient(
-     to top left,
-     blueviolet 10%,
-     darkblue 75%
-   );
-   filter: drop-shadow( 0 0 1rem indigo );
-   height: 100%;
-   position: absolute;
-   width: 100%;
- }
+  .chaarts[class*="radar"] span {
+    --opposite: calc( 180 - (90 + (90 - (360 / var(--items)))) );
+    --angle: calc( var(--opposite) * 0.01745329251 );
+    --sin-term-angle-1: var(--angle);
+    --sin-term-angle-2: calc((var(--angle) * var(--angle) * var(--angle)) / 6);
+    --sin-term-angle-3: calc((var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle)) / 120);
+    --sin-term-angle-4: calc((var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle)) / 5040);
+    --sin-term-angle-5: calc((var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle)) / 362880);
+    --sin-angle: calc(var(--sin-term-angle-1) - var(--sin-term-angle-2) + var(--sin-term-angle-3) - var(--sin-term-angle-4) + var(--sin-term-angle-5));
+    --hypo: calc( var(--unitless-radius) / var(--sin-angle) );
+    --ratio: calc( var(--hypo) / var(--unitless-radius) );
+    background: linear-gradient(
+      to top left,
+      blueviolet 10%,
+      darkblue 75%
+    );
+    filter: drop-shadow( 0 0 1rem indigo );
+    height: 100%;
+    position: absolute;
+    width: 100%;
+  }
 
- .chaarts[class*="radar"] td:nth-of-type(2) span {
-   --pos: calc( 100% - (var(--3) * 100% / (var(--scale) * var(--ratio) ) ) );
-   clip-path: polygon(
-     100% var(--pos),
-     calc( 100% - ( var(--2) * 100% / var(--scale) ) ) 100%,
-     100% 100%
-   );
- }
+  .chaarts[class*="radar"] td:nth-of-type(2) span {
+    --pos: calc( 100% - (var(--3) * 100% / (var(--scale) * var(--ratio) ) ) );
+    clip-path: polygon(
+      100% var(--pos),
+      calc( 100% - ( var(--2) * 100% / var(--scale) ) ) 100%,
+      100% 100%
+    );
+  }
 
- .chaarts[class*="radar"] td::after,
- .chaarts[class*="radar"] td::before {
-   display: none;
- }
+  .chaarts[class*="radar"] td::after,
+  .chaarts[class*="radar"] td::before {
+    display: none;
+  }
 
- .chaarts.radar [scope="col"]::after {
-   color: rebeccapurple;
-   display: block;
-   font-size: small;
-   font-weight: 400;
- }
+  .chaarts.radar [scope="col"]::after {
+    color: rebeccapurple;
+    display: block;
+    font-size: small;
+    font-weight: 400;
+  }
 
- .chaarts.radar [scope="col"]:nth-child(2)::after {
-   counter-reset: value var(--2);
-   content: counter(value) "\A0/\A0" counter(scale);
- }
-}</code>
-  </pre>
- </div>
+  .chaarts.radar [scope="col"]:nth-child(2)::after {
+    counter-reset: value var(--2);
+    content: counter(value) "\A0/\A0" counter(scale);
+  }
+}</code></pre>
+</div>
 </details>
 
 <h2>Quelques détails</h2>
@@ -459,130 +451,122 @@
 
 <details>
  <summary>Le <abbr lang="en" title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
- <div>
-  <pre>
-   <code class="language-markup">
-&lt;table class="chaarts radar-multiple" id="radar-multiple" style="--scale: 20; --step: 5; --items: 7; --areas: 2;">
- &lt;caption id="caption-9">Niveau d’intérêt par domaine, sur 20&lt;/caption>
- &lt;thead>
-   &lt;tr>
-     &lt;th scope="col">Accessibilité&lt;/th>
-     &lt;th scope="col">Référencement&lt;/th>
-   &lt;/tr>
- &lt;/thead>
- &lt;tbody>
-   &lt;tr style="--color: #734bf9; --1: 14; --2: 11; --3: 13; --4: 16; --5: 14; --6: 10; --7: 4; --8: var(--1);">
-     &lt;th scope="row">Gaël&lt;/th>
-     &lt;td>&lt;span>14&lt;/span>&lt;/td>
-   &lt;/tr>
-   &lt;tr style="-color: #e11a81; --1: 18; --2: 10; --3: 11; --4: 16; --5: 10; --6: 12; --7: 11; --8: var(--1);">
-     &lt;th scope="row">Luc&lt;/th>
-     &lt;td>&lt;span>18&lt;/span>&lt;/td>
-   &lt;/tr>
- &lt;/tbody>
-&lt;/table&gt;</code>
-  </pre>
- </div>
+ <div><pre><code class="language-markup">&lt;table class="chaarts radar-multiple" id="radar-multiple" style="--scale: 20; --step: 5; --items: 7; --areas: 2;">
+  &lt;caption id="caption-9">[…]&lt;/caption>
+  &lt;thead>
+    &lt;tr>
+      &lt;th scope="col">[…]&lt;/th>
+      &lt;th scope="col">[…]&lt;/th>
+    &lt;/tr>
+  &lt;/thead>
+  &lt;tbody>
+    &lt;tr style="--color: #734bf9; --1: 14; --2: 11; --3: 13; --4: 16; --5: 14; --6: 10; --7: 4; --8: var(--1);">
+      &lt;th scope="row">Gaël&lt;/th>
+      &lt;td>&lt;span>14&lt;/span>&lt;/td>
+    &lt;/tr>
+    &lt;tr style="-color: #e11a81; --1: 18; --2: 10; --3: 11; --4: 16; --5: 10; --6: 12; --7: 11; --8: var(--1);">
+      &lt;th scope="row">Luc&lt;/th>
+      &lt;td>&lt;span>18&lt;/span>&lt;/td>
+    &lt;/tr>
+  &lt;/tbody>
+&lt;/table&gt;</code></pre>
+</div>
 </details>
 <details>
  <summary>Le <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
- <div>
-  <pre>
-   <code class="language-css">
-.chaarts.radar-multiple {
- margin-bottom: 12rem;
+ <div><pre><code class="language-css">.chaarts.radar-multiple {
+  margin-bottom: 12rem;
 }
 
 .chaarts.radar-multiple tbody {
- columns: var(--areas);
- vertical-align: bottom;
+  columns: var(--areas);
+  vertical-align: bottom;
 }
 
 .chaarts.radar-multiple [scope="row"] {
- bottom: -8rem;
- height: 2rem;
- left: 1rem;
- position: absolute;
+  bottom: -8rem;
+  height: 2rem;
+  left: 1rem;
+  position: absolute;
 }
 
 .chaarts.radar-multiple [scope="row"]::before {
- background: var(--color, currentColor);
- content: "";
- display: inline-block;
- height: 1rem;
- margin-right: .25rem;
- transform: translate3d(0, .1rem, 0);
- width: 1rem;
+  background: var(--color, currentColor);
+  content: "";
+  display: inline-block;
+  height: 1rem;
+  margin-right: .25rem;
+  transform: translate3d(0, .1rem, 0);
+  width: 1rem;
 }
 
-/* Pour obtenir une deuxième zone : */
+/* 2nd: */
 .chaarts.radar-multiple tr:nth-child(2) [scope="row"] {
- left: calc( 1rem + (100% / var(--areas)) * 1);
+  left: calc( 1rem + (100% / var(--areas)) * 1);
 }
 
 .chaarts.radar-multiple td {
- align-items: flex-end;
- border-color: var(--color, currentColor);
- display: flex;
- justify-content: flex-end;
- opacity: .5;
- pointer-events: none;
- transition: opacity .2s cubic-bezier(.5, 0, .5, 1);
- z-index: 0;
+  align-items: flex-end;
+  border-color: var(--color, currentColor);
+  display: flex;
+  justify-content: flex-end;
+  opacity: .5;
+  pointer-events: none;
+  transition: opacity .2s cubic-bezier(.5, 0, .5, 1);
+  z-index: 0;
 }
 
 .chaarts.radar-multiple td::after {
- color: var(--color, currentColor);
- display: block;
- font-size: small;
- font-weight: 700;
- text-indent: -.5rem;
- transform:
-   skew( calc( var(--skew) * -1 ) )
-   rotate( calc( var(--part) * var(--index, 1) * -1 ) );
- transform-origin: 0 0;
- transition: inherit;
- width: 100%;
- white-space: nowrap;
+  color: var(--color, currentColor);
+  display: block;
+  font-size: small;
+  font-weight: 700;
+  text-indent: -.5rem;
+  transform:
+    skew( calc( var(--skew) * -1 ) )
+    rotate( calc( var(--part) * var(--index, 1) * -1 ) );
+  transform-origin: 0 0;
+  transition: inherit;
+  width: 100%;
+  white-space: nowrap;
 }
 
 .chaarts.radar-multiple td:nth-of-type(2)::after {
- counter-reset: value var(--2);
- content: counter(value);
- width: calc( var(--2) * 100% / var(--scale) );
+  counter-reset: value var(--2);
+  content: counter(value);
+  width: calc( var(--2) * 100% / var(--scale) );
 }
 
 .chaarts.radar-multiple span {
- background: var(--color, currentColor);
- pointer-events: auto;
+  background: var(--color, currentColor);
+  pointer-events: auto;
 }
 
 @supports ( mask-image: url() ) {
- .chaarts.radar-multiple span {
-   mask-image: radial-gradient(circle at bottom right, rgba(0,0,0,1), rgba(0,0,0,.5));
- }
+  .chaarts.radar-multiple span {
+    mask-image: radial-gradient(circle at bottom right, rgba(0,0,0,1), rgba(0,0,0,.5));
+  }
 }
 
 @media (hover: hover) {
- .chaarts.radar-multiple td {
-   opacity: .25;
- }
+  .chaarts.radar-multiple td {
+    opacity: .25;
+  }
 
- .chaarts.radar-multiple td::after {
-   opacity: 0;
- }
+  .chaarts.radar-multiple td::after {
+    opacity: 0;
+  }
 
- .chaarts.radar-multiple tr:hover td {
-   opacity: 1;
-   z-index: 1;
- }
+  .chaarts.radar-multiple tr:hover td {
+    opacity: 1;
+    z-index: 1;
+  }
 
- .chaarts.radar-multiple tr:hover td::after {
-   opacity: inherit;
- }
-}</code>
-  </pre>
- </div>
+  .chaarts.radar-multiple tr:hover td::after {
+    opacity: inherit;
+  }
+}</code></pre>
+</div>
 </details>
 
       </main>
