@@ -259,19 +259,17 @@
  <div><pre><code class="language-markup">&lt;table class="chaarts pie">
   &lt;caption id="caption-5">[…]&lt;/caption>
   &lt;thead class="sr-only">
-   &lt;tr>
-     &lt;th scope="col">[…]&lt;/th>
-     &lt;th scope="col">[…]&lt;/th>
-   &lt;/tr>
+    &lt;tr>
+      &lt;th scope="col">[…]&lt;/th>
+      &lt;th scope="col">[…]&lt;/th>
+    &lt;/tr>
   &lt;/thead>
   &lt;tbody>
-   &lt;tr style="--color: #734bf9; --term: 'HTML';">
-     &lt;th scope="row">HTML&lt;/th>
-     &lt;td style="--value: 2; --start: 0;">
-     2&nbsp;%
-     &lt;/td>
-   &lt;/tr>
-   &lt;tr>[…]&lt;/tr>
+    &lt;tr style="--color: #734bf9; --term: 'HTML';">
+      &lt;th scope="row">HTML&lt;/th>
+      &lt;td style="--value: 2; --start: 0;">2&nbsp;%&lt;/td>
+    &lt;/tr>
+    &lt;tr>[…]&lt;/tr>
   &lt;/tbody>
 &lt;/table&gt;</code></pre>
 </div>
@@ -831,11 +829,11 @@
  <summary>Le <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
  <div><pre><code class="language-css">.chaarts.donut {
   mask-image: radial-gradient(
-   circle at 50% calc(50% - 2rem),
-   transparent 0%,
-   transparent var(--offset),
-   white calc(var(--offset) + 1px),
-   white 100%
+    circle at 50% calc(50% - 2rem),
+    transparent 0%,
+    transparent var(--offset),
+    white calc(var(--offset) + 1px),
+    white 100%
   );
 }
 

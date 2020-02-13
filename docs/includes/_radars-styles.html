@@ -47,8 +47,8 @@
   font-weight: 700;
   text-indent: -.5rem;
   transform:
-   skew( calc( var(--skew) * -1 ) )
-   rotate( calc( var(--part) * var(--index, 1) * -1 ) );
+    skew( calc( var(--skew) * -1 ) )
+    rotate( calc( var(--part) * var(--index, 1) * -1 ) );
   transform-origin: 0 0;
   transition: inherit;
   width: 100%;
@@ -68,25 +68,25 @@
 
 @supports ( mask-image: url() ) {
   .chaarts.radar-multiple span {
-   mask-image: radial-gradient(circle at bottom right, rgba(0,0,0,1), rgba(0,0,0,.5));
+    mask-image: radial-gradient(circle at bottom right, rgba(0,0,0,1), rgba(0,0,0,.5));
   }
 }
 
 @media (hover: hover) {
   .chaarts.radar-multiple td {
-   opacity: .25;
+    opacity: .25;
   }
 
   .chaarts.radar-multiple td::after {
-   opacity: 0;
+    opacity: 0;
   }
 
   .chaarts.radar-multiple tr:hover td {
-   opacity: 1;
-   z-index: 1;
+    opacity: 1;
+    z-index: 1;
   }
 
   .chaarts.radar-multiple tr:hover td::after {
-   opacity: inherit;
+    opacity: inherit;
   }
 }</code></pre>
