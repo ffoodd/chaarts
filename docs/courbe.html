@@ -255,38 +255,29 @@
 
 <details>
  <summary>Le <abbr lang="en" title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
- <div>
-  <pre>
-   <code class="language-markup">
-&lt;table class="chaarts line" style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Fév.'; […]">
- &lt;caption id="caption-3">Température mensuelle moyenne en 2017&lt;/caption>
- &lt;thead>
+ <div><pre><code class="language-markup">&lt;table class="chaarts line" style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Feb.'; […]">
+  &lt;caption id="caption-3">[…]&lt;/caption>
+  &lt;thead>
    &lt;tr>
-     &lt;th scope="col">Année&lt;/th>
+     &lt;th scope="col">[…]&lt;/th>
      &lt;th scope="col">Jan.&lt;/th>
      &lt;th scope="col">[…]&lt;/th>
    &lt;/tr>
- &lt;/thead>
- &lt;tbody>
+  &lt;/thead>
+  &lt;tbody>
    &lt;tr style="--year: '2017'; --1: 8; --2: 6; --3: 9; --4: 12; --5: 15; --6: 21; --7: 24; --8: 25; --9: 22; --10: 19; --11: 14; --12: 9;">
      &lt;th scope="row">2017&lt;/th>
-     &lt;td>
-       8&nbsp;&lt;abbr title="Degré Celsius" aria-label="Degré Celsius">°C&lt;/abbr>
-     &lt;/td>
+     &lt;td>8&nbsp;°C&lt;/td>
      &lt;td>[…]&lt;/td>
    &lt;/tr>
- &lt;/tbody>
-&lt;/table&gt;</code>
-  </pre>
- </div>
+  &lt;/tbody>
+&lt;/table&gt;</code></pre>
+</div>
 </details>
 <details>
  <summary>Le <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
- <div>
-  <pre>
-   <code class="language-css">
-@supports (clip-path: polygon(0% calc( 100% - ( var(--1) * 100% / var(--y) )) )) {
- .chaarts.line {
+ <div><pre><code class="language-css">@supports (clip-path: polygon(0% calc( 100% - ( var(--1) * 100% / var(--y) )) )) {
+  .chaarts.line {
    --offset: calc( ( 100% / var(--x) ) / 2 );
    --height: calc( 32em - 2rem );
    --bottom: calc( 100% - var(--height) );
@@ -295,9 +286,9 @@
    transition:
      background .3s cubic-bezier(.5, 0, .5, 1),
      color .3s cubic-bezier(.5, 0, .5, 1);
- }
+  }
 
- .chaarts.line::after {
+  .chaarts.line::after {
    --scale: calc( ( 100% - ( var(--y) * 1px) ) / var(--y) );
    background:
      repeating-linear-gradient(
@@ -311,20 +302,20 @@
    top: 0;
    width: 100%;
    z-index: 1;
- }
+  }
 
- .chaarts.line tr::before {
+  .chaarts.line tr::before {
    content: "";
    position: absolute;
- }
+  }
 
- .chaarts.line [scope="row"],
- .chaarts.line thead th:first-child {
+  .chaarts.line [scope="row"],
+  .chaarts.line thead th:first-child {
    color: var(--color, currentColor);
    text-align: left;
- }
+  }
 
- .chaarts.line [style]::before {
+  .chaarts.line [style]::before {
    bottom: var(--bottom);
    background: linear-gradient(to top, deepskyblue, crimson 75%);
    clip-path: polygon(
@@ -352,23 +343,23 @@
    top: 0;
    width: 100%;
    z-index: 2;
- }
+  }
 
- .chaarts.line th,
- .chaarts.line td {
+  .chaarts.line th,
+  .chaarts.line td {
    background: white;
    font-weight: bold;
    text-align: center;
    width: calc( 100% / var(--x) );
    width: 7.69%;
- }
+  }
 
- .chaarts.line th:hover,
- .chaarts.line td:hover {
+  .chaarts.line th:hover,
+  .chaarts.line td:hover {
    color: mediumblue;
- }
+  }
 
- .chaarts.line [scope="col"]:not(:first-child)::after {
+  .chaarts.line [scope="col"]:not(:first-child)::after {
    background: white var(--stripes);
    background-blend-mode: exclusion;
    bottom: 4rem;
@@ -380,32 +371,32 @@
    transition: opacity .3s cubic-bezier(.5, 0, .5, 1);
    width: inherit;
    z-index: 3;
- }
+  }
 
- .chaarts.line th[scope="col"]:nth-child(3)::after {
+  .chaarts.line th[scope="col"]:nth-child(3)::after {
    left: calc( 100% / var(--x) * 2 );
- }
+  }
 
- .chaarts.line [scope="col"]:hover::after {
+  .chaarts.line [scope="col"]:hover::after {
   opacity: .75;
- }
+  }
 
- .chaarts.line td {
+  .chaarts.line td {
    --value: var(--1);
    --term: var(--t-1);
    line-height: 1.5;
- }
+  }
 
- .chaarts.line td::before {
+  .chaarts.line td::before {
    content: '';
    height: 1.5rem;
    position: absolute;
    transform: translateX(-50%);
    width: inherit;
    z-index: 10;
- }
+  }
 
- .chaarts.line td::after {
+  .chaarts.line td::after {
    --arrow: calc(100% - .25rem);
    --top: calc( var(--height) - ( var(--value) / var(--y) * var(--height) ) );
    background-color: #444;
@@ -437,15 +428,15 @@
      transform .2s cubic-bezier(0, .5, .5, 1);
    white-space: pre;
    z-index: 5;
- }
+  }
 
- .chaarts.line td:nth-child(3)::after {
+  .chaarts.line td:nth-child(3)::after {
    --value: var(--2);
    --term: var(--t-2);
    left: calc( ( 100% / var(--x) * 2 ) + var(--offset) );
- }
+  }
 
- .chaarts.line td:hover::after {
+  .chaarts.line td:hover::after {
    opacity: 1;
    transform:
      translate3d(-50%, -125%, 0)
@@ -454,16 +445,15 @@
    transition:
      opacity .2s cubic-bezier(.5, 0, 1, .5),
      transform .2s cubic-bezier(.5, 0, 1, .5);
- }
+  }
 
- @media screen and (-ms-high-contrast: active) {
+  @media screen and (-ms-high-contrast: active) {
    .chaarts.line tr[style]::before {
      background: linear-gradient(to top, ButtonHighlight, Highlight 75%);
    }
- }
-}</code>
-  </pre>
- </div>
+  }
+}</code></pre>
+</div>
 </details>
 <details>
  <summary>Le calcul tordu</summary>
@@ -690,11 +680,8 @@
 
 <details>
  <summary>Le <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
- <div>
-  <pre>
-   <code class="language-css">
-@supports (clip-path: polygon(0% calc(100% - (var(--1) * 100% / var(--y))))) {
- .chaarts.points [style]::before {
+ <div><pre><code class="language-css">@supports (clip-path: polygon(0% calc(100% - (var(--1) * 100% / var(--y))))) {
+  .chaarts.points [style]::before {
    background: var(--color, currentColor) var(--background);
    clip-path: polygon(
      calc( ( 100% / var(--x) * 1 ) + var(--offset) ) calc( 100% - ( var(--1) / var(--y) * 100% ) ),
@@ -727,18 +714,18 @@
      calc( ( 100% / var(--x) * 1 ) + var(--offset) ) calc( ( 100% + 4rem ) - ( var(--1) / var(--y) * 100% ) )
    );
    transition: opacity .3s cubic-bezier(.5, 0, .5, 1);
- }
+  }
 
- .chaarts.points [style] th::before {
+  .chaarts.points [style] th::before {
    background: var(--color, currentColor) var(--background);
    content: "";
    display: inline-block;
    height: 1rem;
    transform: translate3d(-.2rem, .1rem, 0);
    width: 1rem;
- }
+  }
 
- .chaarts.points [style] td::before {
+  .chaarts.points [style] td::before {
    --size: 1rem;
    --top: calc( var(--height) - ( var(--value) / var(--y) * var(--height) ) );
    background: var(--color, currentColor) var(--background);
@@ -756,44 +743,43 @@
      transform .3s cubic-bezier(.5, 0, .5, 1);
    width: var(--size);
    z-index: 4;
- }
+  }
 
- .chaarts.points [style] td:nth-of-type(2)::before {
+  .chaarts.points [style] td:nth-of-type(2)::before {
    --value: var(--2);
    left: calc( ( 100% / var(--x) * 2 ) + var(--offset) );
- }
+  }
 
- /* @note À répéter pour chaque ligne, afin de les distinguer grâce à un motif */
- .chaarts.points [style]:nth-child( 2n + 2 ) {
+  /* @note Sass @each() */
+  .chaarts.points [style]:nth-child( 2n + 2 ) {
    --background: var(--stripes);
- }
+  }
 
- .chaarts.points tbody:hover [style]::before,
- .chaarts.points tbody:hover [style] td::before {
+  .chaarts.points tbody:hover [style]::before,
+  .chaarts.points tbody:hover [style] td::before {
    opacity: .25;
- }
+  }
 
- .chaarts.points tbody:hover [style]:hover::before,
- .chaarts.points tbody:hover [style]:hover td::before {
+  .chaarts.points tbody:hover [style]:hover::before,
+  .chaarts.points tbody:hover [style]:hover td::before {
    opacity: 1;
- }
+  }
 
- .chaarts.points tbody:hover [style]:hover td::before {
+  .chaarts.points tbody:hover [style]:hover td::before {
    transform:
      translate3d( calc( var(--size) / -2 ), calc( var(--size ) / -2), 0 )
      scale( 1.25 );
- }
+  }
 
- .chaarts.points [scope="col"]::after {
+  .chaarts.points [scope="col"]::after {
    mix-blend-mode: multiply;
- }
+  }
 
- .chaarts.points [scope="col"]:hover::after {
+  .chaarts.points [scope="col"]:hover::after {
    opacity: .5;
- }
-}</code>
-  </pre>
- </div>
+  }
+}</code></pre>
+</div>
 </details>
 
 <div class="note">
