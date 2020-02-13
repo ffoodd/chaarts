@@ -240,17 +240,15 @@
    <a href="https://gist.github.com/stereokai/7666bfe93929b14c2dced148c79e0e97" hreflang="en"><cite>Stereokai</cite> a implémenté pour nous
    la représentation polynomiale de Taylor/Maclaurin en CSS</a> —&nbsp;que j’ai implémentée sour forme d’un <em lang="en">mixin</em>&nbsp;:
   </p>
-  <pre>
-   <code class="language-scss">
-@mixin sin($angle) {
- --sin-term-#{$angle}-1: var(--#{$angle});
- --sin-term-#{$angle}-2: calc((var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle})) / 6);
- --sin-term-#{$angle}-3: calc((var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle})) / 120);
- --sin-term-#{$angle}-4: calc((var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle})) / 5040);
- --sin-term-#{$angle}-5: calc((var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle})) / 362880);
- --sin-#{$angle}: calc(var(--sin-term-#{$angle}-1) - var(--sin-term-#{$angle}-2) + var(--sin-term-#{$angle}-3) - var(--sin-term-#{$angle}-4) + var(--sin-term-#{$angle}-5));
-}</code>
-  </pre>
+  <pre><code class="language-scss">@mixin sin($angle) {
+  --sin-term-#{$angle}-1: var(--#{$angle});
+  --sin-term-#{$angle}-2: calc((var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle})) / 6);
+  --sin-term-#{$angle}-3: calc((var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle})) / 120);
+  --sin-term-#{$angle}-4: calc((var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle})) / 5040);
+  --sin-term-#{$angle}-5: calc((var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle})) / 362880);
+  --sin-#{$angle}: calc(var(--sin-term-#{$angle}-1) - var(--sin-term-#{$angle}-2) + var(--sin-term-#{$angle}-3) - var(--sin-term-#{$angle}-4) + var(--sin-term-#{$angle}-5));
+}</code></pre>
+
   <p>
    Il ne reste plus qu’à utiliser ces dimensions pour placer les points du polygône.
    <strong>Un vrai jeu d’enfants&nbsp;!</strong>
@@ -258,18 +256,15 @@
 </details>
 <details>
  <summary>Le <abbr lang="en" title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
- <div>
-  <pre>
-   <code class="language-markup">
-&lt;table class="chaarts pie">
- &lt;caption id="caption-5">Répartition du poids des ressources pour ffoodd.fr&lt;/caption>
- &lt;thead class="sr-only">
+ <div><pre><code class="language-markup">&lt;table class="chaarts pie">
+  &lt;caption id="caption-5">[…]&lt;/caption>
+  &lt;thead class="sr-only">
    &lt;tr>
-     &lt;th scope="col">Ressource&lt;/th>
-     &lt;th scope="col">Proportion&lt;/th>
+     &lt;th scope="col">[…]&lt;/th>
+     &lt;th scope="col">[…]&lt;/th>
    &lt;/tr>
- &lt;/thead>
- &lt;tbody>
+  &lt;/thead>
+  &lt;tbody>
    &lt;tr style="--color: #734bf9; --term: 'HTML';">
      &lt;th scope="row">HTML&lt;/th>
      &lt;td style="--value: 2; --start: 0;">
@@ -277,10 +272,9 @@
      &lt;/td>
    &lt;/tr>
    &lt;tr>[…]&lt;/tr>
- &lt;/tbody>
-&lt;/table&gt;</code>
-  </pre>
- </div>
+  &lt;/tbody>
+&lt;/table&gt;</code></pre>
+</div>
 </details>
 <details>
  <summary>Le <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
@@ -521,6 +515,7 @@
     50% 50%
   );
 }</code></pre>
+
            <figcaption>Code généré pour <var>44%</var>.</figcaption>
          </figure>
        </div>
@@ -550,6 +545,7 @@
     50% 50%
   );
 }</code></pre>
+
            <figcaption>Code généré pour <var>64%</var>.</figcaption>
          </figure>
        </div>
@@ -579,6 +575,7 @@
     50% 50%
   );
 }</code></pre>
+
            <figcaption>Code généré pour <var>88%</var>.</figcaption>
          </figure>
        </div>
@@ -832,24 +829,20 @@
 
 <details>
  <summary>Le <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
- <div>
-  <pre>
-   <code class="language-css">
-.chaarts.donut {
- mask-image: radial-gradient(
+ <div><pre><code class="language-css">.chaarts.donut {
+  mask-image: radial-gradient(
    circle at 50% calc(50% - 2rem),
    transparent 0%,
    transparent var(--offset),
    white calc(var(--offset) + 1px),
    white 100%
- );
+  );
 }
 
 .chaarts.donut td::after {
- --away: calc( var(--radius) / 2 - 2.5rem );
-}</code>
-  </pre>
- </div>
+  --away: calc( var(--radius) / 2 - 2.5rem );
+}</code></pre>
+</div>
 </details>
 
 <div class="note">
@@ -969,26 +962,22 @@
 
 <details>
  <summary>Le <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
- <div>
-  <pre>
-   <code class="language-css">
-.chaarts.polar td::before {
- --zoom: 50;
- transform:
-   translate3d( -50%, -50%, 0 )
-   rotate( var(--position) )
-   scale( calc( ( var(--zoom) + ( var(--value) / ( 100 / var(--zoom) ) ) ) / 100 ) );
+ <div><pre><code class="language-css">.chaarts.polar td::before {
+  --zoom: 50;
+  transform:
+    translate3d( -50%, -50%, 0 )
+    rotate( var(--position) )
+    scale( calc( ( var(--zoom) + ( var(--value) / ( 100 / var(--zoom) ) ) ) / 100 ) );
 }
 
 .chaarts.polar tr:hover td::before {
- --zoom: 50;
+  --zoom: 50;
 }
 
 .chaarts.polar tbody:hover tr {
- opacity: .5;
-}</code>
-  </pre>
- </div>
+  opacity: .5;
+}</code></pre>
+</div>
 </details>
 
       </main>
