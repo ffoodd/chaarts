@@ -1,5 +1,5 @@
 const gulp     = require('gulp');
-const sass     = require('gulp-sass');
+const sass     = require('gulp-dart-sass');
 const maps     = require('gulp-sourcemaps');
 const csso     = require('gulp-csso');
 const prefix   = require('gulp-autoprefixer');
@@ -33,7 +33,7 @@ function mincss() {
     return gulp.src(options.paths.root + 'sass/*.scss')
       .pipe(newer(options.paths.root + 'chaarts.min.css'))
       .pipe(maps.init())
-      .pipe(sass().on('error', sass.logError))
+      .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
       .pipe(prefix(options.browsers))
       .pipe(csso(options.csso))
       .pipe(rename({suffix: '.min'}))
