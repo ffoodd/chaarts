@@ -125,16 +125,17 @@
       --hypo: calc( var(--unitless-radius) / var(--sin-angle) );
       // get the ratio: skewed / initial width
       --ratio: calc( var(--hypo) / var(--unitless-radius) );
+      --polygon: polygon(
+        100% var(--pos),
+        calc( 100% - ( var(--point) * 100% / var(--scale) ) ) 100%,
+        100% 100%
+      );
       background: linear-gradient(
         to top left,
         palette( accent, light ) 10%,
         palette( secondary, dark ) 75%
       );
-      clip-path: polygon(
-        100% var(--pos),
-        calc( 100% - ( var(--point) * 100% / var(--scale) ) ) 100%,
-        100% 100%
-      );
+      clip-path: var(--polygon);
       filter: drop-shadow( 0 0 $gutter palette( accent, dark ) );
       height: 100%;
       position: absolute;
@@ -232,8 +233,9 @@
       background: var(--color, currentColor);
       pointer-events: auto;
 
-      @supports ( mask-image: url() ) {
-        mask-image: radial-gradient(circle at bottom right, rgba(0,0,0,1), rgba(0,0,0,.5));
+      @supports (mask-image: url()) {
+        --mask: radial-gradient(circle at bottom right, rgba(0,0,0,1), rgba(0,0,0,.5));
+        mask-image: var(--mask);
       }
     }
 

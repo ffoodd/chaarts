@@ -300,7 +300,6 @@ table:not(.chaarts) .sr-only {
     .chaarts.pie tr {
       display: table-cell;
       transition: opacity 0.3s cubic-bezier(0.5, 0, 0.5, 1);
-      will-change: opacity;
     }
     .chaarts.pie [scope="row"] {
       padding-right: 0.5rem;
@@ -343,17 +342,35 @@ table:not(.chaarts) .sr-only {
       --sin-α: calc(var(--sin-term-α-1) - var(--sin-term-α-2) + var(--sin-term-α-3) - var(--sin-term-α-4) + var(--sin-term-α-5));
       --pos-B: calc( var(--sin-β) * 50 );
       --pos-A: calc( var(--sin-α) * 50 );
+      --polygon: polygon(
+        50% 50%,
+        50% 0%,
+        100% 0%,
+        calc( 50% + ( var(--pos-B) * 1% * var(--lt-25, 1) ) + ( var(--gt-25, 0) * 50% ) ) calc( 50% - ( var(--pos-A) * 1% * var(--lt-25, 1) ) ),
+        calc( 50% + ( var(--gt-25, 0) * 50% ) )                                           calc( 50% + ( var(--gt-25, 0) * 50% ) ),
+        calc( 50% + ( var(--pos-A) * 1% * var(--lt-50, 1) ) + ( var(--gt-50, 0) * 50% ) ) calc( 50% + ( var(--pos-B) * 1% * var(--lt-50, 1) ) + ( var(--gt-50, 0) * 50% ) ),
+        calc( 50% - ( var(--gt-50, 0) * 50% ) )                                           calc( 50% + ( var(--gt-50, 0) * 50% ) ),
+        calc( 50% - ( var(--pos-B) * 1% * var(--lt-75, 1) ) - ( var(--gt-75, 0) * 50% ) ) calc( 50% + ( var(--pos-A) * 1% * var(--lt-75, 1) ) ),
+        calc( 50% - ( var(--gt-75, 0) * 50% ) )                                           calc( 50% - ( var(--gt-75, 0) * 50% ) ),
+        calc( 50% - ( var(--pos-A) * 1% * var(--gt-75, 0) ) )                             calc( 50% - ( var(--pos-B) * 1% * var(--gt-75, 0) ) ),
+        50% 50%
+      );
       background: var(--color, currentColor) var(--background);
-      -webkit-clip-path: polygon(50% 50%, 50% 0%, 100% 0%, calc( 50% + ( var(--pos-B) * 1% * var(--lt-25, 1) ) + ( var(--gt-25, 0) * 50% )) calc( 50% - ( var(--pos-A) * 1% * var(--lt-25, 1) )), calc( 50% + ( var(--gt-25, 0) * 50% )) calc( 50% + ( var(--gt-25, 0) * 50% )), calc( 50% + ( var(--pos-A) * 1% * var(--lt-50, 1) ) + ( var(--gt-50, 0) * 50% )) calc( 50% + ( var(--pos-B) * 1% * var(--lt-50, 1) ) + ( var(--gt-50, 0) * 50% )), calc( 50% - ( var(--gt-50, 0) * 50% )) calc( 50% + ( var(--gt-50, 0) * 50% )), calc( 50% - ( var(--pos-B) * 1% * var(--lt-75, 1) ) - ( var(--gt-75, 0) * 50% )) calc( 50% + ( var(--pos-A) * 1% * var(--lt-75, 1) )), calc( 50% - ( var(--gt-75, 0) * 50% )) calc( 50% - ( var(--gt-75, 0) * 50% )), calc( 50% - ( var(--pos-A) * 1% * var(--gt-75, 0) )) calc( 50% - ( var(--pos-B) * 1% * var(--gt-75, 0) )), 50% 50%);
-              clip-path: polygon(50% 50%, 50% 0%, 100% 0%, calc( 50% + ( var(--pos-B) * 1% * var(--lt-25, 1) ) + ( var(--gt-25, 0) * 50% )) calc( 50% - ( var(--pos-A) * 1% * var(--lt-25, 1) )), calc( 50% + ( var(--gt-25, 0) * 50% )) calc( 50% + ( var(--gt-25, 0) * 50% )), calc( 50% + ( var(--pos-A) * 1% * var(--lt-50, 1) ) + ( var(--gt-50, 0) * 50% )) calc( 50% + ( var(--pos-B) * 1% * var(--lt-50, 1) ) + ( var(--gt-50, 0) * 50% )), calc( 50% - ( var(--gt-50, 0) * 50% )) calc( 50% + ( var(--gt-50, 0) * 50% )), calc( 50% - ( var(--pos-B) * 1% * var(--lt-75, 1) ) - ( var(--gt-75, 0) * 50% )) calc( 50% + ( var(--pos-A) * 1% * var(--lt-75, 1) )), calc( 50% - ( var(--gt-75, 0) * 50% )) calc( 50% - ( var(--gt-75, 0) * 50% )), calc( 50% - ( var(--pos-A) * 1% * var(--gt-75, 0) )) calc( 50% - ( var(--pos-B) * 1% * var(--gt-75, 0) )), 50% 50%);
+      -webkit-clip-path: var(--polygon);
+              clip-path: var(--polygon);
       content: '';
       height: var(--radius);
-      -webkit-mask-image: radial-gradient(circle at center, white 0%, white calc(var(--radius) / 2), transparent 0);
-              mask-image: radial-gradient(circle at center, white 0%, white calc(var(--radius) / 2), transparent 0);
+      --mask: radial-gradient(
+        circle at center,
+        #fff 0%,
+        #fff calc(var(--radius) / 2),
+        transparent 0
+      );
+      -webkit-mask-image: var(--mask);
+              mask-image: var(--mask);
       transform: translate3d(-50%, -50%, 0) rotate(var(--position)) scale(var(--zoom));
       transition: transform 0.2s cubic-bezier(0.5, 0, 0.5, 1);
       width: var(--radius);
-      will-change: transform;
     }
     .chaarts.pie tr:hover td::before {
       --zoom: .8;
@@ -390,7 +407,6 @@ table:not(.chaarts) .sr-only {
       transform-origin: 50% calc(100% + 10px);
       transform: translate3d(-50%, -50%, 0) rotate(var(--axis)) translate(var(--away)) rotate(calc( var(--axis) * -1)) perspective(1000px) rotate3d(1, 0, 0, 45deg);
       transition: opacity 0.2s cubic-bezier(0, 0.5, 0.5, 1), transform 0.2s cubic-bezier(0, 0.5, 0.5, 1);
-      will-change: opacity, transform;
     }
     .chaarts.pie tbody:hover tr {
       opacity: .5;
@@ -411,8 +427,15 @@ table:not(.chaarts) .sr-only {
       --zoom: 50;
     }
     .chaarts.donut {
-      -webkit-mask-image: radial-gradient(circle at 50% calc(50% - 2rem), transparent 0%, transparent var(--offset), white calc(var(--offset) + 1px), white 100%);
-              mask-image: radial-gradient(circle at 50% calc(50% - 2rem), transparent 0%, transparent var(--offset), white calc(var(--offset) + 1px), white 100%);
+      --mask: radial-gradient(
+       circle at 50% calc(50% - 2rem),
+       transparent 0%,
+       transparent var(--offset),
+       #fff calc(var(--offset) + 1px),
+       #fff 100%
+     );
+      -webkit-mask-image: var(--mask);
+              mask-image: var(--mask);
     }
     .chaarts.donut td::after {
       --away: calc( var(--radius) / 2 - 2.5rem );
@@ -476,8 +499,28 @@ table:not(.chaarts) .sr-only {
     .chaarts.line [style]::before {
       bottom: var(--bottom);
       background: linear-gradient(to top, deepskyblue, crimson 75%);
-      -webkit-clip-path: polygon(0% 100%, calc((100% / var(--x) * 1)) 100%, calc((100% / var(--x) * 1)) calc(100% - (var(--1) / var(--y) * 100%)), calc((100% / var(--x) * 1) + var(--offset)) calc(100% - (var(--1) / var(--y) * 100%)), calc((100% / var(--x) * 2) + var(--offset)) calc(100% - (var(--2) / var(--y) * 100%)), calc((100% / var(--x) * 3) + var(--offset)) calc(100% - (var(--3) / var(--y) * 100%)), calc((100% / var(--x) * 4) + var(--offset)) calc(100% - (var(--4) / var(--y) * 100%)), calc((100% / var(--x) * 5) + var(--offset)) calc(100% - (var(--5) / var(--y) * 100%)), calc((100% / var(--x) * 6) + var(--offset)) calc(100% - (var(--6) / var(--y) * 100%)), calc((100% / var(--x) * 7) + var(--offset)) calc(100% - (var(--7) / var(--y) * 100%)), calc((100% / var(--x) * 8) + var(--offset)) calc(100% - (var(--8) / var(--y) * 100%)), calc((100% / var(--x) * 9) + var(--offset)) calc(100% - (var(--9) / var(--y) * 100%)), calc((100% / var(--x) * 10) + var(--offset)) calc(100% - (var(--10) / var(--y) * 100%)), calc((100% / var(--x) * 11) + var(--offset)) calc(100% - (var(--11) / var(--y) * 100%)), calc((100% / var(--x) * 12) + var(--offset)) calc(100% - (var(--12) / var(--y) * 100%)), 100% calc(100% - (var(--12) / var(--y) * 100%)), 100% 100%, 0% 100%);
-              clip-path: polygon(0% 100%, calc((100% / var(--x) * 1)) 100%, calc((100% / var(--x) * 1)) calc(100% - (var(--1) / var(--y) * 100%)), calc((100% / var(--x) * 1) + var(--offset)) calc(100% - (var(--1) / var(--y) * 100%)), calc((100% / var(--x) * 2) + var(--offset)) calc(100% - (var(--2) / var(--y) * 100%)), calc((100% / var(--x) * 3) + var(--offset)) calc(100% - (var(--3) / var(--y) * 100%)), calc((100% / var(--x) * 4) + var(--offset)) calc(100% - (var(--4) / var(--y) * 100%)), calc((100% / var(--x) * 5) + var(--offset)) calc(100% - (var(--5) / var(--y) * 100%)), calc((100% / var(--x) * 6) + var(--offset)) calc(100% - (var(--6) / var(--y) * 100%)), calc((100% / var(--x) * 7) + var(--offset)) calc(100% - (var(--7) / var(--y) * 100%)), calc((100% / var(--x) * 8) + var(--offset)) calc(100% - (var(--8) / var(--y) * 100%)), calc((100% / var(--x) * 9) + var(--offset)) calc(100% - (var(--9) / var(--y) * 100%)), calc((100% / var(--x) * 10) + var(--offset)) calc(100% - (var(--10) / var(--y) * 100%)), calc((100% / var(--x) * 11) + var(--offset)) calc(100% - (var(--11) / var(--y) * 100%)), calc((100% / var(--x) * 12) + var(--offset)) calc(100% - (var(--12) / var(--y) * 100%)), 100% calc(100% - (var(--12) / var(--y) * 100%)), 100% 100%, 0% 100%);
+      --polygon: polygon(
+         0% 100%,
+         calc((100% / var(--x) * 1)) 100%,
+         calc((100% / var(--x) * 1)) calc(100% - (var(--1) / var(--y) * 100%)),
+         calc((100% / var(--x) * 1) + var(--offset)) calc(100% - (var(--1) / var(--y) * 100%)),
+         calc((100% / var(--x) * 2) + var(--offset)) calc(100% - (var(--2) / var(--y) * 100%)),
+         calc((100% / var(--x) * 3) + var(--offset)) calc(100% - (var(--3) / var(--y) * 100%)),
+         calc((100% / var(--x) * 4) + var(--offset)) calc(100% - (var(--4) / var(--y) * 100%)),
+         calc((100% / var(--x) * 5) + var(--offset)) calc(100% - (var(--5) / var(--y) * 100%)),
+         calc((100% / var(--x) * 6) + var(--offset)) calc(100% - (var(--6) / var(--y) * 100%)),
+         calc((100% / var(--x) * 7) + var(--offset)) calc(100% - (var(--7) / var(--y) * 100%)),
+         calc((100% / var(--x) * 8) + var(--offset)) calc(100% - (var(--8) / var(--y) * 100%)),
+         calc((100% / var(--x) * 9) + var(--offset)) calc(100% - (var(--9) / var(--y) * 100%)),
+         calc((100% / var(--x) * 10) + var(--offset)) calc(100% - (var(--10) / var(--y) * 100%)),
+         calc((100% / var(--x) * 11) + var(--offset)) calc(100% - (var(--11) / var(--y) * 100%)),
+         calc((100% / var(--x) * 12) + var(--offset)) calc(100% - (var(--12) / var(--y) * 100%)),
+         100% calc(100% - (var(--12) / var(--y) * 100%)),
+         100% 100%,
+         0% 100%
+       );
+      -webkit-clip-path: var(--polygon);
+              clip-path: var(--polygon);
       content: "";
       position: absolute;
       top: 0;
@@ -574,9 +617,18 @@ table:not(.chaarts) .sr-only {
     .chaarts.line td::after {
       --arrow: calc(100% - 0.25rem);
       --top: calc( var(--height) - ( var(--value) / var(--y) * var(--height) ) );
+      --polygon: polygon(
+           0% 0%,
+           100% 0%,
+           100% var(--arrow),
+           calc(50% - 0.25rem) var(--arrow),
+           50% 100%,
+           calc(50% + 0.25rem) var(--arrow),
+           0% var(--arrow)
+         );
       background-color: #444;
-      -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% var(--arrow), calc(50% - 0.25rem) var(--arrow), 50% 100%, calc(50% + 0.25rem) var(--arrow), 0% var(--arrow));
-              clip-path: polygon(0% 0%, 100% 0%, 100% var(--arrow), calc(50% - 0.25rem) var(--arrow), 50% 100%, calc(50% + 0.25rem) var(--arrow), 0% var(--arrow));
+      -webkit-clip-path: var(--polygon);
+              clip-path: var(--polygon);
       color: white;
       content: var(--term) " " var(--year) "\a" counter(value) " °C";
       counter-reset: value var(--value);
@@ -589,7 +641,6 @@ table:not(.chaarts) .sr-only {
       transform-origin: 50% calc(100% + 10px);
       transform: translate3d(-50%, -125%, 0) perspective(1000px) rotate3d(1, 0, 0, 45deg);
       transition: opacity 0.2s cubic-bezier(0, 0.5, 0.5, 1), transform 0.2s cubic-bezier(0, 0.5, 0.5, 1);
-      will-change: opacity, transform;
       white-space: pre;
       z-index: 5;
     }
@@ -663,8 +714,36 @@ table:not(.chaarts) .sr-only {
     }
     .chaarts.points [style]::before {
       background: var(--color, currentColor) var(--background);
-      -webkit-clip-path: polygon(calc((100% / var(--x) * 1) + var(--offset)) calc(100% - (var(--1) / var(--y) * 100%)), calc((100% / var(--x) * 2) + var(--offset)) calc(100% - (var(--2) / var(--y) * 100%)), calc((100% / var(--x) * 3) + var(--offset)) calc(100% - (var(--3) / var(--y) * 100%)), calc((100% / var(--x) * 4) + var(--offset)) calc(100% - (var(--4) / var(--y) * 100%)), calc((100% / var(--x) * 5) + var(--offset)) calc(100% - (var(--5) / var(--y) * 100%)), calc((100% / var(--x) * 6) + var(--offset)) calc(100% - (var(--6) / var(--y) * 100%)), calc((100% / var(--x) * 7) + var(--offset)) calc(100% - (var(--7) / var(--y) * 100%)), calc((100% / var(--x) * 8) + var(--offset)) calc(100% - (var(--8) / var(--y) * 100%)), calc((100% / var(--x) * 9) + var(--offset)) calc(100% - (var(--9) / var(--y) * 100%)), calc((100% / var(--x) * 10) + var(--offset)) calc(100% - (var(--10) / var(--y) * 100%)), calc((100% / var(--x) * 11) + var(--offset)) calc(100% - (var(--11) / var(--y) * 100%)), calc((100% / var(--x) * 12) + var(--offset)) calc(100% - (var(--12) / var(--y) * 100%)), calc((100% / var(--x) * 13) + var(--offset)) calc(100% - (var(--12) / var(--y) * 100%)), 100% calc(100% - (var(--12) / var(--y) * 100%)), 100% calc((100% + 0.25rem) - (var(--12) / var(--y) * 100%)), calc((100% / var(--x) * 13) + var(--offset)) calc((100% + 0.25rem) - (var(--12) / var(--y) * 100%)), calc((100% / var(--x) * 12) + var(--offset)) calc((100% + 0.25rem) - (var(--12) / var(--y) * 100%)), calc((100% / var(--x) * 11) + var(--offset)) calc((100% + 0.25rem) - (var(--11) / var(--y) * 100%)), calc((100% / var(--x) * 10) + var(--offset)) calc((100% + 0.25rem) - (var(--10) / var(--y) * 100%)), calc((100% / var(--x) * 9) + var(--offset)) calc((100% + 0.25rem) - (var(--9) / var(--y) * 100%)), calc((100% / var(--x) * 8) + var(--offset)) calc((100% + 0.25rem) - (var(--8) / var(--y) * 100%)), calc((100% / var(--x) * 7) + var(--offset)) calc((100% + 0.25rem) - (var(--7) / var(--y) * 100%)), calc((100% / var(--x) * 6) + var(--offset)) calc((100% + 0.25rem) - (var(--6) / var(--y) * 100%)), calc((100% / var(--x) * 5) + var(--offset)) calc((100% + 0.25rem) - (var(--5) / var(--y) * 100%)), calc((100% / var(--x) * 4) + var(--offset)) calc((100% + 0.25rem) - (var(--4) / var(--y) * 100%)), calc((100% / var(--x) * 3) + var(--offset)) calc((100% + 0.25rem) - (var(--3) / var(--y) * 100%)), calc((100% / var(--x) * 2) + var(--offset)) calc((100% + 0.25rem) - (var(--2) / var(--y) * 100%)), calc((100% / var(--x) * 1) + var(--offset)) calc((100% + 0.25rem) - (var(--1) / var(--y) * 100%)));
-              clip-path: polygon(calc((100% / var(--x) * 1) + var(--offset)) calc(100% - (var(--1) / var(--y) * 100%)), calc((100% / var(--x) * 2) + var(--offset)) calc(100% - (var(--2) / var(--y) * 100%)), calc((100% / var(--x) * 3) + var(--offset)) calc(100% - (var(--3) / var(--y) * 100%)), calc((100% / var(--x) * 4) + var(--offset)) calc(100% - (var(--4) / var(--y) * 100%)), calc((100% / var(--x) * 5) + var(--offset)) calc(100% - (var(--5) / var(--y) * 100%)), calc((100% / var(--x) * 6) + var(--offset)) calc(100% - (var(--6) / var(--y) * 100%)), calc((100% / var(--x) * 7) + var(--offset)) calc(100% - (var(--7) / var(--y) * 100%)), calc((100% / var(--x) * 8) + var(--offset)) calc(100% - (var(--8) / var(--y) * 100%)), calc((100% / var(--x) * 9) + var(--offset)) calc(100% - (var(--9) / var(--y) * 100%)), calc((100% / var(--x) * 10) + var(--offset)) calc(100% - (var(--10) / var(--y) * 100%)), calc((100% / var(--x) * 11) + var(--offset)) calc(100% - (var(--11) / var(--y) * 100%)), calc((100% / var(--x) * 12) + var(--offset)) calc(100% - (var(--12) / var(--y) * 100%)), calc((100% / var(--x) * 13) + var(--offset)) calc(100% - (var(--12) / var(--y) * 100%)), 100% calc(100% - (var(--12) / var(--y) * 100%)), 100% calc((100% + 0.25rem) - (var(--12) / var(--y) * 100%)), calc((100% / var(--x) * 13) + var(--offset)) calc((100% + 0.25rem) - (var(--12) / var(--y) * 100%)), calc((100% / var(--x) * 12) + var(--offset)) calc((100% + 0.25rem) - (var(--12) / var(--y) * 100%)), calc((100% / var(--x) * 11) + var(--offset)) calc((100% + 0.25rem) - (var(--11) / var(--y) * 100%)), calc((100% / var(--x) * 10) + var(--offset)) calc((100% + 0.25rem) - (var(--10) / var(--y) * 100%)), calc((100% / var(--x) * 9) + var(--offset)) calc((100% + 0.25rem) - (var(--9) / var(--y) * 100%)), calc((100% / var(--x) * 8) + var(--offset)) calc((100% + 0.25rem) - (var(--8) / var(--y) * 100%)), calc((100% / var(--x) * 7) + var(--offset)) calc((100% + 0.25rem) - (var(--7) / var(--y) * 100%)), calc((100% / var(--x) * 6) + var(--offset)) calc((100% + 0.25rem) - (var(--6) / var(--y) * 100%)), calc((100% / var(--x) * 5) + var(--offset)) calc((100% + 0.25rem) - (var(--5) / var(--y) * 100%)), calc((100% / var(--x) * 4) + var(--offset)) calc((100% + 0.25rem) - (var(--4) / var(--y) * 100%)), calc((100% / var(--x) * 3) + var(--offset)) calc((100% + 0.25rem) - (var(--3) / var(--y) * 100%)), calc((100% / var(--x) * 2) + var(--offset)) calc((100% + 0.25rem) - (var(--2) / var(--y) * 100%)), calc((100% / var(--x) * 1) + var(--offset)) calc((100% + 0.25rem) - (var(--1) / var(--y) * 100%)));
+      --polygon: polygon(
+               calc((100% / var(--x) * 1) + var(--offset)) calc(100% - (var(--1) / var(--y) * 100%)),
+               calc((100% / var(--x) * 2) + var(--offset)) calc(100% - (var(--2) / var(--y) * 100%)),
+               calc((100% / var(--x) * 3) + var(--offset)) calc(100% - (var(--3) / var(--y) * 100%)),
+               calc((100% / var(--x) * 4) + var(--offset)) calc(100% - (var(--4) / var(--y) * 100%)),
+               calc((100% / var(--x) * 5) + var(--offset)) calc(100% - (var(--5) / var(--y) * 100%)),
+               calc((100% / var(--x) * 6) + var(--offset)) calc(100% - (var(--6) / var(--y) * 100%)),
+               calc((100% / var(--x) * 7) + var(--offset)) calc(100% - (var(--7) / var(--y) * 100%)),
+               calc((100% / var(--x) * 8) + var(--offset)) calc(100% - (var(--8) / var(--y) * 100%)),
+               calc((100% / var(--x) * 9) + var(--offset)) calc(100% - (var(--9) / var(--y) * 100%)),
+               calc((100% / var(--x) * 10) + var(--offset)) calc(100% - (var(--10) / var(--y) * 100%)),
+               calc((100% / var(--x) * 11) + var(--offset)) calc(100% - (var(--11) / var(--y) * 100%)),
+               calc((100% / var(--x) * 12) + var(--offset)) calc(100% - (var(--12) / var(--y) * 100%)),
+               calc((100% / var(--x) * 13) + var(--offset)) calc(100% - (var(--12) / var(--y) * 100%)),
+               100% calc(100% - (var(--12) / var(--y) * 100%)),
+               100% calc((100% + 0.25rem) - (var(--12) / var(--y) * 100%)),
+               calc((100% / var(--x) * 13) + var(--offset)) calc((100% + 0.25rem) - (var(--12) / var(--y) * 100%)),
+               calc((100% / var(--x) * 12) + var(--offset)) calc((100% + 0.25rem) - (var(--12) / var(--y) * 100%)),
+               calc((100% / var(--x) * 11) + var(--offset)) calc((100% + 0.25rem) - (var(--11) / var(--y) * 100%)),
+               calc((100% / var(--x) * 10) + var(--offset)) calc((100% + 0.25rem) - (var(--10) / var(--y) * 100%)),
+               calc((100% / var(--x) * 9) + var(--offset)) calc((100% + 0.25rem) - (var(--9) / var(--y) * 100%)),
+               calc((100% / var(--x) * 8) + var(--offset)) calc((100% + 0.25rem) - (var(--8) / var(--y) * 100%)),
+               calc((100% / var(--x) * 7) + var(--offset)) calc((100% + 0.25rem) - (var(--7) / var(--y) * 100%)),
+               calc((100% / var(--x) * 6) + var(--offset)) calc((100% + 0.25rem) - (var(--6) / var(--y) * 100%)),
+               calc((100% / var(--x) * 5) + var(--offset)) calc((100% + 0.25rem) - (var(--5) / var(--y) * 100%)),
+               calc((100% / var(--x) * 4) + var(--offset)) calc((100% + 0.25rem) - (var(--4) / var(--y) * 100%)),
+               calc((100% / var(--x) * 3) + var(--offset)) calc((100% + 0.25rem) - (var(--3) / var(--y) * 100%)),
+               calc((100% / var(--x) * 2) + var(--offset)) calc((100% + 0.25rem) - (var(--2) / var(--y) * 100%)),
+               calc((100% / var(--x) * 1) + var(--offset)) calc((100% + 0.25rem) - (var(--1) / var(--y) * 100%))
+             );
       transition: opacity 0.3s cubic-bezier(0.5, 0, 0.5, 1);
     }
     .chaarts.points [style] th::before {
@@ -1185,9 +1264,14 @@ table:not(.chaarts) .sr-only {
       --sin-angle: calc(var(--sin-term-angle-1) - var(--sin-term-angle-2) + var(--sin-term-angle-3) - var(--sin-term-angle-4) + var(--sin-term-angle-5));
       --hypo: calc( var(--unitless-radius) / var(--sin-angle) );
       --ratio: calc( var(--hypo) / var(--unitless-radius) );
+      --polygon: polygon(
+        100% var(--pos),
+        calc( 100% - ( var(--point) * 100% / var(--scale) ) ) 100%,
+        100% 100%
+      );
       background: linear-gradient(to top left, blueviolet 10%, DarkBlue 75%);
-      -webkit-clip-path: polygon(100% var(--pos), calc( 100% - ( var(--point) * 100% / var(--scale) )) 100%, 100% 100%);
-              clip-path: polygon(100% var(--pos), calc( 100% - ( var(--point) * 100% / var(--scale) )) 100%, 100% 100%);
+      -webkit-clip-path: var(--polygon);
+              clip-path: var(--polygon);
       -webkit-filter: drop-shadow(0 0 1rem indigo);
               filter: drop-shadow(0 0 1rem indigo);
       height: 100%;
@@ -1321,20 +1405,19 @@ table:not(.chaarts) .sr-only {
     }
     @supports ((-webkit-mask-image: url()) or (mask-image: url())) {
       .chaarts.radar-multiple span {
-        -webkit-mask-image: radial-gradient(circle at bottom right, black, rgba(0, 0, 0, 0.5));
-                mask-image: radial-gradient(circle at bottom right, black, rgba(0, 0, 0, 0.5));
+        --mask: radial-gradient(circle at bottom right, rgba(0,0,0,1), rgba(0,0,0,.5));
+        -webkit-mask-image: var(--mask);
+                mask-image: var(--mask);
       }
     }
     @media (hover: hover) {
       .chaarts.radar-multiple td {
         opacity: .25;
         transition: opacity 0.2s cubic-bezier(0.5, 0, 0.5, 1);
-        will-change: opacity;
       }
       .chaarts.radar-multiple td::after {
         opacity: 0;
         transition: inherit;
-        will-change: inherit;
       }
       .chaarts.radar-multiple tr:hover td {
         opacity: 1;
