@@ -78,6 +78,12 @@
     Vous l’aurez peut-être compris, <strong>le principal écueil de ce graphique est qu’il
     nécessite de connaître le nombre de points par avance</strong>.
    </li>
+   <li>
+     Puisque <code>clip-path</code> requière encore <a href="https://caniuse.com/#search=clip-path">
+     un préfixe <code>-webkit-</code> pour Safari</a>, on utilise une variable CSS pour <strong>éviter la
+     duplication</strong> du <code>polygon()</code> —&nbsp;<a hreflang="en" href="https://css-irl.info/7-uses-for-css-custom-properties/">astuce
+     partagée par <cite>Michelle Barker</cite> dans <em lang="en">"7 uses for CSS custom properties"</em></a>.
+   </li>
   </ul>
  </li>
  <li>

@@ -302,11 +302,12 @@
 
   .chaarts[class*="radar"] td:nth-of-type(2) span {
     --pos: calc( 100% - (var(--3) * 100% / (var(--scale) * var(--ratio) ) ) );
-    clip-path: polygon(
+    --polygon: polygon(
       100% var(--pos),
       calc( 100% - ( var(--2) * 100% / var(--scale) ) ) 100%,
       100% 100%
     );
+    clip-path: var(--polygon);
   }
 
   .chaarts[class*="radar"] td::after,
@@ -541,9 +542,10 @@
   pointer-events: auto;
 }
 
-@supports ( mask-image: url() ) {
+@supports (mask-image: url()) {
   .chaarts.radar-multiple span {
-    mask-image: radial-gradient(circle at bottom right, rgba(0,0,0,1), rgba(0,0,0,.5));
+    --mask: radial-gradient(circle at bottom right, rgba(0,0,0,1), rgba(0,0,0,.5));
+    mask-image: var(--mask);
   }
 }
 

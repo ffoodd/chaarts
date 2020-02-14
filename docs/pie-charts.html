@@ -80,8 +80,9 @@
    <li>
     <var>--value</var> is the percentage value,
     useful for determining <strong>the angle</strong> the element should occupy on the circle.
-    All points of the <code>clip-path</code> <code>polygon()</code> depend on this
-    value —&nbsp;read the technical note after the example for details of the calculations.
+    All points of the <code>polygon()</code> —&nbsp;used to draw the pie part thanks to <code>clip-path</code>&nbsp;—
+    depend on this value (read <a href="#calculation-twist">the technical note after
+    the example for details of the calculations</a>).
    </li>
    <li>
     <var>--start</var> is used to define the <strong>starting point</strong>
@@ -102,6 +103,16 @@
   a <strong>pseudo-element</strong> on each cell <code>&lt;td&gt;</code>is formatted
   in a clever way according to all our variables, including <code>transform</code>,
   <code>clip-path</code> and <code>mask-image</code>.
+  <ul>
+    <li>
+      Since <code>clip-path</code> still requires <a href="https://caniuse.com/#search=clip-path">
+      a <code>-webkit-</code> vendor prefix for Safari</a> and <code>mask-image</code>
+      <a href="https://caniuse.com/#search=mask-image">for WebKit based browsers</a>,
+      we use a CSS custom property to <strong>to prevent duplicate (long) values for those properties</strong>
+      —&nbsp;<a href="https://css-irl.info/7-uses-for-css-custom-properties/">trick
+      shared by <cite>Michelle Barker</cite> in "7 uses for CSS custom properties"</a>.
+    </li>
+  </ul>
  </li>
  <li>
   And finally <strong>a pattern</strong> is applied to the background,
@@ -352,7 +363,7 @@
    --pos-B: calc( var(--sin-β) * 50 );
    --pos-A: calc( var(--sin-α) * 50 );
    background-color: var(--color, currentColor);
-   clip-path: polygon(
+   --polygon: polygon(
      50% 50%,
      50% 0%,
      100% 0%,
@@ -365,15 +376,17 @@
      calc( 50% - ( var(--pos-A) * 1% * var(--gt-75, 0) ) )        calc( 50% - ( var(--pos-B) * 1% * var(--gt-75, 0) ) ),
      50% 50%
    );
+   clip-path: var(--polygon);
    content: '';
    height: var(--radius) ;
    left: 50%;
-   mask-image: radial-gradient(
+   --mask: radial-gradient(
      circle at center,
      white 0%,
      white calc(var(--radius)  / 2),
      transparent calc(var(--radius)  / 2)
    );
+   mask-image: var(--mask);
    position: absolute;
    top: 40%;
    transform:
@@ -414,7 +427,7 @@
   </pre>
  </div>
 </details>
-<details>
+<details id="calculation-twist">
  <summary>The calculation twist</summary>
  <h3>The positions of the polygon</h3>
  <p>
@@ -826,13 +839,14 @@
 <details>
  <summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
  <div><pre><code class="language-css">.chaarts.donut {
-  mask-image: radial-gradient(
+  --mask: radial-gradient(
     circle at 50% calc(50% - 2rem),
     transparent 0%,
     transparent var(--offset),
     white calc(var(--offset) + 1px),
     white 100%
   );
+  mask-image: var(--mask);
 }
 
 .chaarts.donut td::after {

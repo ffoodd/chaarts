@@ -56,8 +56,9 @@
    <li>
     <var>--value</var> correspond à la valeur en pourcentage,
     utile pour déterminer <strong>l’angle</strong> que doit occuper l’élément sur le cercle.
-    Tous les points du <code>polygon()</code> de <code>clip-path</code> dépendent de cette
-    valeur —&nbsp;lire la note technique après l’exemple pour le détail des calculs.
+    Tous les points du <code>polygon()</code> —&nbsp;servant à tracer la part du fromage
+    à l’aide de <code>clip-path</code>&nbsp;— dépendent de cette valeur (lire <a href="#calcul-tordu">la note technique après l’exemple pour le détail
+    des calculs</a>).
    </li>
    <li>
     <var>--start</var> permet de définir le <strong>point de départ</strong> de l’arc
@@ -79,6 +80,16 @@
   un <strong>pseudo-élément</strong> sur chaque cellule <code>&lt;td&gt;</code> est mis en forme
   de savante manière en fonction de toutes nos variables, avec notamment <code>transform</code>,
   <code>clip-path</code> et <code>mask-image</code>.
+  <ul>
+    <li>
+      Puisque <code>clip-path</code> requière encore <a hreflang="en" href="https://caniuse.com/#search=clip-path">
+      un préfixe <code>-webkit-</code> pour Safari</a> et <code>mask-image</code>
+      <a hreflang="en" href="https://caniuse.com/#search=mask-image">pour tous les navigateurs basés sur WebKit</a>,
+      on utilise une variable CSS pour <strong>éviter la duplication de leurs valeurs</strong>
+      —&nbsp;<a hreflang="en" href="https://css-irl.info/7-uses-for-css-custom-properties/">astuce
+      partagée par <cite>Michelle Barker</cite> dans <em lang="en">"7 uses for CSS custom properties"</em></a>.
+    </li>
+  </ul>
  </li>
  <li>
   Et finalement <strong>un motif</strong> est appliqué sur l’arrière-plan, afin de mieux
@@ -242,7 +253,7 @@
    --pos-B: calc( var(--sin-β) * 50 );
    --pos-A: calc( var(--sin-α) * 50 );
    background-color: var(--color, currentColor);
-   clip-path: polygon(
+   --polygon: polygon(
      50% 50%,
      50% 0%,
      100% 0%,
@@ -255,15 +266,17 @@
      calc( 50% - ( var(--pos-A) * 1% * var(--gt-75, 0) ) )               calc( 50% - ( var(--pos-B) * 1% * var(--gt-75, 0) ) ),
      50% 50%
    );
+   clip-path: var(--polygon);
    content: '';
    height: var(--radius) ;
    left: 50%;
-   mask-image: radial-gradient(
+   --mask: radial-gradient(
      circle at center,
      white 0%,
      white calc(var(--radius)  / 2),
      transparent calc(var(--radius)  / 2)
    );
+   mask-image: var(--mask);
    position: absolute;
    top: 40%;
    transform:
@@ -304,7 +317,7 @@
   </pre>
  </div>
 </details>
-<details>
+<details id="calcul-tordu">
  <summary>Le calcul tordu</summary>
  <h3>Les positions du polygone</h3>
  <p>
