@@ -70,8 +70,7 @@
       @include sin(α);
       --pos-B: calc( var(--sin-β) * 50 );
       --pos-A: calc( var(--sin-α) * 50 );
-      background: var(--color, currentColor) var(--background);
-      clip-path: polygon(
+      --polygon: polygon(
         50% 50%,
         50% 0%,
         100% 0%,
@@ -84,14 +83,17 @@
         calc( 50% - ( var(--pos-A) * 1% * var(--gt-75, 0) ) )                             calc( 50% - ( var(--pos-B) * 1% * var(--gt-75, 0) ) ),
         50% 50%
       );
+      background: var(--color, currentColor) var(--background);
+      clip-path: var(--polygon);
       content: '';
       height: var(--radius);
-      mask-image: radial-gradient(
+      --mask: radial-gradient(
         circle at center,
-        palette( default, contrast) 0%,
-        palette( default, contrast) calc(var(--radius) / 2),
+        #fff 0%,
+        #fff calc(var(--radius) / 2),
         transparent 0
       );
+      mask-image: var(--mask);
       transform:
         translate3d(-50%, -50%, 0)
         rotate( var(--position) )
@@ -174,13 +176,14 @@
   }
 
    .chaarts.donut {
-     mask-image: radial-gradient(
+     --mask: radial-gradient(
        circle at 50% calc(50% - #{$gutter * 2}),
        transparent 0%,
        transparent var(--offset),
-       palette( default, contrast) calc(var(--offset) + 1px),
-       palette( default, contrast) 100%
+       #fff calc(var(--offset) + 1px),
+       #fff 100%
      );
+     mask-image: var(--mask);
 
      td::after {
        --away: calc( var(--radius) / 2 - #{$gutter * 2.5} );

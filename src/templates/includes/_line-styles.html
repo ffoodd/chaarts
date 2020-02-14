@@ -40,7 +40,7 @@
   .chaarts.line [style]::before {
     bottom: var(--bottom);
     background: linear-gradient(to top, deepskyblue, crimson 75%);
-    clip-path: polygon(
+    --polygon: polygon(
       0% 100%,
       calc( ( 100% / var(--x) * 1) ) 100%,
       calc( ( 100% / var(--x) * 1) ) calc( 100% - ( var(--1) / var(--y) * 100% ) ),
@@ -60,6 +60,7 @@
       100% 100%,
       0% 100%
     );
+    clip-path: var(--polygon);
     content: "";
     position: absolute;
     top: 0;
@@ -125,7 +126,7 @@
     counter-reset: value var(--value);
     content: var(--term) " " var(--year) "\A " counter(value) "\A0°C";
     color: #fff;
-    clip-path: polygon(
+    --polygon: polygon(
       0% 0%,
       100% 0%,
       100% var(--arrow),
@@ -134,6 +135,7 @@
       calc(50% + .25rem) var(--arrow),
       0% var(--arrow)
     );
+    clip-path: var(--polygon);
     opacity: 0;
     padding: .5rem;
     left: calc( var(--offset) * 3 );

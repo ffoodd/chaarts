@@ -39,7 +39,7 @@
 <h2>Area charts</h2>
 
 <p>
- this chart is based on <strong>CSS custom properties, grids</strong> and <code>clip-path</code>
+ This chart is based on <strong>CSS custom properties, grids</strong> and <code>clip-path</code>
  —&nbsp;the latter being the most important.
 </p>
 
@@ -76,6 +76,12 @@
    <li>
     As you may have understood, <strong>the main pitfall of this graph is
     that it requires to know the number of points in advance</strong>.
+   </li>
+   <li>
+     Since <code>clip-path</code> still <a href="https://caniuse.com/#search=clip-path">requires
+     <code>-webkit-</code> vendor prefix for Safari</a>, we're using a custom property to prevent
+     <code>polygon()</code> duplication —&nbsp;<a href="https://css-irl.info/7-uses-for-css-custom-properties/">based
+     on a trick shared by <cite>Michelle Barker</cite> in "7 uses for CSS custom properties"</a>.
    </li>
   </ul>
  </li>

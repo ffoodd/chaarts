@@ -54,7 +54,7 @@
      [style]::before {
        bottom: var(--bottom);
        background: linear-gradient(to top, palette( secondary, light ), palette( alert ) 75%);
-       clip-path: polygon(
+       --polygon: polygon(
          0% 100%,
          calc((100% / var(--x) * 1)) 100%,
          calc((100% / var(--x) * 1)) calc(100% - (var(--1) / var(--y) * 100%)),
@@ -74,6 +74,7 @@
          100% 100%,
          0% 100%
        );
+       clip-path: var(--polygon);
        content: "";
        position: absolute;
        top: 0;
@@ -147,8 +148,7 @@
        &::after {
          --arrow: calc(100% - #{$gutter / 4});
          --top: calc( var(--height) - ( var(--value) / var(--y) * var(--height) ) );
-         background-color: palette( dominant );
-         clip-path: polygon(
+         --polygon: polygon(
            0% 0%,
            100% 0%,
            100% var(--arrow),
@@ -157,6 +157,8 @@
            calc(50% + #{$gutter / 4}) var(--arrow),
            0% var(--arrow)
          );
+         background-color: palette( dominant );
+         clip-path: var(--polygon);
          color: palette( dominant, contrast );
          content: var(--term) " " var(--year) "\A " counter(value) "\A0°C"; // 1
          counter-reset: value var(--value);                                 // 2
@@ -207,7 +209,7 @@
        [style] {
            &::before {
              background: var(--color, currentColor) var(--background);
-             clip-path: polygon(
+             --polygon: polygon(
                calc((100% / var(--x) * 1) + var(--offset)) calc(100% - (var(--1) / var(--y) * 100%)),
                calc((100% / var(--x) * 2) + var(--offset)) calc(100% - (var(--2) / var(--y) * 100%)),
                calc((100% / var(--x) * 3) + var(--offset)) calc(100% - (var(--3) / var(--y) * 100%)),
