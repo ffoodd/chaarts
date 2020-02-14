@@ -1,7 +1,7 @@
 <pre><code class="language-css">@supports (clip-path: polygon(0% calc(100% - (var(--1) * 100% / var(--y))))) {
   .chaarts.points [style]::before {
     background: var(--color, currentColor) var(--background);
-    clip-path: polygon(
+    --polygon: polygon(
       calc( ( 100% / var(--x) * 1 ) + var(--offset) ) calc( 100% - ( var(--1) / var(--y) * 100% ) ),
       calc( ( 100% / var(--x) * 2 ) + var(--offset) ) calc( 100% - ( var(--2) / var(--y) * 100% ) ),
       calc( ( 100% / var(--x) * 3 ) + var(--offset) ) calc( 100% - ( var(--3) / var(--y) * 100% ) ),
