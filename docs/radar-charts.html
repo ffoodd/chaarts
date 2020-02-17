@@ -110,7 +110,8 @@
     —&nbsp;but on another scale…
    </li>
    <li>
-    because to <strong>compensate for the distortion</strong> due to the <code>skew()</code>,
+    because to <strong>compensate for the distortion</strong>
+    <a href="#firefox">due to the <code>skew()</code> function</a>,
     we need to correct the scale on which the second ratio is calculated
     using a little trigonometry:
     <ul>
@@ -329,23 +330,62 @@
 }</code></pre>
 </div>
 </details>
-
-<h2>Some details</h2>
-
-<div class="grid-2-1">
-  <div class="note no-margin">
-   <h3>A Chromium bug</h3>
-   <p>
-    There is currently a bug in Chromium —&nbsp;I filled
-    <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=939728"
-    target="_blank" rel="noopener noreferrer">an issue on bugs.chromium.org</a>&nbsp;—
-    when using the <code>border-spacing</code> roperty on the table:
-    it <strong>prevents Chrome to define the dimensions of the table</strong>…
-    For Chrome user, use the inspector to uncheck this property on the
-    <code>&lt;table&gt;</code> tag of these examples!
+<details>
+ <summary>A Chromium bug</summary>
+ <p>
+  There is currently a bug in Chromium —&nbsp;I filled
+  <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=939728"
+  target="_blank" rel="noopener noreferrer">an issue on bugs.chromium.org</a>&nbsp;—
+  when using the <code>border-spacing</code> property on the table:
+  it <strong>prevents Chrome to define the dimensions of the table</strong>…
+  For Chrome user, use the inspector to uncheck this property on the
+  <code>&lt;table&gt;</code> tag of these examples!
+ </p>
+ <h3>Reduced test case</h3>
+ <div class="table-container radar-container" role="group" aria-labelledby="caption-10">
+  <div class="fieldset d-flex sm-hidden">
+   <p class="label no-margin">
+    <strong id="label-10">Switch</strong><br>
+    <span id="description-10">Allows you to disable styles on the following table.</span>
    </p>
+   <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
+       role="switch" aria-checked="true"
+       aria-labelledby="label-10" aria-describedby="description-10">
+    <span>Funny</span>
+    <span>Sober</span>
+   </button>
   </div>
-  <figure role="group" class="no-margin" aria-label="Screenshot of the deformation caused by skew.">
+
+  <table class="chaarts radar" id="radar-bug" style="border-spacing: 0; --scale: 20; --step: 5; --items: 7; --1: 14; --2: 11; --3: 13; --4: 16; --5: 10; --6: 12; --7: 4; --8: var(--1);">
+   <caption id="caption-10">Level of interest by domain, out of 20</caption>
+   <thead>
+    <tr>
+     <th scope="col">Accessibility</th>
+     <th scope="col">SEO</th>
+     <th scope="col">Performance</th>
+     <th scope="col">Compatibility</th>
+     <th scope="col">Security</th>
+     <th scope="col">Code quality</th>
+     <th scope="col">Test</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td><span>14</span></td>
+     <td><span>11</span></td>
+     <td><span>13</span></td>
+     <td><span>16</span></td>
+     <td><span>10</span></td>
+     <td><span>12</span></td>
+     <td><span>4</span></td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+</details>
+<details>
+  <summary id="firefox">A Firefox feature</summary>
+  <figure role="group" class="grid-1-2 no-margin" aria-label="Screenshot of the deformation caused by skew.">
     <img src="img/hypothenuse.jpg" alt="The skew() function deforms the element by tilting it." width="277" height="202" />
     <figcaption>
       Screenshot of the deformation caused by <code>skew()</code>
@@ -354,7 +394,7 @@
       transform Highlighter happen in Firefox DevTools</a>.
     </figcaption>
   </figure>
-</div>
+</details>
 
 
 <h2>Overlapping radars</h2>

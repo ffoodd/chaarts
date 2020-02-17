@@ -111,7 +111,7 @@
     —&nbsp;mais sur une autre échelle…
    </li>
    <li>
-    car pour <strong>compenser la distorsion</strong> due à la fonction <code>skew()</code>,
+    car pour <strong>compenser la distorsion</strong> <a href="#firefox">due à la fonction <code>skew()</code></a>,
     nous devons corriger l’échelle sur laquelle est calculée le second ratio à l’aide d’un peu
     de trigonométrie&nbsp;:
     <ul>
@@ -330,32 +330,71 @@
 }</code></pre>
 </div>
 </details>
+<details>
+  <summary>Bug dans Chromium</summary>
+  <p>
+   Il y a en ce moment un bug dans Chromium —&nbsp;j’ai saisi
+   <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=939728" hreflang="en"
+   target="_blank" rel="noopener noreferrer">un ticket sur bugs.chromium.org</a>&nbsp;—
+   lors de l’utilisation de la propriété <code>border-spacing</code> sur le tableau&nbsp;:
+   cela <strong>empêche Chrome de définir les dimensions du tableau</strong>…
+   Pour les utilisateurs de Chrome, utilisez l’inspecteur pour décocher cette propriété
+   sur la balise <code>&lt;table&gt;</code> de ces exemples&nbsp;!
+  </p>
+  <h3>Cas de test réduit</h3>
+  <div class="table-container radar-container" role="group" aria-labelledby="caption-10">
+   <div class="fieldset d-flex sm-hidden">
+    <p class="label no-margin">
+     <strong id="label-10">Interrupteur</strong><br>
+     <span id="description-10">Permet de désactiver les styles sur le tableau suivant.</span>
+    </p>
+    <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
+        role="switch" aria-checked="true"
+        aria-labelledby="label-10" aria-describedby="description-10">
+     <span>Guilleret</span>
+     <span>Sobre</span>
+    </button>
+   </div>
 
-<h2>Quelques détails</h2>
-
-<div class="grid-2-1">
-  <div class="note">
-   <h3>Bug dans Chromium</h3>
-   <p>
-    Il y a en ce moment un bug dans Chromium —&nbsp;j’ai saisi
-    <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=939728" hreflang="en"
-    target="_blank" rel="noopener noreferrer">un ticket sur bugs.chromium.org</a>&nbsp;—
-    lors de l’utilisation de la propriété <code>border-spacing</code> sur le tableau&nbsp;:
-    cela <strong>empêche Chrome de définir les dimensions du tableau</strong>…
-    Pour les utilisateurs de Chrome, utilisez l’inspecteur pour décocher cette propriété
-    sur la balise <code>&lt;table&gt;</code> de ces exemples&nbsp;!
-   </p>
+   <table class="chaarts radar" id="radar-bug" style="border-spacing: 0; --scale: 20; --step: 5; --items: 7; --1: 14; --2: 11; --3: 13; --4: 16; --5: 10; --6: 12; --7: 4; --8: var(--1);">
+    <caption id="caption-10">Niveau d’intérêt par domaine, sur 20</caption>
+    <thead>
+     <tr>
+      <th scope="col">Accessibilité</th>
+      <th scope="col">Référencement</th>
+      <th scope="col">Performance</th>
+      <th scope="col">Compatibilité</th>
+      <th scope="col">Sécurité</th>
+      <th scope="col">Qualité de code</th>
+      <th scope="col">Test</th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td><span>14</span></td>
+      <td><span>11</span></td>
+      <td><span>13</span></td>
+      <td><span>16</span></td>
+      <td><span>10</span></td>
+      <td><span>12</span></td>
+      <td><span>4</span></td>
+     </tr>
+    </tbody>
+   </table>
   </div>
-  <figure role="group" aria-label="Capture d’écran de la déformation provoquée par skew.">
-    <img src="img/hypothenuse.jpg" alt="La fonction skew() déforme l’élément en l’inclinant." width="277" height="202" />
-    <figcaption>
-      Capture d’écran de la déformation provoquée par <code>skew()</code>
-      –&nbsp;merci à <a href="https://patrickbrosset.com/" hreflang="en">Patrick Brosset</a>
-      qui a mis en place <a href="https://developer.mozilla.org/fr/docs/Outils/Inspecteur/Comment/Visualiser_les_transformations">la
-      prévisualisation des transformations CSS dans les outils de développement de Firefox</a>.
-    </figcaption>
+</details>
+<details>
+  <summary id="firefox">Une fonctionnalité Firefox</summary>
+  <figure role="group" class="grid-1-2 no-margin" aria-label="Capture d’écran de la déformation provoquée par skew.">
+  <img src="img/hypothenuse.jpg" alt="La fonction skew() déforme l’élément en l’inclinant." width="277" height="202" />
+  <figcaption>
+    Capture d’écran de la déformation provoquée par <code>skew()</code>
+    –&nbsp;merci à <a href="https://patrickbrosset.com/" hreflang="en">Patrick Brosset</a>
+    qui a mis en place <a href="https://developer.mozilla.org/fr/docs/Outils/Inspecteur/Comment/Visualiser_les_transformations">la
+    prévisualisation des transformations CSS dans les outils de développement de Firefox</a>.
+  </figcaption>
   </figure>
-</div>
+</details>
 
 
 <h2>Radars superposés</h2>
