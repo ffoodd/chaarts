@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html lang="en" class="no-js">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         
   <title>Line charts — chaarts</title>
@@ -11,15 +9,15 @@
   <meta property="og:type" content="article">
   <meta property="og:description" name="description" content="Charts with HTML & CSS">
   <meta name="twitter:card" content="summary">
-  <link rel="alternate" hreflang="fr" href="https://ffoodd.github.io/chaarts/courbe.html"/>
+  <link rel="alternate" hreflang="fr" href="https://ffoodd.github.io/chaarts/courbe.html">
 
         <script>
           document.documentElement.classList.remove('no-js');
           document.documentElement.classList.add('js');
         </script>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="css/styles.min.css" media="all">
-        <link rel="stylesheet" href="css/print.min.css" media="print">
+        <link rel="stylesheet" href="css/styles.min.css" media="all" integrity="sha384-tsaEBI4ao0xD9p8xkEF/6B6FyDf1H5+2ffQIPmv+vVHvZ/Q6OnK6fapsBq76bNwI" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/print.min.css" media="print" integrity="sha384-i3dRwmp8zXRlpUnJTD27rKIBzSEdYbc0YEFwuULfvleZ4Vm0RG81i/6HXy96jet8" crossorigin="anonymous">
     </head>
     <body itemscope itemtype="http://schema.org/WebPage">
       <header role="banner">
@@ -40,15 +38,14 @@
   <li><a href="./pie-charts.html">Pie charts</a></li>
   <li><a href="./radar-charts.html">Radar charts</a></li>
   <li class="ml-auto">
-    <a rel="alternate" hreflang="fr" lang="fr" href="./courbe.html"
-      aria-label="Version française" title="Version française">FR</a>
+    <a rel="alternate" hreflang="fr" lang="fr" href="./courbe.html" aria-label="Version française" title="Version française">FR</a>
   </li>
   <li>
     <a href="https://github.com/ffoodd/chaarts/" class="d-flex">
       <svg viewBox="0 0 16 16" height="16" width="16" aria-hidden="true">
-        <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+        <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
       </svg>
-      &nbsp;GitHub
+       GitHub
     </a>
   </li>
 </ul>
@@ -64,7 +61,7 @@
 
 <p>
  This chart is based on <strong>CSS custom properties, grids</strong> and <code>clip-path</code>
- —&nbsp;the latter being the most important.
+ — the latter being the most important.
 </p>
 
 <ol>
@@ -82,7 +79,7 @@
   </ul>
  </li>
  <li>
-  Each line <code>&lt;tr&gt;</code> in <code>&lt;tbody&gt;</code> carries a set of variables,
+  Each line <code><tr></code> in <code><tbody></code> carries a set of variables,
   corresponding to all the values it contains.
   In a <code>::before</code> pseudo-element, a position is defined for each value
   within the <code>clip-path</code> <code>polygon()</code> function.
@@ -104,20 +101,19 @@
    <li>
      Since <code>clip-path</code> still <a href="https://caniuse.com/#search=clip-path">requires
      <code>-webkit-</code> vendor prefix for Safari</a>, we're using a custom property to prevent
-     <code>polygon()</code> duplication —&nbsp;<a href="https://css-irl.info/7-uses-for-css-custom-properties/">based
+     <code>polygon()</code> duplication — <a href="https://css-irl.info/7-uses-for-css-custom-properties/">based
      on a trick shared by <cite>Michelle Barker</cite> in "7 uses for CSS custom properties"</a>.
    </li>
   </ul>
  </li>
  <li>
-  Each cell <code>&lt;td&gt;</code> in <code>&lt;tbody&gt;</code> carries an
+  Each cell <code><td></code> in <code><tbody></code> carries an
   <code>::after</code> pseudo-element used to <strong>summarize</strong>
   its headers and value in a simulated tooltip, and a <code>::before</code> pseudo-element
   to manage an interactive layer on the cell:
   <ul>
    <li>
-    multiline display is based on <a
-    href="https://lea.verou.me/2012/02/flexible-multiline-definition-lists-with-2-lines-of-css/">a
+    multiline display is based on <a href="https://lea.verou.me/2012/02/flexible-multiline-definition-lists-with-2-lines-of-css/">a
     <cite>Lea Verou</cite>'s trick using <code>white-space: pre;</code> and the
     <code>\A</code> character</a>;
    </li>
@@ -135,7 +131,7 @@
   <ul>
    <li>
     a big <code>padding-top</code> on the table is used to reserve space
-    for the charts —&nbsp;<strong>caution</strong>:
+    for the charts — <strong>caution</strong>:
     it is necessary to apply <code>border-collapse: separate;</code> on the table
     for the <code>padding</code> to have an impact;
    </li>
@@ -147,7 +143,7 @@
    </li>
    <li>
     and hover interactions to highlight the hovered value:
-    its column using a pseudo-element —&nbsp;positioned with the help of clever calculations&nbsp;—
+    its column using a pseudo-element — positioned with the help of clever calculations —
     and <code>mix-blend-mode</code> for a wow effect.
    </li>
   </ul>
@@ -162,16 +158,13 @@
    <strong id="label-3">Switch</strong><br>
    <span id="description-3">Allows you to disable styles on the following table.</span>
   </p>
-  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
-      role="switch" aria-checked="true"
-      aria-labelledby="label-3" aria-describedby="description-3">
+  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css" role="switch" aria-checked="true" aria-labelledby="label-3" aria-describedby="description-3">
    <span>Funny</span>
    <span>Sober</span>
   </button>
  </div>
 
- <table class="chaarts line" id="line"
-     style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Feb.'; --t-3: 'Mar.'; --t-4: 'Apr.'; --t-5: 'May'; --t-6: 'June';
+ <table class="chaarts line" id="line" style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Feb.'; --t-3: 'Mar.'; --t-4: 'Apr.'; --t-5: 'May'; --t-6: 'June';
         --t-7: 'July'; --t-8: 'Aug.'; --t-9: 'Sept.'; --t-10: 'Oct.'; --t-11: 'Nov.'; --t-12: 'Dec.';">
   <caption id="caption-3">Average monthly temperature in 2017</caption>
   <thead>
@@ -196,62 +189,62 @@
     <th scope="row">2017</th>
     
   <td>
-    8&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    8 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    6&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    6 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    9&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    9 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    12&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    12 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    15&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    15 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    21&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    21 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    24&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    24 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    25&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    25 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    22&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    22 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    19&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    19 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    14&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    14 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    9&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    9 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
    </tr>
@@ -260,28 +253,28 @@
 </div>
 
 <details>
- <summary><abbr  title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
- <div><pre><code class="language-markup">&lt;table class="chaarts line" style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Feb.'; […]">
-  &lt;caption id="caption-3">[…]&lt;/caption>
-  &lt;thead>
-    &lt;tr>
-      &lt;th scope="col">[…]&lt;/th>
-      &lt;th scope="col">Jan.&lt;/th>
-      &lt;th scope="col">[…]&lt;/th>
-    &lt;/tr>
-  &lt;/thead>
-  &lt;tbody>
-    &lt;tr style="--year: '2017'; --1: 8; --2: 6; --3: 9; --4: 12; --5: 15; --6: 21; --7: 24; --8: 25; --9: 22; --10: 19; --11: 14; --12: 9;">
-      &lt;th scope="row">2017&lt;/th>
-      &lt;td>8&nbsp;°C&lt;/td>
-      &lt;td>[…]&lt;/td>
-    &lt;/tr>
-  &lt;/tbody>
-&lt;/table&gt;</code></pre>
+ <summary><abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
+ <div><pre><code class="language-markup"><table class="chaarts line" style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Feb.'; […]">
+  <caption id="caption-3">[…]</caption>
+  <thead>
+    <tr>
+      <th scope="col">[…]</th>
+      <th scope="col">Jan.</th>
+      <th scope="col">[…]</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="--year: '2017'; --1: 8; --2: 6; --3: 9; --4: 12; --5: 15; --6: 21; --7: 24; --8: 25; --9: 22; --10: 19; --11: 14; --12: 9;">
+      <th scope="row">2017</th>
+      <td>8 °C</td>
+      <td>[…]</td>
+    </tr>
+  </tbody>
+</table></code></pre>
 </div>
 </details>
 <details>
- <summary><abbr  title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
+ <summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
  <div><pre><code class="language-css">@supports (clip-path: polygon(0% calc( 100% - ( var(--1) * 100% / var(--y) )) )) {
   .chaarts.line {
     --offset: calc( ( 100% / var(--x) ) / 2 );
@@ -469,7 +462,7 @@
  <p>
   To begin with, you need to understand that <code>clip-path</code> is a path,
   just like a vector shape. It must therefore <strong>be closed</strong>.
-  So the path starts at <var>0% 100%</var> —&nbsp;bottom left, does its path life,
+  So the path starts at <var>0% 100%</var> — bottom left, does its path life,
   toggles to <var>100% 100%</var> and comes back looping at <var>0% 100%</var>.
  </p>
  <p>And in its path, each point must be positioned in abscissa and ordinate.</p>
@@ -479,7 +472,7 @@
   <var>var(--x)</var> scale, and <strong>multiply by the index</strong> of the element.
   For example: <code>calc( ( 100% / var(--x) * 1) )</code>.
   To place each point <strong>in the middle of its column</strong>, we shift it by half a column
-  —&nbsp;which we do by adding to the previous calculation <var>var(--offset)</var>,
+  — which we do by adding to the previous calculation <var>var(--offset)</var>,
   which corresponds to <code>calc( ( 100% / var(--x) ) / 2 )</code>.<br>
   The final position is therefore, here for the third point:<br>
   <code>calc( ( 100% / var(--x) * 3) + var(--offset) )</code>.
@@ -488,12 +481,12 @@
  <p>
   In this graph, the Y-axis is the most important axis. So to place the point,
   we start by calculating <strong>the ratio of its value on the scale</strong>
-  —&nbsp;formulated as follows: <code>var(--1) / var(--y)</code>. And because
+  — formulated as follows: <code>var(--1) / var(--y)</code>. And because
   <code>polygon()</code> uses percentage values, we report this calculation on 100%:
   <code>( var(--1) / var(--y) * 100% )</code>.<br>
   And finally, since the polygon's datums start from the top left, <strong>the position
   position must be defined according to the top of the box</strong>.
-  The final formula then looks like this —&nbsp;again for the third element:
+  The final formula then looks like this — again for the third element:
   <code>calc( 100% - ( var(--3) / var(--y) * 100% ) )</code>.
  </p>
  <br>
@@ -507,16 +500,16 @@
  <li>
    the <code>polygon()</code> is <strong>continued to form a line</strong>,
    duplicating each point with an offset of <var>4px</var>
-   —&nbsp;the line thickness&nbsp;— and in the reverse order;
+   — the line thickness — and in the reverse order;
  </li>
  <li>
   the <code>::before</code> pseudo-element that displays the tooltip takes
   here the form of a point on the curve
-  —&nbsp;positioned using the same calculations that are used in the polygon;
+  — positioned using the same calculations that are used in the polygon;
  </li>
  <li>
   and especially, since <code>clip-path</code> is applied <strong>in the line</strong>
-  <code>&lt;tr&gt;</code>: you can put <strong>more than one</strong>&nbsp;!
+  <code><tr></code>: you can put <strong>more than one</strong> !
   So we need to add a combination of color and pattern to distinguish each line
   and associate them visually with their caption.
  </li>
@@ -528,16 +521,13 @@
    <strong id="label-4">Switch</strong><br>
    <span id="description-4">Allows you to disable styles on the following table.</span>
   </p>
-  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
-      role="switch" aria-checked="true"
-      aria-labelledby="label-4" aria-describedby="description-4">
+  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css" role="switch" aria-checked="true" aria-labelledby="label-4" aria-describedby="description-4">
    <span>Funny</span>
    <span>Sober</span>
   </button>
  </div>
 
- <table class="chaarts line points" id="points"
-     style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Feb.'; --t-3: 'Mar.'; --t-4: 'Apr.'; --t-5: 'May'; --t-6: 'June';
+ <table class="chaarts line points" id="points" style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Feb.'; --t-3: 'Mar.'; --t-4: 'Apr.'; --t-5: 'May'; --t-6: 'June';
         --t-7: 'July'; --t-8: 'Aug.'; --t-9: 'Sept.'; --t-10: 'Oct.'; --t-11: 'Nov.'; --t-12: 'Dec.';">
   <caption id="caption-4">Average monthly temperature per year</caption>
   <thead>
@@ -562,62 +552,62 @@
     <th scope="row">2017</th>
     
   <td>
-    8&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    8 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    6&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    6 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    9&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    9 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    12&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    12 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    15&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    15 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    21&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    21 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    24&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    24 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    25&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    25 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    22&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    22 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    19&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    19 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    14&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    14 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    9&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    9 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
    </tr>
@@ -625,62 +615,62 @@
     <th scope="row">2018</th>
     
   <td>
-    10&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    10 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    4&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    4 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    7&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    7 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    13&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    13 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    17&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    17 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    20&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    20 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    22&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    22 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    23&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    23 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    26&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    26 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    17&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    17 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    14&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    14 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
     
   <td>
-    10&nbsp;<abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
+    10 <abbr title="Degree Celsius" aria-label="Degree Celsius">°C</abbr>
   </td>
 
    </tr>
@@ -689,7 +679,7 @@
 </div>
 
 <details>
- <summary><abbr  title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
+ <summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
  <div><pre><code class="language-css">@supports (clip-path: polygon(0% calc(100% - (var(--1) * 100% / var(--y))))) {
   .chaarts.points [style]::before {
     background: var(--color, currentColor) var(--background);
@@ -804,11 +794,12 @@
       </main>
 
       
-        <script src="js/script.min.js"></script>
-        <script src="js/prism.min.js"></script>
+        <script src="js/script.min.js" integrity="sha384-GSFLTHfMgenmEx6jFpCPYPrICTc7v02GoC3xiIvkFqR7kyjirVQ6f2MHDkHnBlKB" crossorigin="anonymous"></script>
+        <script src="js/prism.min.js" integrity="sha384-0MFjDwTZ/C2v2TidAUN+xb3jb62cO99R2DqFEVRGsb06KJUzbcBaxDdWlG4gnjrv" crossorigin="anonymous"></script>
       
 
       
       
-    </body>
-</html>
+    
+
+</body></html>

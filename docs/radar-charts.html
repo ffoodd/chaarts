@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html lang="en" class="no-js">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         
   <title>Radar charts — chaarts</title>
@@ -11,15 +9,15 @@
   <meta property="og:type" content="article">
   <meta property="og:description" name="description" content="Charts with HTML & CSS">
   <meta name="twitter:card" content="summary">
-  <link rel="alternate" hreflang="fr" href="https://ffoodd.github.io/chaarts/radar.html"/>
+  <link rel="alternate" hreflang="fr" href="https://ffoodd.github.io/chaarts/radar.html">
 
         <script>
           document.documentElement.classList.remove('no-js');
           document.documentElement.classList.add('js');
         </script>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="css/styles.min.css" media="all">
-        <link rel="stylesheet" href="css/print.min.css" media="print">
+        <link rel="stylesheet" href="css/styles.min.css" media="all" integrity="sha384-tsaEBI4ao0xD9p8xkEF/6B6FyDf1H5+2ffQIPmv+vVHvZ/Q6OnK6fapsBq76bNwI" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/print.min.css" media="print" integrity="sha384-i3dRwmp8zXRlpUnJTD27rKIBzSEdYbc0YEFwuULfvleZ4Vm0RG81i/6HXy96jet8" crossorigin="anonymous">
     </head>
     <body itemscope itemtype="http://schema.org/WebPage">
       <header role="banner">
@@ -40,15 +38,14 @@
   <li><a href="./pie-charts.html">Pie charts</a></li>
   <li><a aria-current="page">Radar charts</a></li>
   <li class="ml-auto">
-    <a rel="alternate" hreflang="fr" lang="fr" href="./radar.html"
-       aria-label="Version française" title="Version française">FR</a>
+    <a rel="alternate" hreflang="fr" lang="fr" href="./radar.html" aria-label="Version française" title="Version française">FR</a>
   </li>
   <li>
     <a href="https://github.com/ffoodd/chaarts/" class="d-flex">
       <svg viewBox="0 0 16 16" height="16" width="16" aria-hidden="true">
-        <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+        <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
       </svg>
-      &nbsp;GitHub
+       GitHub
     </a>
   </li>
 </ul>
@@ -71,24 +68,24 @@
 
 <ul>
  <li>
-  on the <code>&lt;table&gt;</code> element, the circular scale is created using two successive
-  <code>repeating-radial-gradient()</code> —&nbsp;depending on the
+  on the <code><table></code> element, the circular scale is created using two successive
+  <code>repeating-radial-gradient()</code> — depending on the
   <var>--scale</var> and <var>--step</var> variables;
  </li>
  <li>
-  each element <code>&lt;th&gt;</code> is moved outside the circle thus formed,
+  each element <code><th></code> is moved outside the circle thus formed,
   thanks to a technique borrowed from
   <a href="https://stackoverflow.com/questions/12813573/position-icons-into-circle">
   <cite>Ana Tudor</cite>, who explains it on StackOverflow</a>;
  </li>
  <li>
-  then —&nbsp;still on header cells&nbsp;— the value corresponding to each column
+  then — still on header cells — the value corresponding to each column
   is displayed in a pseudo-element <code>::after</code> using
   <a href="https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab">a
   trick from <cite>Cassie Evans</cite>, using <code>counter-reset</code> and <code>counter()</code>
   to display a numerical variable in the <code>content</code> property</a>.
- <li>
-  Then the magic works on the <code>&lt;td&gt;</code> elements:
+ </li><li>
+  Then the magic works on the <code><td></code> elements:
   <ol>
    <li>
     each of which is adjusted to form <strong>a square with a side equal
@@ -96,18 +93,18 @@
    </li>
    <li>
     then transformed to represent a portion of the circle according to
-    the number of elements —&nbsp;specified with <var>--items</var>&nbsp;— using
+    the number of elements — specified with <var>--items</var> — using
     <a href="https://tympanus.net/codrops/2013/08/09/building-a-circular-navigation-with-css-transforms/">
     a trick shared by <cite>Sara Soueidan</cite> on Codrops</a>,
    </li>
    <li>each one is decorated with a border at the bottom;</li>
    <li>
     then we use again <code>clip-path</code> <code>polygon()</code> function
-    on each direct child <code>&lt;span&gt;</code> —&nbsp; extended to occupy the whole surface
-    of its parent <code>&lt;td&gt;</code>&nbsp;— in order to form a triangle, based for one side
+    on each direct child <code><span></code> —  extended to occupy the whole surface
+    of its parent <code><td></code> — in order to form a triangle, based for one side
     on the ratio value of the current element / scale, and on another side a ratio based on the
     value of the next element (yum <code>calc()</code>)
-    —&nbsp;but on another scale…
+    — but on another scale…
    </li>
    <li>
     because to <strong>compensate for the distortion</strong>
@@ -117,16 +114,16 @@
     <ul>
      <li>
       we know one side of the right-angled triangle obtained after the deformation,
-      as well as two angles —&nbsp;the right one, of course, and we deduce
+      as well as two angles — the right one, of course, and we deduce
       the second from the angle used to deform the element;
      </li>
      <li>
       so we can <strong>calculate the hypothenuse</strong> using the sine law,
-      —&nbsp;as before in the pie chart;
+      — as before in the pie chart;
      </li>
      <li>
       and finally, all we have to do is calculate the ratio between the initial dimension
-      —&nbsp;the side&nbsp;— and the final dimension —&nbsp;the hypothenuse&nbsp;—
+      — the side — and the final dimension — the hypothenuse —
       and apply this ratio to the scale on which the second point of the polygon is placed.
      </li>
     </ul>
@@ -136,11 +133,11 @@
     <code>100% 100%</code>;
    </li>
   </ol>
-  <li>
+  </li><li>
    one last trick is necessary to close the shape you have seen,
    we use the current and next value for each element. But when we get to the last element,
    there is no next! So we need to <strong>add a value</strong>, to which we assign
-   the first value —&nbsp;in this example, <var>--8: var(--1);</var>.
+   the first value — in this example, <var>--8: var(--1);</var>.
  </li>
 </ul>
 
@@ -152,9 +149,7 @@
    <strong id="label-9">Switch</strong><br>
    <span id="description-9">Allows you to disable styles on the following table.</span>
   </p>
-  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
-      role="switch" aria-checked="true"
-      aria-labelledby="label-9" aria-describedby="description-9">
+  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css" role="switch" aria-checked="true" aria-labelledby="label-9" aria-describedby="description-9">
    <span>Funny</span>
    <span>Sober</span>
   </button>
@@ -189,21 +184,21 @@
 
 <details>
  <summary><abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
- <div><pre><code class="language-markup">&lt;table class="chaarts radar" id="radar" style="--scale: 20; --step: 5; --items: 7; --1: 14; --2: 11; --3: 13; --4: 16; --5: 10; --6: 12; --7: 4; --8: var(--1);">
-  &lt;caption id="caption-9">[…]&lt;/caption>
-  &lt;thead>
-    &lt;tr>
-      &lt;th scope="col">[…]&lt;/th>
-      &lt;th scope="col">[…]&lt;/th>
-    &lt;/tr>
-  &lt;/thead>
-  &lt;tbody>
-    &lt;tr>
-      &lt;td>&lt;span>14&lt;/span>&lt;/td>
-      &lt;td>&lt;span>11&lt;/span>&lt;/td>
-    &lt;/tr>
-  &lt;/tbody>
-&lt;/table&gt;</code></pre>
+ <div><pre><code class="language-markup"><table class="chaarts radar" id="radar" style="--scale: 20; --step: 5; --items: 7; --1: 14; --2: 11; --3: 13; --4: 16; --5: 10; --6: 12; --7: 4; --8: var(--1);">
+  <caption id="caption-9">[…]</caption>
+  <thead>
+    <tr>
+      <th scope="col">[…]</th>
+      <th scope="col">[…]</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span>14</span></td>
+      <td><span>11</span></td>
+    </tr>
+  </tbody>
+</table></code></pre>
 </div>
 </details>
 <details>
@@ -333,13 +328,12 @@
 <details>
  <summary>A Chromium bug</summary>
  <p>
-  There is currently a bug in Chromium —&nbsp;I filled
-  <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=939728"
-  target="_blank" rel="noopener noreferrer">an issue on bugs.chromium.org</a>&nbsp;—
+  There is currently a bug in Chromium — I filled
+  <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=939728" target="_blank" rel="noopener noreferrer">an issue on bugs.chromium.org</a> —
   when using the <code>border-spacing</code> property on the table:
   it <strong>prevents Chrome to define the dimensions of the table</strong>…
   For Chrome user, use the inspector to uncheck this property on the
-  <code>&lt;table&gt;</code> tag of these examples!
+  <code><table></code> tag of these examples!
  </p>
  <h3>Reduced test case</h3>
  <div class="table-container radar-container" role="group" aria-labelledby="caption-10">
@@ -348,9 +342,7 @@
     <strong id="label-10">Switch</strong><br>
     <span id="description-10">Allows you to disable styles on the following table.</span>
    </p>
-   <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
-       role="switch" aria-checked="true"
-       aria-labelledby="label-10" aria-describedby="description-10">
+   <button type="button" class="ml-auto fw-400 no-border p-relative disable-css" role="switch" aria-checked="true" aria-labelledby="label-10" aria-describedby="description-10">
     <span>Funny</span>
     <span>Sober</span>
    </button>
@@ -386,10 +378,10 @@
 <details>
   <summary id="firefox">A Firefox feature</summary>
   <figure role="group" class="grid-1-2 no-margin" aria-label="Screenshot of the deformation caused by skew.">
-    <img src="img/hypothenuse.jpg" alt="The skew() function deforms the element by tilting it." width="277" height="202" />
+    <img src="img/hypothenuse.jpg" alt="The skew() function deforms the element by tilting it." width="277" height="202">
     <figcaption>
       Screenshot of the deformation caused by <code>skew()</code>
-      –&nbsp;props to <a href="https://patrickbrosset.com/">Patrick Brosset</a>
+      – props to <a href="https://patrickbrosset.com/">Patrick Brosset</a>
       who made <a href="https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector/How_to/Visualize_transforms">CSS
       transform Highlighter happen in Firefox DevTools</a>.
     </figcaption>
@@ -403,7 +395,7 @@
 
 <ol>
  <li>
-  the <code>&lt;table&gt;</code> element no longer carries the values,
+  the <code><table></code> element no longer carries the values,
   but has a new <var>--areas</var> custom property to indicate the number of rows in the table;
  </li>
  <li>
@@ -411,15 +403,15 @@
   <ul>
    <li>
     each one carries several variables:
-    <var>--color</var> then the values —&nbsp;<var>--1</var>, etc.;
+    <var>--color</var> then the values — <var>--1</var>, etc.;
    </li>
    <li>
-    and contains several cells: a <code>&lt;th scope="row"&gt;</code> row header cell
-    and <code>&lt;td&gt;</code> data cells;
-  </ul>
+    and contains several cells: a <code><th scope="row"></code> row header cell
+    and <code><td></code> data cells;
+  </li></ul>
  </li>
  <li>
-  the rest is relatively common now —&nbsp;if you've gone through the previous examples:
+  the rest is relatively common now — if you've gone through the previous examples:
   <ol>
    <li>
     a color for each row, presented on the header cells
@@ -442,9 +434,7 @@
    <strong id="label-11">Switch</strong><br>
    <span id="description-11">Allows you to disable styles on the following table.</span>
   </p>
-  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
-      role="switch" aria-checked="true"
-      aria-labelledby="label-11" aria-describedby="description-11">
+  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css" role="switch" aria-checked="true" aria-labelledby="label-11" aria-describedby="description-11">
    <span>Funny</span>
    <span>Sober</span>
   </button>
@@ -491,25 +481,25 @@
 
 <details>
  <summary><abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
- <div><pre><code class="language-markup">&lt;table class="chaarts radar-multiple" id="radar-multiple" style="--scale: 20; --step: 5; --items: 7; --areas: 2;">
-  &lt;caption id="caption-9">[…]&lt;/caption>
-  &lt;thead>
-    &lt;tr>
-      &lt;th scope="col">[…]&lt;/th>
-      &lt;th scope="col">[…]&lt;/th>
-    &lt;/tr>
-  &lt;/thead>
-  &lt;tbody>
-    &lt;tr style="--color: #734bf9; --1: 14; --2: 11; --3: 13; --4: 16; --5: 14; --6: 10; --7: 4; --8: var(--1);">
-      &lt;th scope="row">Gaël&lt;/th>
-      &lt;td>&lt;span>14&lt;/span>&lt;/td>
-    &lt;/tr>
-    &lt;tr style="-color: #e11a81; --1: 18; --2: 10; --3: 11; --4: 16; --5: 10; --6: 12; --7: 11; --8: var(--1);">
-      &lt;th scope="row">Luc&lt;/th>
-      &lt;td>&lt;span>18&lt;/span>&lt;/td>
-    &lt;/tr>
-  &lt;/tbody>
-&lt;/table&gt;</code></pre>
+ <div><pre><code class="language-markup"><table class="chaarts radar-multiple" id="radar-multiple" style="--scale: 20; --step: 5; --items: 7; --areas: 2;">
+  <caption id="caption-9">[…]</caption>
+  <thead>
+    <tr>
+      <th scope="col">[…]</th>
+      <th scope="col">[…]</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="--color: #734bf9; --1: 14; --2: 11; --3: 13; --4: 16; --5: 14; --6: 10; --7: 4; --8: var(--1);">
+      <th scope="row">Gaël</th>
+      <td><span>14</span></td>
+    </tr>
+    <tr style="-color: #e11a81; --1: 18; --2: 10; --3: 11; --4: 16; --5: 10; --6: 12; --7: 11; --8: var(--1);">
+      <th scope="row">Luc</th>
+      <td><span>18</span></td>
+    </tr>
+  </tbody>
+</table></code></pre>
 </div>
 </details>
 <details>
@@ -613,11 +603,12 @@
       </main>
 
       
-        <script src="js/script.min.js"></script>
-        <script src="js/prism.min.js"></script>
+        <script src="js/script.min.js" integrity="sha384-GSFLTHfMgenmEx6jFpCPYPrICTc7v02GoC3xiIvkFqR7kyjirVQ6f2MHDkHnBlKB" crossorigin="anonymous"></script>
+        <script src="js/prism.min.js" integrity="sha384-0MFjDwTZ/C2v2TidAUN+xb3jb62cO99R2DqFEVRGsb06KJUzbcBaxDdWlG4gnjrv" crossorigin="anonymous"></script>
       
 
       
       
-    </body>
-</html>
+    
+
+</body></html>
