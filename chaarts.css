@@ -240,37 +240,37 @@ table:not(.chaarts) .sr-only {
       }
     }
     .chaarts.bar.waterfall tr:nth-of-type(1) td {
-      grid-column: var(--0, 0)/var(--value, 0);
+      grid-column: var(--0, 2)/var(--value, 2);
     }
     .chaarts.bar.waterfall tr:nth-of-type(2) td {
-      grid-column: var(--1, 0)/var(--value, 0);
+      grid-column: var(--1, 2)/var(--value, 2);
     }
     .chaarts.bar.waterfall tr:nth-of-type(3) td {
-      grid-column: var(--2, 0)/var(--value, 0);
+      grid-column: var(--2, 2)/var(--value, 2);
     }
     .chaarts.bar.waterfall tr:nth-of-type(4) td {
-      grid-column: var(--3, 0)/var(--value, 0);
+      grid-column: var(--3, 2)/var(--value, 2);
     }
     .chaarts.bar.waterfall tr:nth-of-type(5) td {
-      grid-column: var(--4, 0)/var(--value, 0);
+      grid-column: var(--4, 2)/var(--value, 2);
     }
     .chaarts.bar.waterfall tr:nth-of-type(6) td {
-      grid-column: var(--5, 0)/var(--value, 0);
+      grid-column: var(--5, 2)/var(--value, 2);
     }
     .chaarts.bar.waterfall tr:nth-of-type(7) td {
-      grid-column: var(--6, 0)/var(--value, 0);
+      grid-column: var(--6, 2)/var(--value, 2);
     }
     .chaarts.bar.waterfall tr:nth-of-type(8) td {
-      grid-column: var(--7, 0)/var(--value, 0);
+      grid-column: var(--7, 2)/var(--value, 2);
     }
     .chaarts.bar.waterfall tr:nth-of-type(9) td {
-      grid-column: var(--8, 0)/var(--value, 0);
+      grid-column: var(--8, 2)/var(--value, 2);
     }
     .chaarts.bar.waterfall tr:nth-of-type(10) td {
-      grid-column: var(--9, 0)/var(--value, 0);
+      grid-column: var(--9, 2)/var(--value, 2);
     }
     .chaarts.bar.waterfall tr:nth-of-type(11) td {
-      grid-column: var(--10, 0)/var(--value, 0);
+      grid-column: var(--10, 2)/var(--value, 2);
     }
   }
   /* ==================== */

@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html lang="en" class="no-js">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         
   <title>Pie charts — chaarts</title>
@@ -11,15 +9,15 @@
   <meta property="og:type" content="article">
   <meta property="og:description" name="description" content="Charts with HTML & CSS">
   <meta name="twitter:card" content="summary">
-  <link rel="alternate" hreflang="fr" href="https://ffoodd.github.io/chaarts/camembert.html"/>
+  <link rel="alternate" hreflang="fr" href="https://ffoodd.github.io/chaarts/camembert.html">
 
         <script>
           document.documentElement.classList.remove('no-js');
           document.documentElement.classList.add('js');
         </script>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="css/styles.min.css" media="all">
-        <link rel="stylesheet" href="css/print.min.css" media="print">
+        <link rel="stylesheet" href="css/styles.min.css" media="all" integrity="sha384-YkkJLhwhZAtNNwUvSCrKrpPVmf/+bhPfrqqUW7VmPKz1BZtLvqQFduvqhmDmFQb7" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/print.min.css" media="print" integrity="sha384-i3dRwmp8zXRlpUnJTD27rKIBzSEdYbc0YEFwuULfvleZ4Vm0RG81i/6HXy96jet8" crossorigin="anonymous">
     </head>
     <body itemscope itemtype="http://schema.org/WebPage">
       <header role="banner">
@@ -40,15 +38,14 @@
   <li><a aria-current="page">Pie charts</a></li>
   <li><a href="./radar-charts.html">Radar charts</a></li>
   <li class="ml-auto">
-    <a rel="alternate" hreflang="fr" lang="fr" href="./camembert.html"
-       aria-label="Version française" title="Version française">FR</a>
+    <a rel="alternate" hreflang="fr" lang="fr" href="./camembert.html" aria-label="Version française" title="Version française">FR</a>
   </li>
   <li>
     <a href="https://github.com/ffoodd/chaarts/" class="d-flex">
       <svg viewBox="0 0 16 16" height="16" width="16" aria-hidden="true">
-        <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+        <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
       </svg>
-      &nbsp;GitHub
+       GitHub
     </a>
   </li>
 </ul>
@@ -70,17 +67,17 @@
 
 <ol>
  <li>
-  <strong>On each header</strong> <code>&lt;th&gt;</code>, a <var>--color</var>
+  <strong>On each header</strong> <code><th></code>, a <var>--color</var>
   custom property allows you to assign, well… a color.
  </li>
  <li>
-  <strong>Then each cell</strong> <code>&lt;td&gt;</code> must contain the value
+  <strong>Then each cell</strong> <code><td></code> must contain the value
   and its unit, as well as a <code>style</code> attribute to carry some variables:
   <ol>
    <li>
     <var>--value</var> is the percentage value,
     useful for determining <strong>the angle</strong> the element should occupy on the circle.
-    All points of the <code>polygon()</code> —&nbsp;used to draw the pie part thanks to <code>clip-path</code>&nbsp;—
+    All points of the <code>polygon()</code> — used to draw the pie part thanks to <code>clip-path</code> —
     depend on this value (read <a href="#calculation-twist">the technical note after
     the example for details of the calculations</a>).
    </li>
@@ -91,8 +88,8 @@
    </li>
    <li>
     And finally a series of <em>pseudo-boolean</em> variables, each worthing <var>0</var> or <var>1</var>
-    —&nbsp;according to and idea of <a href="https://www.kizu.ru/conditions-for-css-variables/">
-    <cite>Roman Komarov</cite> in <em>"Conditions for CSS variables"</em></a>&nbsp;—
+    — according to and idea of <a href="https://www.kizu.ru/conditions-for-css-variables/">
+    <cite>Roman Komarov</cite> in <em>"Conditions for CSS variables"</em></a> —
     depend on the value: <var>--lt-25</var>, <var>--gt-25</var>, <var>--lt-50</var>…
     They allow to <strong>toggle the points</strong> from their original position
     (<code>50% 50%</code>) to their calculated position, by adding or subtracting from the initial value;
@@ -100,7 +97,7 @@
   </ol>
  </li>
  <li>
-  a <strong>pseudo-element</strong> on each cell <code>&lt;td&gt;</code>is formatted
+  a <strong>pseudo-element</strong> on each cell <code><td></code>is formatted
   in a clever way according to all our variables, including <code>transform</code>,
   <code>clip-path</code> and <code>mask-image</code>.
   <ul>
@@ -109,7 +106,7 @@
       a <code>-webkit-</code> vendor prefix for Safari</a> and <code>mask-image</code>
       <a href="https://caniuse.com/#search=mask-image">for WebKit based browsers</a>,
       we use a CSS custom property to <strong>to prevent duplicate (long) values for those properties</strong>
-      —&nbsp;<a href="https://css-irl.info/7-uses-for-css-custom-properties/">trick
+      — <a href="https://css-irl.info/7-uses-for-css-custom-properties/">trick
       shared by <cite>Michelle Barker</cite> in "7 uses for CSS custom properties"</a>.
     </li>
   </ul>
@@ -128,9 +125,7 @@
    <strong id="label-5">Switch</strong><br>
    <span id="description-5">Allows you to disable styles on the following table.</span>
   </p>
-  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
-      role="switch" aria-checked="true"
-      aria-labelledby="label-5" aria-describedby="description-5">
+  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css" role="switch" aria-checked="true" aria-labelledby="label-5" aria-describedby="description-5">
    <span>Funny</span>
    <span>Sober</span>
   </button>
@@ -152,70 +147,70 @@
     
   
   <td style="--value: 2; --start: 0; ">
-    2&nbsp;%
+    2 %
   </td>
 
    
-<tr style="--color: #E11A81;--term: 'CSS';">
+</tr><tr style="--color: #E11A81;--term: 'CSS';">
   <th scope="row">CSS</th>
   
     
   
   <td style="--value: 2; --start: 2; ">
-    2&nbsp;%
+    2 %
   </td>
 
    
-<tr style="--color: #0172F0;--term: 'JS';">
+</tr><tr style="--color: #0172F0;--term: 'JS';">
   <th scope="row">JS</th>
   
     
   
   <td style="--value: 32; --start: 4; --lt-25: 0; --gt-25: 1; --lt-50: 1; --gt-50: 0;">
-    32&nbsp;%
+    32 %
   </td>
 
    
-<tr style="--color: #FDC02F;--term: 'Json';">
+</tr><tr style="--color: #FDC02F;--term: 'Json';">
   <th scope="row">Json</th>
   
     
   
   <td style="--value: 1; --start: 36; ">
-    1&nbsp;%
+    1 %
   </td>
 
    
-<tr style="--color: #39CA74;--term: 'Images';">
+</tr><tr style="--color: #39CA74;--term: 'Images';">
   <th scope="row">Images</th>
   
     
   
   <td style="--value: 44; --start: 37; --lt-25: 0; --gt-25: 1; --lt-50: 1; --gt-50: 0;">
-    44&nbsp;%
+    44 %
   </td>
 
    
-<tr style="--color: #FF2D40;--term: 'Webfonts';">
+</tr><tr style="--color: #FF2D40;--term: 'Webfonts';">
   <th scope="row">Webfonts</th>
   
     
   
   <td style="--value: 17; --start: 81; ">
-    17&nbsp;%
+    17 %
   </td>
 
    
-<tr style="--color: #585462;--term: 'Other';">
+</tr><tr style="--color: #585462;--term: 'Other';">
   <th scope="row">Other</th>
   
     
   
   <td style="--value: 2; --start: 98; ">
-    2&nbsp;%
+    2 %
   </td>
 
-  </tbody>
+  </tr></tbody>
  </table>
 </div>
 
@@ -236,11 +231,11 @@
    <li>and the point perpendicular to the radius and passing through our target point.</li>
   </ol>
   <p>
-   We know <strong>the hypotenuse</strong> of this triangle —&nbsp;the radius of the circle&nbsp;—,
+   We know <strong>the hypotenuse</strong> of this triangle — the radius of the circle —,
    and <strong>the angle formed by the hypotenuse and starting from the center of the circle</strong>
    (reducing the value to 90 degrees, since the circle is divided into four square sectors:
    if the value is greater than 25: minus 90°, etc.)
-   —&nbsp;plus a right angle, of course.
+   — plus a right angle, of course.
   </p>
   <h2>Law of sines</h2>
   <p>
@@ -248,7 +243,7 @@
    to measure each side, and thus obtain the position of the point on the circle.
    Meaning we need to calculate the sine… Fortunately,
    <a href="https://gist.github.com/stereokai/7666bfe93929b14c2dced148c79e0e97"><cite>Stereokai</cite> implemented for us
-   the Taylor/Maclaurin polynomial representation in CSS</a> —&nbsp;which I implemented as a mixin:
+   the Taylor/Maclaurin polynomial representation in CSS</a> — which I implemented as a mixin:
   </p>
   <pre><code class="language-scss">@mixin sin($angle) {
   --sin-term-#{$angle}-1: var(--#{$angle});
@@ -262,33 +257,32 @@
   <p>
    All that remains is to use these dimensions to place the points of the polygon.
    <strong>It's child's play!</strong>
- </div>
+ </p></div>
 </details>
 <details>
  <summary><abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
- <div><pre><code class="language-markup">&lt;table class="chaarts pie">
-  &lt;caption id="caption-5">[…]&lt;/caption>
-  &lt;thead class="sr-only">
-    &lt;tr>
-      &lt;th scope="col">[…]&lt;/th>
-      &lt;th scope="col">[…]&lt;/th>
-    &lt;/tr>
-  &lt;/thead>
-  &lt;tbody>
-    &lt;tr style="--color: #734bf9; --term: 'HTML';">
-      &lt;th scope="row">HTML&lt;/th>
-      &lt;td style="--value: 2; --start: 0;">2&nbsp;%&lt;/td>
-    &lt;/tr>
-    &lt;tr>[…]&lt;/tr>
-  &lt;/tbody>
-&lt;/table&gt;</code></pre>
+ <div><pre><code class="language-markup"><table class="chaarts pie">
+  <caption id="caption-5">[…]</caption>
+  <thead class="sr-only">
+    <tr>
+      <th scope="col">[…]</th>
+      <th scope="col">[…]</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="--color: #734bf9; --term: 'HTML';">
+      <th scope="row">HTML</th>
+      <td style="--value: 2; --start: 0;">2 %</td>
+    </tr>
+    <tr>[…]</tr>
+  </tbody>
+</table></code></pre>
 </div>
 </details>
 <details>
  <summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
  <div>
-  <pre>
-   <code class="language-css">
+  <pre>   <code class="language-css">
 @supports (clip-path: polygon( 50% calc( 50% + ( var(--gt-25, 0) ) ) )) {
  .chaarts.pie {
    --radius: 32em;
@@ -443,7 +437,7 @@
   </li>
   <li>
    <strong>One point for each angle</strong> at the ends: the first one is fixed, at
-   <code>100% 0%</code> (top right) —&nbsp;then each of the other angles has
+   <code>100% 0%</code> (top right) — then each of the other angles has
    <strong>two states</strong>, reached or not reached. Some insights:
    <ul>
     <li>
@@ -470,8 +464,8 @@
    <ul>
     <li>we start from <code>50%</code>, to which we add or subtract the following calculation;</li>
     <li>
-     then <strong>the calculated position</strong> is used —&nbsp;<var>--pos-A</var>
-     or <var>--pos-B</var> as the case may be&nbsp;— which is converted into percentages using
+     then <strong>the calculated position</strong> is used — <var>--pos-A</var>
+     or <var>--pos-B</var> as the case may be — which is converted into percentages using
      <code>* 1%</code>, and rendered inert if the value is less than the range concerned
      using <var>* var(--lt-25, 1)</var>, for example.<br>
      <small>
@@ -493,12 +487,12 @@
  <p>That's it!</p>
  <h4>The positions illustrated</h4>
  <p>
-   These screenshots —&nbsp;taken in
+   These screenshots — taken in
    <a href="https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector/How_to/Edit_CSS_shapes">the shape editor of the
-   Firefox devtools</a>&nbsp;—
+   Firefox devtools</a> —
    show the points of the polygon in the different cases.
    You can see for each cited value the resolved polygon for <code>clip-path</code>
-   —&nbsp;and see how the dynamic values tilt from one position to another.
+   — and see how the dynamic values tilt from one position to another.
  </p>
  <ul class="no-list">
    <li>
@@ -506,7 +500,7 @@
        <figcaption class="no-padding h5">Rendering example for <var>44%</var></figcaption>
        <div class="grid-2">
          <figure role="group" aria-label="Shape screenshot for  44%." class="mb-0 pb-0">
-           <img src="img/pie-1.jpg" alt="clip-path shape with a value of 44%: six visible points." width="264" height="264" />
+           <img src="img/pie-1.jpg" alt="clip-path shape with a value of 44%: six visible points." width="264" height="264">
            <figcaption>Shape screenshot for <var>44%</var>.</figcaption>
          </figure>
          <figure role="group" aria-label="Code generated for 44%." class="mb-0 pb-0">
@@ -536,7 +530,7 @@
        <figcaption class="no-padding h5">Rendering example for <var>64%</var></figcaption>
        <div class="grid-2">
          <figure role="group" aria-label="Shape screenshot for  64%." class="mb-0 pb-0">
-           <img src="img/pie-2.jpg" alt="clip-path shape with a value of 64%: seven visible points." width="264" height="264" />
+           <img src="img/pie-2.jpg" alt="clip-path shape with a value of 64%: seven visible points." width="264" height="264">
            <figcaption>Shape screenshot for <var>64%</var>.</figcaption>
          </figure>
          <figure role="group" aria-label="Code generated for 64%." class="mb-0 pb-0">
@@ -566,7 +560,7 @@
        <figcaption class="no-padding h5">Rendering example for <var>88%</var></figcaption>
        <div class="grid-2">
          <figure role="group" aria-label="Shape screenshot for  88%." class="mb-0 pb-0">
-           <img src="img/pie-3.jpg" alt="clip-path shape with a value of 88%: nine visible points." width="264" height="264" />
+           <img src="img/pie-3.jpg" alt="clip-path shape with a value of 88%: nine visible points." width="264" height="264">
            <figcaption>Shape screenshot for <var>88%</var>.</figcaption>
          </figure>
          <figure role="group" aria-label="Code generated for 88%." class="mb-0 pb-0">
@@ -601,9 +595,7 @@
       <strong id="label-12">Switch</strong><br>
       <span id="description-12">Allows you to disable styles on the following table.</span>
      </p>
-     <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
-         role="switch" aria-checked="true"
-         aria-labelledby="label-12" aria-describedby="description-12">
+     <button type="button" class="ml-auto fw-400 no-border p-relative disable-css" role="switch" aria-checked="true" aria-labelledby="label-12" aria-describedby="description-12">
       <span>Funny</span>
       <span>Sober</span>
      </button>
@@ -625,40 +617,40 @@
     
   
   <td style="--value: 2; --start: 0; ">
-    2&nbsp;%
+    2 %
   </td>
 
       
-<tr style="--color: #E11A81;--term: 'CSS';">
+</tr><tr style="--color: #E11A81;--term: 'CSS';">
   <th scope="row">CSS</th>
   
     
   
   <td style="--value: 2; --start: 2; ">
-    2&nbsp;%
+    2 %
   </td>
 
       
-<tr style="--color: #0172F0;--term: 'JS';">
+</tr><tr style="--color: #0172F0;--term: 'JS';">
   <th scope="row">JS</th>
   
     
   
   <td style="--value: 32; --start: 4; --lt-25: 0; --gt-25: 1; --lt-50: 1; --gt-50: 0;">
-    32&nbsp;%
+    32 %
   </td>
 
       
-<tr style="--color: #39CA74;--term: 'Images';">
+</tr><tr style="--color: #39CA74;--term: 'Images';">
   <th scope="row">Images</th>
   
     
   
   <td style="--value: 64; --start: 36; --lt-25: 0; --gt-25: 1; --lt-50: 0; --gt-50: 1; --lt-75: 1; --gt-75: 0;">
-    64&nbsp;%
+    64 %
   </td>
 
-    </table>
+    </tr></tbody></table>
   </div>
 
   <div class="table-container pie-container" role="group" aria-labelledby="caption-13">
@@ -667,9 +659,7 @@
       <strong id="label-13">Switch</strong><br>
       <span id="description-13">Allows you to disable styles on the following table.</span>
      </p>
-     <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
-         role="switch" aria-checked="true"
-         aria-labelledby="label-13" aria-describedby="description-13">
+     <button type="button" class="ml-auto fw-400 no-border p-relative disable-css" role="switch" aria-checked="true" aria-labelledby="label-13" aria-describedby="description-13">
       <span>Funny</span>
       <span>Sober</span>
      </button>
@@ -691,40 +681,40 @@
     
   
   <td style="--value: 2; --start: 0; ">
-    2&nbsp;%
+    2 %
   </td>
 
       
-<tr style="--color: #E11A81;--term: 'CSS';">
+</tr><tr style="--color: #E11A81;--term: 'CSS';">
   <th scope="row">CSS</th>
   
     
   
   <td style="--value: 2; --start: 2; ">
-    2&nbsp;%
+    2 %
   </td>
 
       
-<tr style="--color: #0172F0;--term: 'JS';">
+</tr><tr style="--color: #0172F0;--term: 'JS';">
   <th scope="row">JS</th>
   
     
   
   <td style="--value: 8; --start: 4; ">
-    8&nbsp;%
+    8 %
   </td>
 
       
-<tr style="--color: #39CA74;--term: 'Images';">
+</tr><tr style="--color: #39CA74;--term: 'Images';">
   <th scope="row">Images</th>
   
     
   
   <td style="--value: 88; --start: 12; --lt-25: 0; --gt-25: 1; --lt-50: 0; --gt-50: 1; --lt-75: 0; --gt-75: 1; --lt-100: 1;">
-    88&nbsp;%
+    88 %
   </td>
 
-     </tbody>
+     </tr></tbody>
     </table>
   </div>
 </div>
@@ -732,7 +722,7 @@
 <h2>Donut</h2>
 
 <p>
- On the <code>&lt;table&gt;</code> element, we add an <var>--offset</var> variable
+ On the <code><table></code> element, we add an <var>--offset</var> variable
  that allows us to determine the size of the hole of the donut,
  generated using <code>mask-image</code> and <code>radial-gradient()</code>.
  <a href="https://codepen.io/thebabydino/pens/tags/?selected_tag=mask"><cite>Ana Tudor</cite> has made
@@ -745,9 +735,7 @@
    <strong id="label-6">Switch</strong><br>
    <span id="description-6">Allows you to disable styles on the following table.</span>
   </p>
-  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
-      role="switch" aria-checked="true"
-      aria-labelledby="label-6" aria-describedby="description-6">
+  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css" role="switch" aria-checked="true" aria-labelledby="label-6" aria-describedby="description-6">
    <span>Funny</span>
    <span>Sober</span>
   </button>
@@ -769,70 +757,70 @@
     
   
   <td style="--value: 2; --start: 0; ">
-    2&nbsp;%
+    2 %
   </td>
 
    
-<tr style="--color: #E11A81;--term: 'CSS';">
+</tr><tr style="--color: #E11A81;--term: 'CSS';">
   <th scope="row">CSS</th>
   
     
   
   <td style="--value: 2; --start: 2; ">
-    2&nbsp;%
+    2 %
   </td>
 
    
-<tr style="--color: #0172F0;--term: 'JS';">
+</tr><tr style="--color: #0172F0;--term: 'JS';">
   <th scope="row">JS</th>
   
     
   
   <td style="--value: 32; --start: 4; --lt-25: 0; --gt-25: 1; --lt-50: 1; --gt-50: 0;">
-    32&nbsp;%
+    32 %
   </td>
 
    
-<tr style="--color: #FDC02F;--term: 'Json';">
+</tr><tr style="--color: #FDC02F;--term: 'Json';">
   <th scope="row">Json</th>
   
     
   
   <td style="--value: 1; --start: 36; ">
-    1&nbsp;%
+    1 %
   </td>
 
    
-<tr style="--color: #39CA74;--term: 'Images';">
+</tr><tr style="--color: #39CA74;--term: 'Images';">
   <th scope="row">Images</th>
   
     
   
   <td style="--value: 44; --start: 37; --lt-25: 0; --gt-25: 1; --lt-50: 1; --gt-50: 0;">
-    44&nbsp;%
+    44 %
   </td>
 
    
-<tr style="--color: #FF2D40;--term: 'Webfonts';">
+</tr><tr style="--color: #FF2D40;--term: 'Webfonts';">
   <th scope="row">Webfonts</th>
   
     
   
   <td style="--value: 17; --start: 81; ">
-    17&nbsp;%
+    17 %
   </td>
 
    
-<tr style="--color: #585462;--term: 'Other';">
+</tr><tr style="--color: #585462;--term: 'Other';">
   <th scope="row">Other</th>
   
     
   
   <td style="--value: 2; --start: 98; ">
-    2&nbsp;%
+    2 %
   </td>
 
-  </tbody>
+  </tr></tbody>
  </table>
 </div>
 
@@ -860,7 +848,7 @@
  <p>
   The use of <code>conic-gradient()</code> is promising for this case.
   You'll find examples made by <cite>Ana Tudor</cite> and <cite>Léa Verou</cite>
-  —&nbsp;who actually wrote the specification, and designed
+  — who actually wrote the specification, and designed
   <a href="https://leaverou.github.io/conic-gradient/">a polyfill</a>.
   However, <a href="https://caniuse.com/#search=conic-gradient">current support is limited to WebKit based browsers</a>
   is depressing, and still raises some <strong>accessibility issues</strong>
@@ -881,9 +869,7 @@
    <strong id="label-10">Switch</strong><br>
    <span id="description-10">Allows you to disable styles on the following table.</span>
   </p>
-  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
-      role="switch" aria-checked="true"
-      aria-labelledby="label-10" aria-describedby="description-10">
+  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css" role="switch" aria-checked="true" aria-labelledby="label-10" aria-describedby="description-10">
    <span>Funny</span>
    <span>Sober</span>
   </button>
@@ -905,70 +891,70 @@
     
   
   <td style="--value: 2; --start: 0; ">
-    2&nbsp;%
+    2 %
   </td>
 
    
-<tr style="--color: #E11A81;--term: 'CSS';">
+</tr><tr style="--color: #E11A81;--term: 'CSS';">
   <th scope="row">CSS</th>
   
     
   
   <td style="--value: 2; --start: 2; ">
-    2&nbsp;%
+    2 %
   </td>
 
    
-<tr style="--color: #0172F0;--term: 'JS';">
+</tr><tr style="--color: #0172F0;--term: 'JS';">
   <th scope="row">JS</th>
   
     
   
   <td style="--value: 32; --start: 4; --lt-25: 0; --gt-25: 1; --lt-50: 1; --gt-50: 0;">
-    32&nbsp;%
+    32 %
   </td>
 
    
-<tr style="--color: #FDC02F;--term: 'Json';">
+</tr><tr style="--color: #FDC02F;--term: 'Json';">
   <th scope="row">Json</th>
   
     
   
   <td style="--value: 1; --start: 36; ">
-    1&nbsp;%
+    1 %
   </td>
 
    
-<tr style="--color: #39CA74;--term: 'Images';">
+</tr><tr style="--color: #39CA74;--term: 'Images';">
   <th scope="row">Images</th>
   
     
   
   <td style="--value: 44; --start: 37; --lt-25: 0; --gt-25: 1; --lt-50: 1; --gt-50: 0;">
-    44&nbsp;%
+    44 %
   </td>
 
    
-<tr style="--color: #FF2D40;--term: 'Webfonts';">
+</tr><tr style="--color: #FF2D40;--term: 'Webfonts';">
   <th scope="row">Webfonts</th>
   
     
   
   <td style="--value: 17; --start: 81; ">
-    17&nbsp;%
+    17 %
   </td>
 
    
-<tr style="--color: #585462;--term: 'Other';">
+</tr><tr style="--color: #585462;--term: 'Other';">
   <th scope="row">Other</th>
   
     
   
   <td style="--value: 2; --start: 98; ">
-    2&nbsp;%
+    2 %
   </td>
 
-  </tbody>
+  </tr></tbody>
  </table>
 </div>
 
@@ -995,11 +981,12 @@
       </main>
 
       
-        <script src="js/script.min.js"></script>
-        <script src="js/prism.min.js"></script>
+        <script src="js/script.min.js" integrity="sha384-GSFLTHfMgenmEx6jFpCPYPrICTc7v02GoC3xiIvkFqR7kyjirVQ6f2MHDkHnBlKB" crossorigin="anonymous"></script>
+        <script src="js/prism.min.js" integrity="sha384-0MFjDwTZ/C2v2TidAUN+xb3jb62cO99R2DqFEVRGsb06KJUzbcBaxDdWlG4gnjrv" crossorigin="anonymous"></script>
       
 
       
       
-    </body>
-</html>
+    
+
+</body></html>

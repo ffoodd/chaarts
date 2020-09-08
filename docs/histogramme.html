@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html lang="fr" class="no-js">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<!DOCTYPE html><html lang="fr" class="no-js"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         
   <title>Histogramme — chaarts</title>
@@ -11,15 +9,15 @@
   <meta property="og:type" content="article">
   <meta property="og:description" name="description" content="Graphiques de données avec HTML & CSS">
   <meta name="twitter:card" content="summary">
-  <link rel="alternate" hreflang="en" href="https://ffoodd.github.io/chaarts/column-charts.html"/>
+  <link rel="alternate" hreflang="en" href="https://ffoodd.github.io/chaarts/column-charts.html">
 
         <script>
           document.documentElement.classList.remove('no-js');
           document.documentElement.classList.add('js');
         </script>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="css/styles.min.css" media="all">
-        <link rel="stylesheet" href="css/print.min.css" media="print">
+        <link rel="stylesheet" href="css/styles.min.css" media="all" integrity="sha384-YkkJLhwhZAtNNwUvSCrKrpPVmf/+bhPfrqqUW7VmPKz1BZtLvqQFduvqhmDmFQb7" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/print.min.css" media="print" integrity="sha384-i3dRwmp8zXRlpUnJTD27rKIBzSEdYbc0YEFwuULfvleZ4Vm0RG81i/6HXy96jet8" crossorigin="anonymous">
     </head>
     <body itemscope itemtype="http://schema.org/WebPage">
       <header role="banner">
@@ -40,15 +38,14 @@
   <li><a href="./camembert.html">Camembert</a></li>
   <li><a href="./radar.html">Radar</a></li>
   <li class="ml-auto">
-    <a rel="alternate" hreflang="en" lang="en" href="./column-charts.html"
-       aria-label="English version" title="English version">EN</a>
+    <a rel="alternate" hreflang="en" lang="en" href="./column-charts.html" aria-label="English version" title="English version">EN</a>
   </li>
   <li>
     <a href="https://github.com/ffoodd/chaarts/" class="d-flex" hreflang="en">
       <svg viewBox="0 0 16 16" height="16" width="16" aria-hidden="true">
-        <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+        <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
       </svg>
-      &nbsp;GitHub
+       GitHub
     </a>
   </li>
 </ul>
@@ -64,30 +61,30 @@
  L’histogramme sert pour <strong>les distributions de valeurs</strong>.
  La structure du tableau est tout à fait ordinaire, cependant sa mise en forme repose
  sur <code>display: grid;</code> et surtout <code>display: contents;</code> pour
- <strong>faciliter le placement des cellules</strong> —&nbsp;technique inspirée par
+ <strong>faciliter le placement des cellules</strong> — technique inspirée par
  <a href="https://hiddedevries.nl/en/blog/2018-04-21-more-accessible-markup-with-display-contents" hreflang="en">l’article
  de <cite>Hidde De Vries</cite> <q lang="en">More accessible markup with <code>display: contents</code></q></a>,
  et clarifiée par <a href="https://bitsofco.de/how-display-contents-works/" hreflang="en">l’article de
  <cite>Ire Aderinokun</cite> <q lang="en">How <code>display: contents</code> works</q></a>.
 </p>
 
-<p>Le principe de base est le même que <a href="./barres.html">le graphique en barre</a>&nbsp;:</p>
+<p>Le principe de base est le même que <a href="./barres.html">le graphique en barre</a> :</p>
 <ol>
  <li>
   la fonction <code>repeat()</code> appliquée avec la variable <var>--scale</var>
-  permet de gérer une échelle dynamique&nbsp;;
+  permet de gérer une échelle dynamique ;
  </li>
  <li>
-  les conteneurs <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code> et <code>&lt;tr&gt;</code>
-  sont neutralisés dans la gestion de la grille à l’aide de <code>display: contents</code>&nbsp;;
- <li>
+  les conteneurs <code><thead></code>, <code><tbody></code> et <code><tr></code>
+  sont neutralisés dans la gestion de la grille à l’aide de <code>display: contents</code> ;
+ </li><li>
   chaque cellule est placée sur la grille en fonction de <var>--value</var>
-  —&nbsp;sa valeur, donc —&nbsp;sa couleur d’arrière-plan dépend également de
-  sa valeur&nbsp;;
+  — sa valeur, donc — sa couleur d’arrière-plan dépend également de
+  sa valeur ;
  </li>
  <li>
-  et finalement la valeur textuelle —&nbsp;contenue dans un élément
-  <code>&lt;span&gt;</code>&nbsp;— est positionnée en haut de la colonne
+  et finalement la valeur textuelle — contenue dans un élément
+  <code><span></code> — est positionnée en haut de la colonne
   à l’aide de la même astuce que dans le graphique en barre.
  </li>
 </ol>
@@ -98,9 +95,7 @@
    <strong id="label-7">Interrupteur</strong><br>
    <span id="description-7">Permet de désactiver les styles sur le tableau suivant.</span>
   </p>
-  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
-      role="switch" aria-checked="true"
-      aria-labelledby="label-7" aria-describedby="description-7">
+  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css" role="switch" aria-checked="true" aria-labelledby="label-7" aria-describedby="description-7">
    <span>Guilleret</span>
    <span>Sobre</span>
   </button>
@@ -122,12 +117,12 @@
   <tbody>
    <tr>
     <th scope="row">Parts de marché</th>
-    <td style="--value: 62;"><span>62&nbsp;%</span></td>
-    <td style="--value: 15;"><span>15&nbsp;%</span></td>
-    <td style="--value: 9;"><span>9&nbsp;%</span></td>
-    <td style="--value: 5;"><span>5&nbsp;%</span></td>
-    <td style="--value: 6;"><span>6&nbsp;%</span></td>
-    <td style="--value: 3;"><span>3&nbsp;%</span></td>
+    <td style="--value: 62;"><span>62 %</span></td>
+    <td style="--value: 15;"><span>15 %</span></td>
+    <td style="--value: 9;"><span>9 %</span></td>
+    <td style="--value: 5;"><span>5 %</span></td>
+    <td style="--value: 6;"><span>6 %</span></td>
+    <td style="--value: 3;"><span>3 %</span></td>
    </tr>
   </tbody>
  </table>
@@ -135,23 +130,23 @@
 
 <details>
  <summary>Le <abbr lang="en" title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
- <div><pre><code class="language-markup">&lt;table class="chaarts column" id="column" style="--y: 7;">
-  &lt;caption id="caption-7">[…]&lt;/caption>
-  &lt;thead>
-    &lt;tr>
-      &lt;th scope="row">[…]&lt;/th>
-      &lt;th scope="col" style="--value: 62;">Chrome&lt;/th>
-      &lt;th scope="col" style="--value: 15;">Firefox&lt;/th>
-    &lt;/tr>
-  &lt;/thead>
-  &lt;tbody>
-    &lt;tr>
-      &lt;th scope="row">[…]&lt;/th>
-      &lt;td style="--value: 62;">&lt;span>62%&lt;/span>&lt;/td>
-      &lt;td style="--value: 15;">&lt;span>15%&lt;/span>&lt;/td>
-    &lt;/tr>
-  &lt;/tbody>
-&lt;/table&gt;</code></pre>
+ <div><pre><code class="language-markup"><table class="chaarts column" id="column" style="--y: 7;">
+  <caption id="caption-7">[…]</caption>
+  <thead>
+    <tr>
+      <th scope="row">[…]</th>
+      <th scope="col" style="--value: 62;">Chrome</th>
+      <th scope="col" style="--value: 15;">Firefox</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">[…]</th>
+      <td style="--value: 62;"><span>62%</span></td>
+      <td style="--value: 15;"><span>15%</span></td>
+    </tr>
+  </tbody>
+</table></code></pre>
 </div>
 </details>
 <details>
@@ -290,32 +285,32 @@
 <p>
  Pour disposer de <var>deux</var> valeurs pour chaque colonne principale, nous devons également
  disposer de <var>deux</var> sous-titres.
- Concrètement parlant&nbsp;:
+ Concrètement parlant :
 </p>
 
 <ol>
  <li>
-  on ajoute <strong>une seconde ligne dans l’entête</strong> <code>&lt;thead&gt;</code>&nbsp;:
+  on ajoute <strong>une seconde ligne dans l’entête</strong> <code><thead></code> :
   <ul>
    <li>
-    avec <var>deux</var> cellules d’entête de colonne <code>&lt;th scope="col"&gt;</code>
-    pour chaque cellule d’entête de colonne dans la première ligne d’entête&nbsp;;
+    avec <var>deux</var> cellules d’entête de colonne <code><th scope="col"></code>
+    pour chaque cellule d’entête de colonne dans la première ligne d’entête ;
    </li>
    <li>
     n’oublions pas d’ajouter un <code>colspan="2"</code> sur les cellules d’entête de
-    la première ligne pour faire correspondre la structure du tableau&nbsp;;
+    la première ligne pour faire correspondre la structure du tableau ;
    </li>
    <li>
     et enfin ajouter un <strong>identifiant</strong> à chaque cellule d’entête
-    afin de les référencer sur les cellules de données concernées —&nbsp;à l’aide
-    de l’attribut <code>headers</code>, par exemple pour la première cellule&nbsp;:
+    afin de les référencer sur les cellules de données concernées — à l’aide
+    de l’attribut <code>headers</code>, par exemple pour la première cellule :
     <code>headers="navigateur chrome annee chrome-2018"</code> où chaque valeur est un
     identifiant de cellule d’entête.
    </li>
   </ul>
  </li>
  <li>
-  Côté <strong>styles</strong>&nbsp;:
+  Côté <strong>styles</strong> :
   <ul>
    <li>
     les cellules d’entête de premier niveau doivent s’étendre sur deux colonnes de la grille,
@@ -325,18 +320,18 @@
     <code>grid-column: 2 / span attr(colspan);</code> et ça serait magnifique…
    </li>
    <li>
-    mais non&nbsp;! Ainsi, une variable <var>--span</var> est ajoutée sur <code>&lt;table&gt;</code>,
-    et doit correspondre à la valeur des attributs <code>colspan</code> cités plus tôt&nbsp;:
+    mais non ! Ainsi, une variable <var>--span</var> est ajoutée sur <code><table></code>,
+    et doit correspondre à la valeur des attributs <code>colspan</code> cités plus tôt :
     elle sert donc à étendre les entêtes de premier niveau sur le nombre de colonnes adéquat.
    </li>
    <li>
     les <strong>couleurs et motifs</strong> ne sont plus appliqués en fonction
-    de chaque valeur, mais en fonction de chaque colonne —&nbsp;dans l’exemple, un élément
+    de chaque valeur, mais en fonction de chaque colonne — dans l’exemple, un élément
     sur <var>deux</var> (puisque nous avons <var>deux</var> entrées par colonne).
     Là aussi, si nous pouvions utiliser une valeur d’attribut ou une propriété personnalisée
     <strong>dans un sélecteur</strong>, ce serait génial. Imaginez un peu
     <code>tbody td:nth-of-type(var(--span)n + var(--span))</code> ou encore
-    <code>tbody td:nth-of-type(attr(colspan)n + attr(colspan))</code>&nbsp;!
+    <code>tbody td:nth-of-type(attr(colspan)n + attr(colspan))</code> !
    </li>
   </ul>
  </li>
@@ -348,9 +343,7 @@
    <strong id="label-8">Interrupteur</strong><br>
    <span id="description-8">Permet de désactiver les styles sur le tableau suivant.</span>
   </p>
-  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
-      role="switch" aria-checked="true"
-      aria-labelledby="label-8" aria-describedby="description-8">
+  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css" role="switch" aria-checked="true" aria-labelledby="label-8" aria-describedby="description-8">
    <span>Guilleret</span>
    <span>Sobre</span>
   </button>
@@ -384,16 +377,16 @@
   <tbody>
    <tr>
     <th scope="row" id="parts">Parts de marché</th>
-    <td style="--value: 50;" headers="navigateur chrome annee chrome-2018"><span>49.6&nbsp;%</span></td>
-    <td style="--value: 57;" headers="navigateur chrome annee chrome-2019"><span>57&nbsp;%</span></td>
-    <td style="--value: 12;" headers="navigateur firefox annee firefox-2018"><span>11.74&nbsp;%</span></td>
-    <td style="--value: 10;" headers="navigateur firefox annee firefox-2019"><span>9.59&nbsp;%</span></td>
-    <td style="--value: 22;" headers="navigateur safari annee safari-2018"><span>21.53&nbsp;%</span></td>
-    <td style="--value: 19;" headers="navigateur safari annee safari-2019"><span>18.78&nbsp;%</span></td>
-    <td style="--value: 4;" headers="navigateur edge annee edge-2018"><span>3.72&nbsp;%</span></td>
-    <td style="--value: 3;" headers="navigateur edge annee edge-2019"><span>3.5&nbsp;%</span></td>
-    <td style="--value: 4;" headers="navigateur ie annee ie-2018"><span>4.46&nbsp;%</span></td>
-    <td style="--value: 3;" headers="navigateur ie annee ie-2019"><span>3.66&nbsp;%</span></td>
+    <td style="--value: 50;" headers="navigateur chrome annee chrome-2018"><span>49.6 %</span></td>
+    <td style="--value: 57;" headers="navigateur chrome annee chrome-2019"><span>57 %</span></td>
+    <td style="--value: 12;" headers="navigateur firefox annee firefox-2018"><span>11.74 %</span></td>
+    <td style="--value: 10;" headers="navigateur firefox annee firefox-2019"><span>9.59 %</span></td>
+    <td style="--value: 22;" headers="navigateur safari annee safari-2018"><span>21.53 %</span></td>
+    <td style="--value: 19;" headers="navigateur safari annee safari-2019"><span>18.78 %</span></td>
+    <td style="--value: 4;" headers="navigateur edge annee edge-2018"><span>3.72 %</span></td>
+    <td style="--value: 3;" headers="navigateur edge annee edge-2019"><span>3.5 %</span></td>
+    <td style="--value: 4;" headers="navigateur ie annee ie-2018"><span>4.46 %</span></td>
+    <td style="--value: 3;" headers="navigateur ie annee ie-2019"><span>3.66 %</span></td>
    </tr>
   </tbody>
  </table>
@@ -401,27 +394,27 @@
 
 <details>
  <summary>Le <abbr lang="en" title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
- <div><pre><code class="language-markup">&lt;table class="chaarts column-multiple" id="column-multiple" style="--y: 11; --span: 2;">
-  &lt;caption id="caption-8">[…]&lt;/caption>
-  &lt;thead>
-    &lt;tr>
-      &lt;th scope="row" id="browser">[…]&lt;/th>
-      &lt;th scope="col" colspan="2" id="chrome">Chrome&lt;/th>
-    &lt;/tr>
-    &lt;tr>
-      &lt;th scope="row" id="year">[…]&lt;/th>
-      &lt;th scope="col" id="chrome-2018">2018&lt;/th>
-      &lt;th scope="col" id="chrome-2019">2019&lt;/th>
-    &lt;/tr>
-  &lt;/thead>
-  &lt;tbody>
-    &lt;tr>
-      &lt;th scope="row" id="parts">[…]&lt;/th>
-      &lt;td style="--value: 50;" headers="browser chrome year chrome-2018">&lt;span>49.6%&lt;/span>&lt;/td>
-      &lt;td style="--value: 57;" headers="browser chrome year chrome-2019">&lt;span>57%&lt;/span>&lt;/td>
-    &lt;/tr>
-  &lt;/tbody>
-&lt;/table&gt;</code></pre>
+ <div><pre><code class="language-markup"><table class="chaarts column-multiple" id="column-multiple" style="--y: 11; --span: 2;">
+  <caption id="caption-8">[…]</caption>
+  <thead>
+    <tr>
+      <th scope="row" id="browser">[…]</th>
+      <th scope="col" colspan="2" id="chrome">Chrome</th>
+    </tr>
+    <tr>
+      <th scope="row" id="year">[…]</th>
+      <th scope="col" id="chrome-2018">2018</th>
+      <th scope="col" id="chrome-2019">2019</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row" id="parts">[…]</th>
+      <td style="--value: 50;" headers="browser chrome year chrome-2018"><span>49.6%</span></td>
+      <td style="--value: 57;" headers="browser chrome year chrome-2019"><span>57%</span></td>
+    </tr>
+  </tbody>
+</table></code></pre>
 </div>
 </details>
 <details>
@@ -497,12 +490,11 @@
 <details>
  <summary>Bug dans Chromium</summary>
  <p>
-    Il y a en ce moment un bug dans Chromium —&nbsp;j’ai saisi
-    <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=938927" hreflang="en"
-    target="_blank" rel="noopener noreferrer">un ticket sur bugs.chromium.org</a>&nbsp;—
+    Il y a en ce moment un bug dans Chromium — j’ai saisi
+    <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=938927" hreflang="en" target="_blank" rel="noopener noreferrer">un ticket sur bugs.chromium.org</a> —
     lors de <strong>l’utilisation d’une valeur décimale pour le placement sur la grille</strong>.
     Je ne sais pas si c’est une implication de la décimale, du calcul, de la propriété personnalisée…
-    mais pour le moment, ça ne fonctionne pas&nbsp;!
+    mais pour le moment, ça ne fonctionne pas !
   </p>
   <h3>Cas de test réduit</h3>
   <div class="table-container column-container" role="group" aria-labelledby="caption-9">
@@ -511,9 +503,7 @@
      <strong id="label-9">Interrupteur</strong><br>
      <span id="description-9">Permet de désactiver les styles sur le tableau suivant.</span>
     </p>
-    <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
-        role="switch" aria-checked="true"
-        aria-labelledby="label-9" aria-describedby="description-9">
+    <button type="button" class="ml-auto fw-400 no-border p-relative disable-css" role="switch" aria-checked="true" aria-labelledby="label-9" aria-describedby="description-9">
      <span>Guilleret</span>
      <span>Sobre</span>
     </button>
@@ -560,16 +550,17 @@
      </tr>
     </tbody>
    </table>
-</details>
+</div></details>
 
       </main>
 
       
-        <script src="js/script.min.js"></script>
-        <script src="js/prism.min.js"></script>
+        <script src="js/script.min.js" integrity="sha384-GSFLTHfMgenmEx6jFpCPYPrICTc7v02GoC3xiIvkFqR7kyjirVQ6f2MHDkHnBlKB" crossorigin="anonymous"></script>
+        <script src="js/prism.min.js" integrity="sha384-0MFjDwTZ/C2v2TidAUN+xb3jb62cO99R2DqFEVRGsb06KJUzbcBaxDdWlG4gnjrv" crossorigin="anonymous"></script>
       
 
       
       
-    </body>
-</html>
+    
+
+</body></html>

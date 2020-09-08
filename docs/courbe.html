@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html lang="fr" class="no-js">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<!DOCTYPE html><html lang="fr" class="no-js"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         
   <title>Courbes — chaarts</title>
@@ -11,15 +9,15 @@
   <meta property="og:type" content="article">
   <meta property="og:description" name="description" content="Graphiques de données avec HTML & CSS">
   <meta name="twitter:card" content="summary">
-  <link rel="alternate" hreflang="en" href="https://ffoodd.github.io/chaarts/line-charts.html"/>
+  <link rel="alternate" hreflang="en" href="https://ffoodd.github.io/chaarts/line-charts.html">
 
         <script>
           document.documentElement.classList.remove('no-js');
           document.documentElement.classList.add('js');
         </script>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="css/styles.min.css" media="all">
-        <link rel="stylesheet" href="css/print.min.css" media="print">
+        <link rel="stylesheet" href="css/styles.min.css" media="all" integrity="sha384-YkkJLhwhZAtNNwUvSCrKrpPVmf/+bhPfrqqUW7VmPKz1BZtLvqQFduvqhmDmFQb7" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/print.min.css" media="print" integrity="sha384-i3dRwmp8zXRlpUnJTD27rKIBzSEdYbc0YEFwuULfvleZ4Vm0RG81i/6HXy96jet8" crossorigin="anonymous">
     </head>
     <body itemscope itemtype="http://schema.org/WebPage">
       <header role="banner">
@@ -40,15 +38,14 @@
   <li><a href="./camembert.html">Camembert</a></li>
   <li><a href="./radar.html">Radar</a></li>
   <li class="ml-auto">
-    <a rel="alternate" hreflang="en" lang="en" href="./line-charts.html"
-       aria-label="English version" title="English version">EN</a>
+    <a rel="alternate" hreflang="en" lang="en" href="./line-charts.html" aria-label="English version" title="English version">EN</a>
   </li>
   <li>
     <a href="https://github.com/ffoodd/chaarts/" class="d-flex" hreflang="en">
       <svg viewBox="0 0 16 16" height="16" width="16" aria-hidden="true">
-        <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+        <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
       </svg>
-      &nbsp;GitHub
+       GitHub
     </a>
   </li>
 </ul>
@@ -69,21 +66,21 @@
 
 <ol>
  <li>
-  Sur le <strong>tableau</strong>, les échelles sont indiquées&nbsp;:
+  Sur le <strong>tableau</strong>, les échelles sont indiquées :
   <ul>
    <li>
     <var>--y</var> définit l’échelle des <strong>ordonnées</strong>, utilisée
     pour indiquer l’échelle en arrière-plan mais aussi placer
-    les points sur la courbe&nbsp;;
+    les points sur la courbe ;
    </li>
    <li>
     <var>--x</var> correspond à l’échelle des <strong>abscisses</strong>, exprimée
-    simplement comme le nombre de colonnes à afficher&nbsp;;
+    simplement comme le nombre de colonnes à afficher ;
    </li>
   </ul>
  </li>
  <li>
-  Chaque ligne <code>&lt;tr&gt;</code> dans <code>&lt;tbody&gt;</code> porte une palanquée
+  Chaque ligne <code><tr></code> dans <code><tbody></code> porte une palanquée
   de variables, correspondant à toutes les valeurs qu’elle contient.
   Dans un pseudo-élément <code>::before</code>, une position est définie pour chaque valeur
   au sein de la fonction <code>polygon()</code> de <code>clip-path</code>.
@@ -92,7 +89,7 @@
     Étant donné que cette fonction accepte <strong>deux valeurs en pourcentage
     chaque point</strong>, la méthode est relativement simple.
     La position en abscisse est le nombre de colonnes (le décalage depuis la gauche, donc)
-    et la position en ordonnée est le ratio de la valeur sur l’échelle, le tout <strong>formulé ainsi</strong>&nbsp;:
+    et la position en ordonnée est le ratio de la valeur sur l’échelle, le tout <strong>formulé ainsi</strong> :
     <code>calc( ( 100% / var(--x) * 1 ) + var(--offset) ) calc( 100% - ( var(--1) / var(--y) * 100% ) )</code>,
     où <var>* 1</var> et <var>var(--1)</var> correspondent à l’index de la valeur dans l’ensemble,
     et <var>var(--offset)</var> est la valeur d’une demi-colonne, pour placer le point au milieu
@@ -105,24 +102,23 @@
    <li>
      Puisque <code>clip-path</code> requière encore <a href="https://caniuse.com/#search=clip-path">
      un préfixe <code>-webkit-</code> pour Safari</a>, on utilise une variable CSS pour <strong>éviter la
-     duplication</strong> du <code>polygon()</code> —&nbsp;<a hreflang="en" href="https://css-irl.info/7-uses-for-css-custom-properties/">astuce
+     duplication</strong> du <code>polygon()</code> — <a hreflang="en" href="https://css-irl.info/7-uses-for-css-custom-properties/">astuce
      partagée par <cite>Michelle Barker</cite> dans <em lang="en">"7 uses for CSS custom properties"</em></a>.
    </li>
   </ul>
  </li>
  <li>
-  Chaque cellule <code>&lt;td&gt;</code> dans <code>&lt;tbody&gt;</code> porte un pseudo-élément
+  Chaque cellule <code><td></code> dans <code><tbody></code> porte un pseudo-élément
   <code>::after</code> qui sert à <strong>récapituler</strong> ses entêtes et valeur dans
-  une infobulle simulée, et un pseudo-élément <code>::before</code> pour gérer un calque interactif sur la cellule&nbsp;:
+  une infobulle simulée, et un pseudo-élément <code>::before</code> pour gérer un calque interactif sur la cellule :
   <ul>
    <li>
-    l’affichage multiligne repose sur <a hreflang="en"
-    href="https://lea.verou.me/2012/02/flexible-multiline-definition-lists-with-2-lines-of-css/">une
+    l’affichage multiligne repose sur <a hreflang="en" href="https://lea.verou.me/2012/02/flexible-multiline-definition-lists-with-2-lines-of-css/">une
     astuce de <cite>Lea Verou</cite> utilisant <code>white-space: pre;</code> et le caractère
-    <code>\A</code></a>&nbsp;;
+    <code>\A</code></a> ;
    </li>
    <li>
-    l’affichage de propriétés personnalisées dans un pseudo-élément n’est pas si triviale&nbsp;:
+    l’affichage de propriétés personnalisées dans un pseudo-élément n’est pas si triviale :
     cette propriété n’accepte que les chaînes de caractères, et nos propriétés personnalisées contiennent…
     des entiers. Encore une fois on recycle <a hreflang="en" href="https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab">
     une astuce de <cite>Cassie Evans</cite> basée sur <code>counter-reset</code> et sa valeur par défaut
@@ -131,23 +127,23 @@
   </ul>
  </li>
  <li>
-  Tout le reste n’est que décoration&nbsp;:
+  Tout le reste n’est que décoration :
   <ul>
    <li>
     un <code>padding-top</code> important sur le tableau pour
-    réserver l’espace d’affichage des graphiques —&nbsp;<strong>attention</strong>&nbsp;:
+    réserver l’espace d’affichage des graphiques — <strong>attention</strong> :
     il est nécessaire d’appliquer <code>border-collapse: separate;</code> sur le tableau
-    afin que le <code>padding</code> ait un impact&nbsp;;
+    afin que le <code>padding</code> ait un impact ;
    </li>
-   <li>le <code>::before</code> de chaque ligne est étiré afin d’occuper tout l’espace réservé&nbsp;;</li>
-   <li>un arrière-plan dégradé pour représenter la surface pleine du même <code>::before</code>&nbsp;;</li>
+   <li>le <code>::before</code> de chaque ligne est étiré afin d’occuper tout l’espace réservé ;</li>
+   <li>un arrière-plan dégradé pour représenter la surface pleine du même <code>::before</code> ;</li>
    <li>
     un <code>repeating-linear-gradient()</code> pour représenter l’échelle verticale,
-    en arrière-plan du tableau&nbsp;;
+    en arrière-plan du tableau ;
    </li>
    <li>
-    et des interactions au survol pour mettre en exergue la valeur survolée&nbsp;:
-    sa colonne à l’aide d’un pseudo-élément —&nbsp;positionné à l’aide de de savants calculs&nbsp;—
+    et des interactions au survol pour mettre en exergue la valeur survolée :
+    sa colonne à l’aide d’un pseudo-élément — positionné à l’aide de de savants calculs —
     et <code>mix-blend-mode</code> pour un effet waouh.
    </li>
   </ul>
@@ -162,16 +158,13 @@
    <strong id="label-3">Interrupteur</strong><br>
    <span id="description-3">Permet de désactiver les styles sur le tableau suivant.</span>
   </p>
-  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
-      role="switch" aria-checked="true"
-      aria-labelledby="label-3" aria-describedby="description-3">
+  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css" role="switch" aria-checked="true" aria-labelledby="label-3" aria-describedby="description-3">
    <span>Guilleret</span>
    <span>Sobre</span>
   </button>
  </div>
 
- <table class="chaarts line" id="line"
-     style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Fév.'; --t-3: 'Mar.'; --t-4: 'Avr.'; --t-5: 'Mai'; --t-6: 'Juin';
+ <table class="chaarts line" id="line" style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Fév.'; --t-3: 'Mar.'; --t-4: 'Avr.'; --t-5: 'Mai'; --t-6: 'Juin';
         --t-7: 'Juil.'; --t-8: 'Août'; --t-9: 'Sept.'; --t-10: 'Oct.'; --t-11: 'Nov.'; --t-12: 'Déc.';">
   <caption id="caption-3">Température mensuelle moyenne en 2017</caption>
   <thead>
@@ -196,62 +189,62 @@
     <th scope="row">2017</th>
     
   <td>
-    8&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    8 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    6&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    6 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    9&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    9 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    12&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    12 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    15&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    15 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    21&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    21 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    24&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    24 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    25&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    25 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    22&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    22 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    19&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    19 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    14&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    14 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    9&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    9 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
    </tr>
@@ -261,23 +254,23 @@
 
 <details>
  <summary>Le <abbr lang="en" title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
- <div><pre><code class="language-markup">&lt;table class="chaarts line" style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Feb.'; […]">
-  &lt;caption id="caption-3">[…]&lt;/caption>
-  &lt;thead>
-    &lt;tr>
-      &lt;th scope="col">[…]&lt;/th>
-      &lt;th scope="col">Jan.&lt;/th>
-      &lt;th scope="col">[…]&lt;/th>
-    &lt;/tr>
-  &lt;/thead>
-  &lt;tbody>
-    &lt;tr style="--year: '2017'; --1: 8; --2: 6; --3: 9; --4: 12; --5: 15; --6: 21; --7: 24; --8: 25; --9: 22; --10: 19; --11: 14; --12: 9;">
-      &lt;th scope="row">2017&lt;/th>
-      &lt;td>8&nbsp;°C&lt;/td>
-      &lt;td>[…]&lt;/td>
-    &lt;/tr>
-  &lt;/tbody>
-&lt;/table&gt;</code></pre>
+ <div><pre><code class="language-markup"><table class="chaarts line" style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Feb.'; […]">
+  <caption id="caption-3">[…]</caption>
+  <thead>
+    <tr>
+      <th scope="col">[…]</th>
+      <th scope="col">Jan.</th>
+      <th scope="col">[…]</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="--year: '2017'; --1: 8; --2: 6; --3: 9; --4: 12; --5: 15; --6: 21; --7: 24; --8: 25; --9: 22; --10: 19; --11: 14; --12: 9;">
+      <th scope="row">2017</th>
+      <td>8 °C</td>
+      <td>[…]</td>
+    </tr>
+  </tbody>
+</table></code></pre>
 </div>
 </details>
 <details>
@@ -469,52 +462,52 @@
  <p>
   Pour commencer, il faut bien intégrer que <code>clip-path</code> est un tracé,
   au même titre qu’une forme vectorielle. Il doit donc <strong>être fermé</strong>.
-  Ainsi le tracé démarre à <var>0% 100%</var> —&nbsp;en bas à gauche, fait sa vie
+  Ainsi le tracé démarre à <var>0% 100%</var> — en bas à gauche, fait sa vie
   de tracé, bascule à <var>100% 100%</var> et revient boucler à <var>0% 100%</var>.
  </p>
  <p>Et dans son chemin, chaque point doit être positionné en abscisses et en ordonnées.</p>
  <h4>La position en abscisse</h4>
  <p>
-  La première position est simple&nbsp;: on divise <code>100%</code> par l’échelle
-  <var>var(--x)</var>, et on <strong>multiplie par l’index</strong> de l’élément. Par exemple&nbsp;:
+  La première position est simple : on divise <code>100%</code> par l’échelle
+  <var>var(--x)</var>, et on <strong>multiplie par l’index</strong> de l’élément. Par exemple :
   <code>calc( ( 100% / var(--x) * 1) )</code>.
   Pour placer chaque point <strong>au milieu de sa colonne</strong>, on le décale d’une demi-colonne
-  —&nbsp;ce que l’on fait en ajoutant au calcul précédent <var>var(--offset)</var>, qui correspond
+  — ce que l’on fait en ajoutant au calcul précédent <var>var(--offset)</var>, qui correspond
   à <code>calc( ( 100% / var(--x) ) / 2 )</code>.<br>
-  La position finale est donc, ici pour le troisième point&nbsp;:<br>
+  La position finale est donc, ici pour le troisième point :<br>
   <code>calc( ( 100% / var(--x) * 3) + var(--offset) )</code>.
  </p>
  <h4>La position en ordonnée</h4>
  <p>
   Dans ce graphique, l’ordonnée est l’axe le plus important. Ainsi pour placer le point,
-  on commence par calculer <strong>le ratio de sa valeur sur l’échelle</strong> —&nbsp;formulé
-  ainsi&nbsp;: <code>var(--1) / var(--y)</code>. Et parce que <code>polygon()</code> utilise
-  des valeurs en pourcentage, on rapporte ce calcul sur 100%&nbsp;:
+  on commence par calculer <strong>le ratio de sa valeur sur l’échelle</strong> — formulé
+  ainsi : <code>var(--1) / var(--y)</code>. Et parce que <code>polygon()</code> utilise
+  des valeurs en pourcentage, on rapporte ce calcul sur 100% :
   <code>( var(--1) / var(--y) * 100% )</code>.<br>
   Et pour finir, les référentiels du polygone partant d’en haut à gauche, <strong>la position
   doit être définie en fonction du haut de la boîte</strong>. La formule finale ressemble
-  alors à ça —&nbsp;toujours pour le troisième élément&nbsp;:<br>
+  alors à ça — toujours pour le troisième élément :<br>
   <code>calc( 100% - ( var(--3) / var(--y) * 100% ) )</code>.
  </p>
 </details>
 
 <h3>Graphique à point</h3>
 
-<p>Cette variante diffère finalement assez peu de la précédente mouture&nbsp;:</p>
+<p>Cette variante diffère finalement assez peu de la précédente mouture :</p>
 
 <ol>
  <li>
    le <code>polygon()</code> est <strong>poursuivi pour former une ligne</strong>,
    en dupliquant chaque point avec un décalage de <var>4px</var>
-   —&nbsp;l’épaisseur du trait&nbsp;— et dans l’ordre inverse&nbsp;;
+   — l’épaisseur du trait — et dans l’ordre inverse ;
  </li>
  <li>
   le pseudo-élément <code>::before</code> qui permet d’afficher l’infobulle prend ici la forme d’un
-  point sur la courbe —&nbsp;positionné à l’aide des mêmes calculs qui servent dans le polygone&nbsp;;
+  point sur la courbe — positionné à l’aide des mêmes calculs qui servent dans le polygone ;
  </li>
  <li>
   et surtout, puisque <code>clip-path</code> est appliqué <strong>sur la ligne</strong>
-  <code>&lt;tr&gt;</code>&nbsp;: vous pouvez en mettre <strong>plusieurs</strong>&nbsp;!
+  <code><tr></code> : vous pouvez en mettre <strong>plusieurs</strong> !
   Il nous faut donc ajouter une combinaison de couleur et motif pour distinguer chaque ligne
   et les associer visuellement à leur légende.
  </li>
@@ -526,16 +519,13 @@
    <strong id="label-4">Interrupteur</strong><br>
    <span id="description-4">Permet de désactiver les styles sur le tableau suivant.</span>
   </p>
-  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
-      role="switch" aria-checked="true"
-      aria-labelledby="label-4" aria-describedby="description-4">
+  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css" role="switch" aria-checked="true" aria-labelledby="label-4" aria-describedby="description-4">
    <span>Guilleret</span>
    <span>Sobre</span>
   </button>
  </div>
 
- <table class="chaarts line points" id="points"
-     style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Fév.'; --t-3: 'Mar.'; --t-4: 'Avr.'; --t-5: 'Mai'; --t-6: 'Juin';
+ <table class="chaarts line points" id="points" style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Fév.'; --t-3: 'Mar.'; --t-4: 'Avr.'; --t-5: 'Mai'; --t-6: 'Juin';
         --t-7: 'Juil.'; --t-8: 'Août'; --t-9: 'Sept.'; --t-10: 'Oct.'; --t-11: 'Nov.'; --t-12: 'Déc.';">
   <caption id="caption-4">Température mensuelle moyenne par année</caption>
   <thead>
@@ -560,62 +550,62 @@
     <th scope="row">2017</th>
     
   <td>
-    8&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    8 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    6&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    6 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    9&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    9 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    12&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    12 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    15&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    15 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    21&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    21 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    24&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    24 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    25&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    25 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    22&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    22 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    19&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    19 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    14&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    14 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    9&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    9 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
    </tr>
@@ -623,62 +613,62 @@
     <th scope="row">2018</th>
     
   <td>
-    10&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    10 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    4&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    4 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    7&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    7 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    13&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    13 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    17&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    17 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    20&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    20 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    22&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    22 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    23&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    23 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    26&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    26 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    17&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    17 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    14&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    14 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
     
   <td>
-    10&nbsp;<abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
+    10 <abbr title="Degré Celsius" aria-label="Degré Celsius">°C</abbr>
   </td>
 
    </tr>
@@ -802,11 +792,12 @@
       </main>
 
       
-        <script src="js/script.min.js"></script>
-        <script src="js/prism.min.js"></script>
+        <script src="js/script.min.js" integrity="sha384-GSFLTHfMgenmEx6jFpCPYPrICTc7v02GoC3xiIvkFqR7kyjirVQ6f2MHDkHnBlKB" crossorigin="anonymous"></script>
+        <script src="js/prism.min.js" integrity="sha384-0MFjDwTZ/C2v2TidAUN+xb3jb62cO99R2DqFEVRGsb06KJUzbcBaxDdWlG4gnjrv" crossorigin="anonymous"></script>
       
 
       
       
-    </body>
-</html>
+    
+
+</body></html>
