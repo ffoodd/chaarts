@@ -239,8 +239,8 @@ table:not(.chaarts) .sr-only {
         background-image: linear-gradient(to right, Window, ButtonFace, ButtonShadow, ButtonText, highlight), var(--background);
       }
     }
-    .chaarts.bar.waterfall tr:first-of-type td {
-      grid-column: 2/var(--value, 0);
+    .chaarts.bar.waterfall tr:nth-of-type(1) td {
+      grid-column: var(--0, 0)/var(--value, 0);
     }
     .chaarts.bar.waterfall tr:nth-of-type(2) td {
       grid-column: var(--1, 0)/var(--value, 0);

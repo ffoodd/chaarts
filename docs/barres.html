@@ -1,6 +1,8 @@
-<!DOCTYPE html><html lang="fr" class="no-js"><head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!DOCTYPE html>
+<html lang="fr" class="no-js">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         
   <title>Graphiques en barre — chaarts</title>
@@ -9,15 +11,15 @@
   <meta property="og:type" content="article">
   <meta property="og:description" name="description" content="Graphiques de données avec HTML & CSS">
   <meta name="twitter:card" content="summary">
-  <link rel="alternate" hreflang="en" href="https://ffoodd.github.io/chaarts/bar-charts.html">
+  <link rel="alternate" hreflang="en" href="https://ffoodd.github.io/chaarts/bar-charts.html"/>
 
         <script>
           document.documentElement.classList.remove('no-js');
           document.documentElement.classList.add('js');
         </script>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="css/styles.min.css" media="all" integrity="sha384-tsaEBI4ao0xD9p8xkEF/6B6FyDf1H5+2ffQIPmv+vVHvZ/Q6OnK6fapsBq76bNwI" crossorigin="anonymous">
-        <link rel="stylesheet" href="css/print.min.css" media="print" integrity="sha384-i3dRwmp8zXRlpUnJTD27rKIBzSEdYbc0YEFwuULfvleZ4Vm0RG81i/6HXy96jet8" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/styles.min.css" media="all">
+        <link rel="stylesheet" href="css/print.min.css" media="print">
     </head>
     <body itemscope itemtype="http://schema.org/WebPage">
       <header role="banner">
@@ -38,14 +40,15 @@
   <li><a href="./camembert.html">Camembert</a></li>
   <li><a href="./radar.html">Radar</a></li>
   <li class="ml-auto">
-    <a rel="alternate" hreflang="en" lang="en" href="./bar-charts.html" aria-label="English version" title="English version">EN</a>
+    <a rel="alternate" hreflang="en" lang="en" href="./bar-charts.html"
+       aria-label="English version" title="English version">EN</a>
   </li>
   <li>
     <a href="https://github.com/ffoodd/chaarts/" class="d-flex" hreflang="en">
       <svg viewBox="0 0 16 16" height="16" width="16" aria-hidden="true">
-        <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
       </svg>
-       GitHub
+      &nbsp;GitHub
     </a>
   </li>
 </ul>
@@ -65,30 +68,30 @@
    d’<a hreflang="en" href="https://css-tricks.com/css-charts-grid-custom-properties/">un article de <cite>Miriam Suzanne</cite> sur
    <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">CSS</abbr> Tricks</a>
    légèrement agrémentée pour en améliorer l’accessibilité.
-   Pour vous en servir, c’est simple :
+   Pour vous en servir, c’est simple&nbsp;:
   </p>
 
   <ol>
    <li>
     Sur le <strong>tableau</strong>, une variable <var>--scale</var> permet de définir la valeur maximale du graphique,
-    afin d’en déterminer l’échelle. Concrètement, une grille va être générée avec :
+    afin d’en déterminer l’échelle. Concrètement, une grille va être générée avec&nbsp;:
     <ul>
-     <li>la première colonne pour les entêtes <code><th></code> arbitrairement fixée à <code>12.5em</code> ;</li>
-     <li>puis la fonction CSS <code>repeat()</code> crée une colonne par unité de l’échelle — dans l’exemple, 3000 colonnes ;</li>
+     <li>la première colonne pour les entêtes <code>&lt;th&gt;</code> arbitrairement fixée à <code>12.5em</code>&nbsp;;</li>
+     <li>puis la fonction CSS <code>repeat()</code> crée une colonne par unité de l’échelle —&nbsp;dans l’exemple, 3000 colonnes&nbsp;;</li>
      <li>enfin une dernière colonne mesurant <code>10ch</code>, soit l’espace suffisant pour dix lettres.</li>
     </ul>
    </li>
    <li>
-    <strong>Sur chaque cellule</strong> <code><td></code>, une variable <var>--value</var> permet de la placer sur la grille,
+    <strong>Sur chaque cellule</strong> <code>&lt;td&gt;</code>, une variable <var>--value</var> permet de la placer sur la grille,
     appliquée à <code>grid-column-end</code>.
     De plus grâce à de savants calculs reposant sur cette valeur, le dégradé en arrière-plan est dimensionné et positionné de façon à
     refléter la proportion représentée par cette valeur sur l’échelle donnée (du vert pour presque rien au rouge pour presque tout).
    </li>
    <li>
-    <strong>Dans chaque cellule</strong>, le contenu doit reprendre la valeur et son unité dans un élément <code><span></code>, éventuellement
-    balisée avec <code><abbr></code> (et <code>aria-label</code> pour suppléer <code>title</code>) si un intitulé peut être explicité pour l’unité.
+    <strong>Dans chaque cellule</strong>, le contenu doit reprendre la valeur et son unité dans un élément <code>&lt;span&gt;</code>, éventuellement
+    balisée avec <code>&lt;abbr&gt;</code> (et <code>aria-label</code> pour suppléer <code>title</code>) si un intitulé peut être explicité pour l’unité.
     Cette valeur est poussée à droite de la grille, et son texte
-    sert de masque pour le dégradé en arrière-plan — lui permettant d’être de la couleur correspondante à la fin du dégradé pour la position donnée.
+    sert de masque pour le dégradé en arrière-plan —&nbsp;lui permettant d’être de la couleur correspondante à la fin du dégradé pour la position donnée.
    </li>
   </ol>
 
@@ -99,7 +102,9 @@
      <strong id="label-1">Interrupteur</strong><br>
      <span id="description-1">Permet de désactiver les styles sur le tableau suivant.</span>
     </p>
-    <button type="button" class="ml-auto fw-400 no-border p-relative disable-css" role="switch" aria-checked="true" aria-labelledby="label-1" aria-describedby="description-1">
+    <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
+        role="switch" aria-checked="true"
+        aria-labelledby="label-1" aria-describedby="description-1">
      <span>Guilleret</span>
      <span>Sobre</span>
     </button>
@@ -118,7 +123,7 @@
   <tr>
     <th scope="row">Temps : backend</th>
     <td style="--value: 4">
-      <span>4 <abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
+      <span>4&nbsp;<abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
     </td>
   </tr>
 
@@ -126,7 +131,7 @@
   <tr>
     <th scope="row">Temps : Frontend</th>
     <td style="--value: 96">
-      <span>96 <abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
+      <span>96&nbsp;<abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
     </td>
   </tr>
 
@@ -134,7 +139,7 @@
   <tr>
     <th scope="row">Délai : premier octet</th>
     <td style="--value: 102">
-      <span>102 <abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
+      <span>102&nbsp;<abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
     </td>
   </tr>
 
@@ -142,7 +147,7 @@
   <tr>
     <th scope="row">Délai : dernier octet</th>
     <td style="--value: 129">
-      <span>129 <abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
+      <span>129&nbsp;<abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
     </td>
   </tr>
 
@@ -150,7 +155,7 @@
   <tr>
     <th scope="row">Délai : première image</th>
     <td style="--value: 188">
-      <span>188 <abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
+      <span>188&nbsp;<abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
     </td>
   </tr>
 
@@ -158,7 +163,7 @@
   <tr>
     <th scope="row">Délai : premier CSS</th>
     <td style="--value: 194">
-      <span>194 <abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
+      <span>194&nbsp;<abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
     </td>
   </tr>
 
@@ -166,7 +171,7 @@
   <tr>
     <th scope="row">Délai : premier JS</th>
     <td style="--value: 326">
-      <span>326 <abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
+      <span>326&nbsp;<abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
     </td>
   </tr>
 
@@ -174,7 +179,7 @@
   <tr>
     <th scope="row">DOM Interactif</th>
     <td style="--value: 836">
-      <span>836 <abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
+      <span>836&nbsp;<abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
     </td>
   </tr>
 
@@ -182,7 +187,7 @@
   <tr>
     <th scope="row">Chargement du DOM</th>
     <td style="--value: 836">
-      <span>836 <abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
+      <span>836&nbsp;<abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
     </td>
   </tr>
 
@@ -190,7 +195,7 @@
   <tr>
     <th scope="row">DOM complet</th>
     <td style="--value: 2561">
-      <span>2561 <abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
+      <span>2561&nbsp;<abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
     </td>
   </tr>
 
@@ -198,7 +203,7 @@
   <tr>
     <th scope="row">Trafic HTTP terminé</th>
     <td style="--value: 2980">
-      <span>2980 <abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
+      <span>2980&nbsp;<abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
     </td>
   </tr>
 
@@ -208,24 +213,24 @@
 
   <details>
    <summary>Le <abbr lang="en" title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
-   <div><pre><code class="language-markup"><table class="chaarts bar" style="--scale: 3000">
-  <caption id="caption-1">[…]</caption>
-  <thead class="sr-only">
-    <tr>
-      <td></td>
-      <th scope="col">[…]</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">[…]</th>
-      <td style="--value: 4">
-        <span>[…]</span>
-      </td>
-    </tr>
-    <tr>[…]</tr>
-  </tbody>
-</table></code></pre>
+   <div><pre><code class="language-markup">&lt;table class="chaarts bar" style="--scale: 3000">
+  &lt;caption id="caption-1">[…]&lt;/caption>
+  &lt;thead class="sr-only">
+    &lt;tr>
+      &lt;td>&lt;/td>
+      &lt;th scope="col">[…]&lt;/th>
+    &lt;/tr>
+  &lt;/thead>
+  &lt;tbody>
+    &lt;tr>
+      &lt;th scope="row">[…]&lt;/th>
+      &lt;td style="--value: 4">
+        &lt;span>[…]&lt;/span>
+      &lt;/td>
+    &lt;/tr>
+    &lt;tr>[…]&lt;/tr>
+  &lt;/tbody>
+&lt;/table></code></pre>
 </div>
   </details>
   <details>
@@ -313,11 +318,11 @@
   <h2>Graphique en chute d’eau</h2>
 
   <p>
-   Le principe est le même pour cette variante, à un détail près :
+   Le principe est le même pour cette variante, à un détail près&nbsp;:
    on gère également <strong>le point de départ</strong> pour chaque mesure
-   — qui est, très simplement, la valeur du point précédent…
+   —&nbsp;qui est, très simplement, la valeur du point précédent…
    Il faut cependant passer toutes les valeurs en tant que variables sur
-   le parent <code><table></code>.
+   le parent <code>&lt;table&gt;</code>.
   </p>
 
    <div class="table-container bar-container" role="group" aria-labelledby="caption-2">
@@ -326,7 +331,9 @@
      <strong id="label-2">Interrupteur</strong><br>
      <span id="description-2">Permet de désactiver les styles sur le tableau suivant.</span>
     </p>
-    <button type="button" class="ml-auto fw-400 no-border p-relative disable-css" role="switch" aria-checked="true" aria-labelledby="label-2" aria-describedby="description-2">
+    <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
+        role="switch" aria-checked="true"
+        aria-labelledby="label-2" aria-describedby="description-2">
      <span>Guilleret</span>
      <span>Sobre</span>
     </button>
@@ -345,7 +352,7 @@
   <tr>
     <th scope="row">Temps : backend</th>
     <td style="--value: 4">
-      <span>4 <abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
+      <span>4&nbsp;<abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
     </td>
   </tr>
 
@@ -353,7 +360,7 @@
   <tr>
     <th scope="row">Temps : Frontend</th>
     <td style="--value: 96">
-      <span>96 <abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
+      <span>96&nbsp;<abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
     </td>
   </tr>
 
@@ -361,7 +368,7 @@
   <tr>
     <th scope="row">Délai : premier octet</th>
     <td style="--value: 102">
-      <span>102 <abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
+      <span>102&nbsp;<abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
     </td>
   </tr>
 
@@ -369,7 +376,7 @@
   <tr>
     <th scope="row">Délai : dernier octet</th>
     <td style="--value: 129">
-      <span>129 <abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
+      <span>129&nbsp;<abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
     </td>
   </tr>
 
@@ -377,7 +384,7 @@
   <tr>
     <th scope="row">Délai : première image</th>
     <td style="--value: 188">
-      <span>188 <abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
+      <span>188&nbsp;<abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
     </td>
   </tr>
 
@@ -385,7 +392,7 @@
   <tr>
     <th scope="row">Délai : premier CSS</th>
     <td style="--value: 194">
-      <span>194 <abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
+      <span>194&nbsp;<abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
     </td>
   </tr>
 
@@ -393,7 +400,7 @@
   <tr>
     <th scope="row">Délai : premier JS</th>
     <td style="--value: 326">
-      <span>326 <abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
+      <span>326&nbsp;<abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
     </td>
   </tr>
 
@@ -401,7 +408,7 @@
   <tr>
     <th scope="row">DOM Interactif</th>
     <td style="--value: 836">
-      <span>836 <abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
+      <span>836&nbsp;<abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
     </td>
   </tr>
 
@@ -409,7 +416,7 @@
   <tr>
     <th scope="row">Chargement du DOM</th>
     <td style="--value: 836">
-      <span>836 <abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
+      <span>836&nbsp;<abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
     </td>
   </tr>
 
@@ -417,7 +424,7 @@
   <tr>
     <th scope="row">DOM complet</th>
     <td style="--value: 2561">
-      <span>2561 <abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
+      <span>2561&nbsp;<abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
     </td>
   </tr>
 
@@ -425,7 +432,7 @@
   <tr>
     <th scope="row">Trafic HTTP terminé</th>
     <td style="--value: 2980">
-      <span>2980 <abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
+      <span>2980&nbsp;<abbr title="Milliseconde" aria-label="Milliseconde">ms</abbr></span>
     </td>
   </tr>
 
@@ -435,9 +442,9 @@
 
   <details>
    <summary>Le <abbr lang="en" title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
-   <div><pre><code class="language-markup"><table class="chaarts bar waterfall"
+   <div><pre><code class="language-markup">&lt;table class="chaarts bar waterfall"
  style="--scale: 3000; --1: 4; --2: 96; --3: 102; --4: 129; --5: 188; --6: 194; --7: 326; --8: 836; --9: 836; --10: 2561; --11: 2980;">
-</table></code></pre>
+&lt;/table></code></pre>
 </div>
   </details>
   <details>
@@ -451,12 +458,11 @@
       </main>
 
       
-        <script src="js/script.min.js" integrity="sha384-GSFLTHfMgenmEx6jFpCPYPrICTc7v02GoC3xiIvkFqR7kyjirVQ6f2MHDkHnBlKB" crossorigin="anonymous"></script>
-        <script src="js/prism.min.js" integrity="sha384-0MFjDwTZ/C2v2TidAUN+xb3jb62cO99R2DqFEVRGsb06KJUzbcBaxDdWlG4gnjrv" crossorigin="anonymous"></script>
+        <script src="js/script.min.js"></script>
+        <script src="js/prism.min.js"></script>
       
 
       
       
-    
-
-</body></html>
+    </body>
+</html>

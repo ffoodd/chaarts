@@ -108,11 +108,7 @@
     }
 
     &.waterfall {
-      tr:first-of-type td {
-        grid-column: 2 / var(--value, 0);
-      }
-
-      @each $number in 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 {
+      @each $number in 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 {
         tr:nth-of-type(#{$number}) td {
           grid-column: var(--#{$number - 1}, 0) / var(--value, 0);
         }
