@@ -2,7 +2,7 @@
 /* == Radar Charts
 /* ==================== */
 
-@supports(clip-path: polygon(calc( 0% 0%, 100% - ( var(--1) * 100% / var(--scale) ) ) 100%, 100% 100%)) {
+@supports(clip-path: polygon(0% 0%, calc(100% - ( var(--1) * 100% / var(--scale) ) ) 100%, 100% 100%)) {
   .radar-container .fieldset {
     display: flex !important;
   }
@@ -12,6 +12,7 @@
     --unitless-radius: calc( 1024 / 16 / 5 );
     --size: calc( var(--radius) / var(--scale) );
     --part: calc( 360deg / var(--items) );
+    --integer: calc(var(--scale));
     background-image:
       repeating-radial-gradient(
         circle at 50%,
@@ -30,7 +31,7 @@
     border: 2px solid;
     border-radius: 50%;
     contain: layout;
-    counter-reset: scale var(--scale);
+    counter-reset: scale var(--integer);
     height: calc( var(--radius) * 2 );
     margin: $gutter * 6 auto $gutter * 12;
     overflow: visible;
@@ -148,6 +149,11 @@
    * @note Display CSS integers custom properties with a trick using counters
    * @author Cassie Evans
    * @link https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab
+   *
+   * 2.
+   * @note We need to ensure our counter uses an integer, --value might a a floating number
+   * @author Carter Li
+   * @link https://css-tricks.com/animating-number-counters/#the-new-school-css-solution
    */
   .chaarts.radar [scope="col"] {
     &::after {
@@ -159,7 +165,8 @@
 
     @each $number in 1, 2, 3, 4, 5, 6, 7 {
       &:nth-child(#{$number})::after {
-        counter-reset: value var(--#{$number});           // 1
+        --integer: calc(var(#{$number}));                 // 2
+        counter-reset: value var(--integer);              // 1
         content: counter(value) "\A0/\A0" counter(scale); // 1
       }
     }
@@ -222,8 +229,9 @@
 
       @each $number in 1, 2, 3, 4, 5, 6, 7 {
         &:nth-of-type(#{$number})::after {
-          counter-reset: value var(--#{$number}); // 1
-          content: counter(value);                // 1
+          --integer: calc(var(--#{$number}));  // 2
+          counter-reset: value var(--integer); // 1
+          content: counter(value);             // 1
           width: calc( var(--#{$number}) * 100% / var(--scale) );
         }
       }
