@@ -64,9 +64,3 @@ gulp.task('test', require('./tasks/tests'));
  * @section Lint
  */
  gulp.task('lint', require('./tasks/lint'));
-
-
-/**
- * @section Travis
- */
-gulp.task('travis', require('./tasks/travis'));
