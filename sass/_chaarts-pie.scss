@@ -50,13 +50,16 @@
      * Using clip-path + calc() + transform + CSS vars
      * Using mask-image to make a circle
      *
+     * 1.
      * @note Based on Ana Tudor's work
      * @link https://css-tricks.com/1-html-element-5-css-properties-magic/
      * @author Ana Tudor
      *
+     * 2.
      * @note Using a Roma Komarov's idea about boolean custom properties
      * @link https://www.kizu.ru/conditions-for-css-variables/
      *
+     * 3.
      * @note Mask support:
      * @link https://caniuse.com/#search=mask
      */
@@ -114,14 +117,26 @@
       }
     }
 
+    /**
+     * 1.
+     * @note Display CSS integers custom properties with a trick using counters
+     * @author Cassie Evans
+     * @link https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab
+     *
+     * 2.
+     * @note We need to ensure our counter uses an integer, --value might a a floating number
+     * @author Carter Li
+     * @link https://css-tricks.com/animating-number-counters/#the-new-school-css-solution
+     */
     td::after {
       --arrow: calc(100% - #{$gutter / 4});
       --axis: calc( var(--position) - .25turn + var(--value) * .005turn );
       --away: calc( var(--radius) / 2 - #{$gutter} );
+      --integer: calc(var(--value));                      // 2
       background-color: palette( dominant );
       color: palette( dominant, contrast );
-      content: var(--term) "\A0: " counter(value) "\A0%";
-      counter-reset: value var(--value);
+      content: var(--term) "\A0: " counter(value) "\A0%"; // 1
+      counter-reset: value var(--integer);                // 1
       opacity: 0;
       padding: $gutter / 2;
       pointer-events: none;

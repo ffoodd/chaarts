@@ -63,6 +63,10 @@
   <a href="https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab">a
   trick from <cite>Cassie Evans</cite>, using <code>counter-reset</code> and <code>counter()</code>
   to display a numerical variable in the <code>content</code> property</a>.
+  However <code>counter-reset</code> only works with integers, and our value might be a number.
+  So we rely on <a href="https://css-tricks.com/animating-number-counters/#the-new-school-css-solution">
+  <cite>Carter Li</cite>'s ruse using <code>calc()</code> to convert numbers to integers—&nbsp;and
+  <code>@property</code> for Chromium-based browsers</a>. Boum!
  <li>
   Then the magic works on the <code>&lt;td&gt;</code> elements:
   <ol>

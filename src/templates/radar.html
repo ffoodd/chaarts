@@ -64,6 +64,10 @@
   <a hreflang="en" href="https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab">d’une
   astuce de <cite>Cassie Evans</cite>, utilisant <code>counter-reset</code> et <code>counter()</code>
   pour afficher une variable numérique dans la propriété <code>content</code></a>.
+  Cependant <code>counter-reset</code> ne fonctionne qu’avec un entier et notre valeur peut être un nombre. Alors on s’appuie sur
+  <a hreflang="en" href="https://css-tricks.com/animating-number-counters/#the-new-school-css-solution">une ruse de
+  <cite>Carter Li</cite> utilisant <code>calc()</code> pour convertir les nombres en entiers —&nbsp;et
+  <code>@property</code> pour les navigateurs basés sur Chromium</a>. Boum&nbsp;!
  <li>
   Puis la magie opère sur les éléments <code>&lt;td&gt;</code>&nbsp;:
   <ol>

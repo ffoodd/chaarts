@@ -144,6 +144,11 @@
         * @note Display CSS integers custom properties with a trick using counters
         * @author Cassie Evans
         * @link https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab
+        *
+        * 3.
+        * @note We need to ensure our counter uses an integer, --value might a a floating number
+        * @author Carter Li
+        * @link https://css-tricks.com/animating-number-counters/#the-new-school-css-solution
         */
        &::after {
          --arrow: calc(100% - #{$gutter / 4});
@@ -157,11 +162,12 @@
            calc(50% + #{$gutter / 4}) var(--arrow),
            0% var(--arrow)
          );
+         --integer: calc(var(--value));                                     // 3
          background-color: palette( dominant );
          clip-path: var(--polygon);
          color: palette( dominant, contrast );
          content: var(--term) " " var(--year) "\A " counter(value) "\A0°C"; // 1
-         counter-reset: value var(--value);                                 // 2
+         counter-reset: value var(--integer);                               // 2, 3
          opacity: 0;
          padding: $gutter / 2;
          left: calc( var(--offset) * 3 );

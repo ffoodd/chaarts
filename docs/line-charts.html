@@ -123,10 +123,15 @@
    </li>
    <li>
     the display of custom properties in a pseudo-element is not so trivial:
-    this property only accepts strings, and our custom properties contains… integers.
+    <code>content</code> only accepts strings, and our custom properties contains… number.
     Once again we recycle <a href="https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab">
     a <cite>Cassie Evans</cite>'s trick based on <code>counter-reset</code> and its default value
     to <strong>convert</strong> our <var>--value</var> custom property into a string</a>.
+    However <code>counter-reset</code> requires an integer, and we may have a floating number.
+    We first need to make sure we're using an integer, so we rely on
+    <a href="https://css-tricks.com/animating-number-counters/#the-new-school-css-solution"><cite>Carter Li</cite>'s ruse
+    to use <code>calc()</code> to wrap our value—&nbsp;and <code>@property</code> for Chromium-based browsers</a>.
+    Boum!
    </li>
   </ul>
  </li>

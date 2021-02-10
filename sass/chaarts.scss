@@ -6,6 +6,24 @@
 @import "abstracts/mixins";
 
 /* ==================== */
+/* == Convert <Number> to <Integer>
+/* ==================== */
+/**
+ * Using Houdini's @property to ensure --integer is <Integer> type in Chromium-based browsers
+ * @link https://developer.mozilla.org/en-US/docs/Web/CSS/@property
+ * @link https://caniuse.com/mdn-css_at-rules_property
+ ** Based on:
+ ** @author Carter Li
+ ** @link https://css-tricks.com/animating-number-counters/#the-new-school-css-solution
+ */
+//noinspection ALL
+@property --integer {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+/* ==================== */
 /* == Tables
 /* ==================== */
 table {
@@ -51,7 +69,7 @@ thead {
 /* == Charts
 /* ==================== */
 /**
- * Gives scrollbale table some UX hints with shadows
+ * Gives scrollable table some UX hints with shadows
  * @author Chen Hui Jing
  * @link https://codepen.io/huijing/pen/XBGaNQ
  ** Based on:
@@ -120,12 +138,12 @@ thead {
 
 table:not(.chaarts) .sr-only {
   clip: auto !important;
-	clip-path: none !important;
-	height: auto !important;
-	overflow: visible !important;
+  clip-path: none !important;
+  height: auto !important;
+  overflow: visible !important;
   position: static !important;
-	width: auto !important;
-	white-space: normal !important;
+  width: auto !important;
+  white-space: normal !important;
 }
 
 @media screen and (min-width: em(480)) {
