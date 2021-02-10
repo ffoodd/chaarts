@@ -39,10 +39,10 @@
     "node_modules"
   ],
   "devDependencies": {
-    "@babel/core": "^7.8.4",
-    "@babel/preset-env": "^7.8.4",
-    "axe-core": "^3.5.1",
-    "browser-sync": "^2.26.5",
+    "@babel/core": "^7.12.13",
+    "@babel/preset-env": "^7.12.13",
+    "axe-core": "^3.5.5",
+    "browser-sync": "^2.26.14",
     "chalk": "^2.4.2",
     "del": "^4.1.1",
     "eslint": "^5.16.0",
@@ -66,7 +66,7 @@
     "log-symbols": "^3.0.0",
     "stylelint": "^10.0.1",
     "stylelint-config-recommended-scss": "^3.3.0",
-    "stylelint-scss": "^3.14.2"
+    "stylelint-scss": "^3.19.0"
   },
   "dependencies": {
     "gulp-sri-hash": "^2.2.1",
