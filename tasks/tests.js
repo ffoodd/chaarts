@@ -1,7 +1,6 @@
 const fs      = require('fs');
 const gulp    = require('gulp');
 const options = require('./options');
-const axe     = require('gulp-axe-webdriver');
 const html    = require('html-validator');
 const symbols = require('log-symbols');
 const chalk   = require('chalk');
@@ -71,11 +70,4 @@ function markup(done) {
   done();
 }
 
-/**
- * aXe
- */
-function a11y(done) {
-  return axe(options.axe, done);
-}
-
-module.exports = gulp.parallel( markup, a11y );
+module.exports = gulp.parallel( markup );
