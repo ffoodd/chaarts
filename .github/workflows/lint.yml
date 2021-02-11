@@ -1,20 +1,17 @@
 name: Lint
+
 on:
   push:
-    paths:
-      - "scss/**"
-      - "js/**"
-    branches:
-      - "!dependabot/**"
+    branches-ignore:
+      - "dependabot/**"
   pull_request:
-    branches:
-      - "!dependabot/**"
+
 env:
   FORCE_COLOR: 2
   NODE: 14
 
 jobs:
-  css:
+  lint:
     runs-on: ubuntu-latest
 
     steps:

@@ -1,13 +1,11 @@
 name: CSS
+
 on:
   push:
-    paths:
-      - "scss/**"
-    branches:
-      - "!dependabot/**"
+    branches-ignore:
+      - "dependabot/**"
   pull_request:
-    branches:
-      - "!dependabot/**"
+
 env:
   FORCE_COLOR: 2
   NODE: 14

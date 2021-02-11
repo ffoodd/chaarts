@@ -1,17 +1,17 @@
 name: Docs
+
 on:
   push:
-    branches:
-      - "!dependabot/**"
+    branches-ignore:
+      - "dependabot/**"
   pull_request:
-    branches:
-      - "!dependabot/**"
+
 env:
   FORCE_COLOR: 2
   NODE: 14
 
 jobs:
-  css:
+  docs:
     runs-on: ubuntu-latest
 
     steps:
