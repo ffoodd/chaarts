@@ -42,7 +42,7 @@
     td::before {
       left: 50%;
       position: absolute;
-      top: 40%;
+      top: calc(var(--radius) / 2);
       transform-origin: center center;
     }
 
