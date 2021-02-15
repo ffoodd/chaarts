@@ -1,13 +1,13 @@
 {% extends "index.html" %}
 
 {% block meta %}
-  <title>Pie charts — chaarts</title>
-  <meta property="og:url" content="https://ffoodd.github.io/chaarts/pie-charts.html">
-  <meta property="og:title" content="Pie charts — chaarts">
-  <meta property="og:type" content="article">
-  <meta property="og:description" name="description" content="Charts with HTML & CSS">
-  <meta name="twitter:card" content="summary">
-  <link rel="alternate" hreflang="fr" href="https://ffoodd.github.io/chaarts/camembert.html"/>
+<title>Pie charts — chaarts</title>
+<meta property="og:url" content="https://ffoodd.github.io/chaarts/pie-charts.html">
+<meta property="og:title" content="Pie charts — chaarts">
+<meta property="og:type" content="article">
+<meta property="og:description" name="description" content="Charts with HTML & CSS">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" hreflang="fr" href="https://ffoodd.github.io/chaarts/camembert.html"/>
 {% endblock %}
 
 {% block navigation %}
@@ -37,145 +37,166 @@
 <h1>Pie charts</h1>
 
 <p>
- The pie chart is used for <strong>representations of percentage proportions</strong>.
- It relies on CSS variables, an outrageous abuse of <code>calc()</code>,
- <code>display: table-*</code>, <code>clip-path</code>, <code>mask-image</code>,
- <code>transform</code> and a bit of <abbr title="Scalable Vectors Graphics">SVG</abbr>
- to distinguish each area. Yes, I know how to laugh. How do we use it?
+  The pie chart is used for <strong>representations of percentage proportions</strong>.
+  It relies on CSS variables, an outrageous abuse of <code>calc()</code>,
+  <code>display: table-*</code>, <code>clip-path</code>, <code>mask-image</code>,
+  <code>transform</code> and a bit of <abbr title="Scalable Vectors Graphics">SVG</abbr>
+  to distinguish each area. Yes, I know how to laugh. How do we use it?
 </p>
 
 <ol>
- <li>
-  <strong>On each header</strong> <code>&lt;th&gt;</code>, a <var>--color</var>
-  custom property allows you to assign, well… a color.
- </li>
- <li>
-  <strong>Then each cell</strong> <code>&lt;td&gt;</code> must contain the value
-  and its unit, as well as a <code>style</code> attribute to carry some variables:
-  <ol>
-   <li>
-    <var>--value</var> is the percentage value,
-    useful for determining <strong>the angle</strong> the element should occupy on the circle.
-    All points of the <code>polygon()</code> —&nbsp;used to draw the pie part thanks to <code>clip-path</code>&nbsp;—
-    depend on this value (read <a href="#calculation-twist">the technical note after
-    the example for details of the calculations</a>).
-   </li>
-   <li>
-    <var>--start</var> is used to define the <strong>starting point</strong>
-    of the arc on the circle. It's the sum of the previous definitions, and is applied
-    to the <code>rotate()</code> function of the <code>transform</code> poperty.
-   </li>
-   <li>
-    And finally a series of <em>pseudo-boolean</em> variables, each worthing <var>0</var> or <var>1</var>
-    —&nbsp;according to and idea of <a href="https://www.kizu.ru/conditions-for-css-variables/">
-    <cite>Roman Komarov</cite> in <em>"Conditions for CSS variables"</em></a>&nbsp;—
-    depend on the value: <var>--lt-25</var>, <var>--gt-25</var>, <var>--lt-50</var>…
-    They allow to <strong>toggle the points</strong> from their original position
-    (<code>50% 50%</code>) to their calculated position, by adding or subtracting from the initial value;
-   </li>
-  </ol>
- </li>
- <li>
-  a <strong>pseudo-element</strong> on each cell <code>&lt;td&gt;</code>is formatted
-  in a clever way according to all our variables, including <code>transform</code>,
-  <code>clip-path</code> and <code>mask-image</code>.
-  <ul>
-    <li>
-      Since <code>clip-path</code> still requires <a href="https://caniuse.com/#search=clip-path">
-      a <code>-webkit-</code> vendor prefix for Safari</a> and <code>mask-image</code>
-      <a href="https://caniuse.com/#search=mask-image">for WebKit based browsers</a>,
-      we use a CSS custom property to <strong>to prevent duplicate (long) values for those properties</strong>
-      —&nbsp;<a href="https://css-irl.info/7-uses-for-css-custom-properties/">trick
-      shared by <cite>Michelle Barker</cite> in "7 uses for CSS custom properties"</a>.
-    </li>
-  </ul>
- </li>
- <li>
-  And finally <strong>a pattern</strong> is applied to the background,
-  in order to better associate it visually with the corresponding legend.
- </li>
+  <li>
+    <strong>On each header</strong> <code>&lt;th&gt;</code>, a <var>--color</var>
+    custom property allows you to assign, well… a color.
+  </li>
+  <li>
+    <strong>Then each cell</strong> <code>&lt;td&gt;</code> must contain the value
+    and its unit, as well as a <code>style</code> attribute to carry some variables:
+    <ol>
+      <li>
+        <var>--value</var> is the percentage value,
+        useful for determining <strong>the angle</strong> the element should occupy on the circle.
+        All points of the <code>polygon()</code> —&nbsp;used to draw the pie part thanks to <code>clip-path</code>&nbsp;—
+        depend on this value (read <a href="#calculation-twist">the technical note after
+        the example for details of the calculations</a>).
+      </li>
+      <li>
+        <var>--start</var> is used to define the <strong>starting point</strong>
+        of the arc on the circle. It's the sum of the previous definitions, and is applied
+        to the <code>rotate()</code> function of the <code>transform</code> poperty.
+      </li>
+      <li>
+        And finally a series of <em>pseudo-boolean</em> variables, each worthing <var>0</var> or <var>1</var>
+        —&nbsp;according to and idea of <a href="https://www.kizu.ru/conditions-for-css-variables/">
+        <cite>Roman Komarov</cite> in <em>"Conditions for CSS variables"</em></a>&nbsp;—
+        depend on the value: <var>--lt-25</var>, <var>--gt-25</var>, <var>--lt-50</var>…
+        They allow to <strong>toggle the points</strong> from their original position
+        (<code>50% 50%</code>) to their calculated position, by adding or subtracting from the initial value;
+      </li>
+    </ol>
+  </li>
+  <li>
+    a <code>::before</code> <strong>pseudo-element</strong> on each cell <code>&lt;td&gt;</code>is formatted
+    in a clever way according to all our variables, including <code>transform</code>,
+    <code>clip-path</code> and <code>mask-image</code>.
+    <ul>
+      <li>
+        Since <code>clip-path</code> still requires <a href="https://caniuse.com/#search=clip-path">
+        a <code>-webkit-</code> vendor prefix for Safari</a> and <code>mask-image</code>
+        <a href="https://caniuse.com/#search=mask-image">for WebKit based browsers</a>,
+        we use a CSS custom property to <strong>to prevent duplicate (long) values for those properties</strong>
+        —&nbsp;<a href="https://css-irl.info/7-uses-for-css-custom-properties/">trick
+        shared by <cite>Michelle Barker</cite> in "7 uses for CSS custom properties"</a>.
+      </li>
+    </ul>
+  </li>
+  <li>
+    a <code>::after</code> <strong>pseudo-element</strong> is used as a tooltip, to summarize header and value for each cell
+    —but the display of custom properties in a pseudo-element is not so trivial:
+    <ul>
+      <li>
+        <code>content</code> only accepts strings, and our custom properties contains… number.
+      </li>
+      <li>
+        Once again we recycle <a href="https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab">
+        a <cite>Cassie Evans</cite>'s trick based on <code>counter-reset</code> and its default value
+        to <strong>convert</strong> our <var>--value</var> custom property into a string</a>.
+      </li>
+      <li>
+        However <code>counter-reset</code> requires an integer, and we may have a floating number.
+        We first need to make sure we're using an integer, so we rely on
+        <a href="https://css-tricks.com/animating-number-counters/#the-new-school-css-solution"><cite>Carter Li</cite>'s ruse
+        to use <code>calc()</code> to wrap our value—&nbsp;and <code>@property</code> for Chromium-based browsers</a>.
+        Boum!
+      </li>
+    </ul>
+  </li>
+  <li>
+    And finally <strong>a pattern</strong> is applied to the background,
+    in order to better associate it visually with the corresponding legend.
+  </li>
 </ol>
 
 {% import 'macros/_table-pie.html' as table %}
 
- <div class="table-container pie-container" role="group" aria-labelledby="caption-5">
- <div class="fieldset d-flex sm-hidden">
-  <p class="label no-margin">
-   <strong id="label-5">Switch</strong><br>
-   <span id="description-5">Allows you to disable styles on the following table.</span>
-  </p>
-  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
-      role="switch" aria-checked="true"
-      aria-labelledby="label-5" aria-describedby="description-5">
-   <span>Funny</span>
-   <span>Sober</span>
-  </button>
- </div>
+<div class="table-container pie-container" role="group" aria-labelledby="caption-5">
+  <div class="fieldset d-flex sm-hidden">
+    <p class="label no-margin">
+      <strong id="label-5">Switch</strong><br>
+      <span id="description-5">Allows you to disable styles on the following table.</span>
+    </p>
+    <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
+            role="switch" aria-checked="true"
+            aria-labelledby="label-5" aria-describedby="description-5">
+      <span>Funny</span>
+      <span>Sober</span>
+    </button>
+  </div>
 
- <table class="chaarts pie" id="pie">
-  <caption id="caption-5">Distribution of the weight of resources for <a href="https://www.ffoodd.fr" target="_blank" rel="noopener noreferrer">ffoodd.fr</a></caption>
-  <thead class="sr-only">
-   <tr>
-    <th scope="col">Resource</th>
-    <th scope="col">Proportion</th>
-   </tr>
-  </thead>
-  <tbody>
-   {{ table.pie('HTML', '2', '%', '', '0', '#734BF9') }}
-   {{ table.pie('CSS', '2', '%', '', '2', '#E11A81') }}
-   {{ table.pie('JS', '32', '%', '', '4', '#0172F0') }}
-   {{ table.pie('Json', '1', '%', '', '36', '#FDC02F') }}
-   {{ table.pie('Images', '44', '%', '', '37', '#39CA74') }}
-   {{ table.pie('Webfonts', '17', '%', '', '81', '#FF2D40') }}
-   {{ table.pie('Other', '2', '%', '', '98', '#585462') }}
-  </tbody>
- </table>
+  <table class="chaarts pie" id="pie">
+    <caption id="caption-5">Distribution of the weight of resources for <a href="https://www.ffoodd.fr" target="_blank" rel="noopener noreferrer">ffoodd.fr</a></caption>
+    <thead class="sr-only">
+    <tr>
+      <th scope="col">Resource</th>
+      <th scope="col">Proportion</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{ table.pie('HTML', '2', '%', '', '0', '#734BF9') }}
+    {{ table.pie('CSS', '2', '%', '', '2', '#E11A81') }}
+    {{ table.pie('JS', '32', '%', '', '4', '#0172F0') }}
+    {{ table.pie('Json', '1', '%', '', '36', '#FDC02F') }}
+    {{ table.pie('Images', '44', '%', '', '37', '#39CA74') }}
+    {{ table.pie('Webfonts', '17', '%', '', '81', '#FF2D40') }}
+    {{ table.pie('Other', '2', '%', '', '98', '#585462') }}
+    </tbody>
+  </table>
 </div>
 
 <details>
- <summary>A bit of trigonometry</summary>
- <div>
-  <p>
-   In this graph, each portion represents an arc of a circle based on an angle (part of 360 degrees).
-   To define the shape of this portion, a point must be placed <strong>on the circle</strong>.
-  </p>
-  <p>
-   To do this, I divide the circle into four squares. The position of the point on the circle
-   can then be calculated using the properties of the right-angled triangle formed by:
-  </p>
-  <ol>
-   <li>the center of the circle,</li>
-   <li>the point we're trying to position,</li>
-   <li>and the point perpendicular to the radius and passing through our target point.</li>
-  </ol>
-  <p>
-   We know <strong>the hypotenuse</strong> of this triangle —&nbsp;the radius of the circle&nbsp;—,
-   and <strong>the angle formed by the hypotenuse and starting from the center of the circle</strong>
-   (reducing the value to 90 degrees, since the circle is divided into four square sectors:
-   if the value is greater than 25: minus 90°, etc.)
-   —&nbsp;plus a right angle, of course.
-  </p>
-  <h2>Law of sines</h2>
-  <p>
-   We can therefore <a href="https://en.wikipedia.org/wiki/Law_of_sines">use the sine law</a>
-   to measure each side, and thus obtain the position of the point on the circle.
-   Meaning we need to calculate the sine… Fortunately,
-   <a href="https://gist.github.com/stereokai/7666bfe93929b14c2dced148c79e0e97"><cite>Stereokai</cite> implemented for us
-   the Taylor/Maclaurin polynomial representation in CSS</a> —&nbsp;which I implemented as a mixin:
-  </p>
-  {% include 'includes/_sin-mixin.html' %}
-  <p>
-   All that remains is to use these dimensions to place the points of the polygon.
-   <strong>It's child's play!</strong>
- </div>
+  <summary>A bit of trigonometry</summary>
+  <div>
+    <p>
+      In this graph, each portion represents an arc of a circle based on an angle (part of 360 degrees).
+      To define the shape of this portion, a point must be placed <strong>on the circle</strong>.
+    </p>
+    <p>
+      To do this, I divide the circle into four squares. The position of the point on the circle
+      can then be calculated using the properties of the right-angled triangle formed by:
+    </p>
+    <ol>
+      <li>the center of the circle,</li>
+      <li>the point we're trying to position,</li>
+      <li>and the point perpendicular to the radius and passing through our target point.</li>
+    </ol>
+    <p>
+      We know <strong>the hypotenuse</strong> of this triangle —&nbsp;the radius of the circle&nbsp;—,
+      and <strong>the angle formed by the hypotenuse and starting from the center of the circle</strong>
+      (reducing the value to 90 degrees, since the circle is divided into four square sectors:
+      if the value is greater than 25: minus 90°, etc.)
+      —&nbsp;plus a right angle, of course.
+    </p>
+    <h2>Law of sines</h2>
+    <p>
+      We can therefore <a href="https://en.wikipedia.org/wiki/Law_of_sines">use the sine law</a>
+      to measure each side, and thus obtain the position of the point on the circle.
+      Meaning we need to calculate the sine… Fortunately,
+      <a href="https://gist.github.com/stereokai/7666bfe93929b14c2dced148c79e0e97"><cite>Stereokai</cite> implemented for us
+        the Taylor/Maclaurin polynomial representation in CSS</a> —&nbsp;which I implemented as a mixin:
+    </p>
+    {% include 'includes/_sin-mixin.html' %}
+    <p>
+      All that remains is to use these dimensions to place the points of the polygon.
+      <strong>It's child's play!</strong>
+  </div>
 </details>
 <details>
- <summary><abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
- <div>{% include 'includes/_pie-markup.html' %}</div>
+  <summary><abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
+  <div>{% include 'includes/_pie-markup.html' %}</div>
 </details>
 <details>
- <summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
- <div>
+  <summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
+  <div>
   <pre>
    <code class="language-css">
 @supports (clip-path: polygon( 50% calc( 50% + ( var(--gt-25, 0) ) ) )) {
@@ -314,154 +335,154 @@
  }
 }</code>
   </pre>
- </div>
+  </div>
 </details>
 <details id="calculation-twist">
- <summary>The calculation twist</summary>
- <h3>The positions of the polygon</h3>
- <p>
-  The use of pseudo-Boolean variables makes this calculation pseudo-algorithmic.
-  Let's start with an essential pre-requisite: the polygon being a closed shape and CSS
-  not being magical, <strong>points must pre-exist</strong>.
-  Spoiler, we need eleven points:
- </p>
- <ol>
-  <li>
-   <strong>The initial axis</strong>, from centre upwards: <code>50% 50%</code>
-   and <code>50% 0%</code>.
-  </li>
-  <li>
-   <strong>One point for each angle</strong> at the ends: the first one is fixed, at
-   <code>100% 0%</code> (top right) —&nbsp;then each of the other angles has
-   <strong>two states</strong>, reached or not reached. Some insights:
-   <ul>
+  <summary>The calculation twist</summary>
+  <h3>The positions of the polygon</h3>
+  <p>
+    The use of pseudo-Boolean variables makes this calculation pseudo-algorithmic.
+    Let's start with an essential pre-requisite: the polygon being a closed shape and CSS
+    not being magical, <strong>points must pre-exist</strong>.
+    Spoiler, we need eleven points:
+  </p>
+  <ol>
     <li>
-     For example, the point at the bottom right concerns values between 25% and 50%:
-     if the value is less than 25%, it must be in the centre (so as not to interfere
-     with the drawing), and if not, it must be in its corner:
-     <code>calc( 50% + ( var(--gt-25, 0) * 50% ) ) calc( 50% + ( var(--gt-25, 0) * 50% ) )</code><br>
-     Thus the calculated value will be <code>50% 50%</code> if <var>--gt-25</var> is 0,
-     and <code>100% 100%</code> if <var>--gt-25</var> is 1.
+      <strong>The initial axis</strong>, from centre upwards: <code>50% 50%</code>
+      and <code>50% 0%</code>.
     </li>
     <li>
-     In addition, each angle has its target coordinate:
-     <code>100% 100%</code> for bottom right, <code>0% 100%</code> for bottom left,
-     <code>0% 0%</code> for top left. It is therefore necessary <strong>to sometimes subtract
-     and sometimes add</strong> to the initial value <code>50% 50%</code>
-     to switch to the right point.
-    </li>
-   </ul>
-  </li>
-  <li>
-   <strong>One point for each possible position per quarter circle</strong>, corresponding
-   to each 25% slice. Like the points at the corners, these points must be in the centre
-   if they are not used. That's where we laugh the most:
-   <ul>
-    <li>we start from <code>50%</code>, to which we add or subtract the following calculation;</li>
-    <li>
-     then <strong>the calculated position</strong> is used —&nbsp;<var>--pos-A</var>
-     or <var>--pos-B</var> as the case may be&nbsp;— which is converted into percentages using
-     <code>* 1%</code>, and rendered inert if the value is less than the range concerned
-     using <var>* var(--lt-25, 1)</var>, for example.<br>
-     <small>
-      Notice the second value in <code>var()</code>?
-      This is the default value if the variable is not defined. Cool, isn't it?
-     </small>
+      <strong>One point for each angle</strong> at the ends: the first one is fixed, at
+      <code>100% 0%</code> (top right) —&nbsp;then each of the other angles has
+      <strong>two states</strong>, reached or not reached. Some insights:
+      <ul>
+        <li>
+          For example, the point at the bottom right concerns values between 25% and 50%:
+          if the value is less than 25%, it must be in the centre (so as not to interfere
+          with the drawing), and if not, it must be in its corner:
+          <code>calc( 50% + ( var(--gt-25, 0) * 50% ) ) calc( 50% + ( var(--gt-25, 0) * 50% ) )</code><br>
+          Thus the calculated value will be <code>50% 50%</code> if <var>--gt-25</var> is 0,
+          and <code>100% 100%</code> if <var>--gt-25</var> is 1.
+        </li>
+        <li>
+          In addition, each angle has its target coordinate:
+          <code>100% 100%</code> for bottom right, <code>0% 100%</code> for bottom left,
+          <code>0% 0%</code> for top left. It is therefore necessary <strong>to sometimes subtract
+          and sometimes add</strong> to the initial value <code>50% 50%</code>
+          to switch to the right point.
+        </li>
+      </ul>
     </li>
     <li>
-     finally <strong>when the range is exceeded</strong>, the point switches to
-     <code>0%</code> or <code>100%</code> as appropriate.
+      <strong>One point for each possible position per quarter circle</strong>, corresponding
+      to each 25% slice. Like the points at the corners, these points must be in the centre
+      if they are not used. That's where we laugh the most:
+      <ul>
+        <li>we start from <code>50%</code>, to which we add or subtract the following calculation;</li>
+        <li>
+          then <strong>the calculated position</strong> is used —&nbsp;<var>--pos-A</var>
+          or <var>--pos-B</var> as the case may be&nbsp;— which is converted into percentages using
+          <code>* 1%</code>, and rendered inert if the value is less than the range concerned
+          using <var>* var(--lt-25, 1)</var>, for example.<br>
+          <small>
+            Notice the second value in <code>var()</code>?
+            This is the default value if the variable is not defined. Cool, isn't it?
+          </small>
+        </li>
+        <li>
+          finally <strong>when the range is exceeded</strong>, the point switches to
+          <code>0%</code> or <code>100%</code> as appropriate.
+        </li>
+      </ul>
     </li>
-   </ul>
-  </li>
-  <li>
-   And lastly, we <strong>lose the path by going back to the centre</strong> of the circle,
-   at <code>50% 50%</code>.
-  </li>
- </ol>
- <p>That's it!</p>
- <h4>The positions illustrated</h4>
- <p>
-   These screenshots —&nbsp;taken in
-   <a href="https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector/How_to/Edit_CSS_shapes">the shape editor of the
-   Firefox devtools</a>&nbsp;—
-   show the points of the polygon in the different cases.
-   You can see for each cited value the resolved polygon for <code>clip-path</code>
-   —&nbsp;and see how the dynamic values tilt from one position to another.
- </p>
- <ul class="no-list">
-   <li>
-     <figure role="group" aria-label="Rendering example for 44%.">
-       <figcaption class="no-padding h5">Rendering example for <var>44%</var></figcaption>
-       <div class="grid-2">
-         <figure role="group" aria-label="Shape screenshot for  44%." class="mb-0 pb-0">
-           <img src="img/pie-1.jpg" alt="clip-path shape with a value of 44%: six visible points." width="264" height="264" />
-           <figcaption>Shape screenshot for <var>44%</var>.</figcaption>
-         </figure>
-         <figure role="group" aria-label="Code generated for 44%." class="mb-0 pb-0">
-           {% include 'includes/_pie-styles:44.html' %}
-           <figcaption>Code generated for <var>44%</var>.</figcaption>
-         </figure>
-       </div>
-     </figure>
-   </li>
-   <li>
-     <figure role="group" aria-label="Rendering example for 64%.">
-       <figcaption class="no-padding h5">Rendering example for <var>64%</var></figcaption>
-       <div class="grid-2">
-         <figure role="group" aria-label="Shape screenshot for  64%." class="mb-0 pb-0">
-           <img src="img/pie-2.jpg" alt="clip-path shape with a value of 64%: seven visible points." width="264" height="264" />
-           <figcaption>Shape screenshot for <var>64%</var>.</figcaption>
-         </figure>
-         <figure role="group" aria-label="Code generated for 64%." class="mb-0 pb-0">
-           {% include 'includes/_pie-styles:64.html' %}
-           <figcaption>Code generated for <var>64%</var>.</figcaption>
-         </figure>
-       </div>
-     </figure>
-   </li>
-   <li>
-     <figure role="group" aria-label="Rendering example for 88%.">
-       <figcaption class="no-padding h5">Rendering example for <var>88%</var></figcaption>
-       <div class="grid-2">
-         <figure role="group" aria-label="Shape screenshot for  88%." class="mb-0 pb-0">
-           <img src="img/pie-3.jpg" alt="clip-path shape with a value of 88%: nine visible points." width="264" height="264" />
-           <figcaption>Shape screenshot for <var>88%</var>.</figcaption>
-         </figure>
-         <figure role="group" aria-label="Code generated for 88%." class="mb-0 pb-0">
-           {% include 'includes/_pie-styles:88.html' %}
-           <figcaption>Code generated for <var>88%</var>.</figcaption>
-         </figure>
-       </div>
-     </figure>
-   </li>
- </ul>
+    <li>
+      And lastly, we <strong>lose the path by going back to the centre</strong> of the circle,
+      at <code>50% 50%</code>.
+    </li>
+  </ol>
+  <p>That's it!</p>
+  <h4>The positions illustrated</h4>
+  <p>
+    These screenshots —&nbsp;taken in
+    <a href="https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector/How_to/Edit_CSS_shapes">the shape editor of the
+      Firefox devtools</a>&nbsp;—
+    show the points of the polygon in the different cases.
+    You can see for each cited value the resolved polygon for <code>clip-path</code>
+    —&nbsp;and see how the dynamic values tilt from one position to another.
+  </p>
+  <ul class="no-list">
+    <li>
+      <figure role="group" aria-label="Rendering example for 44%.">
+        <figcaption class="no-padding h5">Rendering example for <var>44%</var></figcaption>
+        <div class="grid-2">
+          <figure role="group" aria-label="Shape screenshot for  44%." class="mb-0 pb-0">
+            <img src="img/pie-1.jpg" alt="clip-path shape with a value of 44%: six visible points." width="264" height="264" />
+            <figcaption>Shape screenshot for <var>44%</var>.</figcaption>
+          </figure>
+          <figure role="group" aria-label="Code generated for 44%." class="mb-0 pb-0">
+            {% include 'includes/_pie-styles:44.html' %}
+            <figcaption>Code generated for <var>44%</var>.</figcaption>
+          </figure>
+        </div>
+      </figure>
+    </li>
+    <li>
+      <figure role="group" aria-label="Rendering example for 64%.">
+        <figcaption class="no-padding h5">Rendering example for <var>64%</var></figcaption>
+        <div class="grid-2">
+          <figure role="group" aria-label="Shape screenshot for  64%." class="mb-0 pb-0">
+            <img src="img/pie-2.jpg" alt="clip-path shape with a value of 64%: seven visible points." width="264" height="264" />
+            <figcaption>Shape screenshot for <var>64%</var>.</figcaption>
+          </figure>
+          <figure role="group" aria-label="Code generated for 64%." class="mb-0 pb-0">
+            {% include 'includes/_pie-styles:64.html' %}
+            <figcaption>Code generated for <var>64%</var>.</figcaption>
+          </figure>
+        </div>
+      </figure>
+    </li>
+    <li>
+      <figure role="group" aria-label="Rendering example for 88%.">
+        <figcaption class="no-padding h5">Rendering example for <var>88%</var></figcaption>
+        <div class="grid-2">
+          <figure role="group" aria-label="Shape screenshot for  88%." class="mb-0 pb-0">
+            <img src="img/pie-3.jpg" alt="clip-path shape with a value of 88%: nine visible points." width="264" height="264" />
+            <figcaption>Shape screenshot for <var>88%</var>.</figcaption>
+          </figure>
+          <figure role="group" aria-label="Code generated for 88%." class="mb-0 pb-0">
+            {% include 'includes/_pie-styles:88.html' %}
+            <figcaption>Code generated for <var>88%</var>.</figcaption>
+          </figure>
+        </div>
+      </figure>
+    </li>
+  </ul>
 </details>
 
 <div class="grid-2">
   <div class="table-container pie-container" role="group" aria-labelledby="caption-12">
     <div class="fieldset d-flex sm-hidden">
-     <p class="label no-margin">
-      <strong id="label-12">Switch</strong><br>
-      <span id="description-12">Allows you to disable styles on the following table.</span>
-     </p>
-     <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
-         role="switch" aria-checked="true"
-         aria-labelledby="label-12" aria-describedby="description-12">
-      <span>Funny</span>
-      <span>Sober</span>
-     </button>
-   </div>
+      <p class="label no-margin">
+        <strong id="label-12">Switch</strong><br>
+        <span id="description-12">Allows you to disable styles on the following table.</span>
+      </p>
+      <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
+              role="switch" aria-checked="true"
+              aria-labelledby="label-12" aria-describedby="description-12">
+        <span>Funny</span>
+        <span>Sober</span>
+      </button>
+    </div>
 
-   <table class="chaarts pie">
-     <caption id="caption-12">Pie chart example with a value between 50 and 75%</caption>
-     <thead class="sr-only">
+    <table class="chaarts pie">
+      <caption id="caption-12">Pie chart example with a value between 50 and 75%</caption>
+      <thead class="sr-only">
       <tr>
-       <th scope="col">Resource</th>
-       <th scope="col">Proportion</th>
+        <th scope="col">Resource</th>
+        <th scope="col">Proportion</th>
       </tr>
-     </thead>
-     <tbody>
+      </thead>
+      <tbody>
       {{ table.pie('HTML', '2', '%', '', '0', '#734BF9') }}
       {{ table.pie('CSS', '2', '%', '', '2', '#E11A81') }}
       {{ table.pie('JS', '32', '%', '', '4', '#0172F0') }}
@@ -471,32 +492,32 @@
 
   <div class="table-container pie-container" role="group" aria-labelledby="caption-13">
     <div class="fieldset d-flex sm-hidden">
-     <p class="label no-margin">
-      <strong id="label-13">Switch</strong><br>
-      <span id="description-13">Allows you to disable styles on the following table.</span>
-     </p>
-     <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
-         role="switch" aria-checked="true"
-         aria-labelledby="label-13" aria-describedby="description-13">
-      <span>Funny</span>
-      <span>Sober</span>
-     </button>
-   </div>
+      <p class="label no-margin">
+        <strong id="label-13">Switch</strong><br>
+        <span id="description-13">Allows you to disable styles on the following table.</span>
+      </p>
+      <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
+              role="switch" aria-checked="true"
+              aria-labelledby="label-13" aria-describedby="description-13">
+        <span>Funny</span>
+        <span>Sober</span>
+      </button>
+    </div>
 
-   <table class="chaarts pie">
-     <caption id="caption-13">Pie chart example with a value greater than 75%</caption>
-     <thead class="sr-only">
+    <table class="chaarts pie">
+      <caption id="caption-13">Pie chart example with a value greater than 75%</caption>
+      <thead class="sr-only">
       <tr>
-       <th scope="col">Resource</th>
-       <th scope="col">Proportion</th>
+        <th scope="col">Resource</th>
+        <th scope="col">Proportion</th>
       </tr>
-     </thead>
-     <tbody>
+      </thead>
+      <tbody>
       {{ table.pie('HTML', '2', '%', '', '0', '#734BF9') }}
       {{ table.pie('CSS', '2', '%', '', '2', '#E11A81') }}
       {{ table.pie('JS', '8', '%', '', '4', '#0172F0') }}
       {{ table.pie('Images', '88', '%', '', '12', '#39CA74') }}
-     </tbody>
+      </tbody>
     </table>
   </div>
 </div>
@@ -504,108 +525,108 @@
 <h2>Donut</h2>
 
 <p>
- On the <code>&lt;table&gt;</code> element, we add an <var>--offset</var> variable
- that allows us to determine the size of the hole of the donut,
- generated using <code>mask-image</code> and <code>radial-gradient()</code>.
- <a href="https://codepen.io/thebabydino/pens/tags/?selected_tag=mask"><cite>Ana Tudor</cite> has made
- many examples of using <code>mask-*</code> on CodePen</a>, have a look!
+  On the <code>&lt;table&gt;</code> element, we add an <var>--offset</var> variable
+  that allows us to determine the size of the hole of the donut,
+  generated using <code>mask-image</code> and <code>radial-gradient()</code>.
+  <a href="https://codepen.io/thebabydino/pens/tags/?selected_tag=mask"><cite>Ana Tudor</cite> has made
+    many examples of using <code>mask-*</code> on CodePen</a>, have a look!
 </p>
 
 <div class="table-container pie-container" role="group" aria-labelledby="caption-6">
- <div class="fieldset d-flex sm-hidden">
-  <p class="label no-margin">
-   <strong id="label-6">Switch</strong><br>
-   <span id="description-6">Allows you to disable styles on the following table.</span>
-  </p>
-  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
-      role="switch" aria-checked="true"
-      aria-labelledby="label-6" aria-describedby="description-6">
-   <span>Funny</span>
-   <span>Sober</span>
-  </button>
- </div>
+  <div class="fieldset d-flex sm-hidden">
+    <p class="label no-margin">
+      <strong id="label-6">Switch</strong><br>
+      <span id="description-6">Allows you to disable styles on the following table.</span>
+    </p>
+    <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
+            role="switch" aria-checked="true"
+            aria-labelledby="label-6" aria-describedby="description-6">
+      <span>Funny</span>
+      <span>Sober</span>
+    </button>
+  </div>
 
- <table class="chaarts pie donut" id="donut" style="--offset: 8rem;">
-  <caption id="caption-6">Distribution of the weight of resources for <a href="https://www.ffoodd.fr" target="_blank" rel="noopener noreferrer">ffoodd.fr</a></caption>
-  <thead class="sr-only">
-   <tr>
-    <th scope="col">Resource</th>
-    <th scope="col">Proportion</th>
-   </tr>
-  </thead>
-  <tbody>
-   {{ table.pie('HTML', '2', '%', '', '0', '#734BF9') }}
-   {{ table.pie('CSS', '2', '%', '', '2', '#E11A81') }}
-   {{ table.pie('JS', '32', '%', '', '4', '#0172F0') }}
-   {{ table.pie('Json', '1', '%', '', '36', '#FDC02F') }}
-   {{ table.pie('Images', '44', '%', '', '37', '#39CA74') }}
-   {{ table.pie('Webfonts', '17', '%', '', '81', '#FF2D40') }}
-   {{ table.pie('Other', '2', '%', '', '98', '#585462') }}
-  </tbody>
- </table>
+  <table class="chaarts pie donut" id="donut" style="--offset: 8rem;">
+    <caption id="caption-6">Distribution of the weight of resources for <a href="https://www.ffoodd.fr" target="_blank" rel="noopener noreferrer">ffoodd.fr</a></caption>
+    <thead class="sr-only">
+    <tr>
+      <th scope="col">Resource</th>
+      <th scope="col">Proportion</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{ table.pie('HTML', '2', '%', '', '0', '#734BF9') }}
+    {{ table.pie('CSS', '2', '%', '', '2', '#E11A81') }}
+    {{ table.pie('JS', '32', '%', '', '4', '#0172F0') }}
+    {{ table.pie('Json', '1', '%', '', '36', '#FDC02F') }}
+    {{ table.pie('Images', '44', '%', '', '37', '#39CA74') }}
+    {{ table.pie('Webfonts', '17', '%', '', '81', '#FF2D40') }}
+    {{ table.pie('Other', '2', '%', '', '98', '#585462') }}
+    </tbody>
+  </table>
 </div>
 
 <details>
- <summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
- <div>{% include 'includes/_donut-styles.html' %}</div>
+  <summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
+  <div>{% include 'includes/_donut-styles.html' %}</div>
 </details>
 
 <div class="note">
- <h3>Conical gradient</h3>
- <p>
-  The use of <code>conic-gradient()</code> is promising for this case.
-  You'll find examples made by <cite>Ana Tudor</cite> and <cite>Léa Verou</cite>
-  —&nbsp;who actually wrote the specification, and designed
-  <a href="https://leaverou.github.io/conic-gradient/">a polyfill</a>.
-  However, <a href="https://caniuse.com/#search=conic-gradient">current support is limited to WebKit based browsers</a>
-  is depressing, and still raises some <strong>accessibility issues</strong>
-  since you can't assign a pattern to each color of the <code>conic-gradient()</code>.
- </p>
+  <h3>Conical gradient</h3>
+  <p>
+    The use of <code>conic-gradient()</code> is promising for this case.
+    You'll find examples made by <cite>Ana Tudor</cite> and <cite>Léa Verou</cite>
+    —&nbsp;who actually wrote the specification, and designed
+    <a href="https://leaverou.github.io/conic-gradient/">a polyfill</a>.
+    However, <a href="https://caniuse.com/#search=conic-gradient">current support is limited to WebKit based browsers</a>
+    is depressing, and still raises some <strong>accessibility issues</strong>
+    since you can't assign a pattern to each color of the <code>conic-gradient()</code>.
+  </p>
 </div>
 
 <h2>Polar chart</h2>
 
 <p>
- For this variant, wa change almost nothing: only the <var>--zoom</var> variable
- and its implication in <strong>the scaling</strong> of portions using <code>scale()</code>.
+  For this variant, wa change almost nothing: only the <var>--zoom</var> variable
+  and its implication in <strong>the scaling</strong> of portions using <code>scale()</code>.
 </p>
 
 <div class="table-container pie-container" role="group" aria-labelledby="caption-10">
- <div class="fieldset d-flex sm-hidden">
-  <p class="label no-margin">
-   <strong id="label-10">Switch</strong><br>
-   <span id="description-10">Allows you to disable styles on the following table.</span>
-  </p>
-  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
-      role="switch" aria-checked="true"
-      aria-labelledby="label-10" aria-describedby="description-10">
-   <span>Funny</span>
-   <span>Sober</span>
-  </button>
- </div>
+  <div class="fieldset d-flex sm-hidden">
+    <p class="label no-margin">
+      <strong id="label-10">Switch</strong><br>
+      <span id="description-10">Allows you to disable styles on the following table.</span>
+    </p>
+    <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
+            role="switch" aria-checked="true"
+            aria-labelledby="label-10" aria-describedby="description-10">
+      <span>Funny</span>
+      <span>Sober</span>
+    </button>
+  </div>
 
- <table class="chaarts pie polar" id="polar">
-  <caption id="caption-10">Distribution of the weight of resources for <a href="https://www.ffoodd.fr" target="_blank" rel="noopener noreferrer">ffoodd.fr</a></caption>
-  <thead class="sr-only">
-   <tr>
-    <th scope="col">Resource</th>
-    <th scope="col">Proportion</th>
-   </tr>
-  </thead>
-  <tbody>
-   {{ table.pie('HTML', '2', '%', '', '0', '#734BF9') }}
-   {{ table.pie('CSS', '2', '%', '', '2', '#E11A81') }}
-   {{ table.pie('JS', '32', '%', '', '4', '#0172F0') }}
-   {{ table.pie('Json', '1', '%', '', '36', '#FDC02F') }}
-   {{ table.pie('Images', '44', '%', '', '37', '#39CA74') }}
-   {{ table.pie('Webfonts', '17', '%', '', '81', '#FF2D40') }}
-   {{ table.pie('Other', '2', '%', '', '98', '#585462') }}
-  </tbody>
- </table>
+  <table class="chaarts pie polar" id="polar">
+    <caption id="caption-10">Distribution of the weight of resources for <a href="https://www.ffoodd.fr" target="_blank" rel="noopener noreferrer">ffoodd.fr</a></caption>
+    <thead class="sr-only">
+    <tr>
+      <th scope="col">Resource</th>
+      <th scope="col">Proportion</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{ table.pie('HTML', '2', '%', '', '0', '#734BF9') }}
+    {{ table.pie('CSS', '2', '%', '', '2', '#E11A81') }}
+    {{ table.pie('JS', '32', '%', '', '4', '#0172F0') }}
+    {{ table.pie('Json', '1', '%', '', '36', '#FDC02F') }}
+    {{ table.pie('Images', '44', '%', '', '37', '#39CA74') }}
+    {{ table.pie('Webfonts', '17', '%', '', '81', '#FF2D40') }}
+    {{ table.pie('Other', '2', '%', '', '98', '#585462') }}
+    </tbody>
+  </table>
 </div>
 
 <details>
- <summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
- <div>{% include 'includes/_polar-styles.html' %}</div>
+  <summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
+  <div>{% include 'includes/_polar-styles.html' %}</div>
 </details>
 {% endblock %}
