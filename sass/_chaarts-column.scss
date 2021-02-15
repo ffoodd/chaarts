@@ -46,7 +46,7 @@
     }
 
     td {
-      grid-row: calc( 100 - var(--value) ) / -3;
+      grid-row: calc( 101 - var(--value) ) / -3;
       pointer-events: none;
       position: relative;
       transition: opacity .2s map-get( $timing-functions, 'move' );
@@ -73,7 +73,7 @@
 
     &.column-single {
       grid-auto-columns: 1fr;
-      grid-template-rows: repeat(var(--scale, 100), minmax(0, .25rem)) minmax(min-content, 2rem);
+      grid-template-rows: 2ex repeat(var(--scale, 100), minmax(0, .25rem)) minmax(min-content, 2rem);
 
       tbody th {
         grid-row: -6 / -3;
@@ -155,7 +155,7 @@
 
     &.column-multiple {
       grid-template-columns: minmax(min-content, 14ch) repeat(calc(var(--y) - 1), 1fr);
-      grid-template-rows: repeat(var(--scale, 100), minmax(0, .25rem)) repeat(2, minmax(min-content, 2rem));
+      grid-template-rows: 2ex repeat(var(--scale, 100), minmax(0, .25rem)) repeat(2, minmax(min-content, 2rem));
 
       tbody th {
         grid-row: -10 / span 4;
@@ -193,7 +193,7 @@
           opacity: .25;
           position: absolute;
           transition: opacity .3s map-get( $timing-functions, 'move' );
-          top: $gutter;
+          top: calc(#{$gutter} + 2ex);
           width: calc((var(--width) * 2) + (var(--gap) / 2) + 1px);
           z-index: 0;
         }
