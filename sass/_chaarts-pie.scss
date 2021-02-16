@@ -192,7 +192,7 @@
 
    .chaarts.donut {
      --mask: radial-gradient(
-       circle at 50% calc(50% - #{$gutter * 2}),
+       circle at 50% calc(50% - #{$gutter  / 4}),
        transparent 0%,
        transparent var(--offset),
        #fff calc(var(--offset) + 1px),
