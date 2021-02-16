@@ -49,6 +49,12 @@
 
 <p>Le principe de base est le même que <a href="./barres.html">le graphique en barre</a>&nbsp;:</p>
 <ol>
+  <li>
+    la première ligne de la grille est réservée pour afficher la valeur textuelle lorsqu’elle approche du haut de l’échelle,
+    avec une taille fixe de <code>2ex</code>
+    —&nbsp;jetez un œil <a hreflang="en" href="https://every-layout.dev/rudiments/units/#the-ch-and-ex-units">rudiments
+    concernant les unités CSS, documentés dans <em lang="en">Every Layout</em> par <cite>Andy Bell</cite> et <cite>Heydon Pickering</cite></a>&nbsp;;
+  </li>
  <li>
   la fonction <code>repeat()</code> appliquée avec la variable <var>--scale</var>
   permet de gérer une échelle dynamique&nbsp;;
@@ -64,7 +70,7 @@
  <li>
   et finalement la valeur textuelle —&nbsp;contenue dans un élément
   <code>&lt;span&gt;</code>&nbsp;— est positionnée en haut de la colonne
-  à l’aide de la même astuce que dans le graphique en barre.
+   à l’aide de la même astuce que dans le graphique en barre.
  </li>
 </ol>
 
