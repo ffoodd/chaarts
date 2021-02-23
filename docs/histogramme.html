@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr" class="no-js">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
   <title>Histogramme — chaarts</title>
   <meta property="og:url" content="https://ffoodd.github.io/chaarts/fr/histogramme.html">
   <meta property="og:title" content="Histogramme — chaarts">
@@ -13,25 +13,25 @@
   <meta name="twitter:card" content="summary">
   <link rel="alternate" hreflang="en" href="https://ffoodd.github.io/chaarts/column-charts.html"/>
 
-        <script>
-          document.documentElement.classList.remove('no-js');
-          document.documentElement.classList.add('js');
-        </script>
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="css/styles.min.css" media="all">
-        <link rel="stylesheet" href="css/print.min.css" media="print">
-    </head>
-    <body itemscope itemtype="http://schema.org/WebPage">
-      <header role="banner">
-        
+  <script>
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+  </script>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/styles.min.css" media="all">
+  <link rel="stylesheet" href="css/print.min.css" media="print">
+</head>
+<body itemscope itemtype="http://schema.org/WebPage">
+<header role="banner">
+  
   <div>
     <a href="#nav" class="sr-only sr-only-focusable">Aller à la navigation</a>
     <a href="#main" class="sr-only sr-only-focusable">Aller au contenu</a>
   </div>
 
 
-        <nav role="navigation" id="nav" aria-label="Navigation principale">
-          
+  <nav role="navigation" id="nav" aria-label="Navigation principale">
+    
 <ul class="fly-out">
   <li><a href="./accueil.html">Accueil</a></li>
   <li><a href="./barres.html">Barre</a></li>
@@ -53,11 +53,11 @@
   </li>
 </ul>
 
-        </nav>
-      </header>
+  </nav>
+</header>
 
-      <main role="main" id="main" tabindex="-1" itemprop="mainContentOfPage">
-        
+<main role="main" id="main" tabindex="-1" itemprop="mainContentOfPage">
+  
 <h1>Histogramme</h1>
 
 <p>
@@ -73,6 +73,12 @@
 
 <p>Le principe de base est le même que <a href="./barres.html">le graphique en barre</a>&nbsp;:</p>
 <ol>
+  <li>
+    la première ligne de la grille est réservée pour afficher la valeur textuelle lorsqu’elle approche du haut de l’échelle,
+    avec une taille fixe de <code>2ex</code>
+    —&nbsp;jetez un œil <a hreflang="en" href="https://every-layout.dev/rudiments/units/#the-ch-and-ex-units">rudiments
+    concernant les unités CSS, documentés dans <em lang="en">Every Layout</em> par <cite>Andy Bell</cite> et <cite>Heydon Pickering</cite></a>&nbsp;;
+  </li>
  <li>
   la fonction <code>repeat()</code> appliquée avec la variable <var>--scale</var>
   permet de gérer une échelle dynamique&nbsp;;
@@ -88,7 +94,7 @@
  <li>
   et finalement la valeur textuelle —&nbsp;contenue dans un élément
   <code>&lt;span&gt;</code>&nbsp;— est positionnée en haut de la colonne
-  à l’aide de la même astuce que dans le graphique en barre.
+   à l’aide de la même astuce que dans le graphique en barre.
  </li>
 </ol>
 
@@ -562,14 +568,14 @@
    </table>
 </details>
 
-      </main>
+</main>
 
-      
-        <script src="js/script.min.js"></script>
-        <script src="js/prism.min.js"></script>
-      
 
-      
-      
-    </body>
+<script src="js/script.min.js"></script>
+<script src="js/prism.min.js"></script>
+
+
+
+
+</body>
 </html>

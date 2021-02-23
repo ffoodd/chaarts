@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
   <title>Column charts — chaarts</title>
   <meta property="og:url" content="https://ffoodd.github.io/chaarts/column-charts.html">
   <meta property="og:title" content="Column charts — chaarts">
@@ -13,25 +13,25 @@
   <meta name="twitter:card" content="summary">
   <link rel="alternate" hreflang="fr" href="https://ffoodd.github.io/chaarts/histogramme.html"/>
 
-        <script>
-          document.documentElement.classList.remove('no-js');
-          document.documentElement.classList.add('js');
-        </script>
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="css/styles.min.css" media="all">
-        <link rel="stylesheet" href="css/print.min.css" media="print">
-    </head>
-    <body itemscope itemtype="http://schema.org/WebPage">
-      <header role="banner">
-        
-          <div>
-            <a href="#nav" class="sr-only sr-only-focusable">Skip to main navigation</a>
-            <a href="#main" class="sr-only sr-only-focusable">Skip to content</a>
-          </div>
-        
+  <script>
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+  </script>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/styles.min.css" media="all">
+  <link rel="stylesheet" href="css/print.min.css" media="print">
+</head>
+<body itemscope itemtype="http://schema.org/WebPage">
+<header role="banner">
+  
+  <div>
+    <a href="#nav" class="sr-only sr-only-focusable">Skip to main navigation</a>
+    <a href="#main" class="sr-only sr-only-focusable">Skip to content</a>
+  </div>
+  
 
-        <nav role="navigation" id="nav" aria-label="Main navigation">
-          
+  <nav role="navigation" id="nav" aria-label="Main navigation">
+    
 <ul class="fly-out">
   <li><a href="./index.html">Home</a></li>
   <li><a href="./bar-charts.html">Bar charts</a></li>
@@ -53,11 +53,11 @@
   </li>
 </ul>
 
-        </nav>
-      </header>
+  </nav>
+</header>
 
-      <main role="main" id="main" tabindex="-1" itemprop="mainContentOfPage">
-        
+<main role="main" id="main" tabindex="-1" itemprop="mainContentOfPage">
+  
 <h1>Column charts</h1>
 
 <p>
@@ -73,6 +73,12 @@
 
 <p>The basic principle is the same as <a href="./bar-charts.html">the bar charts</a>:</p>
 <ol>
+  <li>
+    the first grid row is the reserved to display value in case it reaches scale's max value,
+    with a fixed size of <code>2ex</code>
+    — have a look to <a href="https://every-layout.dev/rudiments/units/#the-ch-and-ex-units">CSS
+    units rudiments, documented in <em>Every Layout</em> by <cite>Andy Bell</cite> and <cite>Heydon Pickering</cite></a>&nbsp;;
+  </li>
  <li>
   the <code>repeat()</code> function applied with the <var>--scale</var> custom property
   enables us to handle a dynamic scale;
@@ -559,14 +565,14 @@
   </div>
 </details>
 
-      </main>
+</main>
 
-      
-        <script src="js/script.min.js"></script>
-        <script src="js/prism.min.js"></script>
-      
 
-      
-      
-    </body>
+<script src="js/script.min.js"></script>
+<script src="js/prism.min.js"></script>
+
+
+
+
+</body>
 </html>

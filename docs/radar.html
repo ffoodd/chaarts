@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr" class="no-js">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
   <title>Radar — chaarts</title>
   <meta property="og:url" content="https://ffoodd.github.io/chaarts/fr/radar.html">
   <meta property="og:title" content="Radar — chaarts">
@@ -13,25 +13,25 @@
   <meta name="twitter:card" content="summary">
   <link rel="alternate" hreflang="en" href="https://ffoodd.github.io/chaarts/radar-charts.html"/>
 
-        <script>
-          document.documentElement.classList.remove('no-js');
-          document.documentElement.classList.add('js');
-        </script>
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="css/styles.min.css" media="all">
-        <link rel="stylesheet" href="css/print.min.css" media="print">
-    </head>
-    <body itemscope itemtype="http://schema.org/WebPage">
-      <header role="banner">
-        
+  <script>
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+  </script>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/styles.min.css" media="all">
+  <link rel="stylesheet" href="css/print.min.css" media="print">
+</head>
+<body itemscope itemtype="http://schema.org/WebPage">
+<header role="banner">
+  
   <div>
     <a href="#nav" class="sr-only sr-only-focusable">Aller à la navigation</a>
     <a href="#main" class="sr-only sr-only-focusable">Aller au contenu</a>
   </div>
 
 
-        <nav role="navigation" id="nav" aria-label="Navigation principale">
-          
+  <nav role="navigation" id="nav" aria-label="Navigation principale">
+    
 <ul class="fly-out">
   <li><a href="./accueil.html">Accueil</a></li>
   <li><a href="./barres.html">Barre</a></li>
@@ -53,11 +53,11 @@
   </li>
 </ul>
 
-        </nav>
-      </header>
+  </nav>
+</header>
 
-      <main role="main" id="main" tabindex="-1" itemprop="mainContentOfPage">
-        
+<main role="main" id="main" tabindex="-1" itemprop="mainContentOfPage">
+  
 <h1>Graphique radar</h1>
 
 <p>
@@ -88,6 +88,10 @@
   <a hreflang="en" href="https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab">d’une
   astuce de <cite>Cassie Evans</cite>, utilisant <code>counter-reset</code> et <code>counter()</code>
   pour afficher une variable numérique dans la propriété <code>content</code></a>.
+  Cependant <code>counter-reset</code> ne fonctionne qu’avec un entier et notre valeur peut être un nombre. Alors on s’appuie sur
+  <a hreflang="en" href="https://css-tricks.com/animating-number-counters/#the-new-school-css-solution">une ruse de
+  <cite>Carter Li</cite> utilisant <code>calc()</code> pour convertir les nombres en entiers —&nbsp;et
+  <code>@property</code> pour les navigateurs basés sur Chromium</a>. Boum&nbsp;!
  <li>
   Puis la magie opère sur les éléments <code>&lt;td&gt;</code>&nbsp;:
   <ol>
@@ -610,14 +614,14 @@
 </div>
 </details>
 
-      </main>
+</main>
 
-      
-        <script src="js/script.min.js"></script>
-        <script src="js/prism.min.js"></script>
-      
 
-      
-      
-    </body>
+<script src="js/script.min.js"></script>
+<script src="js/prism.min.js"></script>
+
+
+
+
+</body>
 </html>
