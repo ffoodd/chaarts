@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
   <title>Radar charts — chaarts</title>
   <meta property="og:url" content="https://ffoodd.github.io/chaarts/radar-charts.html">
   <meta property="og:title" content="Radar charts — chaarts">
@@ -13,25 +13,25 @@
   <meta name="twitter:card" content="summary">
   <link rel="alternate" hreflang="fr" href="https://ffoodd.github.io/chaarts/radar.html"/>
 
-        <script>
-          document.documentElement.classList.remove('no-js');
-          document.documentElement.classList.add('js');
-        </script>
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="css/styles.min.css" media="all">
-        <link rel="stylesheet" href="css/print.min.css" media="print">
-    </head>
-    <body itemscope itemtype="http://schema.org/WebPage">
-      <header role="banner">
-        
-          <div>
-            <a href="#nav" class="sr-only sr-only-focusable">Skip to main navigation</a>
-            <a href="#main" class="sr-only sr-only-focusable">Skip to content</a>
-          </div>
-        
+  <script>
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+  </script>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/styles.min.css" media="all">
+  <link rel="stylesheet" href="css/print.min.css" media="print">
+</head>
+<body itemscope itemtype="http://schema.org/WebPage">
+<header role="banner">
+  
+  <div>
+    <a href="#nav" class="sr-only sr-only-focusable">Skip to main navigation</a>
+    <a href="#main" class="sr-only sr-only-focusable">Skip to content</a>
+  </div>
+  
 
-        <nav role="navigation" id="nav" aria-label="Main navigation">
-          
+  <nav role="navigation" id="nav" aria-label="Main navigation">
+    
 <ul class="fly-out">
   <li><a href="./index.html">Home</a></li>
   <li><a href="./bar-charts.html">Bar charts</a></li>
@@ -53,11 +53,11 @@
   </li>
 </ul>
 
-        </nav>
-      </header>
+  </nav>
+</header>
 
-      <main role="main" id="main" tabindex="-1" itemprop="mainContentOfPage">
-        
+<main role="main" id="main" tabindex="-1" itemprop="mainContentOfPage">
+  
 <h1>Radar charts</h1>
 
 <p>
@@ -87,6 +87,10 @@
   <a href="https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab">a
   trick from <cite>Cassie Evans</cite>, using <code>counter-reset</code> and <code>counter()</code>
   to display a numerical variable in the <code>content</code> property</a>.
+  However <code>counter-reset</code> only works with integers, and our value might be a number.
+  So we rely on <a href="https://css-tricks.com/animating-number-counters/#the-new-school-css-solution">
+  <cite>Carter Li</cite>'s ruse using <code>calc()</code> to convert numbers to integers—&nbsp;and
+  <code>@property</code> for Chromium-based browsers</a>. Boum!
  <li>
   Then the magic works on the <code>&lt;td&gt;</code> elements:
   <ol>
@@ -610,14 +614,14 @@
 </div>
 </details>
 
-      </main>
+</main>
 
-      
-        <script src="js/script.min.js"></script>
-        <script src="js/prism.min.js"></script>
-      
 
-      
-      
-    </body>
+<script src="js/script.min.js"></script>
+<script src="js/prism.min.js"></script>
+
+
+
+
+</body>
 </html>
