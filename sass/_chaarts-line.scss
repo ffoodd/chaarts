@@ -173,7 +173,7 @@
          left: calc( var(--offset) * 3 );
          pointer-events: none;
          position: absolute;
-         top: var(--top, 100);
+         top: var(--top, 0);
          transform-origin: 50% calc(100% + 10px);
          transform:
            translate3d(-50%, -125%, 0)
