@@ -46,12 +46,13 @@
     }
 
     td {
-      grid-row: calc( 101 - var(--value) ) / -3;
+      --integer: calc(var(--value));
+      grid-row: calc( (var(--scale, 100) + 2) - var(--integer) ) / -2;
       pointer-events: none;
       position: relative;
       transition: opacity .2s map-get( $timing-functions, 'move' );
 
-      @each $number in 1, 2, 3, 4, 5, 6, 7 {
+      @each $number in 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 {
         &:nth-of-type(#{$number}) {
           grid-column: #{$number + 1};
         }
@@ -86,7 +87,7 @@
       }
 
       td {
-        --position: calc(var(--value, 0) / var(--scale, 100) * 100%);
+        --position: calc(var(--integer, 0) / var(--scale, 100) * 100%);
         background:
             linear-gradient(to top,
               palette( success, dark ),
@@ -158,7 +159,7 @@
       grid-template-rows: 2ex repeat(var(--scale, 100), minmax(0, .25rem)) repeat(2, minmax(min-content, 2rem));
 
       tbody th {
-        grid-row: -10 / span 4;
+        grid-row: -10 / span 7;
       }
 
       thead tr * {
@@ -208,6 +209,7 @@
       td {
         background-color: palette( charts, pink );
         background-image: var(--zig);
+        grid-row-end: -3;
       }
 
       /**

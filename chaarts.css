@@ -3,13 +3,28 @@
 /* == Abstracts
 /* ==================== */
 /* ==================== */
+/* == Convert <Number> to <Integer>
+/* ==================== */
+/**
+ * Using Houdini's @property to ensure --integer is <Integer> type in Chromium-based browsers
+ * @link https://developer.mozilla.org/en-US/docs/Web/CSS/@property
+ * @link https://caniuse.com/mdn-css_at-rules_property
+ ** Based on:
+ ** @author Carter Li
+ ** @link https://css-tricks.com/animating-number-counters/#the-new-school-css-solution
+ */
+@property --integer {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+/* ==================== */
 /* == Tables
 /* ==================== */
 table {
   border-collapse: collapse;
   caption-side: top;
-  -webkit-font-feature-settings: "tnum";
-          font-feature-settings: "tnum";
+  font-feature-settings: "tnum";
   margin-bottom: 1.5rem;
   width: 100%;
   vertical-align: top;
@@ -48,7 +63,7 @@ thead {
 /* == Charts
 /* ==================== */
 /**
- * Gives scrollbale table some UX hints with shadows
+ * Gives scrollable table some UX hints with shadows
  * @author Chen Hui Jing
  * @link https://codepen.io/huijing/pen/XBGaNQ
  ** Based on:
@@ -290,15 +305,29 @@ table:not(.chaarts) .sr-only {
        * Using clip-path + calc() + transform + CSS vars
        * Using mask-image to make a circle
        *
+       * 1.
        * @note Based on Ana Tudor's work
        * @link https://css-tricks.com/1-html-element-5-css-properties-magic/
        * @author Ana Tudor
        *
+       * 2.
        * @note Using a Roma Komarov's idea about boolean custom properties
        * @link https://www.kizu.ru/conditions-for-css-variables/
        *
+       * 3.
        * @note Mask support:
        * @link https://caniuse.com/#search=mask
+       */
+      /**
+       * 1.
+       * @note Display CSS integers custom properties with a trick using counters
+       * @author Cassie Evans
+       * @link https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab
+       *
+       * 2.
+       * @note We need to ensure our counter uses an integer, --value might a a floating number
+       * @author Carter Li
+       * @link https://css-tricks.com/animating-number-counters/#the-new-school-css-solution
        */
     }
     .chaarts.pie tbody {
@@ -326,7 +355,7 @@ table:not(.chaarts) .sr-only {
 .chaarts.pie td::before {
       left: 50%;
       position: absolute;
-      top: 40%;
+      top: calc(var(--radius) / 2);
       transform-origin: center center;
     }
     .chaarts.pie td::before {
@@ -404,10 +433,11 @@ table:not(.chaarts) .sr-only {
       --arrow: calc(100% - 0.25rem);
       --axis: calc( var(--position) - .25turn + var(--value) * .005turn );
       --away: calc( var(--radius) / 2 - 1rem );
+      --integer: calc(var(--value));
       background-color: #444;
       color: white;
       content: var(--term) " : " counter(value) " %";
-      counter-reset: value var(--value);
+      counter-reset: value var(--integer);
       opacity: 0;
       padding: 0.5rem;
       pointer-events: none;
@@ -437,7 +467,7 @@ table:not(.chaarts) .sr-only {
 
     .chaarts.donut {
       --mask: radial-gradient(
-        circle at 50% calc(50% - 2rem),
+        circle at 50% calc(50% - 0.25rem),
         transparent 0%,
         transparent var(--offset),
         #fff calc(var(--offset) + 1px),
@@ -615,6 +645,11 @@ table:not(.chaarts) .sr-only {
        * @note Display CSS integers custom properties with a trick using counters
        * @author Cassie Evans
        * @link https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab
+       *
+       * 3.
+       * @note We need to ensure our counter uses an integer, --value might a a floating number
+       * @author Carter Li
+       * @link https://css-tricks.com/animating-number-counters/#the-new-school-css-solution
        */
     }
     .chaarts.line td::before {
@@ -637,18 +672,19 @@ table:not(.chaarts) .sr-only {
         calc(50% + 0.25rem) var(--arrow),
         0% var(--arrow)
       );
+      --integer: calc(var(--value));
       background-color: #444;
       -webkit-clip-path: var(--polygon);
               clip-path: var(--polygon);
       color: white;
       content: var(--term) " " var(--year) "\a" counter(value) " °C";
-      counter-reset: value var(--value);
+      counter-reset: value var(--integer);
       opacity: 0;
       padding: 0.5rem;
       left: calc( var(--offset) * 3 );
       pointer-events: none;
       position: absolute;
-      top: var(--top, 100);
+      top: var(--top, 0);
       transform-origin: 50% calc(100% + 10px);
       transform: translate3d(-50%, -125%, 0) perspective(1000px) rotate3d(1, 0, 0, 45deg);
       transition: opacity 0.2s cubic-bezier(0, 0.5, 0.5, 1), transform 0.2s cubic-bezier(0, 0.5, 0.5, 1);
@@ -920,7 +956,8 @@ table:not(.chaarts) .sr-only {
       grid-row: -1;
     }
     .chaarts[class*=column] td {
-      grid-row: calc( 100 - var(--value) )/-3;
+      --integer: calc(var(--value));
+      grid-row: calc( (var(--scale, 100) + 2) - var(--integer) )/-2;
       pointer-events: none;
       position: relative;
       transition: opacity 0.2s cubic-bezier(0.5, 0, 0.5, 1);
@@ -946,6 +983,15 @@ table:not(.chaarts) .sr-only {
     .chaarts[class*=column] td:nth-of-type(7) {
       grid-column: 8;
     }
+    .chaarts[class*=column] td:nth-of-type(8) {
+      grid-column: 9;
+    }
+    .chaarts[class*=column] td:nth-of-type(9) {
+      grid-column: 10;
+    }
+    .chaarts[class*=column] td:nth-of-type(10) {
+      grid-column: 11;
+    }
     .chaarts[class*=column] span {
       background: inherit;
       -webkit-text-fill-color: transparent;
@@ -960,8 +1006,8 @@ table:not(.chaarts) .sr-only {
     }
     .chaarts[class*=column].column-single {
       grid-auto-columns: 1fr;
-      grid-template-rows: repeat(var(--scale, 100), minmax(0, 0.25rem)) minmax(-webkit-min-content, 2rem);
-      grid-template-rows: repeat(var(--scale, 100), minmax(0, 0.25rem)) minmax(min-content, 2rem);
+      grid-template-rows: 2ex repeat(var(--scale, 100), minmax(0, 0.25rem)) minmax(-webkit-min-content, 2rem);
+      grid-template-rows: 2ex repeat(var(--scale, 100), minmax(0, 0.25rem)) minmax(min-content, 2rem);
     }
     .chaarts[class*=column].column-single tbody th {
       grid-row: -6/-3;
@@ -972,7 +1018,7 @@ table:not(.chaarts) .sr-only {
       grid-row: -2;
     }
     .chaarts[class*=column].column-single td {
-      --position: calc(var(--value, 0) / var(--scale, 100) * 100%);
+      --position: calc(var(--integer, 0) / var(--scale, 100) * 100%);
       background: linear-gradient(to top, #01ac49, #444, mediumblue, rebeccapurple, crimson) 0% var(--position)/100% var(--size), var(--background) center/1rem;
       background-blend-mode: hard-light;
     }
@@ -1041,14 +1087,14 @@ table:not(.chaarts) .sr-only {
     .chaarts[class*=column].column-multiple {
       grid-template-columns: minmax(-webkit-min-content, 14ch) repeat(calc(var(--y) - 1), 1fr);
       grid-template-columns: minmax(min-content, 14ch) repeat(calc(var(--y) - 1), 1fr);
-      grid-template-rows: repeat(var(--scale, 100), minmax(0, 0.25rem)) repeat(2, minmax(-webkit-min-content, 2rem));
-      grid-template-rows: repeat(var(--scale, 100), minmax(0, 0.25rem)) repeat(2, minmax(min-content, 2rem));
+      grid-template-rows: 2ex repeat(var(--scale, 100), minmax(0, 0.25rem)) repeat(2, minmax(-webkit-min-content, 2rem));
+      grid-template-rows: 2ex repeat(var(--scale, 100), minmax(0, 0.25rem)) repeat(2, minmax(min-content, 2rem));
       /**
        * @note Oh boy, if we could use var(--span) in selector…
        */
     }
     .chaarts[class*=column].column-multiple tbody th {
-      grid-row: -10/span 4;
+      grid-row: -10/span 7;
     }
     .chaarts[class*=column].column-multiple thead tr * {
       grid-row: -2;
@@ -1112,7 +1158,7 @@ table:not(.chaarts) .sr-only {
       opacity: 0.25;
       position: absolute;
       transition: opacity 0.3s cubic-bezier(0.5, 0, 0.5, 1);
-      top: 1rem;
+      top: calc(1rem + 2ex);
       width: calc((var(--width) * 2) + (var(--gap) / 2) + 1px);
       z-index: 0;
     }
@@ -1128,6 +1174,7 @@ table:not(.chaarts) .sr-only {
     .chaarts[class*=column].column-multiple td {
       background-color: #e11a81;
       background-image: var(--zig);
+      grid-row-end: -3;
     }
     .chaarts[class*=column].column-multiple td:nth-of-type(2n + 2) {
       background: #0172f0 var(--triangles);
@@ -1144,7 +1191,7 @@ table:not(.chaarts) .sr-only {
   /* ==================== */
   /* == Radar Charts
   /* ==================== */
-  @supports ((-webkit-clip-path: polygon(calc( 0% 0%, 100% - ( var(--1) * 100% / var(--scale) ) ) 100%, 100% 100%)) or (clip-path: polygon(calc( 0% 0%, 100% - ( var(--1) * 100% / var(--scale) ) ) 100%, 100% 100%))) {
+  @supports ((-webkit-clip-path: polygon(0% 0%, calc(100% - ( var(--1) * 100% / var(--scale) ) ) 100%, 100% 100%)) or (clip-path: polygon(0% 0%, calc(100% - ( var(--1) * 100% / var(--scale) ) ) 100%, 100% 100%))) {
     .radar-container .fieldset {
       display: flex !important;
     }
@@ -1154,11 +1201,12 @@ table:not(.chaarts) .sr-only {
       --unitless-radius: calc( 1024 / 16 / 5 );
       --size: calc( var(--radius) / var(--scale) );
       --part: calc( 360deg / var(--items) );
+      --integer: calc(var(--scale));
       background-image: repeating-radial-gradient(circle at 50%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 2px, transparent 0, transparent calc(var(--size) * var(--step))), repeating-radial-gradient(circle at 50%, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) 2px, transparent 0, transparent var(--size));
       border: 2px solid;
       border-radius: 50%;
       contain: layout;
-      counter-reset: scale var(--scale);
+      counter-reset: scale var(--integer);
       height: calc( var(--radius) * 2 );
       margin: 6rem auto 12rem;
       overflow: visible;
@@ -1287,8 +1335,7 @@ table:not(.chaarts) .sr-only {
       background: linear-gradient(to top left, blueviolet 10%, DarkBlue 75%);
       -webkit-clip-path: var(--polygon);
               clip-path: var(--polygon);
-      -webkit-filter: drop-shadow(0 0 1rem indigo);
-              filter: drop-shadow(0 0 1rem indigo);
+      filter: drop-shadow(0 0 1rem indigo);
       height: 100%;
       position: absolute;
       width: 100%;
@@ -1299,6 +1346,11 @@ table:not(.chaarts) .sr-only {
      * @note Display CSS integers custom properties with a trick using counters
      * @author Cassie Evans
      * @link https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab
+     *
+     * 2.
+     * @note We need to ensure our counter uses an integer, --value might a a floating number
+     * @author Carter Li
+     * @link https://css-tricks.com/animating-number-counters/#the-new-school-css-solution
      */
     .chaarts.radar [scope=col]::after {
       color: rebeccapurple;
@@ -1307,31 +1359,38 @@ table:not(.chaarts) .sr-only {
       font-weight: 400;
     }
     .chaarts.radar [scope=col]:nth-child(1)::after {
-      counter-reset: value var(--1);
+      --integer: calc(var(1));
+      counter-reset: value var(--integer);
       content: counter(value) " / " counter(scale);
     }
     .chaarts.radar [scope=col]:nth-child(2)::after {
-      counter-reset: value var(--2);
+      --integer: calc(var(2));
+      counter-reset: value var(--integer);
       content: counter(value) " / " counter(scale);
     }
     .chaarts.radar [scope=col]:nth-child(3)::after {
-      counter-reset: value var(--3);
+      --integer: calc(var(3));
+      counter-reset: value var(--integer);
       content: counter(value) " / " counter(scale);
     }
     .chaarts.radar [scope=col]:nth-child(4)::after {
-      counter-reset: value var(--4);
+      --integer: calc(var(4));
+      counter-reset: value var(--integer);
       content: counter(value) " / " counter(scale);
     }
     .chaarts.radar [scope=col]:nth-child(5)::after {
-      counter-reset: value var(--5);
+      --integer: calc(var(5));
+      counter-reset: value var(--integer);
       content: counter(value) " / " counter(scale);
     }
     .chaarts.radar [scope=col]:nth-child(6)::after {
-      counter-reset: value var(--6);
+      --integer: calc(var(6));
+      counter-reset: value var(--integer);
       content: counter(value) " / " counter(scale);
     }
     .chaarts.radar [scope=col]:nth-child(7)::after {
-      counter-reset: value var(--7);
+      --integer: calc(var(7));
+      counter-reset: value var(--integer);
       content: counter(value) " / " counter(scale);
     }
 
@@ -1382,37 +1441,44 @@ table:not(.chaarts) .sr-only {
       white-space: nowrap;
     }
     .chaarts.radar-multiple td:nth-of-type(1)::after {
-      counter-reset: value var(--1);
+      --integer: calc(var(--1));
+      counter-reset: value var(--integer);
       content: counter(value);
       width: calc( var(--1) * 100% / var(--scale) );
     }
     .chaarts.radar-multiple td:nth-of-type(2)::after {
-      counter-reset: value var(--2);
+      --integer: calc(var(--2));
+      counter-reset: value var(--integer);
       content: counter(value);
       width: calc( var(--2) * 100% / var(--scale) );
     }
     .chaarts.radar-multiple td:nth-of-type(3)::after {
-      counter-reset: value var(--3);
+      --integer: calc(var(--3));
+      counter-reset: value var(--integer);
       content: counter(value);
       width: calc( var(--3) * 100% / var(--scale) );
     }
     .chaarts.radar-multiple td:nth-of-type(4)::after {
-      counter-reset: value var(--4);
+      --integer: calc(var(--4));
+      counter-reset: value var(--integer);
       content: counter(value);
       width: calc( var(--4) * 100% / var(--scale) );
     }
     .chaarts.radar-multiple td:nth-of-type(5)::after {
-      counter-reset: value var(--5);
+      --integer: calc(var(--5));
+      counter-reset: value var(--integer);
       content: counter(value);
       width: calc( var(--5) * 100% / var(--scale) );
     }
     .chaarts.radar-multiple td:nth-of-type(6)::after {
-      counter-reset: value var(--6);
+      --integer: calc(var(--6));
+      counter-reset: value var(--integer);
       content: counter(value);
       width: calc( var(--6) * 100% / var(--scale) );
     }
     .chaarts.radar-multiple td:nth-of-type(7)::after {
-      counter-reset: value var(--7);
+      --integer: calc(var(--7));
+      counter-reset: value var(--integer);
       content: counter(value);
       width: calc( var(--7) * 100% / var(--scale) );
     }
