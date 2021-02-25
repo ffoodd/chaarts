@@ -294,6 +294,7 @@ table:not(.chaarts) .sr-only {
   @supports ((-webkit-clip-path: polygon(50% calc( 50% + ( var(--gt-25, 0) ) ))) or (clip-path: polygon(50% calc( 50% + ( var(--gt-25, 0) ) )))) {
     .pie-container .fieldset {
       display: flex !important;
+      margin-bottom: 0;
     }
 
     .chaarts.pie {
