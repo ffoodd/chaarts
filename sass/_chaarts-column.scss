@@ -158,6 +158,10 @@
       grid-template-columns: minmax(min-content, 14ch) repeat(calc(var(--y) - 1), 1fr);
       grid-template-rows: 2ex repeat(var(--scale, 100), minmax(0, .25rem)) repeat(2, minmax(min-content, 2rem));
 
+      span {
+        background-image: none;
+      }
+
       tbody th {
         grid-row: -10 / span 7;
       }

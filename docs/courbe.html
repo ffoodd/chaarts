@@ -1,25 +1,27 @@
-<!DOCTYPE html><html lang="fr" class="no-js"><head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!DOCTYPE html>
+<html lang="fr" class="no-js">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <title>Courbes — chaarts</title>
   <meta property="og:url" content="https://ffoodd.github.io/chaarts/fr/courbe.html">
   <meta property="og:title" content="Courbes — chaarts">
   <meta property="og:type" content="article">
-  <meta property="og:description" name="description" content="Graphiques de données avec HTML &amp; CSS">
+  <meta property="og:description" name="description" content="Graphiques de données avec HTML & CSS">
   <meta name="twitter:card" content="summary">
-  <link rel="alternate" hreflang="en" href="https://ffoodd.github.io/chaarts/line-charts.html">
+  <link rel="alternate" hreflang="en" href="https://ffoodd.github.io/chaarts/line-charts.html"/>
 
   <script>
     document.documentElement.classList.remove('no-js');
     document.documentElement.classList.add('js');
   </script>
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="css/styles.min.css" media="all" integrity="sha384-S5ZC1k+MIyBkRpjkzrjrszNDQT+BngVrrALbJPeQO1ls5t3271wAWjSiWjt5MWwB" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/print.min.css" media="print" integrity="sha384-i3dRwmp8zXRlpUnJTD27rKIBzSEdYbc0YEFwuULfvleZ4Vm0RG81i/6HXy96jet8" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.min.css" media="all">
+  <link rel="stylesheet" href="css/print.min.css" media="print">
 </head>
-<body itemscope="" itemtype="http://schema.org/WebPage">
+<body itemscope itemtype="http://schema.org/WebPage">
 <header role="banner">
   
   <div>
@@ -38,7 +40,8 @@
   <li><a href="./camembert.html">Camembert</a></li>
   <li><a href="./radar.html">Radar</a></li>
   <li class="ml-auto">
-    <a rel="alternate" hreflang="en" lang="en" href="./line-charts.html" aria-label="English version" title="English version">EN</a>
+    <a rel="alternate" hreflang="en" lang="en" href="./line-charts.html"
+       aria-label="English version" title="English version">EN</a>
   </li>
   <li>
     <a href="https://github.com/ffoodd/chaarts/" class="d-flex" hreflang="en">
@@ -113,7 +116,8 @@
   une infobulle simulée, et un pseudo-élément <code>::before</code> pour gérer un calque interactif sur la cellule&nbsp;:
   <ul>
    <li>
-    l’affichage multiligne repose sur <a hreflang="en" href="https://lea.verou.me/2012/02/flexible-multiline-definition-lists-with-2-lines-of-css/">une
+    l’affichage multiligne repose sur <a hreflang="en"
+    href="https://lea.verou.me/2012/02/flexible-multiline-definition-lists-with-2-lines-of-css/">une
     astuce de <cite>Lea Verou</cite> utilisant <code>white-space: pre;</code> et le caractère
     <code>\A</code></a>&nbsp;;
    </li>
@@ -163,13 +167,16 @@
    <strong id="label-3">Interrupteur</strong><br>
    <span id="description-3">Permet de désactiver les styles sur le tableau suivant.</span>
   </p>
-  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css" role="switch" aria-checked="true" aria-labelledby="label-3" aria-describedby="description-3">
+  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
+      role="switch" aria-checked="true"
+      aria-labelledby="label-3" aria-describedby="description-3">
    <span>Guilleret</span>
    <span>Sobre</span>
   </button>
  </div>
 
- <table class="chaarts line" id="line" style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Fév.'; --t-3: 'Mar.'; --t-4: 'Avr.'; --t-5: 'Mai'; --t-6: 'Juin';
+ <table class="chaarts line" id="line"
+     style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Fév.'; --t-3: 'Mar.'; --t-4: 'Avr.'; --t-5: 'Mai'; --t-6: 'Juin';
         --t-7: 'Juil.'; --t-8: 'Août'; --t-9: 'Sept.'; --t-10: 'Oct.'; --t-11: 'Nov.'; --t-12: 'Déc.';">
   <caption id="caption-3">Température mensuelle moyenne en 2017</caption>
   <thead>
@@ -259,22 +266,22 @@
 
 <details>
  <summary>Le <abbr lang="en" title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
- <div><pre><code class="language-markup">&lt;table class="chaarts line" style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Feb.'; […]"&gt;
-  &lt;caption id="caption-3"&gt;[…]&lt;/caption&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th scope="col"&gt;[…]&lt;/th&gt;
-      &lt;th scope="col"&gt;Jan.&lt;/th&gt;
-      &lt;th scope="col"&gt;[…]&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr style="--year: '2017'; --1: 8; --2: 6; --3: 9; --4: 12; --5: 15; --6: 21; --7: 24; --8: 25; --9: 22; --10: 19; --11: 14; --12: 9;"&gt;
-      &lt;th scope="row"&gt;2017&lt;/th&gt;
-      &lt;td&gt;8&nbsp;°C&lt;/td&gt;
-      &lt;td&gt;[…]&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
+ <div><pre><code class="language-markup">&lt;table class="chaarts line" style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Feb.'; […]">
+  &lt;caption id="caption-3">[…]&lt;/caption>
+  &lt;thead>
+    &lt;tr>
+      &lt;th scope="col">[…]&lt;/th>
+      &lt;th scope="col">Jan.&lt;/th>
+      &lt;th scope="col">[…]&lt;/th>
+    &lt;/tr>
+  &lt;/thead>
+  &lt;tbody>
+    &lt;tr style="--year: '2017'; --1: 8; --2: 6; --3: 9; --4: 12; --5: 15; --6: 21; --7: 24; --8: 25; --9: 22; --10: 19; --11: 14; --12: 9;">
+      &lt;th scope="row">2017&lt;/th>
+      &lt;td>8&nbsp;°C&lt;/td>
+      &lt;td>[…]&lt;/td>
+    &lt;/tr>
+  &lt;/tbody>
 &lt;/table&gt;</code></pre>
 </div>
 </details>
@@ -524,13 +531,16 @@
    <strong id="label-4">Interrupteur</strong><br>
    <span id="description-4">Permet de désactiver les styles sur le tableau suivant.</span>
   </p>
-  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css" role="switch" aria-checked="true" aria-labelledby="label-4" aria-describedby="description-4">
+  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
+      role="switch" aria-checked="true"
+      aria-labelledby="label-4" aria-describedby="description-4">
    <span>Guilleret</span>
    <span>Sobre</span>
   </button>
  </div>
 
- <table class="chaarts line points" id="points" style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Fév.'; --t-3: 'Mar.'; --t-4: 'Avr.'; --t-5: 'Mai'; --t-6: 'Juin';
+ <table class="chaarts line points" id="points"
+     style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Fév.'; --t-3: 'Mar.'; --t-4: 'Avr.'; --t-5: 'Mai'; --t-6: 'Juin';
         --t-7: 'Juil.'; --t-8: 'Août'; --t-9: 'Sept.'; --t-10: 'Oct.'; --t-11: 'Nov.'; --t-12: 'Déc.';">
   <caption id="caption-4">Température mensuelle moyenne par année</caption>
   <thead>
@@ -797,12 +807,11 @@
 </main>
 
 
-<script src="js/script.min.js" integrity="sha384-GSFLTHfMgenmEx6jFpCPYPrICTc7v02GoC3xiIvkFqR7kyjirVQ6f2MHDkHnBlKB" crossorigin="anonymous"></script>
-<script src="js/prism.min.js" integrity="sha384-YCKa6qyqFiUayUS26oaB33fcm9PXlIpodyaJZB4C8Q3e7QnfPOMHTl0knQ56hOTF" crossorigin="anonymous"></script>
+<script src="js/script.min.js"></script>
+<script src="js/prism.min.js"></script>
 
 
 
 
-
-
-</body></html>
+</body>
+</html>

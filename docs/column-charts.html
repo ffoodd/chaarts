@@ -1,25 +1,27 @@
-<!DOCTYPE html><html lang="en" class="no-js"><head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <title>Column charts — chaarts</title>
   <meta property="og:url" content="https://ffoodd.github.io/chaarts/column-charts.html">
   <meta property="og:title" content="Column charts — chaarts">
   <meta property="og:type" content="article">
-  <meta property="og:description" name="description" content="Charts with HTML &amp; CSS">
+  <meta property="og:description" name="description" content="Charts with HTML & CSS">
   <meta name="twitter:card" content="summary">
-  <link rel="alternate" hreflang="fr" href="https://ffoodd.github.io/chaarts/histogramme.html">
+  <link rel="alternate" hreflang="fr" href="https://ffoodd.github.io/chaarts/histogramme.html"/>
 
   <script>
     document.documentElement.classList.remove('no-js');
     document.documentElement.classList.add('js');
   </script>
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="css/styles.min.css" media="all" integrity="sha384-S5ZC1k+MIyBkRpjkzrjrszNDQT+BngVrrALbJPeQO1ls5t3271wAWjSiWjt5MWwB" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/print.min.css" media="print" integrity="sha384-i3dRwmp8zXRlpUnJTD27rKIBzSEdYbc0YEFwuULfvleZ4Vm0RG81i/6HXy96jet8" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.min.css" media="all">
+  <link rel="stylesheet" href="css/print.min.css" media="print">
 </head>
-<body itemscope="" itemtype="http://schema.org/WebPage">
+<body itemscope itemtype="http://schema.org/WebPage">
 <header role="banner">
   
   <div>
@@ -38,7 +40,8 @@
   <li><a href="./pie-charts.html">Pie charts</a></li>
   <li><a href="./radar-charts.html">Radar charts</a></li>
   <li class="ml-auto">
-    <a rel="alternate" hreflang="fr" lang="fr" href="./histogramme.html" aria-label="Version française" title="Version française">FR</a>
+    <a rel="alternate" hreflang="fr" lang="fr" href="./histogramme.html"
+       aria-label="Version française" title="Version française">FR</a>
   </li>
   <li>
     <a href="https://github.com/ffoodd/chaarts/" class="d-flex">
@@ -83,7 +86,7 @@
  <li>
   <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code> and <code>&lt;tr&gt;</code> containers
   are neutralized in the grid structure using <code>display: contents</code>;
- </li><li>
+ <li>
   each cell is placed on the grid depending its <var>--value</var>
   —&nbsp;its background color also depending on its value;
  </li>
@@ -99,7 +102,9 @@
    <strong id="label-7">Switch</strong><br>
    <span id="description-7">Allows you to disable styles on the following table.</span>
   </p>
-  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css" role="switch" aria-checked="true" aria-labelledby="label-7" aria-describedby="description-7">
+  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
+      role="switch" aria-checked="true"
+      aria-labelledby="label-7" aria-describedby="description-7">
    <span>Funny</span>
    <span>Sober</span>
   </button>
@@ -134,22 +139,22 @@
 
 <details>
  <summary><abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
- <div><pre><code class="language-markup">&lt;table class="chaarts column" id="column" style="--y: 7;"&gt;
-  &lt;caption id="caption-7"&gt;[…]&lt;/caption&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th scope="row"&gt;[…]&lt;/th&gt;
-      &lt;th scope="col" style="--value: 62;"&gt;Chrome&lt;/th&gt;
-      &lt;th scope="col" style="--value: 15;"&gt;Firefox&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th scope="row"&gt;[…]&lt;/th&gt;
-      &lt;td style="--value: 62;"&gt;&lt;span&gt;62%&lt;/span&gt;&lt;/td&gt;
-      &lt;td style="--value: 15;"&gt;&lt;span&gt;15%&lt;/span&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
+ <div><pre><code class="language-markup">&lt;table class="chaarts column" id="column" style="--y: 7;">
+  &lt;caption id="caption-7">[…]&lt;/caption>
+  &lt;thead>
+    &lt;tr>
+      &lt;th scope="row">[…]&lt;/th>
+      &lt;th scope="col" style="--value: 62;">Chrome&lt;/th>
+      &lt;th scope="col" style="--value: 15;">Firefox&lt;/th>
+    &lt;/tr>
+  &lt;/thead>
+  &lt;tbody>
+    &lt;tr>
+      &lt;th scope="row">[…]&lt;/th>
+      &lt;td style="--value: 62;">&lt;span>62%&lt;/span>&lt;/td>
+      &lt;td style="--value: 15;">&lt;span>15%&lt;/span>&lt;/td>
+    &lt;/tr>
+  &lt;/tbody>
 &lt;/table&gt;</code></pre>
 </div>
 </details>
@@ -171,7 +176,7 @@
     margin: 0;
   }
 
-  .chaarts[class*="column"] tr &gt; * + * {
+  .chaarts[class*="column"] tr > * + * {
     text-align: center;
   }
 
@@ -346,7 +351,9 @@
    <strong id="label-8">Switch</strong><br>
    <span id="description-8">Allows you to disable styles on the following table.</span>
   </p>
-  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css" role="switch" aria-checked="true" aria-labelledby="label-8" aria-describedby="description-8">
+  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
+      role="switch" aria-checked="true"
+      aria-labelledby="label-8" aria-describedby="description-8">
    <span>Funny</span>
    <span>Sober</span>
   </button>
@@ -397,26 +404,26 @@
 
 <details>
  <summary><abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
- <div><pre><code class="language-markup">&lt;table class="chaarts column-multiple" id="column-multiple" style="--y: 11; --span: 2;"&gt;
-  &lt;caption id="caption-8"&gt;[…]&lt;/caption&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th scope="row" id="browser"&gt;[…]&lt;/th&gt;
-      &lt;th scope="col" colspan="2" id="chrome"&gt;Chrome&lt;/th&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th scope="row" id="year"&gt;[…]&lt;/th&gt;
-      &lt;th scope="col" id="chrome-2018"&gt;2018&lt;/th&gt;
-      &lt;th scope="col" id="chrome-2019"&gt;2019&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th scope="row" id="parts"&gt;[…]&lt;/th&gt;
-      &lt;td style="--value: 50;" headers="browser chrome year chrome-2018"&gt;&lt;span&gt;49.6%&lt;/span&gt;&lt;/td&gt;
-      &lt;td style="--value: 57;" headers="browser chrome year chrome-2019"&gt;&lt;span&gt;57%&lt;/span&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
+ <div><pre><code class="language-markup">&lt;table class="chaarts column-multiple" id="column-multiple" style="--y: 11; --span: 2;">
+  &lt;caption id="caption-8">[…]&lt;/caption>
+  &lt;thead>
+    &lt;tr>
+      &lt;th scope="row" id="browser">[…]&lt;/th>
+      &lt;th scope="col" colspan="2" id="chrome">Chrome&lt;/th>
+    &lt;/tr>
+    &lt;tr>
+      &lt;th scope="row" id="year">[…]&lt;/th>
+      &lt;th scope="col" id="chrome-2018">2018&lt;/th>
+      &lt;th scope="col" id="chrome-2019">2019&lt;/th>
+    &lt;/tr>
+  &lt;/thead>
+  &lt;tbody>
+    &lt;tr>
+      &lt;th scope="row" id="parts">[…]&lt;/th>
+      &lt;td style="--value: 50;" headers="browser chrome year chrome-2018">&lt;span>49.6%&lt;/span>&lt;/td>
+      &lt;td style="--value: 57;" headers="browser chrome year chrome-2019">&lt;span>57%&lt;/span>&lt;/td>
+    &lt;/tr>
+  &lt;/tbody>
 &lt;/table&gt;</code></pre>
 </div>
 </details>
@@ -493,12 +500,11 @@
 </main>
 
 
-<script src="js/script.min.js" integrity="sha384-GSFLTHfMgenmEx6jFpCPYPrICTc7v02GoC3xiIvkFqR7kyjirVQ6f2MHDkHnBlKB" crossorigin="anonymous"></script>
-<script src="js/prism.min.js" integrity="sha384-YCKa6qyqFiUayUS26oaB33fcm9PXlIpodyaJZB4C8Q3e7QnfPOMHTl0knQ56hOTF" crossorigin="anonymous"></script>
+<script src="js/script.min.js"></script>
+<script src="js/prism.min.js"></script>
 
 
 
 
-
-
-</body></html>
+</body>
+</html>
