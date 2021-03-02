@@ -186,6 +186,10 @@
         scale( calc( ( var(--zoom) + ( var(--value) / ( 100 / var(--zoom) ) ) ) / 100 ) );
     }
 
+    td::after {
+      --away: calc( ( var(--radius) / 2 ) - ( ( var(--radius) / 4 ) * ( ( 100 - var(--value) ) / 100 ) ) + #{$gutter * 2.5} );
+    }
+
     tr:hover td::before {
       --zoom: 50;
     }
