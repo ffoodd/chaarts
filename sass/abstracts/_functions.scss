@@ -56,7 +56,7 @@
 
 
 // Replace `$search` with `$replace` in `$string`
-// @author Hugo Giraudel
+// @author Kitty Giraudel
 // @param {String} $string - Initial string
 // @param {String} $search - Substring to replace
 // @param {String} $replace ('') - New value
@@ -74,8 +74,8 @@
 
 
 // Convert value to string
-// @author Hugo Giraudel
-// @see https://hugogiraudel.com/2014/01/27/casting-types-in-sass/
+// @author Kitty Giraudel
+// @see https://kittygiraudel.com/2014/01/27/casting-types-in-sass/
 @function to-string($value) {
   @return inspect($value);
 }
