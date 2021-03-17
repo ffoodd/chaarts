@@ -30,7 +30,8 @@
   }
 
   .chaarts[class*="column"] td {
-    grid-row: calc( 100 - var(--value) ) / -3;
+    --integer: calc(var(--value));
+    grid-row: calc( (var(--scale, 100) + 2) - var(--integer) ) / -2;
     pointer-events: none;
     position: relative;
     transition: opacity .2s cubic-bezier(.5, 0, .5, 1);
@@ -56,7 +57,7 @@
 
   .chaarts.column-single {
     grid-auto-columns: 1fr;
-    grid-template-rows: repeat(var(--scale, 100), minmax(0, .25rem)) minmax(min-content, 2rem);
+    grid-template-rows: 2ex repeat(var(--scale, 100), minmax(0, .25rem)) minmax(min-content, 2rem);
   }
 
   .chaarts.column-single tbody th {
@@ -70,7 +71,7 @@
   }
 
   .chaarts.column-single td {
-    --position: calc(var(--value, 0) / var(--scale, 100) * 100%);
+    --position: calc(var(--integer, 0) / var(--scale, 100) * 100%);
     background-blend-mode: hard-light;
       linear-gradient(to top,
         #01ac49,
