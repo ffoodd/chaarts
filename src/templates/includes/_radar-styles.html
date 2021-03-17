@@ -4,6 +4,7 @@
     --unitless-radius: calc( 1024 / 16 / 5 );
     --size: calc( var(--radius) / var(--scale) );
     --part: calc( 360deg / var(--items) );
+    --integer: calc(var(--scale));
     background-image:
       repeating-radial-gradient(
         circle at 50%,
@@ -21,8 +22,8 @@
       );
     border: 2px solid;
     border-radius: 50%;
-    contain: layout style;
-    counter-reset: scale var(--scale);
+    contain: layout;
+    counter-reset: scale var(--integer);
     height: calc( var(--radius) * 2 );
     margin: 6rem auto 12rem;
     overflow: visible;
@@ -91,6 +92,7 @@
     width: 100%;
   }
 
+  /* Sass @each() */
   .chaarts[class*="radar"] td:nth-of-type(2) span {
     --pos: calc( 100% - (var(--3) * 100% / (var(--scale) * var(--ratio) ) ) );
     --polygon: polygon(
@@ -114,7 +116,8 @@
   }
 
   .chaarts.radar [scope="col"]:nth-child(2)::after {
-    counter-reset: value var(--2);
+    --integer: calc(var(--2));
+    counter-reset: value var(--integer);
     content: counter(value) "\A0/\A0" counter(scale);
   }
 }</code></pre>

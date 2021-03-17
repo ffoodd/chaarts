@@ -6,6 +6,10 @@
     scale( calc( ( var(--zoom) + ( var(--value) / ( 100 / var(--zoom) ) ) ) / 100 ) );
 }
 
+.chaarts.polar td::after {
+  --away: calc( ( var(--radius) / 2 ) - ( ( var(--radius) / 4 ) * ( ( 100 - var(--value) ) / 100 ) ) + 2.5rem );
+}
+
 .chaarts.polar tr:hover td::before {
   --zoom: 50;
 }

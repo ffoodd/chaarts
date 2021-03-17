@@ -123,7 +123,8 @@
     --arrow: calc(100% - .25rem);
     --top: calc( var(--height) - ( var(--value) / var(--y) * var(--height) ) );
     background-color: #444;
-    counter-reset: value var(--value);
+    --integer: calc(var(--value));
+    counter-reset: value var(--integer);
     content: var(--term) " " var(--year) "\A " counter(value) "\A0°C";
     color: #fff;
     --polygon: polygon(
@@ -141,7 +142,7 @@
     left: calc( var(--offset) * 3 );
     pointer-events: none;
     position: absolute;
-    top: var(--top, 100);
+    top: var(--top, 0);
     transform-origin: 50% calc(100% + 10px);
     transform:
       translate3d(-50%, -125%, 0)

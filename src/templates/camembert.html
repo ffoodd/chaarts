@@ -238,7 +238,7 @@
  .chaarts.pie td::before {
    left: 50%;
    position: absolute;
-   top: 40%;
+   top: calc(var(--radius) / 2);
    transform-origin: center center;
  }
 
@@ -273,7 +273,7 @@
     * soit après simplification, divisé par 50 */
    --pos-B: calc( var(--sin-β) * 50 );
    --pos-A: calc( var(--sin-α) * 50 );
-   background-color: var(--color, currentColor);
+   background-color: var(--color, currentColor) var(--background);
    --polygon: polygon(
      50% 50%,
      50% 0%,
@@ -289,8 +289,7 @@
    );
    clip-path: var(--polygon);
    content: '';
-   height: var(--radius) ;
-   left: 50%;
+   height: var(--radius);
    --mask: radial-gradient(
      circle at center,
      white 0%,
@@ -298,13 +297,10 @@
      transparent calc(var(--radius)  / 2)
    );
    mask-image: var(--mask);
-   position: absolute;
-   top: 40%;
    transform:
      translate3d(-50%, -50%, 0)
      rotate( var(--position) )
      scale( var(--zoom) );
-   transform-origin: center center;
    transition: transform .2s cubic-bezier(.5, 0, .5, 1);
    width: var(--radius);
  }
@@ -314,7 +310,32 @@
  }
 
  .chaarts.pie tr:nth-child(2n + 2) *::before {
-   background-image: var(--stripes);
+   --background: var(--stripes);
+ }
+
+ .chaarts.pie td::after {
+   --arrow: calc(100% - .25rem);
+   --axis: calc( var(--position) - .25turn + var(--value) * .005turn );
+   --away: calc( var(--radius) / 2 - 1rem );
+   --integer: calc(var(--value));
+   background-color: #444;
+   color: white;
+   content: var(--term) "\A0: " counter(value) "\A0%";
+   counter-reset: value var(--integer);
+   opacity: 0;
+   padding: .5rem;
+   pointer-events: none;
+   transform-origin: 50% calc(100% + 10px);
+   transform:
+     translate3d(-50%, -50%, 0)
+     rotate( var(--axis) )
+     translate( var(--away) )
+     rotate( calc( var(--axis) * -1 ) )
+     perspective(1000px)
+     rotate3d(1, 0, 0, 45deg);
+   transition:
+     opacity .2s cubic-bezier(0, .5, .5, 1),
+     transform .2s cubic-bezier(0, .5, .5, 1);
  }
 
  .chaarts.pie tbody:hover tr {
@@ -323,6 +344,20 @@
 
  .chaarts.pie tbody:hover tr:hover {
    opacity: 1;
+ }
+
+ .chaarts.pie tbody:hover td::after {
+   opacity: 1;
+   transform:
+     translate3d(-50%, -50%, 0)
+     rotate( var(--axis) )
+     translate( var(--away) )
+     rotate( calc( var(--axis) * -1 ) )
+     perspective(1000px)
+     rotate3d(1, 0, 0, 0deg);
+   transition:
+     opacity .2s cubic-bezier(.5, 0, 1, .5),
+     transform .2s cubic-bezier(.5, 0, 1, .5);
  }
 
  @media screen and (-ms-high-contrast: active) {

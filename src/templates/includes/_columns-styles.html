@@ -1,11 +1,15 @@
 <pre><code class="language-css">@supports (display: contents) {
   .chaarts.column-multiple {
     grid-template-columns: minmax(min-content, 14ch) repeat(calc(var(--y) - 1), 1fr);
-    grid-template-rows: repeat(var(--scale, 100), minmax(0, .25rem)) repeat(2, minmax(min-content, 2rem));
+    grid-template-rows: 2ex repeat(var(--scale, 100), minmax(0, .25rem)) repeat(2, minmax(min-content, 2rem));
+  }
+
+  .chaarts.column-multiple span {
+    background-image: none;
   }
 
   .chaarts.column-multiple tbody th {
-    grid-row: -10 / span 4;
+    grid-row: -10 / span 7;
   }
 
   .chaarts.column-multiple thead tr * {
@@ -35,7 +39,7 @@
     opacity: .25;
     position: absolute;
     transition: opacity .3s cubic-bezier(.5, 0, .5, 1);
-    top: 1rem;
+    top: calc(1rem + 2ex);
     width: calc((var(--width) * 2) + (var(--gap) / 2) + 1px);
     z-index: 0;
   }
@@ -46,6 +50,7 @@
 
   .chaarts.column-multiple td {
     background: #e11a81 var(--zig);
+    grid-row-end: -3;
   }
 
   /* @note Oh boy, if we could use var(--span) in selector… */
