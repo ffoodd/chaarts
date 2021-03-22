@@ -16,7 +16,7 @@
     document.documentElement.classList.add('js');
   </script>
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="css/styles.min.css" media="all" integrity="sha384-2YuaSuQUOZ8MWmV3+364UstElYIwpiWdUzPwLPRgWE0IzvQfHV5GM6EWRRAAUSVh" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.min.css" media="all" integrity="sha384-giyNH3tWaoQdYrO+xl9j4/siyuY2TA+zoGKp9MnXdcJCxAMc9aCAKRO8DMqgWeSM" crossorigin="anonymous">
   <link rel="stylesheet" href="css/print.min.css" media="print" integrity="sha384-i3dRwmp8zXRlpUnJTD27rKIBzSEdYbc0YEFwuULfvleZ4Vm0RG81i/6HXy96jet8" crossorigin="anonymous">
 </head>
 <body itemscope="" itemtype="http://schema.org/WebPage">
@@ -91,8 +91,10 @@
    <li>
     <strong>Dans chaque cellule</strong>, le contenu doit reprendre la valeur et son unité dans un élément <code>&lt;span&gt;</code>, éventuellement
     balisée avec <code>&lt;abbr&gt;</code> (et <code>aria-label</code> pour suppléer <code>title</code>) si un intitulé peut être explicité pour l’unité.
-    Cette valeur est poussée à droite de la grille, et son texte
-    sert de masque pour le dégradé en arrière-plan —&nbsp;lui permettant d’être de la couleur correspondante à la fin du dégradé pour la position donnée.
+    Cette valeur est poussée à droite de la grille, et son texte sert de masque pour le dégradé en arrière-plan
+    —&nbsp;grâce à <a hreflang="en" href="https://twitter.com/shshaw/status/1140637533539377153">une astuce de S. Shaw's pour
+    appliquer <code>background-clip: text</code> en amélioration progressive</a> —&nbsp;lui permettant d’être de la couleur correspondante
+    à la fin du dégradé pour la position donnée.
    </li>
   </ol>
 

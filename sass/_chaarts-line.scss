@@ -29,7 +29,7 @@
        background:
          repeating-linear-gradient(
            to bottom,
-           white, white var(--scale),
+           white 0 var(--scale),
            rgba(0, 0, 0, .25) calc(var(--scale) + 1px)
          );
        bottom: var(--bottom);
