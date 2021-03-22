@@ -15,7 +15,7 @@
     background:
       repeating-linear-gradient(
         to bottom,
-        white, white var(--scale),
+        white 0 var(--scale),
         rgba(0, 0, 0, .25) calc( var(--scale) + 1px)
       );
     bottom: var(--bottom);
@@ -125,7 +125,7 @@
     background-color: #444;
     --integer: calc(var(--value));
     counter-reset: value var(--integer);
-    content: var(--term) " " var(--year) "\A " counter(value) "\A0°C";
+    content: var(--term) " " var(--year) "\A " counter(value) "\A0" var(--unit);
     color: #fff;
     --polygon: polygon(
       0% 0%,

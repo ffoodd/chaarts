@@ -16,7 +16,7 @@
     document.documentElement.classList.add('js');
   </script>
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="css/styles.min.css" media="all" integrity="sha384-giyNH3tWaoQdYrO+xl9j4/siyuY2TA+zoGKp9MnXdcJCxAMc9aCAKRO8DMqgWeSM" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.min.css" media="all" integrity="sha384-0yC2EsrQ1y1R9jue/JVYN8YFWAYgo7kCH6yY/Xwskzqc7+CmlI10HfHLkJXGLnQY" crossorigin="anonymous">
   <link rel="stylesheet" href="css/print.min.css" media="print" integrity="sha384-i3dRwmp8zXRlpUnJTD27rKIBzSEdYbc0YEFwuULfvleZ4Vm0RG81i/6HXy96jet8" crossorigin="anonymous">
 </head>
 <body itemscope="" itemtype="http://schema.org/WebPage">
@@ -76,6 +76,7 @@
     <var>--x</var> is the <strong>x-axis</strong> scale,
     simply expressed as the number of columns to display;
    </li>
+   <li><var>--unit</var> defines unit to be displayed in simulated tooltip (see below).</li>
   </ul>
  </li>
  <li>
@@ -129,6 +130,7 @@
     to use <code>calc()</code> to wrap our value—&nbsp;and <code>@property</code> for Chromium-based browsers</a>.
     Boum!
    </li>
+   <li>Finally <var>--unit</var> custom property polishes tooltip's content.</li>
   </ul>
  </li>
  <li>
@@ -169,7 +171,7 @@
   </button>
  </div>
 
- <table class="chaarts line" id="line" style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Feb.'; --t-3: 'Mar.'; --t-4: 'Apr.'; --t-5: 'May'; --t-6: 'June';
+ <table class="chaarts line" id="line" style="--y: 32; --x: 13; --unit: '°C'; --t-1: 'Jan.'; --t-2: 'Feb.'; --t-3: 'Mar.'; --t-4: 'Apr.'; --t-5: 'May'; --t-6: 'June';
         --t-7: 'July'; --t-8: 'Aug.'; --t-9: 'Sept.'; --t-10: 'Oct.'; --t-11: 'Nov.'; --t-12: 'Dec.';">
   <caption id="caption-3">Average monthly temperature in 2017</caption>
   <thead>
@@ -533,7 +535,7 @@
   </button>
  </div>
 
- <table class="chaarts line points" id="points" style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Feb.'; --t-3: 'Mar.'; --t-4: 'Apr.'; --t-5: 'May'; --t-6: 'June';
+ <table class="chaarts line points" id="points" style="--y: 32; --x: 13; --unit: '°C'; --t-1: 'Jan.'; --t-2: 'Feb.'; --t-3: 'Mar.'; --t-4: 'Apr.'; --t-5: 'May'; --t-6: 'June';
         --t-7: 'July'; --t-8: 'Aug.'; --t-9: 'Sept.'; --t-10: 'Oct.'; --t-11: 'Nov.'; --t-12: 'Dec.';">
   <caption id="caption-4">Average monthly temperature per year</caption>
   <thead>

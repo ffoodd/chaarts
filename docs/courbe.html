@@ -16,7 +16,7 @@
     document.documentElement.classList.add('js');
   </script>
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="css/styles.min.css" media="all" integrity="sha384-giyNH3tWaoQdYrO+xl9j4/siyuY2TA+zoGKp9MnXdcJCxAMc9aCAKRO8DMqgWeSM" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.min.css" media="all" integrity="sha384-0yC2EsrQ1y1R9jue/JVYN8YFWAYgo7kCH6yY/Xwskzqc7+CmlI10HfHLkJXGLnQY" crossorigin="anonymous">
   <link rel="stylesheet" href="css/print.min.css" media="print" integrity="sha384-i3dRwmp8zXRlpUnJTD27rKIBzSEdYbc0YEFwuULfvleZ4Vm0RG81i/6HXy96jet8" crossorigin="anonymous">
 </head>
 <body itemscope="" itemtype="http://schema.org/WebPage">
@@ -66,7 +66,7 @@
 
 <ol>
  <li>
-  Sur le <strong>tableau</strong>, les échelles sont indiquées&nbsp;:
+  Sur le <strong>tableau</strong>, les échelles et l’unité sont indiquées&nbsp;:
   <ul>
    <li>
     <var>--y</var> définit l’échelle des <strong>ordonnées</strong>, utilisée
@@ -77,6 +77,7 @@
     <var>--x</var> correspond à l’échelle des <strong>abscisses</strong>, exprimée
     simplement comme le nombre de colonnes à afficher&nbsp;;
    </li>
+   <li><var>--unit</var> permet de définir l’unité à afficher dans l’infobulle simulée.</li>
   </ul>
  </li>
  <li>
@@ -129,6 +130,7 @@
     <cite>Carter Li</cite> utilisant <code>calc()</code> pour convertir les nombres en entiers —&nbsp;et
     <code>@property</code> pour les navigateurs basés sur Chromium</a>. Boum&nbsp;!
    </li>
+   <li>Et finalement la propriété personnalisée <var>--unit</var> sert de finition.</li>
   </ul>
  </li>
  <li>
@@ -169,7 +171,7 @@
   </button>
  </div>
 
- <table class="chaarts line" id="line" style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Fév.'; --t-3: 'Mar.'; --t-4: 'Avr.'; --t-5: 'Mai'; --t-6: 'Juin';
+ <table class="chaarts line" id="line" style="--y: 32; --x: 13; --unit: '°C'; --t-1: 'Jan.'; --t-2: 'Fév.'; --t-3: 'Mar.'; --t-4: 'Avr.'; --t-5: 'Mai'; --t-6: 'Juin';
         --t-7: 'Juil.'; --t-8: 'Août'; --t-9: 'Sept.'; --t-10: 'Oct.'; --t-11: 'Nov.'; --t-12: 'Déc.';">
   <caption id="caption-3">Température mensuelle moyenne en 2017</caption>
   <thead>
@@ -531,7 +533,7 @@
   </button>
  </div>
 
- <table class="chaarts line points" id="points" style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Fév.'; --t-3: 'Mar.'; --t-4: 'Avr.'; --t-5: 'Mai'; --t-6: 'Juin';
+ <table class="chaarts line points" id="points" style="--y: 32; --x: 13; --unit: '°C'; --t-1: 'Jan.'; --t-2: 'Fév.'; --t-3: 'Mar.'; --t-4: 'Avr.'; --t-5: 'Mai'; --t-6: 'Juin';
         --t-7: 'Juil.'; --t-8: 'Août'; --t-9: 'Sept.'; --t-10: 'Oct.'; --t-11: 'Nov.'; --t-12: 'Déc.';">
   <caption id="caption-4">Température mensuelle moyenne par année</caption>
   <thead>

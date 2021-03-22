@@ -31,13 +31,19 @@
   }
 
   .chaarts.bar span {
-    background: inherit;
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
     font-weight: bold;
     left: 100%;
     line-height: 1.5;
     position: absolute;
+  }
+
+  @supports (background-clip: text) or (-webkit-background-clip: text) {
+    .chaarts.bar span {
+      background: inherit;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
   }
 
   /* @note Sass @each() */

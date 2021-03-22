@@ -123,7 +123,7 @@
        line-height: 1.5;
 
        &::before {
-         content: '';
+         content: "";
          height: 1.5rem;
          position: absolute;
          transform: translateX(-50%);
@@ -166,7 +166,7 @@
          background-color: palette( dominant );
          clip-path: var(--polygon);
          color: palette( dominant, contrast );
-         content: var(--term) " " var(--year) "\A " counter(value) "\A0°C"; // 1
+         content: var(--term) " " var(--year) "\A " counter(value) "\A0" var(--unit); // 1
          counter-reset: value var(--integer);                               // 2, 3
          opacity: 0;
          padding: $gutter / 2;

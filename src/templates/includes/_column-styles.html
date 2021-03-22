@@ -38,9 +38,6 @@
   }
 
   .chaarts[class*="column"] span {
-    background: inherit;
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
     font-weight: bold;
     bottom: 100%;
     left: 0;
@@ -48,6 +45,15 @@
     pointer-events: auto;
     position: absolute;
     right: 0;
+  }
+
+  @supports (background-clip: text) or (-webkit-background-clip: text) {
+    .chaarts[class*="column"] span {
+      background: inherit;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
   }
 
   /* @note Sass @each() */
