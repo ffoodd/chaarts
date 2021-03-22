@@ -69,13 +69,24 @@
     }
 
     span {
-      background: inherit;
-      -webkit-text-fill-color: transparent;
-      -webkit-background-clip: text;
       font-weight: bold;
       left: 100%;
       line-height: 1.5;
       position: absolute;
+
+      /**
+       * @note Progressively enhance background-clipping
+       * @author S. Shaw
+       * @link https://twitter.com/shshaw/status/1140637533539377153
+       * Support is quite good actually
+       * @link https://caniuse.com/background-clip-text
+       */
+      @supports (background-clip: text) or (-webkit-background-clip: text) {
+        background: inherit;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
     }
 
     &:hover {
