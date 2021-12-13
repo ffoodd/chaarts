@@ -6,24 +6,25 @@ const symbols = require('log-symbols');
 const chalk   = require('chalk');
 
 function displayTest(test) {
+  let symbol;
   switch(test.status) {
     case 'error':
     case false:
-      var symbol = symbols.error;
+      symbol = symbols.error;
       break;
     case 'warning':
-      var symbol = symbols.warning;
+      symbol = symbols.warning;
       break;
     case 'info':
-      var symbol = symbols.info;
+      symbol = symbols.info;
       break;
     case true:
     default:
-      var symbol = symbols.success;
+      symbol = symbols.success;
   }
 
   console.log(chalk`${symbol} {white ${test.name}} ${test.value}`)
-};
+}
 
 /**
  * HTML Validation
@@ -45,7 +46,7 @@ function markup(done) {
 
         for (let result in results) {
           let test = new Object(results[result]);
-          if ('error' == results[result].type) {
+          if ('error' === results[result].type && ! results[result].message.includes('--') ) {
             errors++;
             test.status = results[result].type;
             test.name   = results[result].message;
@@ -57,7 +58,7 @@ function markup(done) {
           }
         }
 
-        if (0 == errors) {
+        if (0 === errors) {
           console.log(chalk`${symbols.success} {green The HTML document validates according to the W3C}`);
         }
       })
