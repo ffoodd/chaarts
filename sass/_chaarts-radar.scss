@@ -161,7 +161,7 @@
 
     @each $number in 1, 2, 3, 4, 5, 6, 7 {
       &:nth-child(#{$number})::after {
-        --integer: calc(var(#{$number}));                 // 2
+        --integer: calc(var(--#{$number}));                 // 2
         counter-reset: value var(--integer);              // 1
         content: counter(value) "\A0/\A0" counter(scale); // 1
       }
