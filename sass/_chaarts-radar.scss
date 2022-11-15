@@ -2,13 +2,15 @@
 /* == Radar Charts
 /* ==================== */
 
+@use "sass:math";
+
 @supports(clip-path: polygon(0% 0%, calc(100% - ( var(--1) * 100% / var(--scale) ) ) 100%, 100% 100%)) {
   .radar-container .fieldset {
     display: flex !important;
   }
 
   .chaarts[class*="radar"] {
-    --radius: #{$width / 5};
+    --radius: #{$width * 0.2};
     --unitless-radius: calc( 1024 / 16 / 5 );
     --size: calc( var(--radius) / var(--scale) );
     --part: calc( 360deg / var(--items) );
@@ -187,7 +189,7 @@
         content: "";
         display: inline-block;
         height: $gutter;
-        margin-right: $gutter / 4;
+        margin-right: $gutter * 0.25;
         transform: translate3d(0, .1rem, 0);
         width: $gutter;
       }
@@ -214,7 +216,7 @@
         display: block;
         font-size: small;
         font-weight: 700;
-        text-indent: #{$gutter / -2};
+        text-indent: #{math.div($gutter, -2)};
         transform:
           skew( calc( var(--skew) * -1 ) )
           rotate( calc( var(--part) * var(--index, 1) * -1 ) );

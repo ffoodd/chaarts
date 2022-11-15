@@ -6,13 +6,16 @@
  * @author Miriam Suzanne
 /* ==================== */
 
+@use "sass:math";
+@use "sass:list";
+
 @supports (display: contents) {
   .column-container .fieldset {
     display: flex !important;
   }
 
   .chaarts[class*="column"] {
-    --gap: #{$gutter / 2};
+    --gap: #{$gutter * 0.5};
     --size: calc(var(--scale, 100) * 100%);
     --width: calc(#{$width} / var(--y) - #{$gutter});
     display: grid;
@@ -47,7 +50,7 @@
 
     td {
       --integer: calc(var(--value));
-      grid-row: calc( (var(--scale, 100) + 2) - var(--integer) ) / -2;
+      grid-row: list.slash(calc( (var(--scale, 100) + 2) - var(--integer) ), -2);
       pointer-events: none;
       position: relative;
       transition: opacity .2s map-get( $timing-functions, 'move' );
@@ -106,7 +109,7 @@
               palette( secondary ),
               palette( accent ),
               palette( alert )
-            ) 0% var(--position) / 100% var(--size),
+            ) 0% list.slash(var(--position), 100%) var(--size),
             var(--background) center / $gutter;
         background-blend-mode: hard-light;
       }

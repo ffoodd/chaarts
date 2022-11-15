@@ -8,6 +8,8 @@
 // @see https://twitter.com/kReEsTaL
 // @see http://marieguillaumet.com/
 // @see https://gist.github.com/ijy/1441967
+@use "sass:math";
+
 @function em( $f, $base: 16 ) {
   $everything-okay: true;
 
@@ -18,7 +20,7 @@
 
   @if $everything-okay == true {
     @if $f == 0 { @return 0 }
-    @return $f / $base * 1em;
+    @return math.div($f, $base) * 1em;
   }
 }
 
@@ -33,7 +35,7 @@
 
   @if $everything-okay == true {
     @if $f == 0 { @return 0 }
-    @return $f / $base * 1rem;
+    @return math.div($f, $base) * 1rem;
   }
 }
 

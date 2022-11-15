@@ -71,7 +71,7 @@ thead {
  ** @link http://lea.verou.me/2012/04/background-attachment-local/
  */
 .table-container {
-  background: linear-gradient(to right, white 30%, rgba(255, 255, 255, 0)), linear-gradient(to right, rgba(255, 255, 255, 0), white 70%) 0 100%, radial-gradient(farthest-side at 0% 50%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)), radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)) 0 100%;
+  background: linear-gradient(to right, rgb(255, 255, 255) 30%, rgba(255, 255, 255, 0)), linear-gradient(to right, rgba(255, 255, 255, 0), rgb(255, 255, 255) 70%) 0 100%, radial-gradient(farthest-side at 0% 50%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)), radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)) 0 100%;
   background-repeat: no-repeat;
   background-color: white;
   background-size: 2.5rem 100%, 2.5rem 100%, 1rem 100%, 1rem 100%;
@@ -153,15 +153,14 @@ table:not(.chaarts) .sr-only {
     border-spacing: 0;
   }
   .chaarts th,
-.chaarts td {
+  .chaarts td {
     border: 0;
     padding: 0;
   }
   .chaarts th:empty,
-.chaarts td:empty {
+  .chaarts td:empty {
     display: none !important;
   }
-
   /* ==================== */
   /* == Bar Charts
    *
@@ -183,7 +182,6 @@ table:not(.chaarts) .sr-only {
     .bar-container .fieldset {
       display: flex !important;
     }
-
     .chaarts.bar caption {
       text-align: initial;
       text-indent: 13.5rem;
@@ -192,7 +190,6 @@ table:not(.chaarts) .sr-only {
       display: grid;
       grid-auto-rows: 1fr;
       grid-row-gap: 0.5rem;
-      grid-template-columns: minmax(-webkit-min-content, 12.5em) repeat(var(--scale, 100), minmax(0, 1fr)) 10ch;
       grid-template-columns: minmax(min-content, 12.5em) repeat(var(--scale, 100), minmax(0, 1fr)) 10ch;
       transition: opacity 0.2s cubic-bezier(0.5, 0, 0.5, 1);
     }
@@ -223,20 +220,32 @@ table:not(.chaarts) .sr-only {
     .chaarts.bar td {
       --size: calc(var(--scale, 100) * 100%);
       --position: calc(var(--value, 0) / var(--scale, 100) * 100%);
-      background: linear-gradient(to right, #01ac49, #444, mediumblue, rebeccapurple, crimson) var(--position) 0%/var(--size) 100%, var(--background) center/contain;
+      background: linear-gradient(to right, #01ac49, #444, mediumblue, rebeccapurple, crimson) var(--position) 0% / var(--size) 100%, var(--background) center/contain;
       background-blend-mode: hard-light;
-      grid-column: 2/var(--value, 0);
+      grid-column: 2 / var(--value, 0);
       margin: 0.5rem 0 0;
       position: relative;
     }
     .chaarts.bar span {
-      background: inherit;
-      -webkit-text-fill-color: transparent;
-      -webkit-background-clip: text;
       font-weight: bold;
       left: 100%;
       line-height: 1.5;
       position: absolute;
+      /**
+       * @note Progressively enhance background-clipping
+       * @author S. Shaw
+       * @link https://twitter.com/shshaw/status/1140637533539377153
+       * Support is quite good actually
+       * @link https://caniuse.com/background-clip-text
+       */
+    }
+    @supports ((-webkit-background-clip: text) or (background-clip: text)) or (-webkit-background-clip: text) {
+      .chaarts.bar span {
+        background: inherit;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
     }
     .chaarts.bar:hover tr {
       opacity: 0.5;
@@ -255,48 +264,47 @@ table:not(.chaarts) .sr-only {
       }
     }
     .chaarts.bar.waterfall tr:nth-of-type(1) td {
-      grid-column: var(--0, 2)/var(--value, 2);
+      grid-column: var(--0, 2) / var(--value, 2);
     }
     .chaarts.bar.waterfall tr:nth-of-type(2) td {
-      grid-column: var(--1, 2)/var(--value, 2);
+      grid-column: var(--1, 2) / var(--value, 2);
     }
     .chaarts.bar.waterfall tr:nth-of-type(3) td {
-      grid-column: var(--2, 2)/var(--value, 2);
+      grid-column: var(--2, 2) / var(--value, 2);
     }
     .chaarts.bar.waterfall tr:nth-of-type(4) td {
-      grid-column: var(--3, 2)/var(--value, 2);
+      grid-column: var(--3, 2) / var(--value, 2);
     }
     .chaarts.bar.waterfall tr:nth-of-type(5) td {
-      grid-column: var(--4, 2)/var(--value, 2);
+      grid-column: var(--4, 2) / var(--value, 2);
     }
     .chaarts.bar.waterfall tr:nth-of-type(6) td {
-      grid-column: var(--5, 2)/var(--value, 2);
+      grid-column: var(--5, 2) / var(--value, 2);
     }
     .chaarts.bar.waterfall tr:nth-of-type(7) td {
-      grid-column: var(--6, 2)/var(--value, 2);
+      grid-column: var(--6, 2) / var(--value, 2);
     }
     .chaarts.bar.waterfall tr:nth-of-type(8) td {
-      grid-column: var(--7, 2)/var(--value, 2);
+      grid-column: var(--7, 2) / var(--value, 2);
     }
     .chaarts.bar.waterfall tr:nth-of-type(9) td {
-      grid-column: var(--8, 2)/var(--value, 2);
+      grid-column: var(--8, 2) / var(--value, 2);
     }
     .chaarts.bar.waterfall tr:nth-of-type(10) td {
-      grid-column: var(--9, 2)/var(--value, 2);
+      grid-column: var(--9, 2) / var(--value, 2);
     }
     .chaarts.bar.waterfall tr:nth-of-type(11) td {
-      grid-column: var(--10, 2)/var(--value, 2);
+      grid-column: var(--10, 2) / var(--value, 2);
     }
   }
   /* ==================== */
   /* == Pie Charts
   /* ==================== */
-  @supports ((-webkit-clip-path: polygon(50% calc( 50% + ( var(--gt-25, 0) ) ))) or (clip-path: polygon(50% calc( 50% + ( var(--gt-25, 0) ) )))) {
+  @supports ((-webkit-clip-path: polygon(50% calc(50% + (var(--gt-25, 0))))) or (clip-path: polygon(50% calc(50% + (var(--gt-25, 0)))))) {
     .pie-container .fieldset {
       display: flex !important;
       margin-bottom: 0;
     }
-
     .chaarts.pie {
       --radius: 32em;
       margin: 0 auto;
@@ -353,7 +361,7 @@ table:not(.chaarts) .sr-only {
       --position: calc(var(--start, 0) * .01turn);
     }
     .chaarts.pie td::after,
-.chaarts.pie td::before {
+    .chaarts.pie td::before {
       left: 50%;
       position: absolute;
       top: calc(var(--radius) / 2);
@@ -399,8 +407,7 @@ table:not(.chaarts) .sr-only {
       height: var(--radius);
       --mask: radial-gradient(
         circle at center,
-        #fff 0%,
-        #fff calc(var(--radius) / 2),
+        #fff 0 calc(var(--radius) / 2),
         transparent 0
       );
       -webkit-mask-image: var(--mask);
@@ -443,7 +450,7 @@ table:not(.chaarts) .sr-only {
       padding: 0.5rem;
       pointer-events: none;
       transform-origin: 50% calc(100% + 10px);
-      transform: translate3d(-50%, -50%, 0) rotate(var(--axis)) translate(var(--away)) rotate(calc( var(--axis) * -1 )) perspective(1000px) rotate3d(1, 0, 0, 45deg);
+      transform: translate3d(-50%, -50%, 0) rotate(var(--axis)) translate(var(--away)) rotate(calc(var(--axis) * -1)) perspective(1000px) rotate3d(1, 0, 0, 45deg);
       transition: opacity 0.2s cubic-bezier(0, 0.5, 0.5, 1), transform 0.2s cubic-bezier(0, 0.5, 0.5, 1);
     }
     .chaarts.pie tbody:hover tr {
@@ -454,25 +461,24 @@ table:not(.chaarts) .sr-only {
     }
     .chaarts.pie tbody:hover tr:hover td::after {
       opacity: 1;
-      transform: translate3d(-50%, -50%, 0) rotate(var(--axis)) translate(var(--away)) rotate(calc( var(--axis) * -1 )) perspective(1000px) rotate3d(1, 0, 0, 0deg);
+      transform: translate3d(-50%, -50%, 0) rotate(var(--axis)) translate(var(--away)) rotate(calc(var(--axis) * -1)) perspective(1000px) rotate3d(1, 0, 0, 0deg);
       transition: opacity 0.2s cubic-bezier(0.5, 0, 1, 0.5), transform 0.2s cubic-bezier(0.5, 0, 1, 0.5);
     }
-
     .chaarts.polar td::before {
       --zoom: 50;
-      transform: translate3d(-50%, -50%, 0) rotate(var(--position)) scale(calc( ( var(--zoom) + ( var(--value) / ( 100 / var(--zoom) ) ) ) / 100 ));
+      transform: translate3d(-50%, -50%, 0) rotate(var(--position)) scale(calc((var(--zoom) + var(--value) / (100 / var(--zoom))) / 100));
+    }
+    .chaarts.polar td::after {
+      --away: calc( ( var(--radius) / 2 ) - ( ( var(--radius) / 4 ) * ( ( 100 - var(--value) ) / 100 ) ) + 2.5rem );
     }
     .chaarts.polar tr:hover td::before {
       --zoom: 50;
     }
-
     .chaarts.donut {
       --mask: radial-gradient(
         circle at 50% calc(50% - 0.25rem),
-        transparent 0%,
-        transparent var(--offset),
-        #fff calc(var(--offset) + 1px),
-        #fff 100%
+        transparent 0 var(--offset),
+        #fff calc(var(--offset) + 1px) 100%
       );
       -webkit-mask-image: var(--mask);
               mask-image: var(--mask);
@@ -480,7 +486,6 @@ table:not(.chaarts) .sr-only {
     .chaarts.donut td::after {
       --away: calc( var(--radius) / 2 - 2.5rem );
     }
-
     @media screen and (min-width: 30em) and (-ms-high-contrast: active) {
       .chaarts.pie tbody tr *::before {
         /**
@@ -506,11 +511,10 @@ table:not(.chaarts) .sr-only {
    * @see Bennett Feely's clippy to understand polygon() syntax
    * @link http://bennettfeely.com/clippy/
    */
-  @supports ((-webkit-clip-path: polygon(0% calc(100% - (var(--1) * 100% / var(--y))))) or (clip-path: polygon(0% calc(100% - (var(--1) * 100% / var(--y)))))) {
+  @supports ((-webkit-clip-path: polygon(0% calc(100% - var(--1) * 100% / var(--y)))) or (clip-path: polygon(0% calc(100% - var(--1) * 100% / var(--y))))) {
     .line-container .fieldset {
       display: flex !important;
     }
-
     .chaarts.line {
       --offset: calc( ( 100% / var(--x) ) / 2 );
       --height: calc( 32em - 2rem );
@@ -521,7 +525,7 @@ table:not(.chaarts) .sr-only {
     }
     .chaarts.line::after {
       --scale: calc( ( 100% - (var(--y) * 1px) ) / var(--y) );
-      background: repeating-linear-gradient(to bottom, white, white var(--scale), rgba(0, 0, 0, 0.25) calc(var(--scale) + 1px));
+      background: repeating-linear-gradient(to bottom, white 0 var(--scale), rgba(0, 0, 0, 0.25) calc(var(--scale) + 1px));
       bottom: var(--bottom);
       content: "";
       position: absolute;
@@ -534,7 +538,7 @@ table:not(.chaarts) .sr-only {
       position: absolute;
     }
     .chaarts.line [scope=row],
-.chaarts.line thead th:first-child {
+    .chaarts.line thead th:first-child {
       color: var(--color, currentColor);
       text-align: left;
     }
@@ -570,11 +574,11 @@ table:not(.chaarts) .sr-only {
       z-index: 2;
     }
     .chaarts.line th,
-.chaarts.line td {
+    .chaarts.line td {
       background: white;
       font-weight: bold;
       text-align: center;
-      width: calc( 100% / var(--x) );
+      width: calc(100% / var(--x));
     }
     .chaarts.line [scope=col]:not(:first-child)::after {
       background: white var(--stripes);
@@ -678,11 +682,11 @@ table:not(.chaarts) .sr-only {
       -webkit-clip-path: var(--polygon);
               clip-path: var(--polygon);
       color: white;
-      content: var(--term) " " var(--year) "\a" counter(value) " °C";
+      content: var(--term) " " var(--year) "\a" counter(value) " " var(--unit);
       counter-reset: value var(--integer);
       opacity: 0;
       padding: 0.5rem;
-      left: calc( var(--offset) * 3 );
+      left: calc(var(--offset) * 3);
       pointer-events: none;
       position: absolute;
       top: var(--top, 0);
@@ -693,7 +697,7 @@ table:not(.chaarts) .sr-only {
       z-index: 5;
     }
     .chaarts.line td + td::after {
-      left: calc( ( 100% / var(--x) * var(--index) ) + var(--offset) );
+      left: calc(100% / var(--x) * var(--index) + var(--offset));
     }
     .chaarts.line td:nth-child(2)::after {
       --value: var(--1);
@@ -760,7 +764,6 @@ table:not(.chaarts) .sr-only {
       transform: translate3d(-50%, -125%, 0) perspective(1000px) rotate3d(1, 0, 0, 0deg);
       transition: opacity 0.2s cubic-bezier(0.5, 0, 1, 0.5), transform 0.2s cubic-bezier(0.5, 0, 1, 0.5);
     }
-
     .chaarts.points [style]::before {
       background: var(--color, currentColor) var(--background);
       --polygon: polygon(
@@ -812,7 +815,7 @@ table:not(.chaarts) .sr-only {
       box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5);
       content: "";
       height: var(--size);
-      left: calc( var(--offset) * 3 );
+      left: calc(var(--offset) * 3);
       position: absolute;
       top: var(--top, 100);
       transform: translate3d(calc(var(--size) / -2), calc(var(--size) / -2), 0);
@@ -821,7 +824,7 @@ table:not(.chaarts) .sr-only {
       z-index: 4;
     }
     .chaarts.points [style] td + td::before {
-      left: calc( ( 100% / var(--x) * var(--index) ) + var(--offset));
+      left: calc(100% / var(--x) * var(--index) + var(--offset));
     }
     .chaarts.points [style] td:nth-of-type(2)::before {
       --value: var(--2);
@@ -886,11 +889,11 @@ table:not(.chaarts) .sr-only {
       --background: var(--dots);
     }
     .chaarts.points tbody:hover [style]::before,
-.chaarts.points tbody:hover [style] td::before {
+    .chaarts.points tbody:hover [style] td::before {
       opacity: 0.25;
     }
     .chaarts.points tbody:hover [style]:hover::before,
-.chaarts.points tbody:hover [style]:hover td::before {
+    .chaarts.points tbody:hover [style]:hover td::before {
       opacity: 1;
     }
     .chaarts.points tbody:hover [style]:hover td::before {
@@ -902,7 +905,6 @@ table:not(.chaarts) .sr-only {
     .chaarts.points [scope=col]:not(:first-child):hover::after {
       opacity: 0.5;
     }
-
     @media screen and (min-width: 30em) and (-ms-high-contrast: active) {
       .chaarts.line [style]::before {
         /**
@@ -925,7 +927,6 @@ table:not(.chaarts) .sr-only {
     .column-container .fieldset {
       display: flex !important;
     }
-
     .chaarts[class*=column] {
       --gap: 0.5rem;
       --size: calc(var(--scale, 100) * 100%);
@@ -941,15 +942,15 @@ table:not(.chaarts) .sr-only {
        */
     }
     .chaarts[class*=column] td,
-.chaarts[class*=column] th {
+    .chaarts[class*=column] th {
       margin: 0;
     }
     .chaarts[class*=column] tr > * + * {
       text-align: center;
     }
     .chaarts[class*=column] tr,
-.chaarts[class*=column] tbody,
-.chaarts[class*=column] thead {
+    .chaarts[class*=column] tbody,
+    .chaarts[class*=column] thead {
       display: contents;
     }
     .chaarts[class*=column] caption {
@@ -958,7 +959,7 @@ table:not(.chaarts) .sr-only {
     }
     .chaarts[class*=column] td {
       --integer: calc(var(--value));
-      grid-row: calc( (var(--scale, 100) + 2) - var(--integer) )/-2;
+      grid-row: calc(var(--scale, 100) + 2 - var(--integer)) / -2;
       pointer-events: none;
       position: relative;
       transition: opacity 0.2s cubic-bezier(0.5, 0, 0.5, 1);
@@ -994,9 +995,6 @@ table:not(.chaarts) .sr-only {
       grid-column: 11;
     }
     .chaarts[class*=column] span {
-      background: inherit;
-      -webkit-text-fill-color: transparent;
-      -webkit-background-clip: text;
       font-weight: bold;
       bottom: 100%;
       left: 0;
@@ -1004,10 +1002,24 @@ table:not(.chaarts) .sr-only {
       pointer-events: auto;
       position: absolute;
       right: 0;
+      /**
+       * @note Progressively enhance background-clipping
+       * @author S. Shaw
+       * @link https://twitter.com/shshaw/status/1140637533539377153
+       * Support is quite good actually
+       * @link https://caniuse.com/background-clip-text
+       */
+    }
+    @supports ((-webkit-background-clip: text) or (background-clip: text)) or (-webkit-background-clip: text) {
+      .chaarts[class*=column] span {
+        background: inherit;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
     }
     .chaarts[class*=column].column-single {
       grid-auto-columns: 1fr;
-      grid-template-rows: 2ex repeat(var(--scale, 100), minmax(0, 0.25rem)) minmax(-webkit-min-content, 2rem);
       grid-template-rows: 2ex repeat(var(--scale, 100), minmax(0, 0.25rem)) minmax(min-content, 2rem);
     }
     .chaarts[class*=column].column-single tbody th {
@@ -1020,7 +1032,7 @@ table:not(.chaarts) .sr-only {
     }
     .chaarts[class*=column].column-single td {
       --position: calc(var(--integer, 0) / var(--scale, 100) * 100%);
-      background: linear-gradient(to top, #01ac49, #444, mediumblue, rebeccapurple, crimson) 0% var(--position)/100% var(--size), var(--background) center/1rem;
+      background: linear-gradient(to top, #01ac49, #444, mediumblue, rebeccapurple, crimson) 0% var(--position) / 100% var(--size), var(--background) center/1rem;
       background-blend-mode: hard-light;
     }
     .chaarts[class*=column].column-single [scope=col]::after {
@@ -1086,13 +1098,14 @@ table:not(.chaarts) .sr-only {
       }
     }
     .chaarts[class*=column].column-multiple {
-      grid-template-columns: minmax(-webkit-min-content, 14ch) repeat(calc(var(--y) - 1), 1fr);
       grid-template-columns: minmax(min-content, 14ch) repeat(calc(var(--y) - 1), 1fr);
-      grid-template-rows: 2ex repeat(var(--scale, 100), minmax(0, 0.25rem)) repeat(2, minmax(-webkit-min-content, 2rem));
       grid-template-rows: 2ex repeat(var(--scale, 100), minmax(0, 0.25rem)) repeat(2, minmax(min-content, 2rem));
       /**
        * @note Oh boy, if we could use var(--span) in selector…
        */
+    }
+    .chaarts[class*=column].column-multiple span {
+      background-image: none;
     }
     .chaarts[class*=column].column-multiple tbody th {
       grid-row: -10/span 7;
@@ -1160,7 +1173,7 @@ table:not(.chaarts) .sr-only {
       position: absolute;
       transition: opacity 0.3s cubic-bezier(0.5, 0, 0.5, 1);
       top: calc(1rem + 2ex);
-      width: calc((var(--width) * 2) + (var(--gap) / 2) + 1px);
+      width: calc(var(--width) * 2 + var(--gap) / 2 + 1px);
       z-index: 0;
     }
     .chaarts[class*=column].column-multiple tr:first-child [scope=col]:nth-child(2)::after {
@@ -1192,27 +1205,26 @@ table:not(.chaarts) .sr-only {
   /* ==================== */
   /* == Radar Charts
   /* ==================== */
-  @supports ((-webkit-clip-path: polygon(0% 0%, calc(100% - ( var(--1) * 100% / var(--scale) ) ) 100%, 100% 100%)) or (clip-path: polygon(0% 0%, calc(100% - ( var(--1) * 100% / var(--scale) ) ) 100%, 100% 100%))) {
+  @supports ((-webkit-clip-path: polygon(0% 0%, calc(100% - var(--1) * 100% / var(--scale)) 100%, 100% 100%)) or (clip-path: polygon(0% 0%, calc(100% - var(--1) * 100% / var(--scale)) 100%, 100% 100%))) {
     .radar-container .fieldset {
       display: flex !important;
     }
-
     .chaarts[class*=radar] {
       --radius: 12.8em;
       --unitless-radius: calc( 1024 / 16 / 5 );
       --size: calc( var(--radius) / var(--scale) );
       --part: calc( 360deg / var(--items) );
       --integer: calc(var(--scale));
-      background-image: repeating-radial-gradient(circle at 50%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 2px, transparent 0, transparent calc(var(--size) * var(--step))), repeating-radial-gradient(circle at 50%, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) 2px, transparent 0, transparent var(--size));
+      background-image: repeating-radial-gradient(circle at 50%, rgba(0, 0, 0, 0.2) 0 2px, transparent 0 calc(var(--size) * var(--step))), repeating-radial-gradient(circle at 50%, rgba(0, 0, 0, 0.1) 0 2px, transparent 0 var(--size));
       border: 2px solid;
       border-radius: 50%;
       contain: layout;
       counter-reset: scale var(--integer);
-      height: calc( var(--radius) * 2 );
+      height: calc(var(--radius) * 2);
       margin: 6rem auto 12rem;
       overflow: visible;
       position: relative;
-      width: calc( var(--radius) * 2 );
+      width: calc(var(--radius) * 2);
       /**
        * Placing items around a circle based on:
        * @link https://stackoverflow.com/questions/12813573/position-icons-into-circle
@@ -1341,7 +1353,6 @@ table:not(.chaarts) .sr-only {
       position: absolute;
       width: 100%;
     }
-
     /**
      * 1.
      * @note Display CSS integers custom properties with a trick using counters
@@ -1360,41 +1371,40 @@ table:not(.chaarts) .sr-only {
       font-weight: 400;
     }
     .chaarts.radar [scope=col]:nth-child(1)::after {
-      --integer: calc(var(1));
+      --integer: calc(var(--1));
       counter-reset: value var(--integer);
       content: counter(value) " / " counter(scale);
     }
     .chaarts.radar [scope=col]:nth-child(2)::after {
-      --integer: calc(var(2));
+      --integer: calc(var(--2));
       counter-reset: value var(--integer);
       content: counter(value) " / " counter(scale);
     }
     .chaarts.radar [scope=col]:nth-child(3)::after {
-      --integer: calc(var(3));
+      --integer: calc(var(--3));
       counter-reset: value var(--integer);
       content: counter(value) " / " counter(scale);
     }
     .chaarts.radar [scope=col]:nth-child(4)::after {
-      --integer: calc(var(4));
+      --integer: calc(var(--4));
       counter-reset: value var(--integer);
       content: counter(value) " / " counter(scale);
     }
     .chaarts.radar [scope=col]:nth-child(5)::after {
-      --integer: calc(var(5));
+      --integer: calc(var(--5));
       counter-reset: value var(--integer);
       content: counter(value) " / " counter(scale);
     }
     .chaarts.radar [scope=col]:nth-child(6)::after {
-      --integer: calc(var(6));
+      --integer: calc(var(--6));
       counter-reset: value var(--integer);
       content: counter(value) " / " counter(scale);
     }
     .chaarts.radar [scope=col]:nth-child(7)::after {
-      --integer: calc(var(7));
+      --integer: calc(var(--7));
       counter-reset: value var(--integer);
       content: counter(value) " / " counter(scale);
     }
-
     .chaarts.radar-multiple {
       margin-bottom: 12rem;
     }
@@ -1436,7 +1446,7 @@ table:not(.chaarts) .sr-only {
       font-size: small;
       font-weight: 700;
       text-indent: -0.5rem;
-      transform: skew(calc( var(--skew) * -1 )) rotate(calc( var(--part) * var(--index, 1) * -1 ));
+      transform: skew(calc(var(--skew) * -1)) rotate(calc(var(--part) * var(--index, 1) * -1));
       transform-origin: 0 0;
       width: 100%;
       white-space: nowrap;
@@ -1445,43 +1455,43 @@ table:not(.chaarts) .sr-only {
       --integer: calc(var(--1));
       counter-reset: value var(--integer);
       content: counter(value);
-      width: calc( var(--1) * 100% / var(--scale) );
+      width: calc(var(--1) * 100% / var(--scale));
     }
     .chaarts.radar-multiple td:nth-of-type(2)::after {
       --integer: calc(var(--2));
       counter-reset: value var(--integer);
       content: counter(value);
-      width: calc( var(--2) * 100% / var(--scale) );
+      width: calc(var(--2) * 100% / var(--scale));
     }
     .chaarts.radar-multiple td:nth-of-type(3)::after {
       --integer: calc(var(--3));
       counter-reset: value var(--integer);
       content: counter(value);
-      width: calc( var(--3) * 100% / var(--scale) );
+      width: calc(var(--3) * 100% / var(--scale));
     }
     .chaarts.radar-multiple td:nth-of-type(4)::after {
       --integer: calc(var(--4));
       counter-reset: value var(--integer);
       content: counter(value);
-      width: calc( var(--4) * 100% / var(--scale) );
+      width: calc(var(--4) * 100% / var(--scale));
     }
     .chaarts.radar-multiple td:nth-of-type(5)::after {
       --integer: calc(var(--5));
       counter-reset: value var(--integer);
       content: counter(value);
-      width: calc( var(--5) * 100% / var(--scale) );
+      width: calc(var(--5) * 100% / var(--scale));
     }
     .chaarts.radar-multiple td:nth-of-type(6)::after {
       --integer: calc(var(--6));
       counter-reset: value var(--integer);
       content: counter(value);
-      width: calc( var(--6) * 100% / var(--scale) );
+      width: calc(var(--6) * 100% / var(--scale));
     }
     .chaarts.radar-multiple td:nth-of-type(7)::after {
       --integer: calc(var(--7));
       counter-reset: value var(--integer);
       content: counter(value);
-      width: calc( var(--7) * 100% / var(--scale) );
+      width: calc(var(--7) * 100% / var(--scale));
     }
     .chaarts.radar-multiple span {
       background: var(--color, currentColor);

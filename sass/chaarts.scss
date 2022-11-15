@@ -43,7 +43,7 @@ table {
 
 th,
 td {
-  padding: $gutter / 2 rem( 12 );
+  padding: $gutter * 0.5 rem( 12 );
   text-align: left;
 }
 

@@ -16,7 +16,7 @@
 
    .chaarts.line {
      --offset: calc( ( 100% / var(--x) ) / 2 );
-     --height: calc( #{$width / 2} - #{$gutter * 2} );
+     --height: calc( #{$width * 0.5} - #{$gutter * 2} );
      --bottom: calc( 100% - var(--height) );
      padding: var(--height) 0 $gutter;
      position: relative;
@@ -151,15 +151,15 @@
         * @link https://css-tricks.com/animating-number-counters/#the-new-school-css-solution
         */
        &::after {
-         --arrow: calc(100% - #{$gutter / 4});
+         --arrow: calc(100% - #{$gutter * 0.25});
          --top: calc( var(--height) - ( var(--value) / var(--y) * var(--height) ) );
          --polygon: polygon(
            0% 0%,
            100% 0%,
            100% var(--arrow),
-           calc(50% - #{$gutter / 4}) var(--arrow),
+           calc(50% - #{$gutter * 0.25}) var(--arrow),
            50% 100%,
-           calc(50% + #{$gutter / 4}) var(--arrow),
+           calc(50% + #{$gutter * 0.25}) var(--arrow),
            0% var(--arrow)
          );
          --integer: calc(var(--value));                                     // 3
@@ -169,7 +169,7 @@
          content: var(--term) " " var(--year) "\A " counter(value) "\A0" var(--unit); // 1
          counter-reset: value var(--integer);                               // 2, 3
          opacity: 0;
-         padding: $gutter / 2;
+         padding: $gutter * 0.5;
          left: calc( var(--offset) * 3 );
          pointer-events: none;
          position: absolute;
@@ -230,20 +230,20 @@
                calc((100% / var(--x) * 12) + var(--offset)) calc(100% - (var(--12) / var(--y) * 100%)),
                calc((100% / var(--x) * 13) + var(--offset)) calc(100% - (var(--12) / var(--y) * 100%)),
                100% calc(100% - (var(--12) / var(--y) * 100%)),
-               100% calc((100% + #{$gutter / 4}) - (var(--12) / var(--y) * 100%)),
-               calc((100% / var(--x) * 13) + var(--offset)) calc((100% + #{$gutter / 4}) - (var(--12) / var(--y) * 100%)),
-               calc((100% / var(--x) * 12) + var(--offset)) calc((100% + #{$gutter / 4}) - (var(--12) / var(--y) * 100%)),
-               calc((100% / var(--x) * 11) + var(--offset)) calc((100% + #{$gutter / 4}) - (var(--11) / var(--y) * 100%)),
-               calc((100% / var(--x) * 10) + var(--offset)) calc((100% + #{$gutter / 4}) - (var(--10) / var(--y) * 100%)),
-               calc((100% / var(--x) * 9) + var(--offset)) calc((100% + #{$gutter / 4}) - (var(--9) / var(--y) * 100%)),
-               calc((100% / var(--x) * 8) + var(--offset)) calc((100% + #{$gutter / 4}) - (var(--8) / var(--y) * 100%)),
-               calc((100% / var(--x) * 7) + var(--offset)) calc((100% + #{$gutter / 4}) - (var(--7) / var(--y) * 100%)),
-               calc((100% / var(--x) * 6) + var(--offset)) calc((100% + #{$gutter / 4}) - (var(--6) / var(--y) * 100%)),
-               calc((100% / var(--x) * 5) + var(--offset)) calc((100% + #{$gutter / 4}) - (var(--5) / var(--y) * 100%)),
-               calc((100% / var(--x) * 4) + var(--offset)) calc((100% + #{$gutter / 4}) - (var(--4) / var(--y) * 100%)),
-               calc((100% / var(--x) * 3) + var(--offset)) calc((100% + #{$gutter / 4}) - (var(--3) / var(--y) * 100%)),
-               calc((100% / var(--x) * 2) + var(--offset)) calc((100% + #{$gutter / 4}) - (var(--2) / var(--y) * 100%)),
-               calc((100% / var(--x) * 1) + var(--offset)) calc((100% + #{$gutter / 4}) - (var(--1) / var(--y) * 100%))
+               100% calc((100% + #{$gutter * 0.25}) - (var(--12) / var(--y) * 100%)),
+               calc((100% / var(--x) * 13) + var(--offset)) calc((100% + #{$gutter * 0.25}) - (var(--12) / var(--y) * 100%)),
+               calc((100% / var(--x) * 12) + var(--offset)) calc((100% + #{$gutter * 0.25}) - (var(--12) / var(--y) * 100%)),
+               calc((100% / var(--x) * 11) + var(--offset)) calc((100% + #{$gutter * 0.25}) - (var(--11) / var(--y) * 100%)),
+               calc((100% / var(--x) * 10) + var(--offset)) calc((100% + #{$gutter * 0.25}) - (var(--10) / var(--y) * 100%)),
+               calc((100% / var(--x) * 9) + var(--offset)) calc((100% + #{$gutter * 0.25}) - (var(--9) / var(--y) * 100%)),
+               calc((100% / var(--x) * 8) + var(--offset)) calc((100% + #{$gutter * 0.25}) - (var(--8) / var(--y) * 100%)),
+               calc((100% / var(--x) * 7) + var(--offset)) calc((100% + #{$gutter * 0.25}) - (var(--7) / var(--y) * 100%)),
+               calc((100% / var(--x) * 6) + var(--offset)) calc((100% + #{$gutter * 0.25}) - (var(--6) / var(--y) * 100%)),
+               calc((100% / var(--x) * 5) + var(--offset)) calc((100% + #{$gutter * 0.25}) - (var(--5) / var(--y) * 100%)),
+               calc((100% / var(--x) * 4) + var(--offset)) calc((100% + #{$gutter * 0.25}) - (var(--4) / var(--y) * 100%)),
+               calc((100% / var(--x) * 3) + var(--offset)) calc((100% + #{$gutter * 0.25}) - (var(--3) / var(--y) * 100%)),
+               calc((100% / var(--x) * 2) + var(--offset)) calc((100% + #{$gutter * 0.25}) - (var(--2) / var(--y) * 100%)),
+               calc((100% / var(--x) * 1) + var(--offset)) calc((100% + #{$gutter * 0.25}) - (var(--1) / var(--y) * 100%))
              );
              transition: opacity .3s map-get( $timing-functions, 'move' );
            }
@@ -264,7 +264,7 @@
                background: var(--color, currentColor) var(--background);
                border: 2px solid palette( default, contrast );
                border-radius: 50%;
-               box-shadow: 0 0 #{$gutter / 4} rgba(0, 0, 0, .5);
+               box-shadow: 0 0 #{$gutter * 0.25} rgba(0, 0, 0, .5);
                content: "";
                height: var(--size);
                left: calc( var(--offset) * 3 );

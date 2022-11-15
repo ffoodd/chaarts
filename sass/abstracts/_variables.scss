@@ -14,6 +14,8 @@
 // ==================== */
 // == Paths
 // ==================== */
+@use "sass:math";
+
 $path: "../" !default;
 
 // ==================== */
@@ -94,7 +96,7 @@ $timing-functions: (
 // == Spacings
 // ==================== */
 $full-width: false !default;
-$base: 1140 / 16 !default;
+$base: math.div(1140, 16) !default;
 $width: em( 1024 ) !default;
 $gutter: rem( 16 ) !default;
 $content-width: em( 600 ) !default;

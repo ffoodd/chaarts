@@ -16,6 +16,9 @@
  * @author Gaël Poupard
 /* ==================== */
 
+@use "sass:math";
+@use "sass:list";
+
 @supports (grid-template-columns: repeat(var(--scale, 100), minmax(0, 1fr))) {
   .bar-container .fieldset {
     display: flex !important;
@@ -30,7 +33,7 @@
     tr {
       display: grid;
       grid-auto-rows: 1fr;
-      grid-row-gap: $gutter / 2;
+      grid-row-gap: $gutter * 0.5;
       grid-template-columns: minmax(min-content, em( 200 )) repeat(var(--scale, 100), minmax(0, 1fr)) 10ch;
       transition: opacity .2s map-get( $timing-functions, 'move' );
 
@@ -45,7 +48,7 @@
 
     th {
       grid-column: 1 / 1;
-      margin: $gutter / 2 0 0;
+      margin: $gutter * 0.5 0 0;
       padding: 0 $gutter 0 0;
       text-align: right;
     }
@@ -60,11 +63,11 @@
           palette( secondary ),
           palette( accent ),
           palette( alert )
-        ) var(--position) 0% / var(--size) 100%,
+        ) var(--position) list.slash(0%, var(--size)) 100%,
         var(--background) center / contain;
       background-blend-mode: hard-light;
-      grid-column: 2 / var(--value, 0);
-      margin: $gutter / 2 0 0;
+      grid-column: list.slash(2, var(--value, 0));
+      margin: $gutter * 0.5 0 0;
       position: relative;
     }
 
@@ -121,7 +124,7 @@
     &.waterfall {
       @each $number in 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 {
         tr:nth-of-type(#{$number}) td {
-          grid-column: var(--#{$number - 1}, 2) / var(--value, 2);
+          grid-column: list.slash(var(--#{$number - 1}, 2), var(--value, 2));
         }
       }
     }

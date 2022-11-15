@@ -1,27 +1,25 @@
-<!DOCTYPE html>
-<html lang="en" class="no-js">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <title>Radar charts — chaarts</title>
   <meta property="og:url" content="https://ffoodd.github.io/chaarts/radar-charts.html">
   <meta property="og:title" content="Radar charts — chaarts">
   <meta property="og:type" content="article">
-  <meta property="og:description" name="description" content="Charts with HTML & CSS">
+  <meta property="og:description" name="description" content="Charts with HTML &amp; CSS">
   <meta name="twitter:card" content="summary">
-  <link rel="alternate" hreflang="fr" href="https://ffoodd.github.io/chaarts/radar.html"/>
+  <link rel="alternate" hreflang="fr" href="https://ffoodd.github.io/chaarts/radar.html">
 
   <script>
     document.documentElement.classList.remove('no-js');
     document.documentElement.classList.add('js');
   </script>
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="css/styles.min.css" media="all">
-  <link rel="stylesheet" href="css/print.min.css" media="print">
+  <link rel="stylesheet" href="css/styles.min.css" media="all" integrity="sha384-7Ff2c5grRI5tRwz7zHEVuWqgFII9gwCH1Fr887WdFDlUSWcriTCTtHQDgeLxpPIF" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/print.min.css" media="print" integrity="sha384-i3dRwmp8zXRlpUnJTD27rKIBzSEdYbc0YEFwuULfvleZ4Vm0RG81i/6HXy96jet8" crossorigin="anonymous">
 </head>
-<body itemscope itemtype="http://schema.org/WebPage">
+<body itemscope="" itemtype="http://schema.org/WebPage">
 <header role="banner">
   
   <div>
@@ -40,8 +38,7 @@
   <li><a href="./pie-charts.html">Pie charts</a></li>
   <li><a aria-current="page">Radar charts</a></li>
   <li class="ml-auto">
-    <a rel="alternate" hreflang="fr" lang="fr" href="./radar.html"
-       aria-label="Version française" title="Version française">FR</a>
+    <a rel="alternate" hreflang="fr" lang="fr" href="./radar.html" aria-label="Version française" title="Version française">FR</a>
   </li>
   <li>
     <a href="https://github.com/ffoodd/chaarts/" class="d-flex">
@@ -91,7 +88,7 @@
   So we rely on <a href="https://css-tricks.com/animating-number-counters/#the-new-school-css-solution">
   <cite>Carter Li</cite>'s ruse using <code>calc()</code> to convert numbers to integers—&nbsp;and
   <code>@property</code> for Chromium-based browsers</a>. Boum!
- <li>
+ </li><li>
   Then the magic works on the <code>&lt;td&gt;</code> elements:
   <ol>
    <li>
@@ -140,7 +137,7 @@
     <code>100% 100%</code>;
    </li>
   </ol>
-  <li>
+  </li><li>
    one last trick is necessary to close the shape you have seen,
    we use the current and next value for each element. But when we get to the last element,
    there is no next! So we need to <strong>add a value</strong>, to which we assign
@@ -156,9 +153,7 @@
    <strong id="label-9">Switch</strong><br>
    <span id="description-9">Allows you to disable styles on the following table.</span>
   </p>
-  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
-      role="switch" aria-checked="true"
-      aria-labelledby="label-9" aria-describedby="description-9">
+  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css" role="switch" aria-checked="true" aria-labelledby="label-9" aria-describedby="description-9">
    <span>Funny</span>
    <span>Sober</span>
   </button>
@@ -193,20 +188,20 @@
 
 <details>
  <summary><abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
- <div><pre><code class="language-markup">&lt;table class="chaarts radar" id="radar" style="--scale: 20; --step: 5; --items: 7; --1: 14; --2: 11; --3: 13; --4: 16; --5: 10; --6: 12; --7: 4; --8: var(--1);">
-  &lt;caption id="caption-9">[…]&lt;/caption>
-  &lt;thead>
-    &lt;tr>
-      &lt;th scope="col">[…]&lt;/th>
-      &lt;th scope="col">[…]&lt;/th>
-    &lt;/tr>
-  &lt;/thead>
-  &lt;tbody>
-    &lt;tr>
-      &lt;td>&lt;span>14&lt;/span>&lt;/td>
-      &lt;td>&lt;span>11&lt;/span>&lt;/td>
-    &lt;/tr>
-  &lt;/tbody>
+ <div><pre><code class="language-markup">&lt;table class="chaarts radar" id="radar" style="--scale: 20; --step: 5; --items: 7; --1: 14; --2: 11; --3: 13; --4: 16; --5: 10; --6: 12; --7: 4; --8: var(--1);"&gt;
+  &lt;caption id="caption-9"&gt;[…]&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th scope="col"&gt;[…]&lt;/th&gt;
+      &lt;th scope="col"&gt;[…]&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;span&gt;14&lt;/span&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;span&gt;11&lt;/span&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
 &lt;/table&gt;</code></pre>
 </div>
 </details>
@@ -261,7 +256,7 @@
       rotate( calc(var(--part) * var(--index, 1) * -1) );
   }
 
-  .chaarts[class*="radar"] tr > *:nth-of-type(2) {
+  .chaarts[class*="radar"] tr &gt; *:nth-of-type(2) {
     --index: 2;
   }
 
@@ -337,8 +332,7 @@
  <summary>A Chromium bug</summary>
  <p>
   There is currently a bug in Chromium —&nbsp;I filled
-  <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=939728"
-  target="_blank" rel="noopener noreferrer">an issue on bugs.chromium.org</a>&nbsp;—
+  <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=939728" target="_blank" rel="noopener noreferrer">an issue on bugs.chromium.org</a>&nbsp;—
   when using the <code>border-spacing</code> property on the table:
   it <strong>prevents Chrome to define the dimensions of the table</strong>…
   For Chrome user, use the inspector to uncheck this property on the
@@ -351,9 +345,7 @@
     <strong id="label-10">Switch</strong><br>
     <span id="description-10">Allows you to disable styles on the following table.</span>
    </p>
-   <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
-       role="switch" aria-checked="true"
-       aria-labelledby="label-10" aria-describedby="description-10">
+   <button type="button" class="ml-auto fw-400 no-border p-relative disable-css" role="switch" aria-checked="true" aria-labelledby="label-10" aria-describedby="description-10">
     <span>Funny</span>
     <span>Sober</span>
    </button>
@@ -388,8 +380,8 @@
 </details>
 <details>
   <summary id="firefox">A Firefox feature</summary>
-  <figure  class="grid-1-2 no-margin" aria-label="Screenshot of the deformation caused by skew.">
-    <img src="img/hypothenuse.jpg" alt="The skew() function deforms the element by tilting it." width="277" height="202" />
+  <figure class="grid-1-2 no-margin" aria-label="Screenshot of the deformation caused by skew.">
+    <img src="img/hypothenuse.jpg" alt="The skew() function deforms the element by tilting it." width="277" height="202">
     <figcaption>
       Screenshot of the deformation caused by <code>skew()</code>
       –&nbsp;props to <a href="https://patrickbrosset.com/">Patrick Brosset</a>
@@ -419,7 +411,7 @@
    <li>
     and contains several cells: a <code>&lt;th scope="row"&gt;</code> row header cell
     and <code>&lt;td&gt;</code> data cells;
-  </ul>
+  </li></ul>
  </li>
  <li>
   the rest is relatively common now —&nbsp;if you've gone through the previous examples:
@@ -432,7 +424,7 @@
     a distinctive <strong>hover</strong> effect over each row: the values appear
     verbatim on hovering, and the hovered row is highlighted. In order not to deprive users
     who do not have a good hover pointer, this effect is a <strong>progressive enhancement</strong>
-    based on the <code>@media (hover: hover) { … }</code> media query.
+    based on the <code>@media (hover: hover) {&nbsp;… }</code> media query.
    </li>
   </ol>
  </li>
@@ -445,9 +437,7 @@
    <strong id="label-11">Switch</strong><br>
    <span id="description-11">Allows you to disable styles on the following table.</span>
   </p>
-  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
-      role="switch" aria-checked="true"
-      aria-labelledby="label-11" aria-describedby="description-11">
+  <button type="button" class="ml-auto fw-400 no-border p-relative disable-css" role="switch" aria-checked="true" aria-labelledby="label-11" aria-describedby="description-11">
    <span>Funny</span>
    <span>Sober</span>
   </button>
@@ -494,24 +484,24 @@
 
 <details>
  <summary><abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
- <div><pre><code class="language-markup">&lt;table class="chaarts radar-multiple" id="radar-multiple" style="--scale: 20; --step: 5; --items: 7; --areas: 2;">
-  &lt;caption id="caption-9">[…]&lt;/caption>
-  &lt;thead>
-    &lt;tr>
-      &lt;th scope="col">[…]&lt;/th>
-      &lt;th scope="col">[…]&lt;/th>
-    &lt;/tr>
-  &lt;/thead>
-  &lt;tbody>
-    &lt;tr style="--color: #734bf9; --1: 14; --2: 11; --3: 13; --4: 16; --5: 14; --6: 10; --7: 4; --8: var(--1);">
-      &lt;th scope="row">Gaël&lt;/th>
-      &lt;td>&lt;span>14&lt;/span>&lt;/td>
-    &lt;/tr>
-    &lt;tr style="-color: #e11a81; --1: 18; --2: 10; --3: 11; --4: 16; --5: 10; --6: 12; --7: 11; --8: var(--1);">
-      &lt;th scope="row">Luc&lt;/th>
-      &lt;td>&lt;span>18&lt;/span>&lt;/td>
-    &lt;/tr>
-  &lt;/tbody>
+ <div><pre><code class="language-markup">&lt;table class="chaarts radar-multiple" id="radar-multiple" style="--scale: 20; --step: 5; --items: 7; --areas: 2;"&gt;
+  &lt;caption id="caption-9"&gt;[…]&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th scope="col"&gt;[…]&lt;/th&gt;
+      &lt;th scope="col"&gt;[…]&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr style="--color: #734bf9; --1: 14; --2: 11; --3: 13; --4: 16; --5: 14; --6: 10; --7: 4; --8: var(--1);"&gt;
+      &lt;th scope="row"&gt;Gaël&lt;/th&gt;
+      &lt;td&gt;&lt;span&gt;14&lt;/span&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr style="-color: #e11a81; --1: 18; --2: 10; --3: 11; --4: 16; --5: 10; --6: 12; --7: 11; --8: var(--1);"&gt;
+      &lt;th scope="row"&gt;Luc&lt;/th&gt;
+      &lt;td&gt;&lt;span&gt;18&lt;/span&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
 &lt;/table&gt;</code></pre>
 </div>
 </details>
@@ -616,11 +606,12 @@
 </main>
 
 
-<script src="js/script.min.js"></script>
-<script src="js/prism.min.js"></script>
+<script src="js/script.min.js" integrity="sha384-GSFLTHfMgenmEx6jFpCPYPrICTc7v02GoC3xiIvkFqR7kyjirVQ6f2MHDkHnBlKB" crossorigin="anonymous"></script>
+<script src="js/prism.min.js" integrity="sha384-OSSZBJvyIqOHf+n8hgNy4WAZIAjyuZi84Up8YMwyvNoX0iz8mZ+CzycfqsmZAjSe" crossorigin="anonymous"></script>
 
 
 
 
-</body>
-</html>
+
+
+</body></html>
