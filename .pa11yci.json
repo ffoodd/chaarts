@@ -1,0 +1,28 @@
+{
+	"standard": "WCAG2AA",
+	"level": "warning",
+	"concurrency": 1,
+	"defaults": {
+		"reporters": [
+			[
+				"pa11y-ci-reporter-html",
+				{
+					"destination": "./reports"
+				}
+			]
+		],
+		"wait": 3000,
+		"runners": [
+			"axe"
+		],
+		"timeout": 100000,
+		"hideElements": "",
+		"ignore": [
+		],
+		"defaults": {
+			"chromeLaunchConfig": {
+				"executablePath": "/snap/bin/chromium"
+			}
+		}
+	}
+}

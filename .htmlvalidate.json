@@ -1,0 +1,10 @@
+{
+	"extends": [
+		"html-validate:recommended"
+	],
+	"rules": {
+		"aria-label-misuse": "off",
+		"no-redundant-role": "off",
+		"no-inline-style": "off"
+	}
+}

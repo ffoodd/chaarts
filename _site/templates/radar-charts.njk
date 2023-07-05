@@ -1,0 +1,352 @@
+{% extends "index.njk" %}
+
+{% block meta %}
+	<title>Radar charts — chaarts</title>
+	<meta property="og:url" content="https://ffoodd.github.io/chaarts/radar-charts.html">
+	<meta property="og:title" content="Radar charts — chaarts">
+	<meta property="og:type" content="article">
+	<meta property="og:description" name="description" content="Charts with HTML & CSS">
+	<meta name="twitter:card" content="summary">
+	<link rel="alternate" hreflang="fr" href="https://ffoodd.github.io/chaarts/radar.html">
+{% endblock %}
+
+{% block navigation %}
+	<ul class="fly-out">
+		<li><a href="./index.html">Home</a></li>
+		<li><a href="./bar-charts.html">Bar charts</a></li>
+		<li><a href="./line-charts.html">Line charts</a></li>
+		<li><a href="./column-charts.html">Column charts</a></li>
+		<li><a href="./pie-charts.html">Pie charts</a></li>
+		<li><a aria-current="page">Radar charts</a></li>
+		<li class="ml-auto">
+			<a rel="alternate" hreflang="fr" lang="fr" href="./radar.html"
+				 aria-label="Version française" title="Version française">FR</a>
+		</li>
+		<li>
+			<a href="https://github.com/ffoodd/chaarts/" class="d-flex">
+				<svg viewBox="0 0 16 16" height="16" width="16" aria-hidden="true">
+					<path fill-rule="evenodd"
+								d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+				</svg>
+				&nbsp;GitHub
+			</a>
+		</li>
+	</ul>
+{% endblock %}
+
+{% block main %}
+	<h1>Radar charts</h1>
+
+	<p>
+		This one's kind of fun. We define some <abbr title="Cascading StyleSheet">CSS</abbr>
+		variables on the table: the scale (and tiers), the number of elements, and the values.
+	</p>
+
+	<p>
+		On the <abbr title="Cascading StyleSheet">CSS</abbr> side, it's getting complicated:
+	</p>
+
+	<ul>
+		<li>
+			on the <code>&lt;table&gt;</code> element, the circular scale is created using two successive
+			<code>repeating-radial-gradient()</code> —&nbsp;depending on the
+			<var>--scale</var> and <var>--step</var> variables;
+		</li>
+		<li>
+			each element <code>&lt;th&gt;</code> is moved outside the circle thus formed,
+			thanks to a technique borrowed from
+			<a href="https://stackoverflow.com/questions/12813573/position-icons-into-circle">
+				<cite>Ana Tudor</cite>, who explains it on StackOverflow</a>;
+		</li>
+		<li>
+			then —&nbsp;still on header cells&nbsp;— the value corresponding to each column
+			is displayed in a pseudo-element <code>::after</code> using
+			<a href="https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab">a
+				trick from <cite>Cassie Evans</cite>, using <code>counter-reset</code> and <code>counter()</code>
+				to display a numerical variable in the <code>content</code> property</a>.
+			However <code>counter-reset</code> only works with integers, and our value might be a number.
+			So we rely on <a href="https://css-tricks.com/animating-number-counters/#the-new-school-css-solution">
+				<cite>Carter Li</cite>'s ruse using <code>calc()</code> to convert numbers to integers—&nbsp;and
+				<code>@property</code> for Chromium-based browsers</a>. Boum!
+		</li>
+		<li>
+			Then the magic works on the <code>&lt;td&gt;</code> elements:
+			<ol>
+				<li>
+					each of which is adjusted to form <strong>a square with a side equal
+						to the radius of the circle</strong> on the background;
+				</li>
+				<li>
+					then transformed to represent a portion of the circle according to
+					the number of elements —&nbsp;specified with <var>--items</var>&nbsp;— using
+					<a href="https://tympanus.net/codrops/2013/08/09/building-a-circular-navigation-with-css-transforms/">
+						a trick shared by <cite>Sara Soueidan</cite> on Codrops</a>,
+				</li>
+				<li>each one is decorated with a border at the bottom;</li>
+				<li>
+					then we use again <code>clip-path</code> <code>polygon()</code> function
+					on each direct child <code>&lt;span&gt;</code> —&nbsp; extended to occupy the whole surface
+					of its parent <code>&lt;td&gt;</code>&nbsp;— in order to form a triangle, based for one side
+					on the ratio value of the current element / scale, and on another side a ratio based on the
+					value of the next element (yum <code>calc()</code>)
+					—&nbsp;but on another scale…
+				</li>
+				<li>
+					because to <strong>compensate for the distortion</strong>
+					<a href="#firefox">due to the <code>skew()</code> function</a>,
+					we need to correct the scale on which the second ratio is calculated
+					using a little trigonometry:
+					<ul>
+						<li>
+							we know one side of the right-angled triangle obtained after the deformation,
+							as well as two angles —&nbsp;the right one, of course, and we deduce
+							the second from the angle used to deform the element;
+						</li>
+						<li>
+							so we can <strong>calculate the hypothenuse</strong> using the sine law,
+							—&nbsp;as before in the pie chart;
+						</li>
+						<li>
+							and finally, all we have to do is calculate the ratio between the initial dimension
+							—&nbsp;the side&nbsp;— and the final dimension —&nbsp;the hypothenuse&nbsp;—
+							and apply this ratio to the scale on which the second point of the polygon is placed.
+						</li>
+					</ul>
+				</li>
+				<li>
+					The third point of the polygon is the bottom right corner, whose coordinates are
+					<code>100% 100%</code>;
+				</li>
+			</ol>
+		</li>
+		<li>
+			one last trick is necessary to close the shape you have seen,
+			we use the current and next value for each element. But when we get to the last element,
+			there is no next! So we need to <strong>add a value</strong>, to which we assign
+			the first value —&nbsp;in this example, <var>--8: var(--1);</var>.
+		</li>
+	</ul>
+
+	<p>And that's it!</p>
+
+	<div class="table-container radar-container" role="group" aria-labelledby="caption-9">
+		<div class="fieldset d-flex sm-hidden">
+			<p class="label no-margin">
+				<strong id="label-9">Switch</strong><br>
+				<span id="description-9">Allows you to disable styles on the following table.</span>
+			</p>
+			<button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
+							role="switch" aria-checked="true"
+							aria-labelledby="label-9" aria-describedby="description-9">
+				<span>Funny</span>
+				<span>Sober</span>
+			</button>
+		</div>
+
+		<table class="chaarts radar" id="radar"
+					 style="--scale: 20; --step: 5; --items: 7; --1: 14; --2: 11; --3: 13; --4: 16; --5: 10; --6: 12; --7: 4; --8: var(--1);">
+			<caption id="caption-9">Level of interest by domain, out of 20</caption>
+			<thead>
+			<tr>
+				<th scope="col">Accessibility</th>
+				<th scope="col">SEO</th>
+				<th scope="col">Performance</th>
+				<th scope="col">Compatibility</th>
+				<th scope="col">Security</th>
+				<th scope="col">Code quality</th>
+				<th scope="col">Test</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td><span>14</span></td>
+				<td><span>11</span></td>
+				<td><span>13</span></td>
+				<td><span>16</span></td>
+				<td><span>10</span></td>
+				<td><span>12</span></td>
+				<td><span>4</span></td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<details>
+		<summary><abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
+		<div>{% include 'includes/_radar-markup.njk' %}</div>
+	</details>
+	<details>
+		<summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
+		<div>{% include 'includes/_radar-styles.njk' %}</div>
+	</details>
+	<details>
+		<summary>A Chromium bug</summary>
+		<p>
+			There is currently a bug in Chromium —&nbsp;I filled
+			<a href="https://bugs.chromium.org/p/chromium/issues/detail?id=939728"
+				 target="_blank" rel="noopener noreferrer">an issue on bugs.chromium.org</a>&nbsp;—
+			when using the <code>border-spacing</code> property on the table:
+			it <strong>prevents Chrome to define the dimensions of the table</strong>…
+			For Chrome user, use the inspector to uncheck this property on the
+			<code>&lt;table&gt;</code> tag of these examples!
+		</p>
+		<h3>Reduced test case</h3>
+		<div class="table-container radar-container" role="group" aria-labelledby="caption-10">
+			<div class="fieldset d-flex sm-hidden">
+				<p class="label no-margin">
+					<strong id="label-10">Switch</strong><br>
+					<span id="description-10">Allows you to disable styles on the following table.</span>
+				</p>
+				<button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
+								role="switch" aria-checked="true"
+								aria-labelledby="label-10" aria-describedby="description-10">
+					<span>Funny</span>
+					<span>Sober</span>
+				</button>
+			</div>
+
+			<table class="chaarts radar" id="radar-bug"
+						 style="border-spacing: 0; --scale: 20; --step: 5; --items: 7; --1: 14; --2: 11; --3: 13; --4: 16; --5: 10; --6: 12; --7: 4; --8: var(--1);">
+				<caption id="caption-10">Level of interest by domain, out of 20</caption>
+				<thead>
+				<tr>
+					<th scope="col">Accessibility</th>
+					<th scope="col">SEO</th>
+					<th scope="col">Performance</th>
+					<th scope="col">Compatibility</th>
+					<th scope="col">Security</th>
+					<th scope="col">Code quality</th>
+					<th scope="col">Test</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td><span>14</span></td>
+					<td><span>11</span></td>
+					<td><span>13</span></td>
+					<td><span>16</span></td>
+					<td><span>10</span></td>
+					<td><span>12</span></td>
+					<td><span>4</span></td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</details>
+	<details>
+		<summary id="firefox">A Firefox feature</summary>
+		<figure class="grid-1-2 no-margin" aria-label="Screenshot of the deformation caused by skew.">
+			<img src="img/hypothenuse.jpg" alt="The skew() function deforms the element by tilting it." width="277"
+					 height="202">
+			<figcaption>
+				Screenshot of the deformation caused by <code>skew()</code>
+				–&nbsp;props to <a href="https://patrickbrosset.com/">Patrick Brosset</a>
+				who made <a href="https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector/How_to/Visualize_transforms">CSS
+					transform Highlighter happen in Firefox DevTools</a>.
+			</figcaption>
+		</figure>
+	</details>
+
+
+	<h2>Overlapping radars</h2>
+
+	<p>Very few changes compared to the previous version:</p>
+
+	<ol>
+		<li>
+			the <code>&lt;table&gt;</code> element no longer carries the values,
+			but has a new <var>--areas</var> custom property to indicate the number of rows in the table;
+		</li>
+		<li>
+			however we multiply the number of rows in the body of the table:
+			<ul>
+				<li>
+					each one carries several variables:
+					<var>--color</var> then the values —&nbsp;<var>--1</var>, etc.;
+				</li>
+				<li>
+					and contains several cells: a <code>&lt;th scope="row"&gt;</code> row header cell
+					and <code>&lt;td&gt;</code> data cells;
+				</li>
+			</ul>
+		</li>
+		<li>
+			the rest is relatively common now —&nbsp;if you've gone through the previous examples:
+			<ol>
+				<li>
+					a color for each row, presented on the header cells
+					and serving as a background for the data cells;
+				</li>
+				<li>
+					a distinctive <strong>hover</strong> effect over each row: the values appear
+					verbatim on hovering, and the hovered row is highlighted. In order not to deprive users
+					who do not have a good hover pointer, this effect is a <strong>progressive enhancement</strong>
+					based on the <code>@media (hover: hover) { … }</code> media query.
+				</li>
+			</ol>
+		</li>
+
+	</ol>
+
+	<div class="table-container radar-container" role="group" aria-labelledby="caption-11">
+		<div class="fieldset d-flex sm-hidden">
+			<p class="label no-margin">
+				<strong id="label-11">Switch</strong><br>
+				<span id="description-11">Allows you to disable styles on the following table.</span>
+			</p>
+			<button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
+							role="switch" aria-checked="true"
+							aria-labelledby="label-11" aria-describedby="description-11">
+				<span>Funny</span>
+				<span>Sober</span>
+			</button>
+		</div>
+
+		<table class="chaarts radar-multiple" id="radar-multiple" style="--scale: 20; --step: 5; --items: 7; --areas: 2;">
+			<caption id="caption-11">Level of interest by domain, out of 20</caption>
+			<thead>
+			<tr>
+				<td></td>
+				<th scope="col">Accessibility</th>
+				<th scope="col">SEO</th>
+				<th scope="col">Performance</th>
+				<th scope="col">Compatibility</th>
+				<th scope="col">Security</th>
+				<th scope="col">Code quality</th>
+				<th scope="col">Test</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr style="--color: #734bf9; --1: 14; --2: 11; --3: 13; --4: 16; --5: 14; --6: 10; --7: 4; --8: var(--1);">
+				<th scope="row">Gaël</th>
+				<td><span>14</span></td>
+				<td><span>11</span></td>
+				<td><span>13</span></td>
+				<td><span>16</span></td>
+				<td><span>14</span></td>
+				<td><span>10</span></td>
+				<td><span>4</span></td>
+			</tr>
+			<tr style="--color: #e11a81; --1: 18; --2: 10; --3: 11; --4: 16; --5: 10; --6: 12; --7: 11; --8: var(--1);">
+				<th scope="row">Luc</th>
+				<td><span>18</span></td>
+				<td><span>10</span></td>
+				<td><span>11</span></td>
+				<td><span>16</span></td>
+				<td><span>10</span></td>
+				<td><span>12</span></td>
+				<td><span>11</span></td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<details>
+		<summary><abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
+		<div>{% include 'includes/_radars-markup.njk' %}</div>
+	</details>
+	<details>
+		<summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
+		<div>{% include 'includes/_radars-styles.njk' %}</div>
+	</details>
+{% endblock %}

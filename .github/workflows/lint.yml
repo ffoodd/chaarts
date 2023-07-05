@@ -8,7 +8,7 @@ on:
 
 env:
   FORCE_COLOR: 2
-  NODE: 14
+  NODE: 18
 
 jobs:
   lint:
@@ -39,4 +39,4 @@ jobs:
         run: npm ci
 
       - name: Lint
-        run: npm run gulp lint
+        run: npm run lint
