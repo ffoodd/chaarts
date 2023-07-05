@@ -1,5 +1,0 @@
-{% macro line(definition='', unit='', title='') %}
-  <td>
-    {{ definition }}{% if unit != '' %}&nbsp;{% if title != '' %}<abbr title="{{ title | e }}" aria-label="{{ title | e }}">{% endif %}{{ unit }}{% if title != '' %}</abbr>{% endif %}{% endif %}
-  </td>
-{% endmacro %}

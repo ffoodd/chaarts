@@ -1,8 +1,0 @@
-{% macro bar(term='', definition='', unit='', title='', variant='') %}
-  <tr>
-    <th scope="row">{{ term }}</th>
-    <td style="--value: {{ definition }}">
-      <span>{{ definition }}{% if unit != '' %}&nbsp;{% if title != '' %}<abbr title="{{ title | e }}" aria-label="{{ title | e }}">{% endif %}{{ unit }}{% if title != '' %}</abbr>{% endif %}{% endif %}</span>
-    </td>
-  </tr>
-{% endmacro %}

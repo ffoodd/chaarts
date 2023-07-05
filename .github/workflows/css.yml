@@ -8,7 +8,7 @@ on:
 
 env:
   FORCE_COLOR: 2
-  NODE: 14
+  NODE: 18
 
 jobs:
   css:
@@ -39,4 +39,4 @@ jobs:
         run: npm ci
 
       - name: Build CSS
-        run: npm run gulp compile
+        run: npm run build

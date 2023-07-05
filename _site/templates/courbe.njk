@@ -1,0 +1,354 @@
+{% extends "accueil.njk" %}
+
+{% block meta %}
+	<title>Courbes — chaarts</title>
+	<meta property="og:url" content="https://ffoodd.github.io/chaarts/fr/courbe.html">
+	<meta property="og:title" content="Courbes — chaarts">
+	<meta property="og:type" content="article">
+	<meta property="og:description" name="description" content="Graphiques de données avec HTML & CSS">
+	<meta name="twitter:card" content="summary">
+	<link rel="alternate" hreflang="en" href="https://ffoodd.github.io/chaarts/line-charts.html">
+{% endblock %}
+
+{% block navigation %}
+	<ul class="fly-out">
+		<li><a href="./accueil.html">Accueil</a></li>
+		<li><a href="./barres.html">Barre</a></li>
+		<li><a aria-current="page">Courbe</a></li>
+		<li><a href="./histogramme.html">Histogramme</a></li>
+		<li><a href="./camembert.html">Camembert</a></li>
+		<li><a href="./radar.html">Radar</a></li>
+		<li class="ml-auto">
+			<a rel="alternate" hreflang="en" lang="en" href="./line-charts.html"
+				 aria-label="English version" title="English version">EN</a>
+		</li>
+		<li>
+			<a href="https://github.com/ffoodd/chaarts/" class="d-flex" hreflang="en">
+				<svg viewBox="0 0 16 16" height="16" width="16" aria-hidden="true">
+					<path fill-rule="evenodd"
+								d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+				</svg>
+				&nbsp;GitHub
+			</a>
+		</li>
+	</ul>
+{% endblock %}
+
+{% block main %}
+	<h1>Graphique linéaire</h1>
+
+	<h2>Graphique de surface</h2>
+
+	<p>
+		Ce graphique repose sur <strong>les variables CSS, les grilles</strong> et <code>clip-path</code>.
+		Cette dernière propriété est la plus importante.
+	</p>
+
+	<ol>
+		<li>
+			Sur le <strong>tableau</strong>, les échelles et l’unité sont indiquées&nbsp;:
+			<ul>
+				<li>
+					<var>--y</var> définit l’échelle des <strong>ordonnées</strong>, utilisée
+					pour indiquer l’échelle en arrière-plan mais aussi placer
+					les points sur la courbe&nbsp;;
+				</li>
+				<li>
+					<var>--x</var> correspond à l’échelle des <strong>abscisses</strong>, exprimée
+					simplement comme le nombre de colonnes à afficher&nbsp;;
+				</li>
+				<li><var>--unit</var> permet de définir l’unité à afficher dans l’infobulle simulée.</li>
+			</ul>
+		</li>
+		<li>
+			Chaque ligne <code>&lt;tr&gt;</code> dans <code>&lt;tbody&gt;</code> porte une palanquée
+			de variables, correspondant à toutes les valeurs qu’elle contient.
+			Dans un pseudo-élément <code>::before</code>, une position est définie pour chaque valeur
+			au sein de la fonction <code>polygon()</code> de <code>clip-path</code>.
+			<ul>
+				<li>
+					Étant donné que cette fonction accepte <strong>deux valeurs en pourcentage
+						chaque point</strong>, la méthode est relativement simple.
+					La position en abscisse est le nombre de colonnes (le décalage depuis la gauche, donc)
+					et la position en ordonnée est le ratio de la valeur sur l’échelle, le tout <strong>formulé ainsi</strong>&nbsp;:
+					<code>calc( ( 100% / var(--x) * 1 ) + var(--offset) ) calc( 100% - ( var(--1) / var(--y) * 100% ) )</code>,
+					où <var>* 1</var> et <var>var(--1)</var> correspondent à l’index de la valeur dans l’ensemble,
+					et <var>var(--offset)</var> est la valeur d’une demi-colonne, pour placer le point au milieu
+					de sa colonne.
+				</li>
+				<li>
+					Vous l’aurez peut-être compris, <strong>le principal écueil de ce graphique est qu’il
+						nécessite de connaître le nombre de points par avance</strong>.
+				</li>
+				<li>
+					Puisque <code>clip-path</code> requière encore <a href="https://caniuse.com/#search=clip-path">
+						un préfixe <code>-webkit-</code> pour Safari</a>, on utilise une variable CSS pour <strong>éviter la
+						duplication</strong> du <code>polygon()</code> —&nbsp;<a hreflang="en"
+																																		 href="https://css-irl.info/7-uses-for-css-custom-properties/">astuce
+						partagée par <cite>Michelle Barker</cite> dans <em lang="en">"7 uses for CSS custom properties"</em></a>.
+				</li>
+			</ul>
+		</li>
+		<li>
+			Chaque cellule <code>&lt;td&gt;</code> dans <code>&lt;tbody&gt;</code> porte un pseudo-élément
+			<code>::after</code> qui sert à <strong>récapituler</strong> ses entêtes et valeur dans
+			une infobulle simulée, et un pseudo-élément <code>::before</code> pour gérer un calque interactif sur la cellule&nbsp;:
+			<ul>
+				<li>
+					l’affichage multiligne repose sur <a hreflang="en"
+																							 href="https://lea.verou.me/2012/02/flexible-multiline-definition-lists-with-2-lines-of-css/">une
+						astuce de <cite>Lea Verou</cite> utilisant <code>white-space: pre;</code> et le caractère
+						<code>\A</code></a>&nbsp;;
+				</li>
+				<li>
+					l’affichage de propriétés personnalisées dans un pseudo-élément n’est pas si triviale&nbsp;:
+					<code>content</code> n’accepte que les chaînes de caractères, et nos propriétés personnalisées contiennent…
+					des nombres.
+					Encore une fois on recycle <a hreflang="en"
+																				href="https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab">
+						une astuce de <cite>Cassie Evans</cite> basée sur <code>counter-reset</code> et sa valeur par défaut
+						pour <strong>convertir</strong> notre variable <var>--value</var> en chaîne</a>.
+					Cependant <code>counter-reset</code> ne fonctionne qu’avec un entier et notre valeur peut être un nombre.
+					Alors on s’appuie sur
+					<a hreflang="en" href="https://css-tricks.com/animating-number-counters/#the-new-school-css-solution">une ruse
+						de
+						<cite>Carter Li</cite> utilisant <code>calc()</code> pour convertir les nombres en entiers —&nbsp;et
+						<code>@property</code> pour les navigateurs basés sur Chromium</a>. Boum&nbsp;!
+				</li>
+				<li>Et finalement la propriété personnalisée <var>--unit</var> sert de finition.</li>
+			</ul>
+		</li>
+		<li>
+			Tout le reste n’est que décoration&nbsp;:
+			<ul>
+				<li>
+					un <code>padding-top</code> important sur le tableau pour
+					réserver l’espace d’affichage des graphiques —&nbsp;<strong>attention</strong>&nbsp;:
+					il est nécessaire d’appliquer <code>border-collapse: separate;</code> sur le tableau
+					afin que le <code>padding</code> ait un impact&nbsp;;
+				</li>
+				<li>le <code>::before</code> de chaque ligne est étiré afin d’occuper tout l’espace réservé&nbsp;;</li>
+				<li>un arrière-plan dégradé pour représenter la surface pleine du même <code>::before</code>&nbsp;;</li>
+				<li>
+					un <code>repeating-linear-gradient()</code> pour représenter l’échelle verticale,
+					en arrière-plan du tableau&nbsp;;
+				</li>
+				<li>
+					et des interactions au survol pour mettre en exergue la valeur survolée&nbsp;:
+					sa colonne à l’aide d’un pseudo-élément —&nbsp;positionné à l’aide de de savants calculs&nbsp;—
+					et <code>mix-blend-mode</code> pour un effet waouh.
+				</li>
+			</ul>
+		</li>
+	</ol>
+
+	{% import 'macros/_table-line.njk' as table %}
+
+	<div class="table-container line-container" role="group" aria-labelledby="caption-3">
+		<div class="fieldset d-flex sm-hidden">
+			<p class="label no-margin">
+				<strong id="label-3">Interrupteur</strong><br>
+				<span id="description-3">Permet de désactiver les styles sur le tableau suivant.</span>
+			</p>
+			<button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
+							role="switch" aria-checked="true"
+							aria-labelledby="label-3" aria-describedby="description-3">
+				<span>Guilleret</span>
+				<span>Sobre</span>
+			</button>
+		</div>
+
+		<table class="chaarts line" id="line"
+					 style="--y: 32; --x: 13; --unit: '°C'; --t-1: 'Jan.'; --t-2: 'Fév.'; --t-3: 'Mar.'; --t-4: 'Avr.'; --t-5: 'Mai'; --t-6: 'Juin';
+        --t-7: 'Juil.'; --t-8: 'Août'; --t-9: 'Sept.'; --t-10: 'Oct.'; --t-11: 'Nov.'; --t-12: 'Déc.';">
+			<caption id="caption-3">Température mensuelle moyenne en 2017</caption>
+			<thead>
+			<tr>
+				<th scope="col">Année</th>
+				<th scope="col">Jan.</th>
+				<th scope="col">Fév.</th>
+				<th scope="col">Mars</th>
+				<th scope="col">Avr.</th>
+				<th scope="col">Mai</th>
+				<th scope="col">Juin</th>
+				<th scope="col">Juil.</th>
+				<th scope="col">Août</th>
+				<th scope="col">Sep.</th>
+				<th scope="col">Oct.</th>
+				<th scope="col">Nov.</th>
+				<th scope="col">Déc.</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr
+				style="--year: '2017'; --1: 8; --2: 6; --3: 9; --4: 12; --5: 15; --6: 21; --7: 24; --8: 25; --9: 22; --10: 19; --11: 14; --12: 9;">
+				<th scope="row">2017</th>
+				{{ table.line('8', '°C', 'Degré Celsius') }}
+				{{ table.line('6', '°C', 'Degré Celsius') }}
+				{{ table.line('9', '°C', 'Degré Celsius') }}
+				{{ table.line('12', '°C', 'Degré Celsius') }}
+				{{ table.line('15', '°C', 'Degré Celsius') }}
+				{{ table.line('21', '°C', 'Degré Celsius') }}
+				{{ table.line('24', '°C', 'Degré Celsius') }}
+				{{ table.line('25', '°C', 'Degré Celsius') }}
+				{{ table.line('22', '°C', 'Degré Celsius') }}
+				{{ table.line('19', '°C', 'Degré Celsius') }}
+				{{ table.line('14', '°C', 'Degré Celsius') }}
+				{{ table.line('9', '°C', 'Degré Celsius') }}
+			</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<details>
+		<summary>Le <abbr lang="en" title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr>
+		</summary>
+		<div>{% include 'includes/_line-markup.njk' %}</div>
+	</details>
+	<details>
+		<summary>Le <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
+		<div>{% include 'includes/_line-styles.njk' %}</div>
+	</details>
+	<details>
+		<summary>Le calcul tordu</summary>
+		<h3>Le tracé du <code>polygon()</code></h3>
+		<p>
+			Pour commencer, il faut bien intégrer que <code>clip-path</code> est un tracé,
+			au même titre qu’une forme vectorielle. Il doit donc <strong>être fermé</strong>.
+			Ainsi le tracé démarre à <var>0% 100%</var> —&nbsp;en bas à gauche, fait sa vie
+			de tracé, bascule à <var>100% 100%</var> et revient boucler à <var>0% 100%</var>.
+		</p>
+		<p>Et dans son chemin, chaque point doit être positionné en abscisses et en ordonnées.</p>
+		<h4>La position en abscisse</h4>
+		<p>
+			La première position est simple&nbsp;: on divise <code>100%</code> par l’échelle
+			<var>var(--x)</var>, et on <strong>multiplie par l’index</strong> de l’élément. Par exemple&nbsp;:
+			<code>calc( ( 100% / var(--x) * 1) )</code>.
+			Pour placer chaque point <strong>au milieu de sa colonne</strong>, on le décale d’une demi-colonne
+			—&nbsp;ce que l’on fait en ajoutant au calcul précédent <var>var(--offset)</var>, qui correspond
+			à <code>calc( ( 100% / var(--x) ) / 2 )</code>.<br>
+			La position finale est donc, ici pour le troisième point&nbsp;:<br>
+			<code>calc( ( 100% / var(--x) * 3) + var(--offset) )</code>.
+		</p>
+		<h4>La position en ordonnée</h4>
+		<p>
+			Dans ce graphique, l’ordonnée est l’axe le plus important. Ainsi pour placer le point,
+			on commence par calculer <strong>le ratio de sa valeur sur l’échelle</strong> —&nbsp;formulé
+			ainsi&nbsp;: <code>var(--1) / var(--y)</code>. Et parce que <code>polygon()</code> utilise
+			des valeurs en pourcentage, on rapporte ce calcul sur 100%&nbsp;:
+			<code>( var(--1) / var(--y) * 100% )</code>.<br>
+			Et pour finir, les référentiels du polygone partant d’en haut à gauche, <strong>la position
+				doit être définie en fonction du haut de la boîte</strong>. La formule finale ressemble
+			alors à ça —&nbsp;toujours pour le troisième élément&nbsp;:<br>
+			<code>calc( 100% - ( var(--3) / var(--y) * 100% ) )</code>.
+		</p>
+	</details>
+
+	<h3>Graphique à point</h3>
+
+	<p>Cette variante diffère finalement assez peu de la précédente mouture&nbsp;:</p>
+
+	<ol>
+		<li>
+			le <code>polygon()</code> est <strong>poursuivi pour former une ligne</strong>,
+			en dupliquant chaque point avec un décalage de <var>4px</var>
+			—&nbsp;l’épaisseur du trait&nbsp;— et dans l’ordre inverse&nbsp;;
+		</li>
+		<li>
+			le pseudo-élément <code>::before</code> qui permet d’afficher l’infobulle prend ici la forme d’un
+			point sur la courbe —&nbsp;positionné à l’aide des mêmes calculs qui servent dans le polygone&nbsp;;
+		</li>
+		<li>
+			et surtout, puisque <code>clip-path</code> est appliqué <strong>sur la ligne</strong>
+			<code>&lt;tr&gt;</code>&nbsp;: vous pouvez en mettre <strong>plusieurs</strong>&nbsp;!
+			Il nous faut donc ajouter une combinaison de couleur et motif pour distinguer chaque ligne
+			et les associer visuellement à leur légende.
+		</li>
+	</ol>
+
+	<div class="table-container line-container" role="group" aria-labelledby="caption-4">
+		<div class="fieldset d-flex sm-hidden">
+			<p class="label no-margin">
+				<strong id="label-4">Interrupteur</strong><br>
+				<span id="description-4">Permet de désactiver les styles sur le tableau suivant.</span>
+			</p>
+			<button type="button" class="ml-auto fw-400 no-border p-relative disable-css"
+							role="switch" aria-checked="true"
+							aria-labelledby="label-4" aria-describedby="description-4">
+				<span>Guilleret</span>
+				<span>Sobre</span>
+			</button>
+		</div>
+
+		<table class="chaarts line points" id="points"
+					 style="--y: 32; --x: 13; --unit: '°C'; --t-1: 'Jan.'; --t-2: 'Fév.'; --t-3: 'Mar.'; --t-4: 'Avr.'; --t-5: 'Mai'; --t-6: 'Juin';
+        --t-7: 'Juil.'; --t-8: 'Août'; --t-9: 'Sept.'; --t-10: 'Oct.'; --t-11: 'Nov.'; --t-12: 'Déc.';">
+			<caption id="caption-4">Température mensuelle moyenne par année</caption>
+			<thead>
+			<tr>
+				<th scope="col">Année</th>
+				<th scope="col">Jan.</th>
+				<th scope="col">Fév.</th>
+				<th scope="col">Mars</th>
+				<th scope="col">Avr.</th>
+				<th scope="col">Mai</th>
+				<th scope="col">Juin</th>
+				<th scope="col">Juil.</th>
+				<th scope="col">Août</th>
+				<th scope="col">Sep.</th>
+				<th scope="col">Oct.</th>
+				<th scope="col">Nov.</th>
+				<th scope="col">Déc.</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr
+				style="--color: #0172f0; --year: '2017'; --1: 8; --2: 6; --3: 9; --4: 12; --5: 15; --6: 21; --7: 24; --8: 25; --9: 22; --10: 19; --11: 14; --12: 9;">
+				<th scope="row">2017</th>
+				{{ table.line('8', '°C', 'Degré Celsius') }}
+				{{ table.line('6', '°C', 'Degré Celsius') }}
+				{{ table.line('9', '°C', 'Degré Celsius') }}
+				{{ table.line('12', '°C', 'Degré Celsius') }}
+				{{ table.line('15', '°C', 'Degré Celsius') }}
+				{{ table.line('21', '°C', 'Degré Celsius') }}
+				{{ table.line('24', '°C', 'Degré Celsius') }}
+				{{ table.line('25', '°C', 'Degré Celsius') }}
+				{{ table.line('22', '°C', 'Degré Celsius') }}
+				{{ table.line('19', '°C', 'Degré Celsius') }}
+				{{ table.line('14', '°C', 'Degré Celsius') }}
+				{{ table.line('9', '°C', 'Degré Celsius') }}
+			</tr>
+			<tr
+				style="--color: #ff2d40; --year: '2018'; --1: 10; --2: 4; --3: 7; --4: 13; --5: 17; --6: 20; --7: 22; --8: 23; --9: 26; --10: 17; --11: 14; --12: 10;">
+				<th scope="row">2018</th>
+				{{ table.line('10', '°C', 'Degré Celsius') }}
+				{{ table.line('4', '°C', 'Degré Celsius') }}
+				{{ table.line('7', '°C', 'Degré Celsius') }}
+				{{ table.line('13', '°C', 'Degré Celsius') }}
+				{{ table.line('17', '°C', 'Degré Celsius') }}
+				{{ table.line('20', '°C', 'Degré Celsius') }}
+				{{ table.line('22', '°C', 'Degré Celsius') }}
+				{{ table.line('23', '°C', 'Degré Celsius') }}
+				{{ table.line('26', '°C', 'Degré Celsius') }}
+				{{ table.line('17', '°C', 'Degré Celsius') }}
+				{{ table.line('14', '°C', 'Degré Celsius') }}
+				{{ table.line('10', '°C', 'Degré Celsius') }}
+			</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<details>
+		<summary>Le <abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
+		<div>{% include 'includes/_lines-styles.njk' %}</div>
+	</details>
+
+	<div class="note">
+		<h3>Note</h3>
+		<p>
+			Pour jouer d’avantage et vous familiariser avec <code>clip-path</code>,
+			<cite>Bennett Feely</cite> a créé
+			<a hreflang="en" href="https://bennettfeely.com/clippy/">clippy</a>.
+		</p>
+	</div>
+{% endblock %}

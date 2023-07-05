@@ -1,0 +1,265 @@
+@use "sass:map";
+@use "abstracts/functions";
+@use "abstracts/mixins";
+@use "abstracts/variables";
+
+/* ==================== */
+/* == Radar Charts
+/* ==================== */
+
+@use "sass:math";
+
+@supports (clip-path: polygon(0% 0%, calc(100% - ( var(--1) * 100% / var(--scale) ) ) 100%, 100% 100%)) {
+	.radar-container .fieldset {
+		display: flex !important;
+	}
+
+	.chaarts[class*="radar"] {
+		--radius: #{variables.$width * 0.2};
+		--unitless-radius: calc(1024 / 16 / 5);
+		--size: calc(var(--radius) / var(--scale));
+		--part: calc(360deg / var(--items));
+		--integer: calc(var(--scale));
+		background-image: repeating-radial-gradient(
+				circle at 50%,
+				rgba(0, 0, 0, .2) 0 2px,
+				transparent 0 calc(var(--size) * var(--step))
+		),
+		repeating-radial-gradient(
+				circle at 50%,
+				rgba(0, 0, 0, .1) 0 2px,
+				transparent 0 var(--size)
+		);
+		border: 2px solid;
+		border-radius: 50%;
+		contain: layout;
+		counter-reset: scale var(--integer);
+		height: calc(var(--radius) * 2);
+		margin: variables.$gutter * 6 auto variables.$gutter * 12;
+		overflow: visible;
+		position: relative;
+		width: calc(var(--radius) * 2);
+
+		caption {
+			background: none;
+			bottom: variables.$gutter * -10;
+			position: absolute;
+		}
+
+		/**
+		 * Placing items around a circle based on:
+		 * @link https://stackoverflow.com/questions/12813573/position-icons-into-circle
+		 * @link http://dabblet.com/gist/3866686
+		 * @author Ana Tudor
+		 *
+		 * @note Negative values for radius helps to start at the top left corner
+		 */
+		[scope="col"] {
+			--away: calc((var(--radius) * -1) - 50%);
+			left: 50%;
+			margin: 0;
+			padding: 0 variables.$gutter;
+			position: absolute;
+			top: 50%;
+			transform: translate3d(-50%, -50%, 0) rotate(calc(var(--part) * var(--index, 1))) translate(var(--away)) rotate(calc(var(--part) * var(--index, 1) * -1));
+		}
+
+		@each $number in 1, 2, 3, 4, 5, 6, 7 {
+			tr > *:nth-of-type(#{$number}) {
+				--index: #{$number};
+			}
+		}
+
+		/**
+		 * This is quite sophisticated, we're mixing multiple techniques
+		 *
+		 * @note Setting items as parts of the circle:
+		 * @link https://tympanus.net/codrops/2013/08/09/building-a-circular-navigation-with-css-transforms/
+		 * @author Sara Soueidan
+		 *
+		 * @note Because we skew items, clip-path() needs to take skew angle into account
+		 * @note To do so, we need to know skewed width (which is hypothenuse of the resulting triangle)
+		 * @note We only know two angles (skew one + suqare one) and a side (initial width),
+		 * @note So we need to compute the sinus of the opposite angle to get hypothenuse
+		 * @note Thanks god, Stereokai made trigonometry functions in pure CSS:
+		 *
+		 * @note Trigonometry functions based on:
+		 * @link https://gist.github.com/stereokai/7666bfe93929b14c2dced148c79e0e97
+		 * @author Stereokai
+		 */
+		td {
+			--skew: calc(90deg - var(--part));
+			border-bottom: 1px solid functions.palette(accent, light);
+			height: 50%;
+			left: 0;
+			margin: 0;
+			position: absolute;
+			top: 0;
+			transform: rotate(calc(var(--part) * var(--index, 1))) skew(var(--skew));
+			transform-origin: 100% 100%;
+			width: 50%;
+
+			@each $number in 1, 2, 3, 4, 5, 6, 7 {
+				&:nth-of-type(#{$number}) span {
+					--point: var(--#{$number});
+					--pos: calc(100% - (var(--#{$number + 1}) * 100% / (var(--scale) * var(--ratio))));
+				}
+			}
+
+			&::after,
+			&::before {
+				display: none;
+			}
+		}
+
+		span {
+			--opposite: calc(180 - (90 + (90 - (360 / var(--items)))));
+			// get opposite angle in radians
+			--angle: calc(var(--opposite) * 0.01745329251);
+			// calc() sin, dark wizardry!
+			@include mixins.sin(angle);
+			// calc() hypothenuse
+			--hypo: calc(var(--unitless-radius) / var(--sin-angle));
+			// get the ratio: skewed / initial width
+			--ratio: calc(var(--hypo) / var(--unitless-radius));
+			--polygon: polygon(
+					100% var(--pos),
+					calc(100% - (var(--point) * 100% / var(--scale))) 100%,
+					100% 100%
+			);
+			background: linear-gradient(
+					to top left,
+					functions.palette(accent, light) 10%,
+					functions.palette(secondary, dark) 75%
+			);
+			clip-path: var(--polygon);
+			filter: drop-shadow(0 0 variables.$gutter functions.palette(accent, dark));
+			height: 100%;
+			position: absolute;
+			width: 100%;
+		}
+	}
+
+	/**
+	 * 1.
+	 * @note Display CSS integers custom properties with a trick using counters
+	 * @author Cassie Evans
+	 * @link https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab
+	 *
+	 * 2.
+	 * @note We need to ensure our counter uses an integer, --value might a a floating number
+	 * @author Carter Li
+	 * @link https://css-tricks.com/animating-number-counters/#the-new-school-css-solution
+	 */
+	.chaarts.radar [scope="col"] {
+		&::after {
+			color: functions.palette(accent);
+			display: block;
+			font-size: small;
+			font-weight: 400;
+		}
+
+		@each $number in 1, 2, 3, 4, 5, 6, 7 {
+			&:nth-child(#{$number})::after {
+				--integer: calc(var(--#{$number})); // 2
+				counter-reset: value var(--integer); // 1
+				content: counter(value) "\A0/\A0" counter(scale); // 1
+			}
+		}
+	}
+
+	.chaarts.radar-multiple {
+		margin-bottom: variables.$gutter * 12;
+
+		tbody {
+			columns: var(--areas);
+			vertical-align: bottom;
+		}
+
+		[scope="row"] {
+			bottom: variables.$gutter * -8;
+			height: variables.$gutter * 2;
+			left: variables.$gutter;
+			position: absolute;
+
+			&::before {
+				background: var(--color, currentColor);
+				content: "";
+				display: inline-block;
+				height: variables.$gutter;
+				margin-right: variables.$gutter * 0.25;
+				transform: translate3d(0, .1rem, 0);
+				width: variables.$gutter;
+			}
+		}
+
+		// Allowing more areas :)
+		@each $number in 1 {
+			tr:nth-child(#{$number + 1}) [scope="row"] {
+				left: calc(#{variables.$gutter} + (100% / var(--areas)) * #{$number});
+			}
+		}
+
+		td {
+			align-items: flex-end;
+			border-color: var(--color, currentColor);
+			display: flex;
+			justify-content: flex-end;
+			opacity: .5;
+			pointer-events: none;
+			z-index: 0;
+
+			&::after {
+				color: var(--color, currentColor);
+				display: block;
+				font-size: small;
+				font-weight: 700;
+				text-indent: #{math.div(variables.$gutter, -2)};
+				transform: skew(calc(var(--skew) * -1)) rotate(calc(var(--part) * var(--index, 1) * -1));
+				transform-origin: 0 0;
+				width: 100%;
+				white-space: nowrap;
+			}
+
+			@each $number in 1, 2, 3, 4, 5, 6, 7 {
+				&:nth-of-type(#{$number})::after {
+					--integer: calc(var(--#{$number})); // 2
+					counter-reset: value var(--integer); // 1
+					content: counter(value); // 1
+					width: calc(var(--#{$number}) * 100% / var(--scale));
+				}
+			}
+		}
+
+		span {
+			background: var(--color, currentColor);
+			pointer-events: auto;
+
+			@supports (mask-image: url()) {
+				--mask: radial-gradient(circle at bottom right, rgba(0, 0, 0, 1), rgba(0, 0, 0, .5));
+				mask-image: var(--mask);
+			}
+		}
+
+		@media (hover: hover) {
+			td {
+				opacity: .25;
+				transition: opacity .2s map.get(variables.$timing-functions, 'move');
+
+				&::after {
+					opacity: 0;
+					transition: inherit;
+				}
+			}
+
+			tr:hover td {
+				opacity: 1;
+				z-index: 1;
+
+				&::after {
+					opacity: inherit;
+				}
+			}
+		}
+	}
+}

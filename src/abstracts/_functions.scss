@@ -1,0 +1,25 @@
+@use "sass:map";
+@use "sass:meta";
+@use "sass:string";
+@use "variables";
+
+// ----------------------------- */
+// == Functions
+// ----------------------------- */
+
+// Color palette
+// @note Allow to pick a color in defined color palette
+// @author Tom Davies
+// @see http://erskinedesign.com/blog/friendlier-colour-names-sass-maps/
+@function palette( $color, $tone: "base" ) {
+	@if (map.has-key(variables.$colors, $color)) {
+		@if (map.has-key(map.get(variables.$colors, $color), $tone)) {
+			@return map.get(map.get(variables.$colors, $color), $tone);
+		} @else {
+			@error "Biip ! `#{$tone}` is not a valid `#{$color}`'s variants.";
+		}
+	} @else {
+		@error "Biip ! `#{$color}` is not part of our palette…";
+	}
+}
+

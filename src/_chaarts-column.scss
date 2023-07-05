@@ -1,0 +1,253 @@
+@use "sass:map";
+@use "abstracts/functions";
+@use "abstracts/variables";
+
+/* ==================== */
+/* == Column Charts
+ *
+ * @note Grid charts based on:
+ * @see https://css-tricks.com/css-charts-grid-custom-properties/
+ * @author Miriam Suzanne
+/* ==================== */
+
+@use "sass:math";
+@use "sass:list";
+
+@supports (display: contents) {
+	.column-container .fieldset {
+		display: flex !important;
+	}
+
+	.chaarts[class*="column"] {
+		--gap: #{variables.$gutter * 0.5};
+		--size: calc(var(--scale, 100) * 100%);
+		--width: calc(#{variables.$width} / var(--y) - #{variables.$gutter});
+		display: grid;
+		grid-column-gap: var(--gap);
+		max-height: variables.$width;
+		position: relative;
+
+		td,
+		th {
+			margin: 0;
+		}
+
+		tr > * + * {
+			text-align: center;
+		}
+
+		/**
+		 * @note Use display: contents to place table-cells in table's grid
+		 * @link https://hiddedevries.nl/en/blog/2018-04-21-more-accessible-markup-with-display-contents
+		 * @link https://bitsofco.de/how-display-contents-works/
+		 */
+		tr,
+		tbody,
+		thead {
+			display: contents;
+		}
+
+		caption {
+			grid-column: 1 / span var(--y);
+			grid-row: -1;
+		}
+
+		td {
+			--integer: calc(var(--value));
+			grid-row: list.slash(calc((var(--scale, 100) + 2) - var(--integer)), -2);
+			pointer-events: none;
+			position: relative;
+			transition: opacity .2s map.get(variables.$timing-functions, 'move');
+
+			@each $number in 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 {
+				&:nth-of-type(#{$number}) {
+					grid-column: #{$number + 1};
+				}
+			}
+		}
+
+		span {
+			font-weight: bold;
+			bottom: 100%;
+			left: 0;
+			line-height: 1.5;
+			pointer-events: auto;
+			position: absolute;
+			right: 0;
+
+			/**
+			 * @note Progressively enhance background-clipping
+			 * @author S. Shaw
+			 * @link https://twitter.com/shshaw/status/1140637533539377153
+			 * Support is quite good actually
+			 * @link https://caniuse.com/background-clip-text
+			 */
+			@supports (background-clip: text) or (-webkit-background-clip: text) {
+				background: inherit;
+				-webkit-background-clip: text;
+				background-clip: text;
+				color: transparent;
+			}
+		}
+
+		&.column-single {
+			grid-auto-columns: 1fr;
+			grid-template-rows: 2ex repeat(var(--scale, 100), minmax(0, .25rem)) minmax(min-content, 2rem);
+
+			tbody th {
+				grid-row: -6 / -3;
+				grid-column: 1;
+				line-height: 1;
+			}
+
+			thead * {
+				grid-row: -2;
+			}
+
+			td {
+				--position: calc(var(--integer, 0) / var(--scale, 100) * 100%);
+				background: linear-gradient(to top,
+					functions.palette(success, dark),
+					functions.palette(dominant),
+					functions.palette(secondary),
+					functions.palette(accent),
+					functions.palette(alert)
+				) 0% list.slash(var(--position), 100%) var(--size),
+				var(--background) center / variables.$gutter;
+				background-blend-mode: hard-light;
+			}
+
+			[scope="col"] {
+				&::after {
+					background: functions.palette(default, secondary) var(--stripes);
+					background-blend-mode: exclusion;
+					bottom: #{variables.$gutter * 4};
+					content: "";
+					mix-blend-mode: multiply;
+					opacity: 0;
+					position: absolute;
+					transition: opacity .3s map.get(variables.$timing-functions, 'move');
+					top: variables.$gutter;
+					width: var(--width);
+					z-index: 0;
+				}
+
+				&:hover::after {
+					opacity: .5;
+				}
+
+				@each $number in 1, 2, 3, 4, 5, 6 {
+					&:nth-child(#{$number + 1})::after {
+						left: calc(1em + (var(--width) * #{$number}) + (var(--gap) * #{$number}));
+					}
+				}
+			}
+
+			@each $name, $pattern in variables.$patterns {
+				$i: list.index(variables.$patterns, ($name $pattern));
+
+				td:nth-of-type(#{$i}n + #{$i}) {
+					--background: var(--#{$name});
+				}
+			}
+
+			@media screen and (-ms-high-contrast: active) {
+				td {
+					/**
+					 * @note Custom color palette for WHCM
+					 * @note Inspired by Greg Whitworth's post
+					 * @link http://www.gwhitworth.com/blog/2017/04/how-to-use-ms-high-contrast
+					 */
+					background-image: linear-gradient(to top,
+						Window,
+						ButtonFace,
+						ButtonShadow,
+						ButtonText,
+						highlight
+					),
+					var(--background);
+				}
+			}
+		}
+
+		&.column-multiple {
+			grid-template-columns: minmax(min-content, 14ch) repeat(calc(var(--y) - 1), 1fr);
+			grid-template-rows: 2ex repeat(var(--scale, 100), minmax(0, .25rem)) repeat(2, minmax(min-content, 2rem));
+
+			span {
+				background-image: none;
+			}
+
+			tbody th {
+				grid-row: -10 / span 7;
+			}
+
+			thead tr * {
+				grid-row: -2;
+				grid-column: 1;
+
+				@each $number in 2, 3, 4, 5, 6 {
+					&:nth-of-type(#{$number}) {
+						grid-column: calc(#{($number * 2)} - var(--span)) / span var(--span);
+					}
+				}
+			}
+
+			thead tr + tr * {
+				font-weight: normal;
+				grid-row: -3;
+
+				@each $number in 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 {
+					&:nth-of-type(#{$number}) {
+						grid-column: #{$number};
+					}
+				}
+			}
+
+			tr:first-child [scope="col"] {
+				&:nth-child(even)::after {
+					background: functions.palette(default, secondary) var(--stripes);
+					background-blend-mode: exclusion;
+					bottom: #{variables.$gutter * 4};
+					content: "";
+					mix-blend-mode: multiply;
+					opacity: .25;
+					position: absolute;
+					transition: opacity .3s map.get(variables.$timing-functions, 'move');
+					top: calc(#{variables.$gutter} + 2ex);
+					width: calc((var(--width) * 2) + (var(--gap) / 2) + 1px);
+					z-index: 0;
+				}
+
+				@each $number in 1, 3, 5 {
+					&:nth-child(#{$number + 1})::after {
+						left: calc(14ch + 1em + (((var(--width) * 2) + (var(--gap) / 2) + 1px) * #{$number - 1}) + (var(--gap) * #{$number}));
+					}
+				}
+			}
+
+			td {
+				background-color: functions.palette(charts, pink);
+				background-image: var(--zig);
+				grid-row-end: -3;
+			}
+
+			/**
+			 * @note Oh boy, if we could use var(--span) in selector…
+			 */
+			td:nth-of-type(2n + 2) {
+				background: functions.palette(charts, blue) var(--triangles);
+			}
+
+			@media screen and (-ms-high-contrast: active) {
+				td {
+					background-color: Window;
+				}
+
+				td:nth-of-type(2n + 2) {
+					background-color: Highlight;
+				}
+			}
+		}
+	}
+}
