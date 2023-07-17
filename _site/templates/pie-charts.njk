@@ -69,7 +69,7 @@
 				<li>
 					And finally a series of <em>pseudo-boolean</em> variables, each worthing <var>0</var> or <var>1</var>
 					—&nbsp;according to and idea of <a href="https://www.kizu.ru/conditions-for-css-variables/">
-						<cite>Roman Komarov</cite> in <em>"Conditions for CSS variables"</em></a>&nbsp;—
+						<strong>Roman Komarov</strong> in <cite>Conditions for CSS variables</cite></a>&nbsp;—
 					depend on the value: <var>--lt-25</var>, <var>--gt-25</var>, <var>--lt-50</var>…
 					They allow to <strong>toggle the points</strong> from their original position
 					(<code>50% 50%</code>) to their calculated position, by adding or subtracting from the initial value;
@@ -87,7 +87,7 @@
 					<a href="https://caniuse.com/#search=mask-image">for WebKit based browsers</a>,
 					we use a CSS custom property to <strong>to prevent duplicate (long) values for those properties</strong>
 					—&nbsp;<a href="https://css-irl.info/7-uses-for-css-custom-properties/">trick
-						shared by <cite>Michelle Barker</cite> in "7 uses for CSS custom properties"</a>.
+						shared by <strong>Michelle Barker</strong> in <cite>7 uses for CSS custom properties</cite></a>.
 				</li>
 			</ul>
 		</li>
@@ -101,13 +101,13 @@
 				</li>
 				<li>
 					Once again we recycle <a href="https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab">
-						a <cite>Cassie Evans</cite>'s trick based on <code>counter-reset</code> and its default value
+						a <strong>Cassie Evans</strong>'s trick based on <code>counter-reset</code> and its default value
 						to <strong>convert</strong> our <var>--value</var> custom property into a string</a>.
 				</li>
 				<li>
 					However <code>counter-reset</code> requires an integer, and we may have a floating number.
 					We first need to make sure we're using an integer, so we rely on
-					<a href="https://css-tricks.com/animating-number-counters/#the-new-school-css-solution"><cite>Carter Li</cite>'s
+					<a href="https://css-tricks.com/animating-number-counters/#the-new-school-css-solution"><strong>Carter Li</strong>'s
 						ruse
 						to use <code>calc()</code> to wrap our value—&nbsp;and <code>@property</code> for Chromium-based
 						browsers</a>.
@@ -188,7 +188,7 @@
 				We can therefore <a href="https://en.wikipedia.org/wiki/Law_of_sines">use the sine law</a>
 				to measure each side, and thus obtain the position of the point on the circle.
 				Meaning we need to calculate the sine… Fortunately,
-				<a href="https://gist.github.com/stereokai/7666bfe93929b14c2dced148c79e0e97"><cite>Stereokai</cite> implemented
+				<a href="https://gist.github.com/stereokai/7666bfe93929b14c2dced148c79e0e97"><strong>Stereokai</strong> implemented
 					for us
 					the Taylor/Maclaurin polynomial representation in CSS</a> —&nbsp;which I implemented as a mixin:
 			</p>
@@ -577,7 +577,7 @@
 		On the <code>&lt;table&gt;</code> element, we add an <var>--offset</var> variable
 		that allows us to determine the size of the hole of the donut,
 		generated using <code>mask-image</code> and <code>radial-gradient()</code>.
-		<a href="https://codepen.io/thebabydino/pens/tags/?selected_tag=mask"><cite>Ana Tudor</cite> has made
+		<a href="https://codepen.io/thebabydino/pens/tags/?selected_tag=mask"><strong>Ana Tudor</strong> has made
 			many examples of using <code>mask-*</code> on CodePen</a>, have a look!
 	</p>
 
@@ -626,7 +626,7 @@
 		<h3>Conical gradient</h3>
 		<p>
 			The use of <code>conic-gradient()</code> is promising for this case.
-			You'll find examples made by <cite>Ana Tudor</cite> and <cite>Léa Verou</cite>
+			You'll find examples made by <strong>Ana Tudor</strong> and <strong>Léa Verou</strong>
 			—&nbsp;who actually wrote the specification, and designed
 			<a href="https://leaverou.github.io/conic-gradient/">a polyfill</a>.
 			However, <a href="https://caniuse.com/#search=conic-gradient">current support is limited to WebKit based

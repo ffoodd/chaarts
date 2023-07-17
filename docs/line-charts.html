@@ -101,7 +101,7 @@
 					Since <code>clip-path</code> still <a href="https://caniuse.com/#search=clip-path">requires
 						<code>-webkit-</code> vendor prefix for Safari</a>, we're using a custom property to prevent
 					<code>polygon()</code> duplication —&nbsp;<a href="https://css-irl.info/7-uses-for-css-custom-properties/">based
-						on a trick shared by <cite>Michelle Barker</cite> in "7 uses for CSS custom properties"</a>.
+						on a trick shared by <strong>Michelle Barker</strong> in <cite>7 uses for CSS custom properties</cite></a>.
 				</li>
 			</ul>
 		</li>
@@ -114,18 +114,18 @@
 				<li>
 					multiline display is based on <a
 						href="https://lea.verou.me/2012/02/flexible-multiline-definition-lists-with-2-lines-of-css/">a
-						<cite>Lea Verou</cite>'s trick using <code>white-space: pre;</code> and the
+						<strong>Lea Verou</strong>'s trick using <code>white-space: pre;</code> and the
 						<code>\A</code> character</a>;
 				</li>
 				<li>
 					the display of custom properties in a pseudo-element is not so trivial:
 					<code>content</code> only accepts strings, and our custom properties contains… number.
 					Once again we recycle <a href="https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab">
-						a <cite>Cassie Evans</cite>'s trick based on <code>counter-reset</code> and its default value
+						a <strong>Cassie Evans</strong>'s trick based on <code>counter-reset</code> and its default value
 						to <strong>convert</strong> our <var>--value</var> custom property into a string</a>.
 					However <code>counter-reset</code> requires an integer, and we may have a floating number.
 					We first need to make sure we're using an integer, so we rely on
-					<a href="https://css-tricks.com/animating-number-counters/#the-new-school-css-solution"><cite>Carter Li</cite>'s
+					<a href="https://css-tricks.com/animating-number-counters/#the-new-school-css-solution"><strong>Carter Li</strong>'s
 						ruse
 						to use <code>calc()</code> to wrap our value—&nbsp;and <code>@property</code> for Chromium-based
 						browsers</a>.
@@ -731,7 +731,7 @@
 		<h3>Note</h3>
 		<p>
 			To play more and familiarize yourself with <code>clip-path</code>,
-			<cite>Bennett Feely</cite> created
+			<strong>Bennett Feely</strong> created
 			<a href="https://bennettfeely.com/clippy/">clippy</a>.
 		</p>
 	</div>

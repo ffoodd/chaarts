@@ -74,17 +74,17 @@
 			each element <code>&lt;th&gt;</code> is moved outside the circle thus formed,
 			thanks to a technique borrowed from
 			<a href="https://stackoverflow.com/questions/12813573/position-icons-into-circle">
-				<cite>Ana Tudor</cite>, who explains it on StackOverflow</a>;
+				<strong>Ana Tudor</strong>, who explains it on StackOverflow</a>;
 		</li>
 		<li>
 			then —&nbsp;still on header cells&nbsp;— the value corresponding to each column
 			is displayed in a pseudo-element <code>::after</code> using
 			<a href="https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab">a
-				trick from <cite>Cassie Evans</cite>, using <code>counter-reset</code> and <code>counter()</code>
+				trick from <strong>Cassie Evans</strong>, using <code>counter-reset</code> and <code>counter()</code>
 				to display a numerical variable in the <code>content</code> property</a>.
 			However <code>counter-reset</code> only works with integers, and our value might be a number.
 			So we rely on <a href="https://css-tricks.com/animating-number-counters/#the-new-school-css-solution">
-				<cite>Carter Li</cite>'s ruse using <code>calc()</code> to convert numbers to integers—&nbsp;and
+				<strong>Carter Li</strong>'s ruse using <code>calc()</code> to convert numbers to integers—&nbsp;and
 				<code>@property</code> for Chromium-based browsers</a>. Boum!
 		</li>
 		<li>
@@ -98,7 +98,7 @@
 					then transformed to represent a portion of the circle according to
 					the number of elements —&nbsp;specified with <var>--items</var>&nbsp;— using
 					<a href="https://tympanus.net/codrops/2013/08/09/building-a-circular-navigation-with-css-transforms/">
-						a trick shared by <cite>Sara Soueidan</cite> on Codrops</a>,
+						a trick shared by <strong>Sara Soueidan</strong> on Codrops</a>,
 				</li>
 				<li>each one is decorated with a border at the bottom;</li>
 				<li>
