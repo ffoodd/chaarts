@@ -6,11 +6,6 @@
 @use "sseeeedd/src/scss/styles";
 @use "vendors/prism";
 
-// @tidi Move this to sseeeedd
-html {
-	box-sizing: border-box;
-}
-
 .mb-0 {
 	margin-bottom: 0 !important;
 }
@@ -21,4 +16,9 @@ html {
 
 .fly-out [rel]::before {
 	content: "\1F30D\A0";
+}
+
+// @todo Move this to sseeeedd (#202)
+details[open] > summary ~ * {
+	box-sizing: border-box;
 }
