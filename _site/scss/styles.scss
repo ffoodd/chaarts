@@ -6,6 +6,11 @@
 @use "sseeeedd/src/scss/styles";
 @use "vendors/prism";
 
+// @tidi Move this to sseeeedd
+html {
+	box-sizing: border-box;
+}
+
 .mb-0 {
 	margin-bottom: 0 !important;
 }
