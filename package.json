@@ -34,7 +34,7 @@
 		"postbuild": "postcss dist/chaarts.css -o dist/chaarts.min.css -u autoprefixer cssnano -m",
 		"prebuild:docs": "shx rm -rf docs/*",
 		"build:docs": "concurrently \"npm:build:docs:*\"",
-		"postbuild:docs": "shx cp -r _site/{favicon.ico,humans.txt} docs/ && shx cp -r dist/chaarts.min.{css,css.map} docs/css",
+		"postbuild:docs": "shx cp -r _site/{favicon.svg,humans.txt} docs/ && shx cp -r dist/chaarts.min.{css,css.map} docs/css",
 		"build:docs:html": "nunjucks *.njk -p _site/templates -o docs",
 		"prebuild:docs:css": "sass _site/scss/styles.scss:docs/css/styles.min.css --load-path=./node_modules --style compressed --quiet",
 		"build:docs:css": "postcss docs/css/styles.min.css -r -u autoprefixer cssnano --no-map",
@@ -51,34 +51,34 @@
 		"lint": "concurrently \"npm:lint:*\"",
 		"lint:scss": "stylelint src/**/*.scss",
 		"lint:docs:scss": "stylelint _site/scss/**/*.scss",
-		"lint:js": ""
+		"lint:js": "eslint _site/js/**/*.js"
 	},
 	"devDependencies": {
-		"autoprefixer": "^10.4.7",
-		"concurrently": "^8.2.0",
+		"autoprefixer": "^10.4.15",
+		"concurrently": "^8.2.1",
 		"cssnano": "^6.0.1",
-		"html-validate": "^8.0.5",
+		"html-validate": "^8.3.0",
 		"imagemin-cli": "^7.0.0",
 		"imagemin-mozjpeg": "^10.0.0",
 		"imagemin-pngcrush": "^7.0.0",
 		"imagemin-pngquant": "^9.0.2",
 		"imagemin-zopfli": "^7.0.0",
-		"nodemon": "^2.0.19",
+		"nodemon": "^3.0.1",
 		"nunjucks-cli": "^1.0.0",
 		"pa11y-ci": "^3.0.1",
-		"pa11y-ci-reporter-html": "^6.0.0",
-		"postcss": "^8.4.25",
+		"pa11y-ci-reporter-html": "^6.0.2",
+		"postcss": "^8.4.29",
 		"postcss-cli": "^10.0.0",
 		"purgecss": "^5.0.0",
-		"sass": "^1.63.6",
+		"sass": "^1.66.1",
 		"servor": "^4.0.2",
 		"shx": "^0.3.4",
-		"stylelint": "^15.10.1",
-		"stylelint-config-recommended-scss": "^12.0.0",
-		"stylelint-scss": "^5.0.1",
-		"terser": "^5.14.2"
+		"stylelint": "^15.10.3",
+		"stylelint-config-recommended-scss": "^13.0.0",
+		"stylelint-scss": "^5.1.0",
+		"terser": "^5.19.4"
 	},
 	"dependencies": {
-		"sseeeedd": "^0.2.1"
+		"sseeeedd": "^0.3.0"
 	}
 }
