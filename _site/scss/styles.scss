@@ -3,22 +3,8 @@
 /* ==================== */
 /* == Vendors
 /* ==================== */
-@use "sseeeedd/src/scss/styles";
-@use "vendors/prism";
-
-.mb-0 {
-	margin-bottom: 0 !important;
-}
-
-.pb-0 {
-	padding-bottom: 0 !important;
-}
+@use "sseeeedd/src/sseeeedd";
 
 .fly-out [rel]::before {
 	content: "\1F30D\A0";
-}
-
-// @todo Move this to sseeeedd (#202)
-details[open] > summary ~ * {
-	box-sizing: border-box;
 }
