@@ -45,7 +45,7 @@
 		"watch": "concurrently --kill-others \"npm:watch:*\"",
 		"watch:html": "nodemon --watch _site/templates --ext njk --exec \"npm run build:docs:html\"",
 		"watch:css": "nodemon --watch _site/scss --ext scss --exec \"npm run build:docs:css\"",
-		"watch:src": "nodemon --watch src/ --ext scss --exec \"npm run build\"",
+		"watch:src": "nodemon --watch src/ --ext scss --exec \"npm run build && shx cp -r dist/chaarts.min.{css,css.map} docs/css\"",
 		"watch:svg": "nodemon --watch _site/img --ext svg --exec \"npm run build:docs:svg\"",
 		"watch:js": "nodemon --watch _site/js --ext js --exec \"npm run build:docs:js\"",
 		"lint": "concurrently \"npm:lint:*\"",
@@ -57,7 +57,7 @@
 		"autoprefixer": "^10.4.15",
 		"concurrently": "^8.2.1",
 		"cssnano": "^6.0.1",
-		"html-validate": "^8.3.0",
+		"html-validate": "^8.4.0",
 		"imagemin-cli": "^7.0.0",
 		"imagemin-mozjpeg": "^10.0.0",
 		"imagemin-pngcrush": "^7.0.0",
@@ -79,6 +79,6 @@
 		"terser": "^5.19.4"
 	},
 	"dependencies": {
-		"sseeeedd": "^0.3.0"
+		"sseeeedd": "^0.3.2"
 	}
 }
