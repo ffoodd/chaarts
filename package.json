@@ -6,7 +6,11 @@
 		"type": "git",
 		"url": "git@github.com:ffoodd/chaarts.git"
 	},
-	"author": "Gaël Poupard",
+	"author": {
+		"name": "Gaël Poupard",
+		"url": "https://www.ffoodd.fr",
+		"email": "gael+npm@ffoodd.fr"
+	},
 	"license": "MIT",
 	"keywords": [
 		"charts",
@@ -57,6 +61,7 @@
 		"autoprefixer": "^10.4.15",
 		"concurrently": "^8.2.1",
 		"cssnano": "^6.0.1",
+		"eslint": "^8.49.0",
 		"html-validate": "^8.4.0",
 		"imagemin-cli": "^7.0.0",
 		"imagemin-mozjpeg": "^10.0.0",
