@@ -5,11 +5,11 @@
 	const switches = document.querySelectorAll('[role="switch"]');
 	switches.forEach(el => {
 		el.addEventListener('click', () => {
-			const checked = this.getAttribute('aria-checked') === 'true' || false;
-			this.setAttribute('aria-checked', !checked);
+			const checked = el.getAttribute('aria-checked') === 'true' || false;
+			el.setAttribute('aria-checked', !checked);
 
-			if (this.classList.contains('disable-css')) {
-				const chart = this.parentNode.nextElementSibling;
+			if (el.classList.contains('disable-css')) {
+				const chart = el.parentNode.nextElementSibling;
 				chart.classList.toggle('chaarts');
 			}
 		});
