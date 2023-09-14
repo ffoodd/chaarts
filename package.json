@@ -75,7 +75,7 @@
 		"postcss": "^8.4.29",
 		"postcss-cli": "^10.0.0",
 		"purgecss": "^5.0.0",
-		"sass": "^1.66.1",
+		"sass": "^1.67.0",
 		"servor": "^4.0.2",
 		"shx": "^0.3.4",
 		"stylelint": "^15.10.3",
@@ -84,6 +84,6 @@
 		"terser": "^5.19.4"
 	},
 	"dependencies": {
-		"sseeeedd": "^0.3.2"
+		"sseeeedd": "^0.3.3"
 	}
 }
