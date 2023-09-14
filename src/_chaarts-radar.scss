@@ -8,10 +8,6 @@
 /* == Radar Charts
 /* ==================== */
 
-.radar-container .fieldset {
-	display: flex !important;
-}
-
 .chaarts[class*="radar"] {
 	--radius: #{variables.$width * 0.2};
 	--unitless-radius: calc(1024 / 16 / 5);

@@ -1,4 +1,6 @@
 @use "sass:map";
+@use "sass:math";
+@use "sass:list";
 @use "abstracts/functions";
 @use "abstracts/variables";
 
@@ -19,13 +21,6 @@
  * @see http://dabblet.com/gist/08fddf3666c39ebc62ca
  * @author Gaël Poupard
 /* ==================== */
-
-@use "sass:math";
-@use "sass:list";
-
-.bar-container .fieldset {
-	display: flex !important;
-}
 
 .chaarts.bar {
 	caption {

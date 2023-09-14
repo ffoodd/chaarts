@@ -78,11 +78,6 @@ thead {
   overflow-y: hidden;
 }
 
-.table-container .fieldset {
-  display: none !important;
-  padding: 0 1rem;
-}
-
 [class*=chaarts] [role=presentation] {
   display: none;
 }
@@ -172,9 +167,6 @@ table:not(.chaarts) .sr-only {
    * @see http://dabblet.com/gist/08fddf3666c39ebc62ca
    * @author Gaël Poupard
   /* ==================== */
-  .bar-container .fieldset {
-    display: flex !important;
-  }
   .chaarts.bar caption {
     text-align: initial;
     text-indent: 13.5rem;
@@ -314,10 +306,6 @@ table:not(.chaarts) .sr-only {
   }
   .chaarts.bar.waterfall tr:nth-of-type(11) td {
     grid-column: var(--10, 2) / var(--value, 2);
-  }
-  .pie-container .fieldset {
-    display: flex !important;
-    margin-bottom: 0;
   }
   .chaarts.pie {
     --radius: 32em;
@@ -512,9 +500,6 @@ table:not(.chaarts) .sr-only {
   }
 }
 @media screen and (min-width: 30em) {
-  .line-container .fieldset {
-    display: flex !important;
-  }
   .chaarts.line {
     --offset: calc((100% / var(--x)) / 2);
     --height: calc(32em - 2rem);
@@ -915,9 +900,6 @@ table:not(.chaarts) .sr-only {
   }
 }
 @media screen and (min-width: 30em) {
-  .column-container .fieldset {
-    display: flex !important;
-  }
   .chaarts[class*=column] {
     --gap: 0.5rem;
     --size: calc(var(--scale, 100) * 100%);
@@ -1185,9 +1167,6 @@ table:not(.chaarts) .sr-only {
   }
 }
 @media screen and (min-width: 30em) {
-  .radar-container .fieldset {
-    display: flex !important;
-  }
   .chaarts[class*=radar] {
     --radius: 12.8em;
     --unitless-radius: calc(1024 / 16 / 5);

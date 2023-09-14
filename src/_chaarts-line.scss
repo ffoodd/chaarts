@@ -14,9 +14,6 @@
  * @see Bennett Feely's clippy to understand polygon() syntax
  * @link http://bennettfeely.com/clippy/
  */
-.line-container .fieldset {
-	display: flex !important;
-}
 
 .chaarts.line {
 	--offset: calc((100% / var(--x)) / 2);

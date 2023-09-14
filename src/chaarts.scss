@@ -46,7 +46,7 @@ table {
 th,
 td {
 	padding: math.div(variables.$gutter, 2) math.div(12rem, 16);
-	text-align: left;
+	text-align: start;
 }
 
 td {
@@ -87,11 +87,7 @@ thead {
 	max-width: 100%;
 	overflow-x: auto;
 	overflow-y: hidden;
-}
-
-.table-container .fieldset {
-	display: none !important;
-	padding: 0 variables.$gutter;
+	-webkit-overflow-scrolling: touch;
 }
 
 [class*="chaarts"] {
@@ -133,13 +129,12 @@ thead {
 }
 
 table:not(.chaarts) .sr-only {
-	clip: auto !important;
-	clip-path: none !important;
-	height: auto !important;
-	overflow: visible !important;
-	position: static !important;
-	width: auto !important;
-	white-space: normal !important;
+	clip: auto;
+	clip-path: none;
+	block-size: auto;
+	overflow: visible;
+	inline-size: auto;
+	white-space: normal;
 }
 
 @media screen and (min-width: variables.$breakpoint) {

@@ -1,4 +1,6 @@
 @use "sass:map";
+@use "sass:math";
+@use "sass:list";
 @use "abstracts/functions";
 @use "abstracts/variables";
 
@@ -9,13 +11,6 @@
  * @see https://css-tricks.com/css-charts-grid-custom-properties/
  * @author Miriam Suzanne
 /* ==================== */
-
-@use "sass:math";
-@use "sass:list";
-
-.column-container .fieldset {
-	display: flex !important;
-}
 
 .chaarts[class*="column"] {
 	--gap: #{variables.$gutter * 0.5};
