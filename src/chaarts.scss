@@ -140,20 +140,8 @@ table:not(.chaarts) .sr-only {
 @media screen and (min-width: variables.$breakpoint) {
 	.chaarts {
 		border-collapse: separate;
-		/**
-		 * @note Trying to improve paint & layout performances
-		 * @link https://developer.mozilla.org/fr/docs/Web/CSS/contain
-		 */
+		border-spacing: 0;
 		contain: content;
-
-		/*
-		 * @bugfix
-		 * @affected Chromium
-		 * @link https://bugs.chromium.org/p/chromium/issues/detail?id=939728
-		 */
-		&:not([class*="radar"]) {
-			border-spacing: 0;
-		}
 
 		th,
 		td {

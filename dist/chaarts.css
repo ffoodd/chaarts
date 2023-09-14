@@ -38,7 +38,7 @@ table > caption:first-child {
 th,
 td {
   padding: 0.5rem 0.75rem;
-  text-align: left;
+  text-align: start;
 }
 
 td {
@@ -76,6 +76,7 @@ thead {
   max-width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 [class*=chaarts] [role=presentation] {
@@ -115,31 +116,19 @@ thead {
 }
 
 table:not(.chaarts) .sr-only {
-  clip: auto !important;
-  clip-path: none !important;
-  height: auto !important;
-  overflow: visible !important;
-  position: static !important;
-  width: auto !important;
-  white-space: normal !important;
+  clip: auto;
+  clip-path: none;
+  block-size: auto;
+  overflow: visible;
+  inline-size: auto;
+  white-space: normal;
 }
 
 @media screen and (min-width: 30em) {
   .chaarts {
     border-collapse: separate;
-    /**
-     * @note Trying to improve paint & layout performances
-     * @link https://developer.mozilla.org/fr/docs/Web/CSS/contain
-     */
-    contain: content;
-    /*
-     * @bugfix
-     * @affected Chromium
-     * @link https://bugs.chromium.org/p/chromium/issues/detail?id=939728
-     */
-  }
-  .chaarts:not([class*=radar]) {
     border-spacing: 0;
+    contain: content;
   }
   .chaarts th,
   .chaarts td {
@@ -1014,22 +1003,22 @@ table:not(.chaarts) .sr-only {
     opacity: 0.5;
   }
   .chaarts[class*=column].column-single [scope=col]:nth-child(2)::after {
-    left: calc(1em + (var(--width) * 1) + (var(--gap) * 1));
+    left: calc(1em + var(--width) * 1 + var(--gap) * 1);
   }
   .chaarts[class*=column].column-single [scope=col]:nth-child(3)::after {
-    left: calc(1em + (var(--width) * 2) + (var(--gap) * 2));
+    left: calc(1em + var(--width) * 2 + var(--gap) * 2);
   }
   .chaarts[class*=column].column-single [scope=col]:nth-child(4)::after {
-    left: calc(1em + (var(--width) * 3) + (var(--gap) * 3));
+    left: calc(1em + var(--width) * 3 + var(--gap) * 3);
   }
   .chaarts[class*=column].column-single [scope=col]:nth-child(5)::after {
-    left: calc(1em + (var(--width) * 4) + (var(--gap) * 4));
+    left: calc(1em + var(--width) * 4 + var(--gap) * 4);
   }
   .chaarts[class*=column].column-single [scope=col]:nth-child(6)::after {
-    left: calc(1em + (var(--width) * 5) + (var(--gap) * 5));
+    left: calc(1em + var(--width) * 5 + var(--gap) * 5);
   }
   .chaarts[class*=column].column-single [scope=col]:nth-child(7)::after {
-    left: calc(1em + (var(--width) * 6) + (var(--gap) * 6));
+    left: calc(1em + var(--width) * 6 + var(--gap) * 6);
   }
   .chaarts[class*=column].column-single td:nth-of-type(1n + 1) {
     --background: var(--checkers);
@@ -1141,13 +1130,13 @@ table:not(.chaarts) .sr-only {
     z-index: 0;
   }
   .chaarts[class*=column].column-multiple tr:first-child [scope=col]:nth-child(2)::after {
-    left: calc(14ch + 1em + (((var(--width) * 2) + (var(--gap) / 2) + 1px) * 0) + (var(--gap) * 1));
+    left: calc(14ch + 1em + (var(--width) * 2 + var(--gap) / 2 + 1px) * 0 + var(--gap) * 1);
   }
   .chaarts[class*=column].column-multiple tr:first-child [scope=col]:nth-child(4)::after {
-    left: calc(14ch + 1em + (((var(--width) * 2) + (var(--gap) / 2) + 1px) * 2) + (var(--gap) * 3));
+    left: calc(14ch + 1em + (var(--width) * 2 + var(--gap) / 2 + 1px) * 2 + var(--gap) * 3);
   }
   .chaarts[class*=column].column-multiple tr:first-child [scope=col]:nth-child(6)::after {
-    left: calc(14ch + 1em + (((var(--width) * 2) + (var(--gap) / 2) + 1px) * 4) + (var(--gap) * 5));
+    left: calc(14ch + 1em + (var(--width) * 2 + var(--gap) / 2 + 1px) * 4 + var(--gap) * 5);
   }
   .chaarts[class*=column].column-multiple td {
     background-color: #e11a81;
@@ -1374,7 +1363,7 @@ table:not(.chaarts) .sr-only {
     width: 1rem;
   }
   .chaarts.radar-multiple tr:nth-child(2) [scope=row] {
-    left: calc(1rem + (100% / var(--areas)) * 1);
+    left: calc(1rem + 100% / var(--areas) * 1);
   }
   .chaarts.radar-multiple td {
     align-items: flex-end;

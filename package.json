@@ -21,8 +21,8 @@
 		"CSS",
 		"progressive enhancement"
 	],
-	"style": "chaarts.min.css",
-	"sass": "sass/chaarts.scss",
+	"style": "dist/chaarts.min.css",
+	"sass": "src/chaarts.scss",
 	"ignore": [
 		"node_modules"
 	],
@@ -40,8 +40,8 @@
 		"build:docs": "concurrently \"npm:build:docs:*\"",
 		"postbuild:docs": "shx cp -r _site/{favicon.svg,humans.txt} docs/ && shx cp -r dist/chaarts.min.{css,css.map} docs/css",
 		"build:docs:html": "nunjucks *.njk -p _site/templates -o docs",
-		"prebuild:docs:css": "sass _site/scss/styles.scss:docs/css/styles.min.css --load-path=./node_modules --style compressed --quiet",
-		"build:docs:css": "postcss docs/css/styles.min.css -r -u autoprefixer cssnano --no-map",
+		"prebuild:docs:css": "sass _site/scss/:docs/css/ --load-path=./node_modules --style expanded --quiet --source-map",
+		"build:docs:css": "postcss docs/css/{styles,print}.css --dir docs/css/ --ext .min.css -u autoprefixer cssnano -m",
 		"postbuild:docs:css": "purgecss --config purgecss.config.js",
 		"build:docs:img": "imagemin _site/img/*.{png,jpg} --out-dir=docs/img --plugin=pngquant --plugin=mozjpeg --plugin=pngcrush --plugin=zopfli",
 		"prebuild:docs:js": "shx mkdir docs/js",
@@ -84,6 +84,6 @@
 		"terser": "^5.19.4"
 	},
 	"dependencies": {
-		"sseeeedd": "^0.3.3"
+		"sseeeedd": "^0.3.4"
 	}
 }

@@ -1,10 +1,12 @@
-@charset "UTF-8";
+@use "sass:meta";
 
 /* ==================== */
 /* == Vendors
 /* ==================== */
-@use "sseeeedd/src/sseeeedd";
+@layer sseeeedd {
+	@include meta.load-css("sseeeedd/src/sseeeedd");
 
-.fly-out [rel]::before {
-	content: "\1F30D\A0";
+	.fly-out [rel]::before {
+		content: "\1F30D\A0";
+	}
 }
