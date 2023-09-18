@@ -1,6 +1,5 @@
 @use "sass:list";
 @use "sass:map";
-@use "abstracts/functions";
 @use "abstracts/mixins";
 @use "abstracts/variables";
 
@@ -131,8 +130,8 @@
 		--axis: calc(var(--position) - .25turn + var(--value) * .005turn);
 		--away: calc(var(--radius) / 2 - #{variables.$gutter});
 		--integer: calc(var(--value)); // 2
-		background-color: functions.palette(charts, gray);
-		color: functions.palette(default, contrast);
+		background-color: var(--chaarts-gray);
+		color: var(--contrast);
 		content: var(--term) "\A0: " counter(value) "\A0%"; // 1
 		counter-reset: value var(--integer); // 1
 		opacity: 0;

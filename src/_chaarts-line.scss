@@ -1,6 +1,5 @@
 @use "sass:list";
 @use "sass:map";
-@use "abstracts/functions";
 @use "abstracts/variables";
 
 /* ==================== */
@@ -52,7 +51,7 @@
 
 	[style]::before {
 		bottom: var(--bottom);
-		background: linear-gradient(to top, functions.palette(charts, blue), functions.palette(charts, red) 75%);
+		background: linear-gradient(to top, var(--chaarts-blue), var(--chaarts-red) 75%);
 		--polygon: polygon(
 				0% 100%,
 				calc((100% / var(--x) * 1)) 100%,
@@ -83,7 +82,7 @@
 
 	th,
 	td {
-		background: functions.palette(default, contrast);
+		background: var(--contrast);
 		font-weight: bold;
 		text-align: center;
 		width: calc(100% / var(--x));
@@ -91,7 +90,7 @@
 
 	[scope="col"] {
 		&:not(:first-child)::after {
-			background: functions.palette(default, contrast) var(--stripes);
+			background: var(--contrast) var(--stripes);
 			background-blend-mode: exclusion;
 			bottom: variables.$gutter * 4;
 			content: "";
@@ -162,9 +161,9 @@
 					0% var(--arrow)
 			);
 			--integer: calc(var(--value)); // 3
-			background-color: functions.palette(charts, gray);
+			background-color: var(--chaarts-gray);
 			clip-path: var(--polygon);
-			color: functions.palette(default, contrast);
+			color: var(--contrast);
 			content: var(--term) " " var(--year) "\A " counter(value) "\A0" var(--unit); // 1
 			counter-reset: value var(--integer); // 2, 3
 			opacity: 0;
@@ -253,7 +252,7 @@
 				--size: #{variables.$gutter};
 				--top: calc(var(--height) - (var(--value) / var(--y) * var(--height)));
 				background: var(--color, currentColor) var(--background);
-				border: 2px solid functions.palette(default, contrast);
+				border: 2px solid var(--contrast);
 				border-radius: 50%;
 				box-shadow: 0 0 #{variables.$gutter * 0.25} rgba(0, 0, 0, .5);
 				content: "";

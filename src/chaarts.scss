@@ -3,7 +3,6 @@
 /* ==================== */
 @use "sass:math";
 @use "sass:meta";
-@use "abstracts/functions";
 @use "abstracts/variables";
 @use "abstracts/mixins";
 
@@ -55,11 +54,11 @@ td {
 }
 
 tbody {
-	border: 1px solid functions.palette(default);
+	border: 1px solid #666;
 }
 
 thead {
-	border: 1px solid functions.palette(default, dark);
+	border: 1px solid #000;
 }
 
 /* ==================== */
@@ -79,7 +78,7 @@ thead {
 							radial-gradient(farthest-side at 0% 50%, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)),
 							radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)) 0 100%;
 	background-repeat: no-repeat;
-	background-color: functions.palette(default, contrast);
+	background-color: var(--contrast);
 	background-size: 2.5rem 100%, 2.5rem 100%, 1rem 100%, 1rem 100%;
 	background-position: 0 0, 100%, 0 0, 100%;
 	background-attachment: local, local, scroll, scroll;
@@ -115,6 +114,21 @@ thead {
 		font-style: normal;
 		padding: variables.$gutter 0;
 	}
+
+	// ====================
+	// == Colors
+	// ====================
+	--base: dimgray;
+	--dark: black;
+	--secondary: whitesmoke;
+	--contrast: white;
+	--chaarts-purple: #639;
+	--chaarts-pink: #e11a81;
+	--chaarts-blue: #0172f0;
+	--chaarts-yellow: #fdc02f;
+	--chaarts-green: #39ca74;
+	--chaarts-red: #ff2d40;
+	--chaarts-gray: #585462;
 
 	// ====================
 	// == Patterns
