@@ -55,11 +55,11 @@
 		--size: calc(var(--scale, 100) * 100%);
 		--position: calc(var(--value, 0) / var(--scale, 100) * 100%);
 		background: linear-gradient(to right,
-			functions.palette(success, dark),
-			functions.palette(dominant),
-			functions.palette(secondary),
-			functions.palette(accent),
-			functions.palette(alert)
+			functions.palette(charts, green),
+			functions.palette(charts, gray),
+			functions.palette(charts, blue),
+			functions.palette(charts, purple),
+			functions.palette(charts, red)
 		) var(--position) list.slash(0%, var(--size)) 100%,
 		var(--background) center / contain;
 		background-blend-mode: hard-light;

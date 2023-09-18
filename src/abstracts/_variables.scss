@@ -4,51 +4,14 @@
 // == Colors
 // ====================
 $colors: (
-	dominant: (
-		base: #444,
-		light: mediumblue,
-		dark: black,
-		contrast: white
-	),
-	secondary: (
-		base: mediumblue,
-		light: deepskyblue,
-		dark: DarkBlue,
-		contrast: white
-	),
-	accent: (
-		base: rebeccapurple,
-		light: blueviolet,
-		dark: indigo,
-		contrast: white
-	),
-	alert: (
-		base: crimson,
-		light: firebrick,
-		dark: #911,
-		contrast: white
-	),
-	success: (
-		base: springgreen,
-		light: palegreen,
-		dark: #01ac49,
-		contrast: #444
-	),
-	muted: (
-		base: gray,
-		light: darkgray,
-		dark: #333,
-		contrast: black
-	),
 	default: (
 		base: dimgray,
-		light: lightgray,
-		dark: darkgrey,
+		dark: black,
 		secondary: whitesmoke,
 		contrast: white
 	),
 	charts: (
-		purple: #734bf9,
+		purple: #639,
 		pink: #e11a81,
 		blue: #0172f0,
 		yellow: #fdc02f,

@@ -91,11 +91,11 @@
 		td {
 			--position: calc(var(--integer, 0) / var(--scale, 100) * 100%);
 			background: linear-gradient(to top,
-				functions.palette(success, dark),
-				functions.palette(dominant),
-				functions.palette(secondary),
-				functions.palette(accent),
-				functions.palette(alert)
+				functions.palette(charts, green),
+				functions.palette(charts, gray),
+				functions.palette(charts, blue),
+				functions.palette(charts, purple),
+				functions.palette(charts, red)
 			) 0% list.slash(var(--position), 100%) var(--size),
 			var(--background) center / variables.$gutter;
 			background-blend-mode: hard-light;

@@ -190,7 +190,7 @@ table:not(.chaarts) .sr-only {
   .chaarts.bar td {
     --size: calc(var(--scale, 100) * 100%);
     --position: calc(var(--value, 0) / var(--scale, 100) * 100%);
-    background: linear-gradient(to right, #01ac49, #444, mediumblue, rebeccapurple, crimson) var(--position) 0% / var(--size) 100%, var(--background) center/contain;
+    background: linear-gradient(to right, #39ca74, #585462, #0172f0, #639, #ff2d40) var(--position) 0% / var(--size) 100%, var(--background) center/contain;
     background-blend-mode: hard-light;
     grid-column: 2 / var(--value, 0);
     margin: 0.5rem 0 0;
@@ -427,7 +427,7 @@ table:not(.chaarts) .sr-only {
     --axis: calc(var(--position) - .25turn + var(--value) * .005turn);
     --away: calc(var(--radius) / 2 - 1rem);
     --integer: calc(var(--value));
-    background-color: #444;
+    background-color: #585462;
     color: white;
     content: var(--term) " : " counter(value) " %";
     counter-reset: value var(--integer);
@@ -514,7 +514,7 @@ table:not(.chaarts) .sr-only {
   }
   .chaarts.line [style]::before {
     bottom: var(--bottom);
-    background: linear-gradient(to top, deepskyblue, crimson 75%);
+    background: linear-gradient(to top, #0172f0, #ff2d40 75%);
     --polygon: polygon(
     		0% 100%,
     		calc((100% / var(--x) * 1)) 100%,
@@ -647,7 +647,7 @@ table:not(.chaarts) .sr-only {
     		0% var(--arrow)
     );
     --integer: calc(var(--value));
-    background-color: #444;
+    background-color: #585462;
     clip-path: var(--polygon);
     color: white;
     content: var(--term) " " var(--year) "\a" counter(value) " " var(--unit);
@@ -979,7 +979,7 @@ table:not(.chaarts) .sr-only {
   }
   .chaarts[class*=column].column-single td {
     --position: calc(var(--integer, 0) / var(--scale, 100) * 100%);
-    background: linear-gradient(to top, #01ac49, #444, mediumblue, rebeccapurple, crimson) 0% var(--position) / 100% var(--size), var(--background) center/1rem;
+    background: linear-gradient(to top, #39ca74, #585462, #0172f0, #639, #ff2d40) 0% var(--position) / 100% var(--size), var(--background) center/1rem;
     background-blend-mode: hard-light;
   }
   .chaarts[class*=column].column-single [scope=col]::after {
@@ -1231,7 +1231,7 @@ table:not(.chaarts) .sr-only {
   }
   .chaarts[class*=radar] td {
     --skew: calc(90deg - var(--part));
-    border-bottom: 1px solid blueviolet;
+    border-bottom: 1px solid #639;
     height: 50%;
     left: 0;
     margin: 0;
@@ -1288,15 +1288,15 @@ table:not(.chaarts) .sr-only {
     		calc(100% - (var(--point) * 100% / var(--scale))) 100%,
     		100% 100%
     );
-    background: linear-gradient(to top left, blueviolet 10%, DarkBlue 75%);
+    background: linear-gradient(to top left, #639 10%, #0172f0 75%);
     clip-path: var(--polygon);
-    filter: drop-shadow(0 0 1rem indigo);
+    filter: drop-shadow(0 0 1rem #639);
     height: 100%;
     position: absolute;
     width: 100%;
   }
   .chaarts.radar [scope=col]::after {
-    color: rebeccapurple;
+    color: #639;
     display: block;
     font-size: small;
     font-weight: 400;
