@@ -93,7 +93,7 @@
 		height: var(--radius);
 		--mask: radial-gradient(
 				circle at center,
-				#fff 0 calc(var(--radius) / 2),
+				var(--background-lighter) 0 calc(var(--radius) / 2),
 				transparent 0
 		);
 		mask-image: var(--mask);
@@ -178,7 +178,7 @@
 	--mask: radial-gradient(
 			circle at 50% calc(50% - #{variables.$gutter  * 0.25}),
 			transparent 0 var(--offset),
-			#fff calc(var(--offset) + 1px) 100%
+			var(--background-lighter) calc(var(--offset) + 1px) 100%
 	);
 	mask-image: var(--mask);
 
