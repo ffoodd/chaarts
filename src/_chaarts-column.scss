@@ -1,7 +1,6 @@
 @use "sass:map";
 @use "sass:math";
 @use "sass:list";
-@use "abstracts/functions";
 @use "abstracts/variables";
 
 /* ==================== */
@@ -91,11 +90,11 @@
 		td {
 			--position: calc(var(--integer, 0) / var(--scale, 100) * 100%);
 			background: linear-gradient(to top,
-				functions.palette(charts, green),
-				functions.palette(charts, gray),
-				functions.palette(charts, blue),
-				functions.palette(charts, purple),
-				functions.palette(charts, red)
+				var(--chaarts-green),
+				var(--chaarts-gray),
+				var(--chaarts-blue),
+				var(--chaarts-purple),
+				var(--chaarts-red)
 			) 0% list.slash(var(--position), 100%) var(--size),
 			var(--background) center / variables.$gutter;
 			background-blend-mode: hard-light;
@@ -103,7 +102,7 @@
 
 		[scope="col"] {
 			&::after {
-				background: functions.palette(default, secondary) var(--stripes);
+				background: var(--secondary) var(--stripes);
 				background-blend-mode: exclusion;
 				bottom: #{variables.$gutter * 4};
 				content: "";
@@ -190,7 +189,7 @@
 
 		tr:first-child [scope="col"] {
 			&:nth-child(even)::after {
-				background: functions.palette(default, secondary) var(--stripes);
+				background: var(--secondary) var(--stripes);
 				background-blend-mode: exclusion;
 				bottom: #{variables.$gutter * 4};
 				content: "";
@@ -211,7 +210,7 @@
 		}
 
 		td {
-			background-color: functions.palette(charts, pink);
+			background-color: var(--chaarts-pink);
 			background-image: var(--zig);
 			grid-row-end: -3;
 		}
@@ -220,7 +219,7 @@
 		 * @note Oh boy, if we could use var(--span) in selector…
 		 */
 		td:nth-of-type(2n + 2) {
-			background: functions.palette(charts, blue) var(--triangles);
+			background: var(--chaarts-blue) var(--triangles);
 		}
 
 		@media screen and (-ms-high-contrast: active) {

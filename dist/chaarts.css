@@ -47,11 +47,11 @@ td {
 }
 
 tbody {
-  border: 1px solid dimgray;
+  border: 1px solid #666;
 }
 
 thead {
-  border: 1px solid black;
+  border: 1px solid #000;
 }
 
 /* ==================== */
@@ -68,7 +68,7 @@ thead {
 .table-container {
   background: linear-gradient(to right, rgb(255, 255, 255) 30%, rgba(255, 255, 255, 0)), linear-gradient(to right, rgba(255, 255, 255, 0), rgb(255, 255, 255) 70%) 0 100%, radial-gradient(farthest-side at 0% 50%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)), radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)) 0 100%;
   background-repeat: no-repeat;
-  background-color: white;
+  background-color: var(--contrast);
   background-size: 2.5rem 100%, 2.5rem 100%, 1rem 100%, 1rem 100%;
   background-position: 0 0, 100%, 0 0, 100%;
   background-attachment: local, local, scroll, scroll;
@@ -95,6 +95,17 @@ thead {
   margin: 1.5em auto;
   overflow: hidden;
   padding: 1em;
+  --base: dimgray;
+  --dark: black;
+  --secondary: whitesmoke;
+  --contrast: white;
+  --chaarts-purple: #639;
+  --chaarts-pink: #e11a81;
+  --chaarts-blue: #0172f0;
+  --chaarts-yellow: #fdc02f;
+  --chaarts-green: #39ca74;
+  --chaarts-red: #ff2d40;
+  --chaarts-gray: #585462;
   --checkers: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cg fill='%23ffffff99'%3E%3Cpath fill-rule='evenodd' d='M0 0h4v4H0V0zm4 4h4v4H4V4z'/%3E%3C/g%3E%3C/svg%3E");
   --hexagons: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='24' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffffff99' fill-rule='nonzero'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   --triangles: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='16' viewBox='0 0 36 72'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffffff99'%3E%3Cpath d='M2 6h12L8 18 2 6zm18 36h12l-6 12-6-12z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
@@ -190,7 +201,7 @@ table:not(.chaarts) .sr-only {
   .chaarts.bar td {
     --size: calc(var(--scale, 100) * 100%);
     --position: calc(var(--value, 0) / var(--scale, 100) * 100%);
-    background: linear-gradient(to right, #39ca74, #585462, #0172f0, #639, #ff2d40) var(--position) 0% / var(--size) 100%, var(--background) center/contain;
+    background: linear-gradient(to right, var(--chaarts-green), var(--chaarts-gray), var(--chaarts-blue), var(--chaarts-purple), var(--chaarts-red)) var(--position) 0% / var(--size) 100%, var(--background) center/contain;
     background-blend-mode: hard-light;
     grid-column: 2 / var(--value, 0);
     margin: 0.5rem 0 0;
@@ -427,8 +438,8 @@ table:not(.chaarts) .sr-only {
     --axis: calc(var(--position) - .25turn + var(--value) * .005turn);
     --away: calc(var(--radius) / 2 - 1rem);
     --integer: calc(var(--value));
-    background-color: #585462;
-    color: white;
+    background-color: var(--chaarts-gray);
+    color: var(--contrast);
     content: var(--term) " : " counter(value) " %";
     counter-reset: value var(--integer);
     opacity: 0;
@@ -514,7 +525,7 @@ table:not(.chaarts) .sr-only {
   }
   .chaarts.line [style]::before {
     bottom: var(--bottom);
-    background: linear-gradient(to top, #0172f0, #ff2d40 75%);
+    background: linear-gradient(to top, var(--chaarts-blue), var(--chaarts-red) 75%);
     --polygon: polygon(
     		0% 100%,
     		calc((100% / var(--x) * 1)) 100%,
@@ -544,13 +555,13 @@ table:not(.chaarts) .sr-only {
   }
   .chaarts.line th,
   .chaarts.line td {
-    background: white;
+    background: var(--contrast);
     font-weight: bold;
     text-align: center;
     width: calc(100% / var(--x));
   }
   .chaarts.line [scope=col]:not(:first-child)::after {
-    background: white var(--stripes);
+    background: var(--contrast) var(--stripes);
     background-blend-mode: exclusion;
     bottom: 4rem;
     content: "";
@@ -647,9 +658,9 @@ table:not(.chaarts) .sr-only {
     		0% var(--arrow)
     );
     --integer: calc(var(--value));
-    background-color: #585462;
+    background-color: var(--chaarts-gray);
     clip-path: var(--polygon);
-    color: white;
+    color: var(--contrast);
     content: var(--term) " " var(--year) "\a" counter(value) " " var(--unit);
     counter-reset: value var(--integer);
     opacity: 0;
@@ -778,7 +789,7 @@ table:not(.chaarts) .sr-only {
     --size: 1rem;
     --top: calc(var(--height) - (var(--value) / var(--y) * var(--height)));
     background: var(--color, currentColor) var(--background);
-    border: 2px solid white;
+    border: 2px solid var(--contrast);
     border-radius: 50%;
     box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5);
     content: "";
@@ -979,11 +990,11 @@ table:not(.chaarts) .sr-only {
   }
   .chaarts[class*=column].column-single td {
     --position: calc(var(--integer, 0) / var(--scale, 100) * 100%);
-    background: linear-gradient(to top, #39ca74, #585462, #0172f0, #639, #ff2d40) 0% var(--position) / 100% var(--size), var(--background) center/1rem;
+    background: linear-gradient(to top, var(--chaarts-green), var(--chaarts-gray), var(--chaarts-blue), var(--chaarts-purple), var(--chaarts-red)) 0% var(--position) / 100% var(--size), var(--background) center/1rem;
     background-blend-mode: hard-light;
   }
   .chaarts[class*=column].column-single [scope=col]::after {
-    background: whitesmoke var(--stripes);
+    background: var(--secondary) var(--stripes);
     background-blend-mode: exclusion;
     bottom: 4rem;
     content: "";
@@ -1113,7 +1124,7 @@ table:not(.chaarts) .sr-only {
     grid-column: 11;
   }
   .chaarts[class*=column].column-multiple tr:first-child [scope=col]:nth-child(even)::after {
-    background: whitesmoke var(--stripes);
+    background: var(--secondary) var(--stripes);
     background-blend-mode: exclusion;
     bottom: 4rem;
     content: "";
@@ -1135,12 +1146,12 @@ table:not(.chaarts) .sr-only {
     left: calc(14ch + 1em + (var(--width) * 2 + var(--gap) / 2 + 1px) * 4 + var(--gap) * 5);
   }
   .chaarts[class*=column].column-multiple td {
-    background-color: #e11a81;
+    background-color: var(--chaarts-pink);
     background-image: var(--zig);
     grid-row-end: -3;
   }
   .chaarts[class*=column].column-multiple td:nth-of-type(2n + 2) {
-    background: #0172f0 var(--triangles);
+    background: var(--chaarts-blue) var(--triangles);
   }
 }
 @media screen and (min-width: 30em) and (-ms-high-contrast: active) {
@@ -1231,7 +1242,7 @@ table:not(.chaarts) .sr-only {
   }
   .chaarts[class*=radar] td {
     --skew: calc(90deg - var(--part));
-    border-bottom: 1px solid #639;
+    border-bottom: 1px solid var(--chaarts-purple);
     height: 50%;
     left: 0;
     margin: 0;
@@ -1288,15 +1299,15 @@ table:not(.chaarts) .sr-only {
     		calc(100% - (var(--point) * 100% / var(--scale))) 100%,
     		100% 100%
     );
-    background: linear-gradient(to top left, #639 10%, #0172f0 75%);
+    background: linear-gradient(to top left, var(--chaarts-purple) 10%, var(--chaarts-blue) 75%);
     clip-path: var(--polygon);
-    filter: drop-shadow(0 0 1rem #639);
+    filter: drop-shadow(0 0 1rem var(--chaarts-purple));
     height: 100%;
     position: absolute;
     width: 100%;
   }
   .chaarts.radar [scope=col]::after {
-    color: #639;
+    color: var(--chaarts-purple);
     display: block;
     font-size: small;
     font-weight: 400;

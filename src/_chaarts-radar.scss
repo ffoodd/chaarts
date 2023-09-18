@@ -1,6 +1,5 @@
 @use "sass:map";
 @use "sass:math";
-@use "abstracts/functions";
 @use "abstracts/mixins";
 @use "abstracts/variables";
 
@@ -83,7 +82,7 @@
 	 */
 	td {
 		--skew: calc(90deg - var(--part));
-		border-bottom: 1px solid functions.palette(charts, purple);
+		border-bottom: 1px solid var(--chaarts-purple);
 		height: 50%;
 		left: 0;
 		margin: 0;
@@ -123,11 +122,11 @@
 		);
 		background: linear-gradient(
 				to top left,
-				functions.palette(charts, purple) 10%,
-				functions.palette(charts, blue) 75%
+				var(--chaarts-purple) 10%,
+				var(--chaarts-blue) 75%
 		);
 		clip-path: var(--polygon);
-		filter: drop-shadow(0 0 variables.$gutter functions.palette(charts, purple));
+		filter: drop-shadow(0 0 variables.$gutter var(--chaarts-purple));
 		height: 100%;
 		position: absolute;
 		width: 100%;
@@ -147,7 +146,7 @@
  */
 .chaarts.radar [scope="col"] {
 	&::after {
-		color: functions.palette(charts, purple);
+		color: var(--chaarts-purple);
 		display: block;
 		font-size: small;
 		font-weight: 400;
