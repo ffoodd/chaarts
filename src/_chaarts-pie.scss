@@ -20,7 +20,7 @@
 
 	tr {
 		display: table-cell;
-		transition: opacity .3s map.get(variables.$timing-functions, 'move');
+		transition: opacity .3s var(--move);
 	}
 
 	[scope="row"] {
@@ -99,7 +99,7 @@
 		);
 		mask-image: var(--mask);
 		transform: translate3d(-50%, -50%, 0) rotate(var(--position)) scale(var(--zoom));
-		transition: transform .2s map.get(variables.$timing-functions, 'move');
+		transition: transform .2s var(--move);
 		width: var(--radius);
 	}
 
@@ -107,11 +107,11 @@
 		--zoom: .8;
 	}
 
-	@each $name, $pattern in variables.$patterns {
-		$i: list.index(variables.$patterns, ($name $pattern));
+	@each $pattern in variables.$patterns {
+		$i: list.index(variables.$patterns, $pattern);
 
 		tr:nth-child(#{$i}n + #{$i}) {
-			--background: var(--#{$name}); // 1
+			--background: var(--#{$pattern});
 		}
 	}
 
@@ -140,8 +140,8 @@
 		pointer-events: none;
 		transform-origin: 50% calc(100% + 10px);
 		transform: translate3d(-50%, -50%, 0) rotate(var(--axis)) translate(var(--away)) rotate(calc(var(--axis) * -1)) perspective(1000px) rotate3d(1, 0, 0, 45deg);
-		transition: opacity .2s map.get(variables.$timing-functions, 'enter'),
-		transform .2s map.get(variables.$timing-functions, 'enter');
+		transition: opacity .2s var(--enter),
+		transform .2s var(--enter);
 	}
 
 	tbody:hover tr {
@@ -154,8 +154,8 @@
 		&:hover td::after {
 			opacity: 1;
 			transform: translate3d(-50%, -50%, 0) rotate(var(--axis)) translate(var(--away)) rotate(calc(var(--axis) * -1)) perspective(1000px) rotate3d(1, 0, 0, 0deg);
-			transition: opacity .2s map.get(variables.$timing-functions, 'exit'),
-			transform .2s map.get(variables.$timing-functions, 'exit');
+			transition: opacity .2s var(--exit),
+			transform .2s var(--exit);
 		}
 	}
 }

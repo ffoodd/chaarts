@@ -32,14 +32,14 @@
 		display: grid;
 		grid-auto-rows: 1fr;
 		grid-row-gap: variables.$gutter * 0.5;
-		grid-template-columns: minmax(min-content, math.div(200, 16) * 1em) repeat(var(--scale, 100), minmax(0, 1fr)) 10ch;
-		transition: opacity .2s map.get(variables.$timing-functions, 'move');
+		grid-template-columns: minmax(min-content, math.div(200em, 16)) repeat(var(--scale, 100), minmax(0, 1fr)) 10ch;
+		transition: opacity .2s var(--move);
 
-		@each $name, $pattern in variables.$patterns {
-			$i: list.index(variables.$patterns, ($name $pattern));
+		@each $pattern in variables.$patterns {
+			$i: list.index(variables.$patterns, $pattern);
 
 			&:nth-child(#{$i}n + #{$i}) {
-				--background: var(--#{$name}); // 1
+				--background: var(--#{$pattern});
 			}
 		}
 	}

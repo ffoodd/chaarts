@@ -235,7 +235,7 @@
 	@media (hover: hover) {
 		td {
 			opacity: .25;
-			transition: opacity .2s map.get(variables.$timing-functions, 'move');
+			transition: opacity .2s var(--move);
 
 			&::after {
 				opacity: 0;

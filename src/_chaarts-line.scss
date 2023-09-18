@@ -21,8 +21,8 @@
 	--bottom: calc(100% - var(--height));
 	padding: var(--height) 0 variables.$gutter;
 	position: relative;
-	transition: background .3s map.get(variables.$timing-functions, 'move'),
-	color .3s map.get(variables.$timing-functions, 'move');
+	transition: background .3s var(--move),
+	color .3s var(--move);
 
 	&::after {
 		--scale: calc((100% - (var(--y) * 1px)) / var(--y));
@@ -100,7 +100,7 @@
 			mix-blend-mode: soft-light;
 			opacity: 0;
 			position: absolute;
-			transition: opacity .3s map.get(variables.$timing-functions, 'move');
+			transition: opacity .3s var(--move);
 			width: inherit;
 			z-index: 3;
 		}
@@ -175,8 +175,8 @@
 			top: var(--top, 0);
 			transform-origin: 50% calc(100% + 10px);
 			transform: translate3d(-50%, -125%, 0) perspective(1000px) rotate3d(1, 0, 0, 45deg);
-			transition: opacity .2s map.get(variables.$timing-functions, 'enter'),
-			transform .2s map.get(variables.$timing-functions, 'enter');
+			transition: opacity .2s var(--enter),
+			transform .2s var(--enter);
 			white-space: pre;
 			z-index: 5;
 		}
@@ -196,8 +196,8 @@
 		&:hover::after {
 			opacity: 1;
 			transform: translate3d(-50%, -125%, 0) perspective(1000px) rotate3d(1, 0, 0, 0deg);
-			transition: opacity .2s map.get(variables.$timing-functions, 'exit'),
-			transform .2s map.get(variables.$timing-functions, 'exit');
+			transition: opacity .2s var(--exit),
+			transform .2s var(--exit);
 		}
 	}
 }
@@ -236,7 +236,7 @@
 					calc((100% / var(--x) * 2) + var(--offset)) calc((100% + #{variables.$gutter * 0.25}) - (var(--2) / var(--y) * 100%)),
 					calc((100% / var(--x) * 1) + var(--offset)) calc((100% + #{variables.$gutter * 0.25}) - (var(--1) / var(--y) * 100%))
 			);
-			transition: opacity .3s map.get(variables.$timing-functions, 'move');
+			transition: opacity .3s var(--move);
 		}
 
 		th::before {
@@ -262,8 +262,8 @@
 				position: absolute;
 				top: var(--top, 100);
 				transform: translate3d(calc(var(--size) / -2), calc(var(--size) / -2), 0);
-				transition: opacity .3s map.get(variables.$timing-functions, 'move'),
-				transform .3s map.get(variables.$timing-functions, 'move');
+				transition: opacity .3s var(--move),
+				transform .3s var(--move);
 				width: var(--size);
 				z-index: 4;
 			}
@@ -281,11 +281,11 @@
 		}
 	}
 
-	@each $name, $pattern in variables.$patterns {
-		$i: list.index(variables.$patterns, ($name $pattern));
+	@each $pattern in variables.$patterns {
+		$i: list.index(variables.$patterns, $pattern);
 
 		[style]:nth-child(#{$i}n + #{$i}) {
-			--background: var(--#{$name}); // 1
+			--background: var(--#{$pattern});
 		}
 	}
 

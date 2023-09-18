@@ -95,19 +95,15 @@ thead {
   margin: 1.5em auto;
   overflow: hidden;
   padding: 1em;
-  /**
-   * @note Defining a CSS custom property for each inlined SVG pattern
-   * @author Trys Mudford
-   * @link https://www.trysmudford.com/blog/using-css-custom-properties/
-   * @via Jeremy Keith
-   * @link https://adactio.com/journal/15075
-   */
   --checkers: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cg fill='%23ffffff99'%3E%3Cpath fill-rule='evenodd' d='M0 0h4v4H0V0zm4 4h4v4H4V4z'/%3E%3C/g%3E%3C/svg%3E");
   --hexagons: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='24' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffffff99' fill-rule='nonzero'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   --triangles: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='16' viewBox='0 0 36 72'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffffff99'%3E%3Cpath d='M2 6h12L8 18 2 6zm18 36h12l-6 12-6-12z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   --zig: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 20 12'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffffff99'%3E%3Cpath d='M9.8 12L0 2.2V.8l10 10 10-10v1.4L10.2 12h-.4zm-4 0L0 6.2V4.8L7.2 12H5.8zm8.4 0L20 6.2V4.8L12.8 12h1.4zM9.8 0l.2.2.2-.2h-.4zm-4 0L10 4.2 14.2 0h-1.4L10 2.8 7.2 0H5.8z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   --stripes: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff99' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
   --dots: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff99' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+  --enter: cubic-bezier(0, .5, .5, 1);
+  --exit: cubic-bezier(.5, 0, 1, .5);
+  --move: cubic-bezier(.5, 0, .5, 1);
 }
 .chaarts > caption:first-child {
   background: inherit;
@@ -165,7 +161,7 @@ table:not(.chaarts) .sr-only {
     grid-auto-rows: 1fr;
     grid-row-gap: 0.5rem;
     grid-template-columns: minmax(min-content, 12.5em) repeat(var(--scale, 100), minmax(0, 1fr)) 10ch;
-    transition: opacity 0.2s cubic-bezier(0.5, 0, 0.5, 1);
+    transition: opacity 0.2s var(--move);
   }
   .chaarts.bar tr:nth-child(1n+1) {
     --background: var(--checkers);
@@ -335,7 +331,7 @@ table:not(.chaarts) .sr-only {
   }
   .chaarts.pie tr {
     display: table-cell;
-    transition: opacity 0.3s cubic-bezier(0.5, 0, 0.5, 1);
+    transition: opacity 0.3s var(--move);
   }
   .chaarts.pie [scope=row] {
     padding-right: 0.5rem;
@@ -402,7 +398,7 @@ table:not(.chaarts) .sr-only {
     );
     mask-image: var(--mask);
     transform: translate3d(-50%, -50%, 0) rotate(var(--position)) scale(var(--zoom));
-    transition: transform 0.2s cubic-bezier(0.5, 0, 0.5, 1);
+    transition: transform 0.2s var(--move);
     width: var(--radius);
   }
   .chaarts.pie tr:hover td::before {
@@ -440,7 +436,7 @@ table:not(.chaarts) .sr-only {
     pointer-events: none;
     transform-origin: 50% calc(100% + 10px);
     transform: translate3d(-50%, -50%, 0) rotate(var(--axis)) translate(var(--away)) rotate(calc(var(--axis) * -1)) perspective(1000px) rotate3d(1, 0, 0, 45deg);
-    transition: opacity 0.2s cubic-bezier(0, 0.5, 0.5, 1), transform 0.2s cubic-bezier(0, 0.5, 0.5, 1);
+    transition: opacity 0.2s var(--enter), transform 0.2s var(--enter);
   }
   .chaarts.pie tbody:hover tr {
     opacity: 0.5;
@@ -451,7 +447,7 @@ table:not(.chaarts) .sr-only {
   .chaarts.pie tbody:hover tr:hover td::after {
     opacity: 1;
     transform: translate3d(-50%, -50%, 0) rotate(var(--axis)) translate(var(--away)) rotate(calc(var(--axis) * -1)) perspective(1000px) rotate3d(1, 0, 0, 0deg);
-    transition: opacity 0.2s cubic-bezier(0.5, 0, 1, 0.5), transform 0.2s cubic-bezier(0.5, 0, 1, 0.5);
+    transition: opacity 0.2s var(--exit), transform 0.2s var(--exit);
   }
   .chaarts.polar td::before {
     --zoom: 50;
@@ -495,7 +491,7 @@ table:not(.chaarts) .sr-only {
     --bottom: calc(100% - var(--height));
     padding: var(--height) 0 1rem;
     position: relative;
-    transition: background 0.3s cubic-bezier(0.5, 0, 0.5, 1), color 0.3s cubic-bezier(0.5, 0, 0.5, 1);
+    transition: background 0.3s var(--move), color 0.3s var(--move);
   }
   .chaarts.line::after {
     --scale: calc((100% - (var(--y) * 1px)) / var(--y));
@@ -563,7 +559,7 @@ table:not(.chaarts) .sr-only {
     mix-blend-mode: soft-light;
     opacity: 0;
     position: absolute;
-    transition: opacity 0.3s cubic-bezier(0.5, 0, 0.5, 1);
+    transition: opacity 0.3s var(--move);
     width: inherit;
     z-index: 3;
   }
@@ -664,7 +660,7 @@ table:not(.chaarts) .sr-only {
     top: var(--top, 0);
     transform-origin: 50% calc(100% + 10px);
     transform: translate3d(-50%, -125%, 0) perspective(1000px) rotate3d(1, 0, 0, 45deg);
-    transition: opacity 0.2s cubic-bezier(0, 0.5, 0.5, 1), transform 0.2s cubic-bezier(0, 0.5, 0.5, 1);
+    transition: opacity 0.2s var(--enter), transform 0.2s var(--enter);
     white-space: pre;
     z-index: 5;
   }
@@ -734,7 +730,7 @@ table:not(.chaarts) .sr-only {
   .chaarts.line td:hover::after {
     opacity: 1;
     transform: translate3d(-50%, -125%, 0) perspective(1000px) rotate3d(1, 0, 0, 0deg);
-    transition: opacity 0.2s cubic-bezier(0.5, 0, 1, 0.5), transform 0.2s cubic-bezier(0.5, 0, 1, 0.5);
+    transition: opacity 0.2s var(--exit), transform 0.2s var(--exit);
   }
   .chaarts.points [style]::before {
     background: var(--color, currentColor) var(--background);
@@ -768,7 +764,7 @@ table:not(.chaarts) .sr-only {
     		calc((100% / var(--x) * 2) + var(--offset)) calc((100% + 0.25rem) - (var(--2) / var(--y) * 100%)),
     		calc((100% / var(--x) * 1) + var(--offset)) calc((100% + 0.25rem) - (var(--1) / var(--y) * 100%))
     );
-    transition: opacity 0.3s cubic-bezier(0.5, 0, 0.5, 1);
+    transition: opacity 0.3s var(--move);
   }
   .chaarts.points [style] th::before {
     background: var(--color, currentColor) var(--background);
@@ -791,7 +787,7 @@ table:not(.chaarts) .sr-only {
     position: absolute;
     top: var(--top, 100);
     transform: translate3d(calc(var(--size) / -2), calc(var(--size) / -2), 0);
-    transition: opacity 0.3s cubic-bezier(0.5, 0, 0.5, 1), transform 0.3s cubic-bezier(0.5, 0, 0.5, 1);
+    transition: opacity 0.3s var(--move), transform 0.3s var(--move);
     width: var(--size);
     z-index: 4;
   }
@@ -924,7 +920,7 @@ table:not(.chaarts) .sr-only {
     grid-row: calc(var(--scale, 100) + 2 - var(--integer)) / -2;
     pointer-events: none;
     position: relative;
-    transition: opacity 0.2s cubic-bezier(0.5, 0, 0.5, 1);
+    transition: opacity 0.2s var(--move);
   }
   .chaarts[class*=column] td:nth-of-type(1) {
     grid-column: 2;
@@ -994,7 +990,7 @@ table:not(.chaarts) .sr-only {
     mix-blend-mode: multiply;
     opacity: 0;
     position: absolute;
-    transition: opacity 0.3s cubic-bezier(0.5, 0, 0.5, 1);
+    transition: opacity 0.3s var(--move);
     top: 1rem;
     width: var(--width);
     z-index: 0;
@@ -1124,7 +1120,7 @@ table:not(.chaarts) .sr-only {
     mix-blend-mode: multiply;
     opacity: 0.25;
     position: absolute;
-    transition: opacity 0.3s cubic-bezier(0.5, 0, 0.5, 1);
+    transition: opacity 0.3s var(--move);
     top: calc(1rem + 2ex);
     width: calc(var(--width) * 2 + var(--gap) / 2 + 1px);
     z-index: 0;
@@ -1437,7 +1433,7 @@ table:not(.chaarts) .sr-only {
 @media screen and (min-width: 30em) and (hover: hover) {
   .chaarts.radar-multiple td {
     opacity: 0.25;
-    transition: opacity 0.2s cubic-bezier(0.5, 0, 0.5, 1);
+    transition: opacity 0.2s var(--move);
   }
   .chaarts.radar-multiple td::after {
     opacity: 0;
