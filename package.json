@@ -45,7 +45,7 @@
 		"postbuild:docs:css": "purgecss --config purgecss.config.js",
 		"build:docs:img": "imagemin _site/img/*.{png,jpg} --out-dir=docs/img --plugin=pngquant --plugin=mozjpeg --plugin=pngcrush --plugin=zopfli",
 		"prebuild:docs:js": "shx mkdir docs/js",
-		"build:docs:js": "terser _site/js/script.js -o docs/js/scripts.min.js -c -m --source-map && terser _site/js/prism.js -o docs/js/prism.min.js -c -m --source-map",
+		"build:docs:js": "terser _site/js/script.js -o docs/js/scripts.min.js -c -m --source-map && terser node_modules/sseeeedd/_site/js/prism.js -o docs/js/prism.min.js -c -m --source-map",
 		"watch": "concurrently --kill-others \"npm:watch:*\"",
 		"watch:html": "nodemon --watch _site/templates --ext njk --exec \"npm run build:docs:html\"",
 		"watch:css": "nodemon --watch _site/scss --ext scss --exec \"npm run build:docs:css\"",
@@ -80,10 +80,10 @@
 		"shx": "^0.3.4",
 		"stylelint": "^15.10.3",
 		"stylelint-config-recommended-scss": "^13.0.0",
-		"stylelint-scss": "^5.1.0",
+		"stylelint-scss": "^5.2.1",
 		"terser": "^5.19.4"
 	},
 	"dependencies": {
-		"sseeeedd": "^0.3.4"
+		"sseeeedd": "^0.3.6"
 	}
 }
