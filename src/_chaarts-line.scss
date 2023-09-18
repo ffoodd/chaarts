@@ -52,7 +52,7 @@
 
 	[style]::before {
 		bottom: var(--bottom);
-		background: linear-gradient(to top, functions.palette(secondary, light), functions.palette(alert) 75%);
+		background: linear-gradient(to top, functions.palette(charts, blue), functions.palette(charts, red) 75%);
 		--polygon: polygon(
 				0% 100%,
 				calc((100% / var(--x) * 1)) 100%,
@@ -162,9 +162,9 @@
 					0% var(--arrow)
 			);
 			--integer: calc(var(--value)); // 3
-			background-color: functions.palette(dominant);
+			background-color: functions.palette(charts, gray);
 			clip-path: var(--polygon);
-			color: functions.palette(dominant, contrast);
+			color: functions.palette(default, contrast);
 			content: var(--term) " " var(--year) "\A " counter(value) "\A0" var(--unit); // 1
 			counter-reset: value var(--integer); // 2, 3
 			opacity: 0;
