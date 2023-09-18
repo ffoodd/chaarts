@@ -102,7 +102,7 @@
 
 		[scope="col"] {
 			&::after {
-				background: var(--secondary) var(--stripes);
+				background: var(--background) var(--stripes);
 				background-blend-mode: exclusion;
 				bottom: #{variables.$gutter * 4};
 				content: "";
@@ -189,7 +189,7 @@
 
 		tr:first-child [scope="col"] {
 			&:nth-child(even)::after {
-				background: var(--secondary) var(--stripes);
+				background: var(--background) var(--stripes);
 				background-blend-mode: exclusion;
 				bottom: #{variables.$gutter * 4};
 				content: "";

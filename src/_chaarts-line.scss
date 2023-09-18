@@ -82,7 +82,7 @@
 
 	th,
 	td {
-		background: var(--contrast);
+		background: var(--background-lighter);
 		font-weight: bold;
 		text-align: center;
 		width: calc(100% / var(--x));
@@ -90,7 +90,7 @@
 
 	[scope="col"] {
 		&:not(:first-child)::after {
-			background: var(--contrast) var(--stripes);
+			background: var(--background-lighter) var(--stripes);
 			background-blend-mode: exclusion;
 			bottom: variables.$gutter * 4;
 			content: "";
@@ -163,7 +163,7 @@
 			--integer: calc(var(--value)); // 3
 			background-color: var(--chaarts-gray);
 			clip-path: var(--polygon);
-			color: var(--contrast);
+			color: var(--background-lighter);
 			content: var(--term) " " var(--year) "\A " counter(value) "\A0" var(--unit); // 1
 			counter-reset: value var(--integer); // 2, 3
 			opacity: 0;
@@ -252,7 +252,7 @@
 				--size: #{variables.$gutter};
 				--top: calc(var(--height) - (var(--value) / var(--y) * var(--height)));
 				background: var(--color, currentColor) var(--background);
-				border: 2px solid var(--contrast);
+				border: 2px solid var(--background-lighter);
 				border-radius: 50%;
 				box-shadow: 0 0 #{variables.$gutter * 0.25} rgba(0, 0, 0, .5);
 				content: "";

@@ -131,7 +131,7 @@
 		--away: calc(var(--radius) / 2 - #{variables.$gutter});
 		--integer: calc(var(--value)); // 2
 		background-color: var(--chaarts-gray);
-		color: var(--contrast);
+		color: var(--background-lighter);
 		content: var(--term) "\A0: " counter(value) "\A0%"; // 1
 		counter-reset: value var(--integer); // 1
 		opacity: 0;
