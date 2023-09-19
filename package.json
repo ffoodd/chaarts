@@ -72,7 +72,7 @@
 		"nunjucks-cli": "^1.0.0",
 		"pa11y-ci": "^3.0.1",
 		"pa11y-ci-reporter-html": "^6.0.2",
-		"postcss": "^8.4.29",
+		"postcss": "^8.4.30",
 		"postcss-cli": "^10.0.0",
 		"purgecss": "^5.0.0",
 		"sass": "^1.67.0",
@@ -84,6 +84,6 @@
 		"terser": "^5.19.4"
 	},
 	"dependencies": {
-		"sseeeedd": "^0.3.6"
+		"sseeeedd": "^0.3.7"
 	}
 }
