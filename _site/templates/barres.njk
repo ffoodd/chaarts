@@ -108,8 +108,11 @@
 		</div>
 
 		<table class="chaarts bar" style="--scale: 3000" id="bar">
-			<caption id="caption-1">Temps de chargement pour <a href="https://www.ffoodd.fr" target="_blank"
-																													rel="noopener noreferrer">ffoodd.fr</a></caption>
+			<caption id="caption-1">
+				Temps de chargement pour
+				<a href="https://www.ffoodd.fr" target="_blank"
+					 rel="noopener noreferrer">ffoodd.fr</a>
+			</caption>
 			<thead class="sr-only">
 			<tr>
 				<td></td>
@@ -168,26 +171,29 @@
 
 		<table class="chaarts bar waterfall" id="waterfall"
 					 style="--scale: 3000; --1: 4; --2: 96; --3: 102; --4: 129; --5: 188; --6: 194; --7: 326; --8: 836; --9: 836; --10: 2561; --11: 2980;">
-			<caption id="caption-2">Temps de chargement pour <a href="https://www.ffoodd.fr" target="_blank"
-																													rel="noopener noreferrer">ffoodd.fr</a></caption>
+			<caption id="caption-2">
+				Temps de chargement pour
+				<a href="https://www.ffoodd.fr" target="_blank"
+					 rel="noopener noreferrer">ffoodd.fr</a>
+			</caption>
 			<thead class="sr-only">
-			<tr>
-				<td></td>
-				<th scope="col">Temps de chargement cumulé</th>
-			</tr>
+				<tr>
+					<td></td>
+					<th scope="col">Temps de chargement cumulé</th>
+				</tr>
 			</thead>
 			<tbody>
-			{{ table.bar('Temps : backend', '4', 'ms', 'Milliseconde', 'waterfall') }}
-			{{ table.bar('Temps : Frontend', '96', 'ms', 'Milliseconde', 'waterfall') }}
-			{{ table.bar('Délai : premier octet', '102', 'ms', 'Milliseconde', 'waterfall') }}
-			{{ table.bar('Délai : dernier octet', '129', 'ms', 'Milliseconde', 'waterfall') }}
-			{{ table.bar('Délai : première image', '188', 'ms', 'Milliseconde', 'waterfall') }}
-			{{ table.bar('Délai : premier CSS', '194', 'ms', 'Milliseconde', 'waterfall') }}
-			{{ table.bar('Délai : premier JS', '326', 'ms', 'Milliseconde', 'waterfall') }}
-			{{ table.bar('DOM Interactif', '836', 'ms', 'Milliseconde', 'waterfall') }}
-			{{ table.bar('Chargement du DOM', '836', 'ms', 'Milliseconde', 'waterfall') }}
-			{{ table.bar('DOM complet', '2561', 'ms', 'Milliseconde', 'waterfall') }}
-			{{ table.bar('Trafic HTTP terminé', '2980', 'ms', 'Milliseconde', 'waterfall') }}
+				{{ table.bar('Temps : backend', '4', 'ms', 'Milliseconde', 'waterfall') }}
+				{{ table.bar('Temps : Frontend', '96', 'ms', 'Milliseconde', 'waterfall') }}
+				{{ table.bar('Délai : premier octet', '102', 'ms', 'Milliseconde', 'waterfall') }}
+				{{ table.bar('Délai : dernier octet', '129', 'ms', 'Milliseconde', 'waterfall') }}
+				{{ table.bar('Délai : première image', '188', 'ms', 'Milliseconde', 'waterfall') }}
+				{{ table.bar('Délai : premier CSS', '194', 'ms', 'Milliseconde', 'waterfall') }}
+				{{ table.bar('Délai : premier JS', '326', 'ms', 'Milliseconde', 'waterfall') }}
+				{{ table.bar('DOM Interactif', '836', 'ms', 'Milliseconde', 'waterfall') }}
+				{{ table.bar('Chargement du DOM', '836', 'ms', 'Milliseconde', 'waterfall') }}
+				{{ table.bar('DOM complet', '2561', 'ms', 'Milliseconde', 'waterfall') }}
+				{{ table.bar('Trafic HTTP terminé', '2980', 'ms', 'Milliseconde', 'waterfall') }}
 			</tbody>
 		</table>
 	</div>

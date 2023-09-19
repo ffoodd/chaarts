@@ -62,6 +62,10 @@ thead {
   --background-lighter: hsl(0 0% 100%);
   --background: hsl(0 0% 96%);
   --foreground: hsl(0 0% 0%);
+  --foreground-lighter: hsl(0 0% 4%);
+  --foreground-o-50: hsl(0 0% 0% / .5);
+  --foreground-o-25: hsl(0 0% 0% / .25);
+  --foreground-o-10: hsl(0 0% 0% / .1);
   --chaarts-purple: #639;
   --chaarts-pink: #e11a81;
   --chaarts-blue: #0172f0;
@@ -94,12 +98,22 @@ html:where([data-theme=dark]) .chaarts-container {
   color-scheme: dark;
   --background-lighter: hsl(0 0% 0%);
   --background: hsl(0 0% 20%);
+  --foreground: hsl(0 0% 100%);
+  --foreground-lighter: hsl(0 0% 96%);
+  --foreground-o-50: hsl(0 0% 100% / .5);
+  --foreground-o-25: hsl(0 0% 100% / .25);
+  --foreground-o-10: hsl(0 0% 100% / .1);
 }
 @media screen and (prefers-color-scheme: dark) {
   .no-js .chaarts-container, html:where(:not([data-theme=light])) .chaarts-container {
     color-scheme: dark;
     --background-lighter: hsl(0 0% 0%);
     --background: hsl(0 0% 20%);
+    --foreground: hsl(0 0% 100%);
+    --foreground-lighter: hsl(0 0% 96%);
+    --foreground-o-50: hsl(0 0% 100% / .5);
+    --foreground-o-25: hsl(0 0% 100% / .25);
+    --foreground-o-10: hsl(0 0% 100% / .1);
   }
 }
 
@@ -404,13 +418,14 @@ table:not(.chaarts) .sr-only {
     		50% 50%
     );
     background: var(--color, currentColor) var(--background);
+    border-radius: 50%;
     clip-path: var(--polygon);
     content: "";
     height: var(--radius);
     --mask: radial-gradient(
     		circle at center,
-    		var(--background-lighter) 0 calc(var(--radius) / 2),
-    		transparent 0
+    		#ffff 0 calc((var(--radius) / 2) - 1px),
+    		#0000 0
     );
     mask-image: var(--mask);
     transform: translate3d(-50%, -50%, 0) rotate(var(--position)) scale(var(--zoom));
@@ -443,7 +458,7 @@ table:not(.chaarts) .sr-only {
     --axis: calc(var(--position) - .25turn + var(--value) * .005turn);
     --away: calc(var(--radius) / 2 - 1rem);
     --integer: calc(var(--value));
-    background-color: var(--chaarts-gray);
+    background-color: var(--foreground-lighter);
     color: var(--background-lighter);
     content: var(--term) " : " counter(value) " %";
     counter-reset: value var(--integer);
@@ -478,8 +493,8 @@ table:not(.chaarts) .sr-only {
   .chaarts.donut {
     --mask: radial-gradient(
     		circle at 50% calc(50% - 0.25rem),
-    		transparent 0 var(--offset),
-    		var(--background-lighter) calc(var(--offset) + 1px) 100%
+    		#0000 0 var(--offset),
+    		#ffff calc(var(--offset) + 1px) 100%
     );
     mask-image: var(--mask);
   }
@@ -511,7 +526,7 @@ table:not(.chaarts) .sr-only {
   }
   .chaarts.line::after {
     --scale: calc((100% - (var(--y) * 1px)) / var(--y));
-    background: repeating-linear-gradient(to bottom, var(--background-lighter) 0 var(--scale), hsla(0, 0%, 0%, 0.25) calc(var(--scale) + 1px));
+    background: repeating-linear-gradient(to bottom, var(--background-lighter) 0 var(--scale), var(--foreground-o-25) calc(var(--scale) + 1px));
     bottom: var(--bottom);
     content: "";
     position: absolute;
@@ -579,6 +594,16 @@ table:not(.chaarts) .sr-only {
     width: inherit;
     z-index: 3;
   }
+  html:where([data-theme=dark]) .chaarts.line [scope=col]:not(:first-child)::after {
+    mix-blend-mode: lighten;
+  }
+}
+@media screen and (min-width: 30em) and (prefers-color-scheme: dark) {
+  .no-js .chaarts.line [scope=col]:not(:first-child)::after, html:where(:not([data-theme=light])) .chaarts.line [scope=col]:not(:first-child)::after {
+    mix-blend-mode: lighten;
+  }
+}
+@media screen and (min-width: 30em) {
   .chaarts.line [scope=col]:nth-child(2)::after {
     --index: 1;
   }
@@ -663,7 +688,7 @@ table:not(.chaarts) .sr-only {
     		0% var(--arrow)
     );
     --integer: calc(var(--value));
-    background-color: var(--chaarts-gray);
+    background-color: var(--foreground-lighter);
     clip-path: var(--polygon);
     color: var(--background-lighter);
     content: var(--term) " " var(--year) "\a" counter(value) " " var(--unit);
@@ -796,7 +821,7 @@ table:not(.chaarts) .sr-only {
     background: var(--color, currentColor) var(--background);
     border: 2px solid var(--background-lighter);
     border-radius: 50%;
-    box-shadow: 0 0 0.25rem hsla(0, 0%, 0%, 0.5);
+    box-shadow: 0 0 0.25rem var(--foreground-o-50);
     content: "";
     height: var(--size);
     left: calc(var(--offset) * 3);
@@ -998,12 +1023,12 @@ table:not(.chaarts) .sr-only {
     background: linear-gradient(to top, var(--chaarts-green), var(--chaarts-gray), var(--chaarts-blue), var(--chaarts-purple), var(--chaarts-red)) 0% var(--position) / 100% var(--size), var(--background) center/1rem;
     background-blend-mode: hard-light;
   }
-  .chaarts[class*=column].column-single [scope=col]::after {
+  .chaarts[class*=column].column-single :is([scope=col], [scope=colgroup])::after {
     background: var(--background) var(--stripes);
     background-blend-mode: exclusion;
     bottom: 4rem;
     content: "";
-    mix-blend-mode: multiply;
+    mix-blend-mode: color;
     opacity: 0;
     position: absolute;
     transition: opacity 0.3s var(--move);
@@ -1011,25 +1036,25 @@ table:not(.chaarts) .sr-only {
     width: var(--width);
     z-index: 0;
   }
-  .chaarts[class*=column].column-single [scope=col]:hover::after {
+  .chaarts[class*=column].column-single :is([scope=col], [scope=colgroup]):hover::after {
     opacity: 0.5;
   }
-  .chaarts[class*=column].column-single [scope=col]:nth-child(2)::after {
+  .chaarts[class*=column].column-single :is([scope=col], [scope=colgroup]):nth-child(2)::after {
     left: calc(1em + var(--width) * 1 + var(--gap) * 1);
   }
-  .chaarts[class*=column].column-single [scope=col]:nth-child(3)::after {
+  .chaarts[class*=column].column-single :is([scope=col], [scope=colgroup]):nth-child(3)::after {
     left: calc(1em + var(--width) * 2 + var(--gap) * 2);
   }
-  .chaarts[class*=column].column-single [scope=col]:nth-child(4)::after {
+  .chaarts[class*=column].column-single :is([scope=col], [scope=colgroup]):nth-child(4)::after {
     left: calc(1em + var(--width) * 3 + var(--gap) * 3);
   }
-  .chaarts[class*=column].column-single [scope=col]:nth-child(5)::after {
+  .chaarts[class*=column].column-single :is([scope=col], [scope=colgroup]):nth-child(5)::after {
     left: calc(1em + var(--width) * 4 + var(--gap) * 4);
   }
-  .chaarts[class*=column].column-single [scope=col]:nth-child(6)::after {
+  .chaarts[class*=column].column-single :is([scope=col], [scope=colgroup]):nth-child(6)::after {
     left: calc(1em + var(--width) * 5 + var(--gap) * 5);
   }
-  .chaarts[class*=column].column-single [scope=col]:nth-child(7)::after {
+  .chaarts[class*=column].column-single :is([scope=col], [scope=colgroup]):nth-child(7)::after {
     left: calc(1em + var(--width) * 6 + var(--gap) * 6);
   }
   .chaarts[class*=column].column-single td:nth-of-type(1n + 1) {
@@ -1128,12 +1153,12 @@ table:not(.chaarts) .sr-only {
   .chaarts[class*=column].column-multiple thead tr + tr *:nth-of-type(11) {
     grid-column: 11;
   }
-  .chaarts[class*=column].column-multiple tr:first-child [scope=col]:nth-child(even)::after {
+  .chaarts[class*=column].column-multiple [scope=colgroup]:nth-child(even)::after {
     background: var(--background) var(--stripes);
     background-blend-mode: exclusion;
     bottom: 4rem;
     content: "";
-    mix-blend-mode: multiply;
+    mix-blend-mode: color;
     opacity: 0.25;
     position: absolute;
     transition: opacity 0.3s var(--move);
@@ -1141,13 +1166,13 @@ table:not(.chaarts) .sr-only {
     width: calc(var(--width) * 2 + var(--gap) / 2 + 1px);
     z-index: 0;
   }
-  .chaarts[class*=column].column-multiple tr:first-child [scope=col]:nth-child(2)::after {
+  .chaarts[class*=column].column-multiple [scope=colgroup]:nth-child(2)::after {
     left: calc(14ch + 1em + (var(--width) * 2 + var(--gap) / 2 + 1px) * 0 + var(--gap) * 1);
   }
-  .chaarts[class*=column].column-multiple tr:first-child [scope=col]:nth-child(4)::after {
+  .chaarts[class*=column].column-multiple [scope=colgroup]:nth-child(4)::after {
     left: calc(14ch + 1em + (var(--width) * 2 + var(--gap) / 2 + 1px) * 2 + var(--gap) * 3);
   }
-  .chaarts[class*=column].column-multiple tr:first-child [scope=col]:nth-child(6)::after {
+  .chaarts[class*=column].column-multiple [scope=colgroup]:nth-child(6)::after {
     left: calc(14ch + 1em + (var(--width) * 2 + var(--gap) / 2 + 1px) * 4 + var(--gap) * 5);
   }
   .chaarts[class*=column].column-multiple td {
@@ -1174,7 +1199,7 @@ table:not(.chaarts) .sr-only {
     --size: calc(var(--radius) / var(--scale));
     --part: calc(360deg / var(--items));
     --integer: calc(var(--scale));
-    background-image: repeating-radial-gradient(circle at 50%, hsla(0, 0%, 0%, 0.2) 0 2px, transparent 0 calc(var(--size) * var(--step))), repeating-radial-gradient(circle at 50%, hsla(0, 0%, 0%, 0.1) 0 2px, transparent 0 var(--size));
+    background-image: repeating-radial-gradient(circle at 50%, var(--foreground-o-25) 0 2px, transparent 0 calc(var(--size) * var(--step))), repeating-radial-gradient(circle at 50%, var(--foreground-o-10) 0 2px, transparent 0 var(--size));
     border: 2px solid;
     border-radius: 50%;
     contain: layout;
@@ -1217,6 +1242,7 @@ table:not(.chaarts) .sr-only {
   }
   .chaarts[class*=radar] [scope=col] {
     --away: calc((var(--radius) * -1) - 50%);
+    background-color: transparent;
     left: 50%;
     margin: 0;
     padding: 0 1rem;
@@ -1304,7 +1330,7 @@ table:not(.chaarts) .sr-only {
     		calc(100% - (var(--point) * 100% / var(--scale))) 100%,
     		100% 100%
     );
-    background: linear-gradient(to top left, var(--chaarts-purple) 10%, var(--chaarts-blue) 75%);
+    background: var(--chaarts-purple);
     clip-path: var(--polygon);
     filter: drop-shadow(0 0 1rem var(--chaarts-purple));
     height: 100%;
@@ -1312,7 +1338,7 @@ table:not(.chaarts) .sr-only {
     width: 100%;
   }
   .chaarts.radar [scope=col]::after {
-    color: var(--chaarts-purple);
+    color: var(--foreground-lighter);
     display: block;
     font-size: small;
     font-weight: 400;
@@ -1387,7 +1413,7 @@ table:not(.chaarts) .sr-only {
     z-index: 0;
   }
   .chaarts.radar-multiple td::after {
-    color: var(--color, currentColor);
+    color: var(--foreground);
     display: block;
     font-size: small;
     font-weight: 700;
@@ -1440,7 +1466,7 @@ table:not(.chaarts) .sr-only {
     width: calc(var(--7) * 100% / var(--scale));
   }
   .chaarts.radar-multiple span {
-    --mask: radial-gradient(circle at bottom right, hsl(0 0% 0% 1), hsl(0 0% 0% / .5));
+    --mask: radial-gradient(circle at bottom right, var(--foreground), var(--foreground-o-50));
     background: var(--color, currentColor);
     mask-image: var(--mask);
     pointer-events: auto;

@@ -100,13 +100,13 @@
 			background-blend-mode: hard-light;
 		}
 
-		[scope="col"] {
+		:is([scope="col"], [scope="colgroup"]) {
 			&::after {
 				background: var(--background) var(--stripes);
 				background-blend-mode: exclusion;
 				bottom: #{variables.$gutter * 4};
 				content: "";
-				mix-blend-mode: multiply;
+				mix-blend-mode: color;
 				opacity: 0;
 				position: absolute;
 				transition: opacity .3s var(--move);
@@ -187,13 +187,13 @@
 			}
 		}
 
-		tr:first-child [scope="col"] {
+		[scope="colgroup"] {
 			&:nth-child(even)::after {
 				background: var(--background) var(--stripes);
 				background-blend-mode: exclusion;
 				bottom: #{variables.$gutter * 4};
 				content: "";
-				mix-blend-mode: multiply;
+				mix-blend-mode: color;
 				opacity: .25;
 				position: absolute;
 				transition: opacity .3s var(--move);

@@ -101,26 +101,29 @@
 		</div>
 
 		<table class="chaarts bar" style="--scale: 3000" id="bar">
-			<caption id="caption-1">Loading time for <a hreflang="fr" href="https://www.ffoodd.fr" target="_blank"
-																									rel="noopener noreferrer">ffoodd.fr</a></caption>
+			<caption id="caption-1">
+				Loading time for
+				<a hreflang="fr" href="https://www.ffoodd.fr" target="_blank"
+					 rel="noopener noreferrer">ffoodd.fr</a>
+				</caption>
 			<thead class="sr-only">
-			<tr>
-				<td></td>
-				<th scope="col">Cumulative loading time</th>
-			</tr>
+				<tr>
+					<td></td>
+					<th scope="col">Cumulative loading time</th>
+				</tr>
 			</thead>
 			<tbody>
-			{{ table.bar('Time: backend', '4', 'ms', 'Millisecond', 'table') }}
-			{{ table.bar('Time: Frontend', '96', 'ms', 'Millisecond', 'table') }}
-			{{ table.bar('Delay: first byte', '102', 'ms', 'Millisecond', 'table') }}
-			{{ table.bar('Delay: last byte', '129', 'ms', 'Millisecond', 'table') }}
-			{{ table.bar('Delay: first image', '188', 'ms', 'Millisecond', 'table') }}
-			{{ table.bar('Delay: first CSS', '194', 'ms', 'Millisecond', 'table') }}
-			{{ table.bar('Delay: first JS', '326', 'ms', 'Millisecond', 'table') }}
-			{{ table.bar('DOM Interactive', '836', 'ms', 'Millisecond', 'table') }}
-			{{ table.bar('DOM loading', '836', 'ms', 'Millisecond', 'table') }}
-			{{ table.bar('DOM complete', '2561', 'ms', 'Millisecond', 'table') }}
-			{{ table.bar('HTTP traffic completed', '2980', 'ms', 'Millisecond', 'table') }}
+				{{ table.bar('Time: backend', '4', 'ms', 'Millisecond', 'table') }}
+				{{ table.bar('Time: Frontend', '96', 'ms', 'Millisecond', 'table') }}
+				{{ table.bar('Delay: first byte', '102', 'ms', 'Millisecond', 'table') }}
+				{{ table.bar('Delay: last byte', '129', 'ms', 'Millisecond', 'table') }}
+				{{ table.bar('Delay: first image', '188', 'ms', 'Millisecond', 'table') }}
+				{{ table.bar('Delay: first CSS', '194', 'ms', 'Millisecond', 'table') }}
+				{{ table.bar('Delay: first JS', '326', 'ms', 'Millisecond', 'table') }}
+				{{ table.bar('DOM Interactive', '836', 'ms', 'Millisecond', 'table') }}
+				{{ table.bar('DOM loading', '836', 'ms', 'Millisecond', 'table') }}
+				{{ table.bar('DOM complete', '2561', 'ms', 'Millisecond', 'table') }}
+				{{ table.bar('HTTP traffic completed', '2980', 'ms', 'Millisecond', 'table') }}
 			</tbody>
 		</table>
 	</div>
@@ -159,8 +162,11 @@
 
 		<table class="chaarts bar waterfall" id="waterfall"
 					 style="--scale: 3000; --1: 4; --2: 96; --3: 102; --4: 129; --5: 188; --6: 194; --7: 326; --8: 836; --9: 836; --10: 2561; --11: 2980;">
-			<caption id="caption-2">Loading time for <a hreflang="fr" href="https://www.ffoodd.fr" target="_blank"
-																									rel="noopener noreferrer">ffoodd.fr</a></caption>
+			<caption id="caption-2">
+				Loading time for
+				<a hreflang="fr" href="https://www.ffoodd.fr" target="_blank"
+					 rel="noopener noreferrer">ffoodd.fr</a>
+			</caption>
 			<thead class="sr-only">
 			<tr>
 				<td></td>
@@ -168,17 +174,17 @@
 			</tr>
 			</thead>
 			<tbody>
-			{{ table.bar('Time: backend', '4', 'ms', 'Millisecond', 'waterfall') }}
-			{{ table.bar('Time: Frontend', '96', 'ms', 'Millisecond', 'waterfall') }}
-			{{ table.bar('Delay: first byte', '102', 'ms', 'Millisecond', 'waterfall') }}
-			{{ table.bar('Delay: last byte', '129', 'ms', 'Millisecond', 'waterfall') }}
-			{{ table.bar('Delay: first image', '188', 'ms', 'Millisecond', 'waterfall') }}
-			{{ table.bar('Delay: first CSS', '194', 'ms', 'Millisecond', 'waterfall') }}
-			{{ table.bar('Delay: first JS', '326', 'ms', 'Millisecond', 'waterfall') }}
-			{{ table.bar('DOM interactive', '836', 'ms', 'Millisecond', 'waterfall') }}
-			{{ table.bar('DOM loading', '836', 'ms', 'Millisecond', 'waterfall') }}
-			{{ table.bar('DOM complete', '2561', 'ms', 'Millisecond', 'waterfall') }}
-			{{ table.bar('HTTP traffic completed', '2980', 'ms', 'Millisecond', 'waterfall') }}
+				{{ table.bar('Time: backend', '4', 'ms', 'Millisecond', 'waterfall') }}
+				{{ table.bar('Time: Frontend', '96', 'ms', 'Millisecond', 'waterfall') }}
+				{{ table.bar('Delay: first byte', '102', 'ms', 'Millisecond', 'waterfall') }}
+				{{ table.bar('Delay: last byte', '129', 'ms', 'Millisecond', 'waterfall') }}
+				{{ table.bar('Delay: first image', '188', 'ms', 'Millisecond', 'waterfall') }}
+				{{ table.bar('Delay: first CSS', '194', 'ms', 'Millisecond', 'waterfall') }}
+				{{ table.bar('Delay: first JS', '326', 'ms', 'Millisecond', 'waterfall') }}
+				{{ table.bar('DOM interactive', '836', 'ms', 'Millisecond', 'waterfall') }}
+				{{ table.bar('DOM loading', '836', 'ms', 'Millisecond', 'waterfall') }}
+				{{ table.bar('DOM complete', '2561', 'ms', 'Millisecond', 'waterfall') }}
+				{{ table.bar('HTTP traffic completed', '2980', 'ms', 'Millisecond', 'waterfall') }}
 			</tbody>
 		</table>
 	</div>
