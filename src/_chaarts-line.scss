@@ -28,7 +28,7 @@
 		background: repeating-linear-gradient(
 				to bottom,
 				var(--background-lighter) 0 var(--scale),
-				rgb(0 0 0 / .25) calc(var(--scale) + 1px)
+				hsl(0 0% 0% / .25) calc(var(--scale) + 1px)
 		);
 		bottom: var(--bottom);
 		content: "";
@@ -254,7 +254,7 @@
 				background: var(--color, currentColor) var(--background);
 				border: 2px solid var(--background-lighter);
 				border-radius: 50%;
-				box-shadow: 0 0 #{variables.$gutter * 0.25} rgb(0 0 0 / .5);
+				box-shadow: 0 0 #{variables.$gutter * 0.25} hsl(0 0% 0% / .5);
 				content: "";
 				height: var(--size);
 				left: calc(var(--offset) * 3);

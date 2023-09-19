@@ -47,7 +47,7 @@ td {
 }
 
 tbody {
-  border: 1px solid hsl(var(--neutral), 80%);
+  border: 1px solid hsl(0, 0%, 80%);
 }
 
 thead {
@@ -59,10 +59,9 @@ thead {
 /* ==================== */
 .chaarts-container {
   color-scheme: light;
-  --neutral: 0 0%;
-  --background-lighter: hsl(var(--neutral) 100%);
-  --background: hsl(var(--neutral) 96%);
-  --foreground: hsl(var(--neutral) 0%);
+  --background-lighter: hsl(0 0% 100%);
+  --background: hsl(0 0% 96%);
+  --foreground: hsl(0 0% 0%);
   --chaarts-purple: #639;
   --chaarts-pink: #e11a81;
   --chaarts-blue: #0172f0;
@@ -93,14 +92,14 @@ thead {
 }
 html:where([data-theme=dark]) .chaarts-container {
   color-scheme: dark;
-  --background-lighter: hsl(var(--neutral) 0%);
-  --background: hsl(var(--neutral) 20%);
+  --background-lighter: hsl(0 0% 0%);
+  --background: hsl(0 0% 20%);
 }
 @media screen and (prefers-color-scheme: dark) {
   .no-js .chaarts-container, html:where(:not([data-theme=light])) .chaarts-container {
     color-scheme: dark;
-    --background-lighter: hsl(var(--neutral) 0%);
-    --background: hsl(var(--neutral) 20%);
+    --background-lighter: hsl(0 0% 0%);
+    --background: hsl(0 0% 20%);
   }
 }
 
@@ -410,7 +409,7 @@ table:not(.chaarts) .sr-only {
     height: var(--radius);
     --mask: radial-gradient(
     		circle at center,
-    		#fff 0 calc(var(--radius) / 2),
+    		var(--background-lighter) 0 calc(var(--radius) / 2),
     		transparent 0
     );
     mask-image: var(--mask);
@@ -480,7 +479,7 @@ table:not(.chaarts) .sr-only {
     --mask: radial-gradient(
     		circle at 50% calc(50% - 0.25rem),
     		transparent 0 var(--offset),
-    		#fff calc(var(--offset) + 1px) 100%
+    		var(--background-lighter) calc(var(--offset) + 1px) 100%
     );
     mask-image: var(--mask);
   }
@@ -512,7 +511,7 @@ table:not(.chaarts) .sr-only {
   }
   .chaarts.line::after {
     --scale: calc((100% - (var(--y) * 1px)) / var(--y));
-    background: repeating-linear-gradient(to bottom, white 0 var(--scale), rgba(0, 0, 0, 0.25) calc(var(--scale) + 1px));
+    background: repeating-linear-gradient(to bottom, var(--background-lighter) 0 var(--scale), hsla(0, 0%, 0%, 0.25) calc(var(--scale) + 1px));
     bottom: var(--bottom);
     content: "";
     position: absolute;
@@ -797,7 +796,7 @@ table:not(.chaarts) .sr-only {
     background: var(--color, currentColor) var(--background);
     border: 2px solid var(--background-lighter);
     border-radius: 50%;
-    box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 0.25rem hsla(0, 0%, 0%, 0.5);
     content: "";
     height: var(--size);
     left: calc(var(--offset) * 3);
@@ -1175,7 +1174,7 @@ table:not(.chaarts) .sr-only {
     --size: calc(var(--radius) / var(--scale));
     --part: calc(360deg / var(--items));
     --integer: calc(var(--scale));
-    background-image: repeating-radial-gradient(circle at 50%, rgba(0, 0, 0, 0.2) 0 2px, transparent 0 calc(var(--size) * var(--step))), repeating-radial-gradient(circle at 50%, rgba(0, 0, 0, 0.1) 0 2px, transparent 0 var(--size));
+    background-image: repeating-radial-gradient(circle at 50%, hsla(0, 0%, 0%, 0.2) 0 2px, transparent 0 calc(var(--size) * var(--step))), repeating-radial-gradient(circle at 50%, hsla(0, 0%, 0%, 0.1) 0 2px, transparent 0 var(--size));
     border: 2px solid;
     border-radius: 50%;
     contain: layout;
@@ -1441,7 +1440,7 @@ table:not(.chaarts) .sr-only {
     width: calc(var(--7) * 100% / var(--scale));
   }
   .chaarts.radar-multiple span {
-    --mask: radial-gradient(circle at bottom right, rgba(0, 0, 0, 1), rgba(0, 0, 0, .5));
+    --mask: radial-gradient(circle at bottom right, hsl(0 0% 0% 1), hsl(0 0% 0% / .5));
     background: var(--color, currentColor);
     mask-image: var(--mask);
     pointer-events: auto;
