@@ -6,7 +6,18 @@
 @layer sseeeedd {
 	@include meta.load-css("sseeeedd/src/sseeeedd");
 
-	.fly-out [rel]::before {
-		content: "\1F30D\A0";
+	@layer components {
+		.fly-out [rel]::before {
+			content: "\1F30D\A0";
+		}
+
+		button[role="switch"][aria-checked="false"] {
+			background-color: hsl(var(--muted) / .25);
+
+			&:hover,
+			&:focus {
+				background-color: hsl(var(--muted) / .3);
+			}
+		}
 	}
 }

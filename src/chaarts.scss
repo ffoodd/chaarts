@@ -75,6 +75,10 @@ thead {
 	--background-lighter: hsl(0 0% 100%);
 	--background: hsl(0 0% 96%);
 	--foreground: hsl(0 0% 0%);
+	--foreground-lighter: hsl(0 0% 4%);
+	--foreground-o-50: hsl(0 0% 0% / .5);
+	--foreground-o-25: hsl(0 0% 0% / .25);
+	--foreground-o-10: hsl(0 0% 0% / .1);
 	--chaarts-purple: #639; // 1
 	--chaarts-pink: #e11a81;
 	--chaarts-blue: #0172f0;
@@ -86,22 +90,18 @@ thead {
 	// ====================
 	// == Dark mode
 	//
-	// @note Based on sseeeedd
+	// @note Based on sseeeedd for progressive enhancement
 	// @link https://github.com/ffoodd/sseeeedd
 	// ====================
-	html:where([data-theme="dark"]) & {
+	@include mixins.dark-mode() {
 		color-scheme: dark;
 		--background-lighter: hsl(0 0% 0%);
 		--background: hsl(0 0% 20%);
-	}
-
-	@media screen and (prefers-color-scheme: dark) {
-		.no-js &,
-		html:where(:not([data-theme="light"])) & {
-			color-scheme: dark;
-			--background-lighter: hsl(0 0% 0%);
-			--background: hsl(0 0% 20%);
-		}
+		--foreground: hsl(0 0% 100%);
+		--foreground-lighter: hsl(0 0% 96%);
+		--foreground-o-50: hsl(0 0% 100% / .5);
+		--foreground-o-25: hsl(0 0% 100% / .25);
+		--foreground-o-10: hsl(0 0% 100% / .1);
 	}
 
 	// ====================

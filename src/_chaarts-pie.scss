@@ -88,13 +88,14 @@
 				50% 50%
 		);
 		background: var(--color, currentColor) var(--background);
+		border-radius: 50%;
 		clip-path: var(--polygon);
 		content: '';
 		height: var(--radius);
 		--mask: radial-gradient(
 				circle at center,
-				var(--background-lighter) 0 calc(var(--radius) / 2),
-				transparent 0
+				#ffff 0 calc((var(--radius) / 2) - 1px),
+				#0000 0
 		);
 		mask-image: var(--mask);
 		transform: translate3d(-50%, -50%, 0) rotate(var(--position)) scale(var(--zoom));
@@ -130,7 +131,7 @@
 		--axis: calc(var(--position) - .25turn + var(--value) * .005turn);
 		--away: calc(var(--radius) / 2 - #{variables.$gutter});
 		--integer: calc(var(--value)); // 2
-		background-color: var(--chaarts-gray);
+		background-color: var(--foreground-lighter);
 		color: var(--background-lighter);
 		content: var(--term) "\A0: " counter(value) "\A0%"; // 1
 		counter-reset: value var(--integer); // 1
@@ -177,8 +178,8 @@
 .chaarts.donut {
 	--mask: radial-gradient(
 			circle at 50% calc(50% - #{variables.$gutter  * 0.25}),
-			transparent 0 var(--offset),
-			var(--background-lighter) calc(var(--offset) + 1px) 100%
+			#0000 0 var(--offset),
+			#ffff calc(var(--offset) + 1px) 100%
 	);
 	mask-image: var(--mask);
 
