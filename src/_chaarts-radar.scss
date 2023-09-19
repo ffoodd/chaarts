@@ -15,12 +15,12 @@
 	--integer: calc(var(--scale));
 	background-image: repeating-radial-gradient(
 			circle at 50%,
-			rgb(0 0 0 / .2) 0 2px,
+			hsl(0 0% 0% / .2) 0 2px,
 			transparent 0 calc(var(--size) * var(--step))
 	),
 	repeating-radial-gradient(
 			circle at 50%,
-			rgb(0 0 0 / .1) 0 2px,
+			hsl(0 0% 0% / .1) 0 2px,
 			transparent 0 var(--size)
 	);
 	border: 2px solid;
@@ -225,7 +225,7 @@
 	}
 
 	span {
-		--mask: radial-gradient(circle at bottom right, rgb(0 0 0 / 1), rgb(0 0 0 / .5));
+		--mask: radial-gradient(circle at bottom right, hsl(0 0% 0% 1), hsl(0 0% 0% / .5));
 		background: var(--color, currentColor);
 		mask-image: var(--mask);
 		pointer-events: auto;
