@@ -45,12 +45,11 @@
 	// Dark mode
 	const switcher = document.getElementById('theme');
 	const options = switcher.querySelectorAll('button');
-	//// Start with user preference
-	const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-	document.documentElement.dataset.theme = (prefersDarkScheme.matches) ? 'dark' : 'light';
 	//// Then check for localStorage
 	const currentTheme = localStorage.getItem('theme');
-	document.documentElement.dataset.theme = (currentTheme === 'dark') ? 'dark' : 'light';
+	if (currentTheme) {
+		document.documentElement.dataset.theme = (currentTheme === 'dark') ? 'dark' : 'light';
+	}
 	//// Apply expected theme
 	if (document.documentElement.dataset.theme === 'dark') {
 		document.querySelector('[data-scheme="dark"]').setAttribute('aria-pressed', 'true');
@@ -60,8 +59,15 @@
 	//// Finally handle overriding through buttons
 	options.forEach(option => {
 		option.addEventListener('click', () => {
-			document.documentElement.dataset.theme = option.dataset.scheme;
-			localStorage.setItem('theme', option.dataset.scheme);
+			switcher.querySelector('[aria-pressed="true"]').setAttribute('aria-pressed', 'false');
+			option.setAttribute('aria-pressed', 'true');
+			if (option.dataset.scheme === 'none') {
+				delete document.documentElement.dataset.theme;
+				localStorage.removeItem('theme');
+			} else {
+				document.documentElement.dataset.theme = option.dataset.scheme;
+				localStorage.setItem('theme', option.dataset.scheme);
+			}
 		});
 	});
 })(document);
