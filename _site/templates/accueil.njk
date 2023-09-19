@@ -151,25 +151,23 @@
 		<li>
 			pour ne pas embarquer trop de fichiers externes, on utilise
 			<a hreflang="en" href="https://www.trysmudford.com/blog/using-css-custom-properties/">une technique
-				proposée par <strong>Trys Mudford</strong> pour inclure nos
-				<abbr lang="en" title="Scalable Vector Graphics" aria-label="Scalable Vector Graphics">svg</abbr>
-				en <i lang="en">data URi</i> dans une variable
-				<abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr> chacun</a>&nbsp;;
-			ainsi, une liste finie de motifs est utilisée dans le thème, sans jamais répéter le <abbr lang="en"
-																																																title="Scalable Vector Graphics"
-																																																aria-label="Scalable Vector Graphics">svg</abbr>.
+			proposée par <strong>Trys Mudford</strong> pour inclure nos
+			<abbr lang="en" title="Scalable Vector Graphics" aria-label="Scalable Vector Graphics">svg</abbr>
+			en <i lang="en">data URi</i> dans une variable
+			<abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr> chacun</a>&nbsp;;
+			ainsi, une liste finie de motifs est utilisée dans le thème, sans jamais répéter le
+			<abbr lang="en" title="Scalable Vector Graphics" aria-label="Scalable Vector Graphics">svg</abbr>.
 		</li>
 	</ol>
 
 	<div class="note">
 		<h4>Qu’encoder&nbsp;?</h4>
 		<p>
-			<a hreflang="en" href="https://codepen.io/tigt/post/optimizing-svgs-in-data-uris"><strong>Taylor Hunt</strong>
-				a rédigé un article complet sur l’optimisation des
-				<abbr lang="en" title="Scalable Vector Graphics" aria-label="Scalable Vector Graphics">svg</abbr>
-				passés en <i lang="en">data URi</i></a>. En résumé, seuls les chevrons et le
-			caractère «&nbsp;#&nbsp;» ont besoin d’être encodés dans le
-			<abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr>.
+			<a hreflang="en" href="https://chriscoyier.net/2023/01/26/un-encoded-svg-backgrounds-in-css-also-writing-css-in-css-lolz/">
+				<strong>Chris Coyier</strong> (via <strong>Charlotte Dann</strong>)
+				expliquait que désormais seul l’octhotorpe a besoin d’être encodé dans le
+				<abbr lang="en" title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr>
+			</a>.
 			Ne vous fatiguez pas avec les autres caractères, leur encodage nuit sérieusement à la lisibilité.
 		</p>
 	</div>
