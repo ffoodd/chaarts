@@ -84,6 +84,6 @@
 		"terser": "^5.19.4"
 	},
 	"dependencies": {
-		"sseeeedd": "^0.3.7"
+		"sseeeedd": "^0.4.2"
 	}
 }
