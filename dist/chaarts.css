@@ -278,14 +278,13 @@ table:not(.chaarts) .sr-only {
    * @link https://css-tricks.com/animating-number-counters/#the-new-school-css-solution
    */
 }
-@media screen and (min-width: 30em) and (-ms-high-contrast: active) {
+@media screen and (min-width: 30em) and (prefers-contrast: more) {
   .chaarts.bar td {
     /**
      * @note Custom color palette for WHCM
-     * @note Inspired by Greg Whitworth's post
-     * @link http://www.gwhitworth.com/blog/2017/04/how-to-use-ms-high-contrast
+     * @link https://blogs.windows.com/msedgedev/2020/09/17/styling-for-windows-high-contrast-with-new-standards-for-forced-colors/
      */
-    background-image: linear-gradient(to right, Window, ButtonFace, ButtonShadow, ButtonText, highlight), var(--background);
+    background: Highlight;
   }
 }
 @media screen and (min-width: 30em) {

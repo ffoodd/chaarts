@@ -43,31 +43,33 @@
 	});
 
 	// Dark mode
-	const switcher = document.getElementById('theme');
-	const options = switcher.querySelectorAll('button');
-	//// Then check for localStorage
-	const currentTheme = localStorage.getItem('theme');
-	if (currentTheme) {
-		document.documentElement.dataset.theme = (currentTheme === 'dark') ? 'dark' : 'light';
-	}
-	//// Apply expected theme
-	if (document.documentElement.dataset.theme === 'dark') {
-		document.querySelector('[data-scheme="dark"]').setAttribute('aria-pressed', 'true');
-	} else {
-		document.querySelector('[data-scheme="light"]').setAttribute('aria-pressed', 'true');
-	}
-	//// Finally handle overriding through buttons
-	options.forEach(option => {
-		option.addEventListener('click', () => {
-			switcher.querySelector('[aria-pressed="true"]').setAttribute('aria-pressed', 'false');
-			option.setAttribute('aria-pressed', 'true');
-			if (option.dataset.scheme === 'none') {
-				delete document.documentElement.dataset.theme;
-				localStorage.removeItem('theme');
-			} else {
-				document.documentElement.dataset.theme = option.dataset.scheme;
-				localStorage.setItem('theme', option.dataset.scheme);
-			}
+	if (! window.matchMedia('(prefers-contrast: more)').matches) {
+		const switcher = document.getElementById('theme');
+		const options = switcher.querySelectorAll('button');
+		//// Then check for localStorage
+		const currentTheme = localStorage.getItem('theme');
+		if (currentTheme) {
+			document.documentElement.dataset.theme = (currentTheme === 'dark') ? 'dark' : 'light';
+		}
+		//// Apply expected theme
+		if (document.documentElement.dataset.theme === 'dark') {
+			document.querySelector('[data-scheme="dark"]').setAttribute('aria-pressed', 'true');
+		} else {
+			document.querySelector('[data-scheme="light"]').setAttribute('aria-pressed', 'true');
+		}
+		//// Finally handle overriding through buttons
+		options.forEach(option => {
+			option.addEventListener('click', () => {
+				switcher.querySelector('[aria-pressed="true"]').setAttribute('aria-pressed', 'false');
+				option.setAttribute('aria-pressed', 'true');
+				if (option.dataset.scheme === 'none') {
+					delete document.documentElement.dataset.theme;
+					localStorage.removeItem('theme');
+				} else {
+					document.documentElement.dataset.theme = option.dataset.scheme;
+					localStorage.setItem('theme', option.dataset.scheme);
+				}
+			});
 		});
-	});
+	}
 })(document);
