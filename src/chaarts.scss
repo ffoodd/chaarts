@@ -72,20 +72,30 @@ thead {
 	// @see https://meyerweb.com/eric/thoughts/2014/06/19/rebeccapurple/
 	// ====================
 	color-scheme: light;
-	--background-lighter: hsl(0 0% 100%);
-	--background: hsl(0 0% 96%);
-	--foreground: hsl(0 0% 0%);
-	--foreground-lighter: hsl(0 0% 4%);
-	--foreground-o-50: hsl(0 0% 0% / .5);
-	--foreground-o-25: hsl(0 0% 0% / .25);
-	--foreground-o-10: hsl(0 0% 0% / .1);
-	--chaarts-purple: #639; // 1
-	--chaarts-pink: #e11a81;
-	--chaarts-blue: #0172f0;
-	--chaarts-yellow: #fdc02f;
-	--chaarts-green: #39ca74;
-	--chaarts-red: #ff2d40;
-	--chaarts-gray: #585462;
+	--background-lightness: 100%;
+	--foreground-lightness: 0%;
+	--diff: 4%;
+	--background-lighter: hsl(0 0% var(--background-lightness));
+	--background: hsl(0 0% calc(var(--background-lightness) - var(--diff)));
+	--foreground: hsl(0 0% var(--foreround-lightness));
+	--foreground-lighter: hsl(0 0% calc(var(--foreround-lightness) + var(--diff)));
+	--foreground-o-50: hsl(0 0% var(--foreround-lightness) / .5);
+	--foreground-o-25: hsl(0 0% var(--foreround-lightness) / .25);
+	--foreground-o-10: hsl(0 0% var(--foreround-lightness) / .1);
+	--hue: 270;
+	--lightness: 50%;
+	--saturation: 100%;
+	--chaarts-purple: hsl(var(--hue) calc(var(--saturation) / 2) var(--lightness)); // 1
+	--chaarts-pink: hsl(calc(var(--hue) + 60) var(--saturation) var(--lightness));
+	--chaarts-blue: hsl(calc(var(--hue) - 60) var(--saturation) var(--lightness));
+	--chaarts-yellow: hsl(40 var(--saturation) var(--lightness));
+	--chaarts-green: hsl(calc(var(--hue) - 120) var(--saturation) var(--lightness));
+	--chaarts-red: hsl(calc(var(--hue) + 90) var(--saturation) var(--lightness));
+	--chaarts-gray: hsl(0 0% var(--lightness));
+
+	@media (min-width: #{math.div(600em, 16)}) {
+		--lightness: 40%;
+	}
 
 	// ====================
 	// == Dark mode
@@ -95,13 +105,10 @@ thead {
 	// ====================
 	@include mixins.dark-mode() {
 		color-scheme: dark;
-		--background-lighter: hsl(0 0% 0%);
-		--background: hsl(0 0% 20%);
-		--foreground: hsl(0 0% 100%);
-		--foreground-lighter: hsl(0 0% 96%);
-		--foreground-o-50: hsl(0 0% 100% / .5);
-		--foreground-o-25: hsl(0 0% 100% / .25);
-		--foreground-o-10: hsl(0 0% 100% / .1);
+		--background-lightness: 0%;
+		--foreground-lightness: 100%;
+		--background: hsl(0 0% calc(var(--diff) * 5));
+		--foreground-lighter: hsl(0 0% calc(var(--foreround-lightness) - var(--diff)));
 	}
 
 	// ====================

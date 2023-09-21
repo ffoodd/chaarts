@@ -59,20 +59,26 @@ thead {
 /* ==================== */
 .chaarts-container {
   color-scheme: light;
-  --background-lighter: hsl(0 0% 100%);
-  --background: hsl(0 0% 96%);
-  --foreground: hsl(0 0% 0%);
-  --foreground-lighter: hsl(0 0% 4%);
-  --foreground-o-50: hsl(0 0% 0% / .5);
-  --foreground-o-25: hsl(0 0% 0% / .25);
-  --foreground-o-10: hsl(0 0% 0% / .1);
-  --chaarts-purple: #639;
-  --chaarts-pink: #e11a81;
-  --chaarts-blue: #0172f0;
-  --chaarts-yellow: #fdc02f;
-  --chaarts-green: #39ca74;
-  --chaarts-red: #ff2d40;
-  --chaarts-gray: #585462;
+  --background-lightness: 100%;
+  --foreground-lightness: 0%;
+  --diff: 4%;
+  --background-lighter: hsl(0 0% var(--background-lightness));
+  --background: hsl(0 0% calc(var(--background-lightness) - var(--diff)));
+  --foreground: hsl(0 0% var(--foreround-lightness));
+  --foreground-lighter: hsl(0 0% calc(var(--foreround-lightness) + var(--diff)));
+  --foreground-o-50: hsl(0 0% var(--foreround-lightness) / .5);
+  --foreground-o-25: hsl(0 0% var(--foreround-lightness) / .25);
+  --foreground-o-10: hsl(0 0% var(--foreround-lightness) / .1);
+  --hue: 270;
+  --lightness: 50%;
+  --saturation: 100%;
+  --chaarts-purple: hsl(var(--hue) calc(var(--saturation) / 2) var(--lightness));
+  --chaarts-pink: hsl(calc(var(--hue) + 60) var(--saturation) var(--lightness));
+  --chaarts-blue: hsl(calc(var(--hue) - 60) var(--saturation) var(--lightness));
+  --chaarts-yellow: hsl(40 var(--saturation) var(--lightness));
+  --chaarts-green: hsl(calc(var(--hue) - 120) var(--saturation) var(--lightness));
+  --chaarts-red: hsl(calc(var(--hue) + 90) var(--saturation) var(--lightness));
+  --chaarts-gray: hsl(0 0% var(--lightness));
   --checkers: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'><g fill='hsl(0 0% 100% / .6)'><path fill-rule='evenodd' d='M0 0h4v4H0V0zm4 4h4v4H4V4z'/></g></svg>");
   --hexagons: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='24' viewBox='0 0 28 49'><g fill-rule='evenodd'><g fill='hsl(0 0% 100% / .6)' fill-rule='nonzero'><path d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/></g></g></svg>");
   --triangles: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='16' viewBox='0 0 36 72'><g fill-rule='evenodd'><g fill='hsl(0 0% 100% / .6)'><path d='M2 6h12L8 18 2 6zm18 36h12l-6 12-6-12z'/></g></g></svg>");
@@ -94,26 +100,25 @@ thead {
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
 }
+@media (min-width: 37.5em) {
+  .chaarts-container {
+    --lightness: 40%;
+  }
+}
 html:where([data-theme=dark]) .chaarts-container {
   color-scheme: dark;
-  --background-lighter: hsl(0 0% 0%);
-  --background: hsl(0 0% 20%);
-  --foreground: hsl(0 0% 100%);
-  --foreground-lighter: hsl(0 0% 96%);
-  --foreground-o-50: hsl(0 0% 100% / .5);
-  --foreground-o-25: hsl(0 0% 100% / .25);
-  --foreground-o-10: hsl(0 0% 100% / .1);
+  --background-lightness: 0%;
+  --foreground-lightness: 100%;
+  --background: hsl(0 0% calc(var(--diff) * 5));
+  --foreground-lighter: hsl(0 0% calc(var(--foreround-lightness) - var(--diff)));
 }
 @media screen and (prefers-color-scheme: dark) {
   .no-js .chaarts-container, html:where(:not([data-theme=light])) .chaarts-container {
     color-scheme: dark;
-    --background-lighter: hsl(0 0% 0%);
-    --background: hsl(0 0% 20%);
-    --foreground: hsl(0 0% 100%);
-    --foreground-lighter: hsl(0 0% 96%);
-    --foreground-o-50: hsl(0 0% 100% / .5);
-    --foreground-o-25: hsl(0 0% 100% / .25);
-    --foreground-o-10: hsl(0 0% 100% / .1);
+    --background-lightness: 0%;
+    --foreground-lightness: 100%;
+    --background: hsl(0 0% calc(var(--diff) * 5));
+    --foreground-lighter: hsl(0 0% calc(var(--foreround-lightness) - var(--diff)));
   }
 }
 @media (prefers-contrast: more) {

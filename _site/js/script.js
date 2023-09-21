@@ -46,17 +46,19 @@
 	if (! window.matchMedia('(prefers-contrast: more)').matches) {
 		const switcher = document.getElementById('theme');
 		const options = switcher.querySelectorAll('button');
+		let button = document.querySelector('[data-scheme="none"]');
 		//// Then check for localStorage
 		const currentTheme = localStorage.getItem('theme');
 		if (currentTheme) {
-			document.documentElement.dataset.theme = (currentTheme === 'dark') ? 'dark' : 'light';
+			document.documentElement.dataset.theme = currentTheme;
+			if (currentTheme === 'dark') {
+				button = document.querySelector('[data-scheme="dark"]');
+			} else if (currentTheme === 'light') {
+				button = document.querySelector('[data-scheme="light"]');
+			}
 		}
-		//// Apply expected theme
-		if (document.documentElement.dataset.theme === 'dark') {
-			document.querySelector('[data-scheme="dark"]').setAttribute('aria-pressed', 'true');
-		} else {
-			document.querySelector('[data-scheme="light"]').setAttribute('aria-pressed', 'true');
-		}
+		button.setAttribute('aria-pressed', 'true');
+
 		//// Finally handle overriding through buttons
 		options.forEach(option => {
 			option.addEventListener('click', () => {
