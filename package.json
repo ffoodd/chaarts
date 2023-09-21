@@ -58,7 +58,7 @@
 		"lint:js": "eslint _site/js/**/*.js"
 	},
 	"devDependencies": {
-		"autoprefixer": "^10.4.15",
+		"autoprefixer": "^10.4.16",
 		"concurrently": "^8.2.1",
 		"cssnano": "^6.0.1",
 		"eslint": "^8.49.0",
@@ -75,13 +75,13 @@
 		"postcss": "^8.4.30",
 		"postcss-cli": "^10.0.0",
 		"purgecss": "^5.0.0",
-		"sass": "^1.67.0",
+		"sass": "^1.68.0",
 		"servor": "^4.0.2",
 		"shx": "^0.3.4",
 		"stylelint": "^15.10.3",
 		"stylelint-config-recommended-scss": "^13.0.0",
 		"stylelint-scss": "^5.2.1",
-		"terser": "^5.19.4"
+		"terser": "^5.20.0"
 	},
 	"dependencies": {
 		"sseeeedd": "^0.4.2"
