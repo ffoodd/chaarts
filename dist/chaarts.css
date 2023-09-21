@@ -298,7 +298,7 @@ table:not(.chaarts) .sr-only {
     background: var(--chaarts-blue);
   }
   .chaarts.bar span {
-    background: var(--foreground);
+    background: var(--background-lighter);
     background-clip: unset;
     color: var(--chaarts-blue);
   }
@@ -1028,6 +1028,15 @@ table:not(.chaarts) .sr-only {
     position: absolute;
     right: 0;
   }
+}
+@media screen and (min-width: 30em) and (prefers-contrast: more) {
+  .chaarts[class*=column] span {
+    background: var(--background-lighter);
+    background-clip: unset;
+    color: var(--chaarts-blue);
+  }
+}
+@media screen and (min-width: 30em) {
   .chaarts[class*=column].column-single {
     grid-auto-columns: 1fr;
     grid-template-rows: 2ex repeat(var(--scale, 100), minmax(0, 0.25rem)) minmax(min-content, 2rem);
@@ -1045,6 +1054,13 @@ table:not(.chaarts) .sr-only {
     background: linear-gradient(to top, var(--chaarts-green), var(--chaarts-gray), var(--chaarts-blue), var(--chaarts-purple), var(--chaarts-red)) 0% var(--position) / 100% var(--size), var(--background) center/1rem;
     background-blend-mode: hard-light;
   }
+}
+@media screen and (min-width: 30em) and (prefers-contrast: more) {
+  .chaarts[class*=column].column-single td {
+    background-color: var(--chaarts-blue);
+  }
+}
+@media screen and (min-width: 30em) {
   .chaarts[class*=column].column-single :is([scope=col], [scope=colgroup])::after {
     background: var(--background) var(--stripes);
     background-blend-mode: exclusion;
@@ -1097,18 +1113,6 @@ table:not(.chaarts) .sr-only {
   .chaarts[class*=column].column-single td:nth-of-type(6n + 6) {
     --background: var(--dots);
   }
-}
-@media screen and (min-width: 30em) and (prefers-contrast: more) {
-  .chaarts[class*=column].column-single td {
-    background-color: var(--chaarts-blue);
-  }
-  .chaarts[class*=column].column-single span {
-    background: var(--foreground);
-    background-clip: unset;
-    color: var(--chaarts-blue);
-  }
-}
-@media screen and (min-width: 30em) {
   .chaarts[class*=column].column-multiple {
     grid-template-columns: minmax(min-content, 14ch) repeat(calc(var(--y) - 1), 1fr);
     grid-template-rows: 2ex repeat(var(--scale, 100), minmax(0, 0.25rem)) repeat(2, minmax(min-content, 2rem));
@@ -1205,16 +1209,6 @@ table:not(.chaarts) .sr-only {
   .chaarts[class*=column].column-multiple td:nth-of-type(2n + 2) {
     background: var(--chaarts-blue) var(--triangles);
   }
-}
-@media screen and (min-width: 30em) and (-ms-high-contrast: active) {
-  .chaarts[class*=column].column-multiple td {
-    background-color: Window;
-  }
-  .chaarts[class*=column].column-multiple td:nth-of-type(2n + 2) {
-    background-color: Highlight;
-  }
-}
-@media screen and (min-width: 30em) {
   .chaarts[class*=radar] {
     --radius: 12.8em;
     --unitless-radius: calc(1024 / 16 / 5);

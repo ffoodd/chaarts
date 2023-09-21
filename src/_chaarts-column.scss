@@ -71,6 +71,12 @@
 		pointer-events: auto;
 		position: absolute;
 		right: 0;
+
+		@media (prefers-contrast: more) {
+			background: var(--background-lighter);
+			background-clip: unset;
+			color: var(--chaarts-blue);
+		}
 	}
 
 	&.column-single {
@@ -98,6 +104,10 @@
 			) 0% list.slash(var(--position), 100%) var(--size),
 			var(--background) center / variables.$gutter;
 			background-blend-mode: hard-light;
+
+			@media (prefers-contrast: more) {
+				background-color: var(--chaarts-blue);
+			}
 		}
 
 		:is([scope="col"], [scope="colgroup"]) {
@@ -131,18 +141,6 @@
 
 			td:nth-of-type(#{$i}n + #{$i}) {
 				--background: var(--#{$pattern});
-			}
-		}
-
-		@media (prefers-contrast: more) {
-			td {
-				background-color: var(--chaarts-blue);
-			}
-
-			span {
-				background: var(--foreground);
-				background-clip: unset;
-				color: var(--chaarts-blue);
 			}
 		}
 	}
@@ -214,16 +212,6 @@
 		 */
 		td:nth-of-type(2n + 2) {
 			background: var(--chaarts-blue) var(--triangles);
-		}
-
-		@media screen and (-ms-high-contrast: active) {
-			td {
-				background-color: Window;
-			}
-
-			td:nth-of-type(2n + 2) {
-				background-color: Highlight;
-			}
 		}
 	}
 }
