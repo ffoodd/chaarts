@@ -116,6 +116,21 @@ html:where([data-theme=dark]) .chaarts-container {
     --foreground-o-10: hsl(0 0% 100% / .1);
   }
 }
+@media (prefers-contrast: more) {
+  .chaarts-container {
+    --background-lighter: Canvas;
+    --background: Canvas;
+    --foreground: CanvasText;
+    --foreground-lighter: CanvasText;
+    --chaarts-purple: LinkText;
+    --chaarts-pink: CanvasText;
+    --chaarts-blue: Highlight;
+    --chaarts-yellow: ActiveText;
+    --chaarts-green: InactiveBorder;
+    --chaarts-red: VisitedText;
+    --chaarts-gray: ButtonShadow;
+  }
+}
 
 [class*=chaarts] [role=presentation] {
   display: none;
@@ -280,11 +295,12 @@ table:not(.chaarts) .sr-only {
 }
 @media screen and (min-width: 30em) and (prefers-contrast: more) {
   .chaarts.bar td {
-    /**
-     * @note Custom color palette for WHCM
-     * @link https://blogs.windows.com/msedgedev/2020/09/17/styling-for-windows-high-contrast-with-new-standards-for-forced-colors/
-     */
-    background: Highlight;
+    background: var(--chaarts-blue);
+  }
+  .chaarts.bar span {
+    background: var(--foreground);
+    background-clip: unset;
+    color: var(--chaarts-blue);
   }
 }
 @media screen and (min-width: 30em) {
@@ -572,6 +588,13 @@ table:not(.chaarts) .sr-only {
     width: 100%;
     z-index: 2;
   }
+}
+@media screen and (min-width: 30em) and (prefers-contrast: more) {
+  .chaarts.line [style]::before {
+    background: var(--chaarts-blue);
+  }
+}
+@media screen and (min-width: 30em) {
   .chaarts.line th,
   .chaarts.line td {
     background: var(--background-lighter);
@@ -1075,14 +1098,14 @@ table:not(.chaarts) .sr-only {
     --background: var(--dots);
   }
 }
-@media screen and (min-width: 30em) and (-ms-high-contrast: active) {
+@media screen and (min-width: 30em) and (prefers-contrast: more) {
   .chaarts[class*=column].column-single td {
-    /**
-     * @note Custom color palette for WHCM
-     * @note Inspired by Greg Whitworth's post
-     * @link http://www.gwhitworth.com/blog/2017/04/how-to-use-ms-high-contrast
-     */
-    background-image: linear-gradient(to top, Window, ButtonFace, ButtonShadow, ButtonText, highlight), var(--background);
+    background-color: var(--chaarts-blue);
+  }
+  .chaarts[class*=column].column-single span {
+    background: var(--foreground);
+    background-clip: unset;
+    color: var(--chaarts-blue);
   }
 }
 @media screen and (min-width: 30em) {

@@ -105,6 +105,28 @@ thead {
 	}
 
 	// ====================
+	// == High contrast
+	//
+	// @note Using system color keywords
+	// @link https://drafts.csswg.org/css-color/#css-system-colors
+	// @link https://adrianroselli.com/2021/02/whcm-and-system-colors.html
+	// @link https://blogs.windows.com/msedgedev/2020/09/17/styling-for-windows-high-contrast-with-new-standards-for-forced-colors/
+	// ====================
+	@media (prefers-contrast: more) {
+		--background-lighter: Canvas;
+		--background: Canvas;
+		--foreground: CanvasText;
+		--foreground-lighter: CanvasText;
+		--chaarts-purple: LinkText;
+		--chaarts-pink: CanvasText;
+		--chaarts-blue: Highlight;
+		--chaarts-yellow: ActiveText;
+		--chaarts-green: InactiveBorder;
+		--chaarts-red: VisitedText;
+		--chaarts-gray: ButtonShadow;
+	}
+
+	// ====================
 	// == Patterns
 	//
 	// @note Defining a CSS custom property for each inlined SVG pattern
