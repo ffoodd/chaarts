@@ -90,11 +90,13 @@
 
 	@media screen and (prefers-contrast: more) {
 		td {
-			/**
-			 * @note Custom color palette for WHCM
-			 * @link https://blogs.windows.com/msedgedev/2020/09/17/styling-for-windows-high-contrast-with-new-standards-for-forced-colors/
-			 */
-			background: Highlight;
+			background: var(--chaarts-blue);
+		}
+
+		span {
+			background: var(--foreground);
+			background-clip: unset;
+			color: var(--chaarts-blue);
 		}
 	}
 

@@ -134,21 +134,15 @@
 			}
 		}
 
-		@media screen and (-ms-high-contrast: active) {
+		@media (prefers-contrast: more) {
 			td {
-				/**
-				 * @note Custom color palette for WHCM
-				 * @note Inspired by Greg Whitworth's post
-				 * @link http://www.gwhitworth.com/blog/2017/04/how-to-use-ms-high-contrast
-				 */
-				background-image: linear-gradient(to top,
-					Window,
-					ButtonFace,
-					ButtonShadow,
-					ButtonText,
-					highlight
-				),
-				var(--background);
+				background-color: var(--chaarts-blue);
+			}
+
+			span {
+				background: var(--foreground);
+				background-clip: unset;
+				color: var(--chaarts-blue);
 			}
 		}
 	}
