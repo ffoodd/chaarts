@@ -521,21 +521,6 @@ table:not(.chaarts) .sr-only {
   .chaarts.donut td::after {
     --away: calc(var(--radius) / 2 - 2.5rem);
   }
-}
-@media screen and (min-width: 30em) and (-ms-high-contrast: active) {
-  .chaarts.pie tbody tr *::before {
-    /**
-     * @note Custom color palette for WHCM
-     * @note Inspired by Greg Whitworth's post
-     * @link http://www.gwhitworth.com/blog/2017/04/how-to-use-ms-high-contrast
-     */
-    background-color: Window;
-  }
-  .chaarts.pie tbody tr:nth-of-type(odd) *::before {
-    background-color: WindowText;
-  }
-}
-@media screen and (min-width: 30em) {
   .chaarts.line {
     --offset: calc((100% / var(--x)) / 2);
     --height: calc(32em - 2rem);
@@ -941,18 +926,6 @@ table:not(.chaarts) .sr-only {
   .chaarts.points [scope=col]:not(:first-child):hover::after {
     opacity: 0.5;
   }
-}
-@media screen and (min-width: 30em) and (-ms-high-contrast: active) {
-  .chaarts.line [style]::before {
-    /**
-     * @note Custom color palette for WHCM
-     * @note Inspired by Greg Whitworth's post
-     * @link http://www.gwhitworth.com/blog/2017/04/how-to-use-ms-high-contrast
-     */
-    background: linear-gradient(to top, ButtonHighlight, Highlight 75%);
-  }
-}
-@media screen and (min-width: 30em) {
   .chaarts[class*=column] {
     --gap: 0.5rem;
     --size: calc(var(--scale, 100) * 100%);

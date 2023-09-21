@@ -321,14 +321,3 @@
 		}
 	}
 }
-
-@media screen and (-ms-high-contrast: active) {
-	.chaarts.line [style]::before {
-		/**
-		 * @note Custom color palette for WHCM
-		 * @note Inspired by Greg Whitworth's post
-		 * @link http://www.gwhitworth.com/blog/2017/04/how-to-use-ms-high-contrast
-		 */
-		background: linear-gradient(to top, ButtonHighlight, Highlight 75%);
-	}
-}

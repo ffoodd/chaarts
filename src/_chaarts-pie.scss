@@ -187,20 +187,3 @@
 		--away: calc(var(--radius) / 2 - #{variables.$gutter * 2.5});
 	}
 }
-
-@media screen and (-ms-high-contrast: active) {
-	.chaarts.pie {
-		tbody tr *::before {
-			/**
-			 * @note Custom color palette for WHCM
-			 * @note Inspired by Greg Whitworth's post
-			 * @link http://www.gwhitworth.com/blog/2017/04/how-to-use-ms-high-contrast
-			 */
-			background-color: Window;
-		}
-
-		tbody tr:nth-of-type(odd) *::before {
-			background-color: WindowText;
-		}
-	}
-}
