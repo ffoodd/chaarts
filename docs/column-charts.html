@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" class="no-js">
+<html lang="en" class="no-js">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,7 +9,6 @@
 	<meta property="og:type" content="article">
 	<meta property="og:description" name="description" content="Charts with HTML & CSS">
 	<meta name="twitter:card" content="summary">
-	<link rel="alternate" hreflang="fr" href="https://ffoodd.github.io/chaarts/histogramme.html">
 	<script>document.documentElement.classList.replace('no-js', 'js');</script>
 	<link rel="icon" href="favicon.svg" type="image/svg+xml">
 	<link rel="stylesheet" href="css/styles.min.css" media="all">
@@ -18,12 +17,12 @@
 </head>
 <body itemscope itemtype="http://schema.org/WebPage">
 <header role="banner" class="d-flex">
-	<div class="skip-links visually-hidden visually-hidden-focusable">
-		<a href="#nav">Aller à la navigation</a>
-		<a href="#main">Aller au contenu</a>
-	</div>
+		<div class="skip-links visually-hidden visually-hidden-focusable">
+			<a href="#nav">Skip to main navigation</a>
+			<a href="#main">Skip to content</a>
+		</div>
 
-	<nav role="navigation" id="nav" aria-label="Navigation principale">
+	<nav role="navigation" id="nav" aria-label="Main navigation">
 	<ul class="fly-out">
 		<li><a href="./index.html">Home</a></li>
 		<li><a href="./bar-charts.html">Bar charts</a></li>
@@ -31,41 +30,36 @@
 		<li><a aria-current="page">Column charts</a></li>
 		<li><a href="./pie-charts.html">Pie charts</a></li>
 		<li><a href="./radar-charts.html">Radar charts</a></li>
-		<li class="mis-auto">
-			<a rel="alternate" hreflang="fr" lang="fr" href="./histogramme.html"
-				 aria-label="Version française" title="Version française">FR</a>
-		</li>
 		<li>
 			<a href="https://github.com/ffoodd/chaarts/" class="d-flex">
-				<svg viewBox="0 0 16 16" height="16" width="16" aria-hidden="true">
+				<svg viewBox="0 0 16 16" height="24" width="24" role="img" aria-label="GitHub">
 					<path fill-rule="evenodd"
 								d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
 				</svg>
-				&nbsp;GitHub
 			</a>
 		</li>
 	</ul>
 	</nav>
-	<div role="group" aria-label="Choix du thème" id="theme" class="toggle no-js-hidden mis-auto high-contrast-hidden">
-		<button type="button" title="Thème sombre"
-						data-scheme="dark" aria-pressed="false">
-			<svg width="24" height="24" role="img" aria-label="Thème sombre" class="mi-auto no-padding">
-				<path d="M3 11.98A9.81 9.81 0 0012.57 22a9.53 9.53 0 008.3-5.06 1 1 0 00-.94-1.48l-.1.01a5.2 5.2 0 01-.4.02 7.81 7.81 0 01-7.58-8.01 8.38 8.38 0 011.02-4A1 1 0 0011.92 2 9.86 9.86 0 003 11.98zm7.34-7.65a10.38 10.38 0 00-.48 3.15 9.89 9.89 0 008.28 9.92 7.4 7.4 0 01-5.57 2.6A7.81 7.81 0 015 11.98a8 8 0 015.34-7.65z"></path>
-			</svg>
-		</button>
-		<button type="button"	title="Thème clair"
-						data-scheme="light" aria-pressed="false">
-			<svg width="24" height="24" role="img" aria-label="Thème clair" class="mi-auto no-padding">
-				<path d="M12 18a6 6 0 10-6-6 6 6 0 006 6zm0-10a4 4 0 11-4 4 4 4 0 014-4zM12 4a1 1 0 001-1V2a1 1 0 00-2 0v1a1 1 0 001 1zM11 21v1a1 1 0 002 0v-1a1 1 0 00-2 0zM18.36 6.64a1 1 0 00.71-.3l.7-.7a1 1 0 00-1.4-1.42l-.71.7a1 1 0 00.7 1.72zM4.93 17.66l-.7.7a1 1 0 101.4 1.42l.71-.7a1 1 0 00-1.41-1.42zM22 11h-1a1 1 0 000 2h1a1 1 0 000-2zM2 13h1a1 1 0 000-2H2a1 1 0 000 2zM17.66 17.66a1 1 0 000 1.41l.7.7a1 1 0 001.42-1.4l-.7-.71a1 1 0 00-1.42 0zM4.93 6.34a1 1 0 001.41-1.41l-.7-.7a1 1 0 00-1.42 1.4z"></path>
-			</svg>
-		</button>
-		<button type="button"	title="Thème par défaut"
-						data-scheme="none" aria-pressed="false">
-			<svg width="24" height="24" role="img" aria-label="Thème par défaut" class="mx-auto no-padding" viewBox="17 -18 100 100">
-				<path d="M104.5 36.2h8.3c4.2 0 4.2 0 4.2-4.2s0-4.2-4.2-4.2h-8.3c-4.2 0-4.2 0-4.2 4.2s0 4.2 4.2 4.2zM67-1.3c4.2 0 4.2 0 4.2-4.2v-8.3c0-4.2 0-4.2-4.2-4.2s-4.2 0-4.2 4.2v8.3c0 4.2 0 4.2 4.2 4.2zm29.5 68.6c2.9 2.9 2.9 2.9 5.8 0 3-2.9 3-2.9 0-5.9l-5.8-5.8c-3-3-3-3-5.9 0-2.9 2.9-2.9 2.9 0 5.8zM37.6 8.4c2.9 2.9 2.9 2.9 5.8 0 3-2.9 3-2.9 0-5.9l-5.8-5.8c-3-3-3-3-5.9 0-2.9 2.9-2.9 2.9 0 5.8zM67 57a25 25 0 0 0 24.1-31.6l-7.4 7.5a16.8 16.8 0 0 1-15.8 15.8l-7.5 7.5c2.1.5 4.4.8 6.6.8zm-14.6-4.7 6.1-6A16.6 16.6 0 0 1 50.3 32c0-9.2 7.5-16.7 16.7-16.7 6.1 0 11.4 3.3 14.3 8.2l6-6a25 25 0 1 0-34.9 34.8zM67 82c4.2 0 4.2 0 4.2-4.2v-8.3c0-4.2 0-4.2-4.2-4.2s-4.2 0-4.2 4.2v8.3c0 4.2 0 4.2 4.2 4.2zM21.2 36.2h8.3c4.2 0 4.2 0 4.2-4.2s0-4.2-4.2-4.2h-8.3c-4.2 0-4.2 0-4.2 4.2s0 4.2 4.2 4.2zm10.5 31.1c2.9 2.9 2.9 2.9 5.9 0l64.8-64.8c3-3 3-2.9 0-5.8-2.9-3-2.8-2.9-5.8 0L31.7 61.4c-3 3-2.9 3 0 5.9z"/>
-			</svg>
-		</button>
-	</div>
+		<div role="group" aria-label="Color scheme selection" id="theme" class="toggle no-js-hidden mis-auto high-contrast-hidden">
+			<button type="button" title="Dark mode"
+							data-scheme="dark" aria-pressed="false">
+				<svg width="24" height="24" role="img" aria-label="Dark mode" class="mi-auto no-padding">
+					<path d="M3 11.98A9.81 9.81 0 0012.57 22a9.53 9.53 0 008.3-5.06 1 1 0 00-.94-1.48l-.1.01a5.2 5.2 0 01-.4.02 7.81 7.81 0 01-7.58-8.01 8.38 8.38 0 011.02-4A1 1 0 0011.92 2 9.86 9.86 0 003 11.98zm7.34-7.65a10.38 10.38 0 00-.48 3.15 9.89 9.89 0 008.28 9.92 7.4 7.4 0 01-5.57 2.6A7.81 7.81 0 015 11.98a8 8 0 015.34-7.65z"></path>
+				</svg>
+			</button>
+			<button type="button"	title="Light mode"
+							data-scheme="light" aria-pressed="false">
+				<svg width="24" height="24" role="img" aria-label="Light mode" class="mi-auto no-padding">
+					<path d="M12 18a6 6 0 10-6-6 6 6 0 006 6zm0-10a4 4 0 11-4 4 4 4 0 014-4zM12 4a1 1 0 001-1V2a1 1 0 00-2 0v1a1 1 0 001 1zM11 21v1a1 1 0 002 0v-1a1 1 0 00-2 0zM18.36 6.64a1 1 0 00.71-.3l.7-.7a1 1 0 00-1.4-1.42l-.71.7a1 1 0 00.7 1.72zM4.93 17.66l-.7.7a1 1 0 101.4 1.42l.71-.7a1 1 0 00-1.41-1.42zM22 11h-1a1 1 0 000 2h1a1 1 0 000-2zM2 13h1a1 1 0 000-2H2a1 1 0 000 2zM17.66 17.66a1 1 0 000 1.41l.7.7a1 1 0 001.42-1.4l-.7-.71a1 1 0 00-1.42 0zM4.93 6.34a1 1 0 001.41-1.41l-.7-.7a1 1 0 00-1.42 1.4z"></path>
+				</svg>
+			</button>
+			<button type="button"	title="System default"
+							data-scheme="none" aria-pressed="false">
+				<svg width="24" height="24" role="img" aria-label="System default" class="mx-auto no-padding" viewBox="17 -18 100 100">
+					<path d="M104.5 36.2h8.3c4.2 0 4.2 0 4.2-4.2s0-4.2-4.2-4.2h-8.3c-4.2 0-4.2 0-4.2 4.2s0 4.2 4.2 4.2zM67-1.3c4.2 0 4.2 0 4.2-4.2v-8.3c0-4.2 0-4.2-4.2-4.2s-4.2 0-4.2 4.2v8.3c0 4.2 0 4.2 4.2 4.2zm29.5 68.6c2.9 2.9 2.9 2.9 5.8 0 3-2.9 3-2.9 0-5.9l-5.8-5.8c-3-3-3-3-5.9 0-2.9 2.9-2.9 2.9 0 5.8zM37.6 8.4c2.9 2.9 2.9 2.9 5.8 0 3-2.9 3-2.9 0-5.9l-5.8-5.8c-3-3-3-3-5.9 0-2.9 2.9-2.9 2.9 0 5.8zM67 57a25 25 0 0 0 24.1-31.6l-7.4 7.5a16.8 16.8 0 0 1-15.8 15.8l-7.5 7.5c2.1.5 4.4.8 6.6.8zm-14.6-4.7 6.1-6A16.6 16.6 0 0 1 50.3 32c0-9.2 7.5-16.7 16.7-16.7 6.1 0 11.4 3.3 14.3 8.2l6-6a25 25 0 1 0-34.9 34.8zM67 82c4.2 0 4.2 0 4.2-4.2v-8.3c0-4.2 0-4.2-4.2-4.2s-4.2 0-4.2 4.2v8.3c0 4.2 0 4.2 4.2 4.2zM21.2 36.2h8.3c4.2 0 4.2 0 4.2-4.2s0-4.2-4.2-4.2h-8.3c-4.2 0-4.2 0-4.2 4.2s0 4.2 4.2 4.2zm10.5 31.1c2.9 2.9 2.9 2.9 5.9 0l64.8-64.8c3-3 3-2.9 0-5.8-2.9-3-2.8-2.9-5.8 0L31.7 61.4c-3 3-2.9 3 0 5.9z"/>
+				</svg>
+			</button>
+		</div>
 </header>
 
 <main role="main" id="main" tabindex="-1" itemprop="mainContentOfPage">
