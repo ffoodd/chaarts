@@ -249,19 +249,7 @@
 			<p>
 				We can therefore <a href="https://en.wikipedia.org/wiki/Law_of_sines">use the sine law</a>
 				to measure each side, and thus obtain the position of the point on the circle.
-				Meaning we need to calculate the sine… Fortunately,
-				<a href="https://gist.github.com/stereokai/7666bfe93929b14c2dced148c79e0e97"><strong>Stereokai</strong> implemented
-					for us
-					the Taylor/Maclaurin polynomial representation in CSS</a> —&nbsp;which I implemented as a mixin:
-			</p>
-<pre><code class="language-scss">@mixin sin($angle) {
-  --sin-term-#{$angle}-1: var(--#{$angle});
-  --sin-term-#{$angle}-2: calc((var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle})) / 6);
-  --sin-term-#{$angle}-3: calc((var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle})) / 120);
-  --sin-term-#{$angle}-4: calc((var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle})) / 5040);
-  --sin-term-#{$angle}-5: calc((var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle}) * var(--#{$angle})) / 362880);
-  --sin-#{$angle}: calc(var(--sin-term-#{$angle}-1) - var(--sin-term-#{$angle}-2) + var(--sin-term-#{$angle}-3) - var(--sin-term-#{$angle}-4) + var(--sin-term-#{$angle}-5));
-}</code></pre>
+				Meaning we need to calculate the sine… Fortunately, CSS got you covered with the <code>sin()</code> function.
 			<p>
 				All that remains is to use these dimensions to place the points of the polygon.
 				<strong>It's child's play!</strong>
@@ -349,19 +337,8 @@
 	 --β: calc( var(--main-angle) * 0.01745329251 );
 	 /* The last angle in radian, by deduction since in a right-angled triangle */
 	 --α: calc( ( 90 - var(--main-angle) ) * 0.01745329251 );
-	 /* The magic of Stereokai, to get the sinus from these angles… */
-	 --sin-term-β-1: var(--β);
-	 --sin-term-β-2: calc((var(--β) * var(--β) * var(--β)) / 6);
-	 --sin-term-β-3: calc((var(--β) * var(--β) * var(--β) * var(--β) * var(--β)) / 120);
-	 --sin-term-β-4: calc((var(--β) * var(--β) * var(--β) * var(--β) * var(--β) * var(--β) * var(--β)) / 5040);
-	 --sin-term-β-5: calc((var(--β) * var(--β) * var(--β) * var(--β) * var(--β) * var(--β) * var(--β) * var(--β) * var(--β)) / 362880);
-	 --sin-β: calc(var(--sin-term-β-1) - var(--sin-term-β-2) + var(--sin-term-β-3) - var(--sin-term-β-4) + var(--sin-term-β-5));
-	 --sin-term-α-1: var(--α);
-	 --sin-term-α-2: calc((var(--α) * var(--α) * var(--α)) / 6);
-	 --sin-term-α-3: calc((var(--α) * var(--α) * var(--α) * var(--α) * var(--α)) / 120);
-	 --sin-term-α-4: calc((var(--α) * var(--α) * var(--α) * var(--α) * var(--α) * var(--α) * var(--α)) / 5040);
-	 --sin-term-α-5: calc((var(--α) * var(--α) * var(--α) * var(--α) * var(--α) * var(--α) * var(--α) * var(--α) * var(--α)) / 362880);
-	 --sin-α: calc(var(--sin-term-α-1) - var(--sin-term-α-2) + var(--sin-term-α-3) - var(--sin-term-α-4) + var(--sin-term-α-5));
+	 --sin-β: sin(var(--β));
+	 --sin-α: sin(var(--α));
 	 /* Finally, the position expressed in %, of the hypothenuse, divided by 2 to fit in ¼ of the circle
 		* or after simplification, divided by 50 */
 	 --pos-B: calc( var(--sin-β) * 50 );

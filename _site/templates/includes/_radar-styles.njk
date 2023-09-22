@@ -69,12 +69,7 @@
   .chaarts[class*="radar"] span {
     --opposite: calc( 180 - (90 + (90 - (360 / var(--items)))) );
     --angle: calc( var(--opposite) * 0.01745329251 );
-    --sin-term-angle-1: var(--angle);
-    --sin-term-angle-2: calc((var(--angle) * var(--angle) * var(--angle)) / 6);
-    --sin-term-angle-3: calc((var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle)) / 120);
-    --sin-term-angle-4: calc((var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle)) / 5040);
-    --sin-term-angle-5: calc((var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle) * var(--angle)) / 362880);
-    --sin-angle: calc(var(--sin-term-angle-1) - var(--sin-term-angle-2) + var(--sin-term-angle-3) - var(--sin-term-angle-4) + var(--sin-term-angle-5));
+    --sin-angle: sin(var(--angle));
     --hypo: calc( var(--unitless-radius) / var(--sin-angle) );
     --ratio: calc( var(--hypo) / var(--unitless-radius) );
     background: linear-gradient(
