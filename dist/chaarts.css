@@ -1210,13 +1210,9 @@ table:not(.chaarts) .sr-only {
      *
      * @note Because we skew items, clip-path() needs to take skew angle into account
      * @note To do so, we need to know skewed width (which is hypothenuse of the resulting triangle)
-     * @note We only know two angles (skew one + suqare one) and a side (initial width),
+     * @note We only know two angles (skew one + square one) and a side (initial width),
      * @note So we need to compute the sinus of the opposite angle to get hypothenuse
-     * @note Thanks god, Stereokai made trigonometry functions in pure CSS:
-     *
-     * @note Trigonometry functions based on:
-     * @link https://gist.github.com/stereokai/7666bfe93929b14c2dced148c79e0e97
-     * @author Stereokai
+     * @note Thanks god, sin() exists
      */
   }
   .chaarts[class*=radar] caption {

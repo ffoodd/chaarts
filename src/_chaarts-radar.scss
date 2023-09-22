@@ -73,7 +73,7 @@
 	 *
 	 * @note Because we skew items, clip-path() needs to take skew angle into account
 	 * @note To do so, we need to know skewed width (which is hypothenuse of the resulting triangle)
-	 * @note We only know two angles (skew one + suqare one) and a side (initial width),
+	 * @note We only know two angles (skew one + square one) and a side (initial width),
 	 * @note So we need to compute the sinus of the opposite angle to get hypothenuse
 	 * @note Thanks god, sin() exists
 	 */
