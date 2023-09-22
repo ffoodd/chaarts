@@ -17,7 +17,7 @@
 	--width: calc(#{variables.$width} / var(--y) - #{variables.$gutter});
 	display: grid;
 	grid-column-gap: var(--gap);
-	max-height: variables.$width;
+	max-block-size: variables.$width;
 	position: relative;
 
 	td,
@@ -63,14 +63,14 @@
 		background: inherit;
 		-webkit-background-clip: text;
 		background-clip: text;
-		bottom: 100%;
+		inset-block-end: 100%;
 		color: transparent;
 		font-weight: bold;
-		left: 0;
+		inset-inline-start: 0;
 		line-height: 1.5;
 		pointer-events: auto;
 		position: absolute;
-		right: 0;
+		inset-inline-end: 0;
 
 		@media (prefers-contrast: more) {
 			background: var(--background-lighter);
@@ -114,14 +114,14 @@
 			&::after {
 				background: var(--background) var(--stripes);
 				background-blend-mode: exclusion;
-				bottom: #{variables.$gutter * 4};
+				inset-block-end: #{variables.$gutter * 4};
 				content: "";
 				mix-blend-mode: color;
 				opacity: 0;
 				position: absolute;
 				transition: opacity .3s var(--move);
-				top: variables.$gutter;
-				width: var(--width);
+				inset-block-start: variables.$gutter;
+				inline-size: var(--width);
 				z-index: 0;
 			}
 
@@ -131,7 +131,7 @@
 
 			@each $number in 1, 2, 3, 4, 5, 6 {
 				&:nth-child(#{$number + 1})::after {
-					left: calc(1em + (var(--width) * #{$number}) + (var(--gap) * #{$number}));
+					inset-inline-start: calc(1em + (var(--width) * #{$number}) + (var(--gap) * #{$number}));
 				}
 			}
 		}
@@ -183,20 +183,20 @@
 			&:nth-child(even)::after {
 				background: var(--background) var(--stripes);
 				background-blend-mode: exclusion;
-				bottom: #{variables.$gutter * 4};
+				inset-block-end: #{variables.$gutter * 4};
 				content: "";
 				mix-blend-mode: color;
 				opacity: .25;
 				position: absolute;
 				transition: opacity .3s var(--move);
-				top: calc(#{variables.$gutter} + 2ex);
-				width: calc((var(--width) * 2) + (var(--gap) / 2) + 1px);
+				inset-block-start: calc(#{variables.$gutter} + 2ex);
+				inline-size: calc((var(--width) * 2) + (var(--gap) / 2) + 1px);
 				z-index: 0;
 			}
 
 			@each $number in 1, 3, 5 {
 				&:nth-child(#{$number + 1})::after {
-					left: calc(14ch + 1em + (((var(--width) * 2) + (var(--gap) / 2) + 1px) * #{$number - 1}) + (var(--gap) * #{$number}));
+					inset-inline-start: calc(14ch + 1em + (((var(--width) * 2) + (var(--gap) / 2) + 1px) * #{$number - 1}) + (var(--gap) * #{$number}));
 				}
 			}
 		}

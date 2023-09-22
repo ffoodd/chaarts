@@ -27,15 +27,15 @@
 	border-radius: 50%;
 	contain: layout;
 	counter-reset: scale var(--integer);
-	height: calc(var(--radius) * 2);
+	block-size: calc(var(--radius) * 2);
 	margin: variables.$gutter * 6 auto variables.$gutter * 12;
 	overflow: visible;
 	position: relative;
-	width: calc(var(--radius) * 2);
+	inline-size: calc(var(--radius) * 2);
 
 	caption {
 		background: none;
-		bottom: variables.$gutter * -10;
+		inset-block-end: variables.$gutter * -10;
 		position: absolute;
 	}
 
@@ -50,11 +50,11 @@
 	[scope="col"] {
 		--away: calc((var(--radius) * -1) - 50%);
 		background-color: transparent;
-		left: 50%;
+		inset-inline-start: 50%;
 		margin: 0;
 		padding: 0 variables.$gutter;
 		position: absolute;
-		top: 50%;
+		inset-block-start: 50%;
 		transform: translate3d(-50%, -50%, 0) rotate(calc(var(--part) * var(--index, 1))) translate(var(--away)) rotate(calc(var(--part) * var(--index, 1) * -1));
 	}
 
@@ -79,15 +79,15 @@
 	 */
 	td {
 		--skew: calc(90deg - var(--part));
-		border-bottom: 1px solid var(--chaarts-purple);
-		height: 50%;
-		left: 0;
+		border-block-end: 1px solid var(--chaarts-purple);
+		block-size: 50%;
+		inset-inline-start: 0;
 		margin: 0;
 		position: absolute;
-		top: 0;
+		inset-block-start: 0;
 		transform: rotate(calc(var(--part) * var(--index, 1))) skew(var(--skew));
 		transform-origin: 100% 100%;
-		width: 50%;
+		inline-size: 50%;
 
 		@each $number in 1, 2, 3, 4, 5, 6, 7 {
 			&:nth-of-type(#{$number}) span {
@@ -119,9 +119,9 @@
 		background: var(--chaarts-purple);
 		clip-path: var(--polygon);
 		filter: drop-shadow(0 0 variables.$gutter var(--chaarts-purple));
-		height: 100%;
+		block-size: 100%;
 		position: absolute;
-		width: 100%;
+		inline-size: 100%;
 	}
 }
 
@@ -154,7 +154,7 @@
 }
 
 .chaarts.radar-multiple {
-	margin-bottom: variables.$gutter * 12;
+	margin-block-end: variables.$gutter * 12;
 
 	tbody {
 		columns: var(--areas);
@@ -162,26 +162,26 @@
 	}
 
 	[scope="row"] {
-		bottom: variables.$gutter * -8;
-		height: variables.$gutter * 2;
-		left: variables.$gutter;
+		inset-block-end: variables.$gutter * -8;
+		block-size: variables.$gutter * 2;
+		inset-inline-start: variables.$gutter;
 		position: absolute;
 
 		&::before {
 			background: var(--color, currentColor);
 			content: "";
 			display: inline-block;
-			height: variables.$gutter;
-			margin-right: variables.$gutter * 0.25;
+			block-size: variables.$gutter;
+			margin-inline-end: variables.$gutter * 0.25;
 			transform: translate3d(0, .1rem, 0);
-			width: variables.$gutter;
+			inline-size: variables.$gutter;
 		}
 	}
 
 	// Allowing more areas :)
 	@each $number in 1 {
 		tr:nth-child(#{$number + 1}) [scope="row"] {
-			left: calc(#{variables.$gutter} + (100% / var(--areas)) * #{$number});
+			inset-inline-start: calc(#{variables.$gutter} + (100% / var(--areas)) * #{$number});
 		}
 	}
 
@@ -202,7 +202,7 @@
 			text-indent: math.div(variables.$gutter, -2);
 			transform: skew(calc(var(--skew) * -1)) rotate(calc(var(--part) * var(--index, 1) * -1));
 			transform-origin: 0 0;
-			width: 100%;
+			inline-size: 100%;
 			white-space: nowrap;
 		}
 
@@ -211,7 +211,7 @@
 				--integer: calc(var(--#{$number})); // 2
 				counter-reset: value var(--integer); // 1
 				content: counter(value); // 1
-				width: calc(var(--#{$number}) * 100% / var(--scale));
+				inline-size: calc(var(--#{$number}) * 100% / var(--scale));
 			}
 		}
 	}

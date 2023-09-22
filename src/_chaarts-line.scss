@@ -31,11 +31,11 @@
 				var(--background-lighter) 0 var(--scale),
 				var(--foreground-o-25) calc(var(--scale) + 1px)
 		);
-		bottom: var(--bottom);
+		inset-block-end: var(--bottom);
 		content: "";
 		position: absolute;
-		top: 0;
-		width: 100%;
+		inset-block-start: 0;
+		inline-size: 100%;
 		z-index: 1;
 	}
 
@@ -47,11 +47,11 @@
 	[scope="row"],
 	thead th:first-child {
 		color: var(--color, currentColor);
-		text-align: left;
+		text-align: start;
 	}
 
 	[style]::before {
-		bottom: var(--bottom);
+		inset-block-end: var(--bottom);
 		background: linear-gradient(to top, var(--chaarts-blue), var(--chaarts-red) 75%);
 		--polygon: polygon(
 				0% 100%,
@@ -76,8 +76,8 @@
 		clip-path: var(--polygon);
 		content: "";
 		position: absolute;
-		top: 0;
-		width: 100%;
+		inset-block-start: 0;
+		inline-size: 100%;
 		z-index: 2;
 
 		@media (prefers-contrast: more) {
@@ -90,22 +90,22 @@
 		background: var(--background-lighter);
 		font-weight: bold;
 		text-align: center;
-		width: calc(100% / var(--x));
+		inline-size: calc(100% / var(--x));
 	}
 
 	[scope="col"] {
 		&:not(:first-child)::after {
 			background: var(--background-lighter) var(--stripes);
 			background-blend-mode: exclusion;
-			bottom: variables.$gutter * 4;
+			inset-block-end: variables.$gutter * 4;
 			content: "";
-			height: calc(100% - #{variables.$gutter * 4});
-			left: calc(100% / var(--x) * var(--index));
+			block-size: calc(100% - #{variables.$gutter * 4});
+			inset-inline-start: calc(100% / var(--x) * var(--index));
 			mix-blend-mode: soft-light;
 			opacity: 0;
 			position: absolute;
 			transition: opacity .3s var(--move);
-			width: inherit;
+			inline-size: inherit;
 			z-index: 3;
 
 			@include mixins.dark-mode {
@@ -131,10 +131,10 @@
 
 		&::before {
 			content: "";
-			height: 1.5rem;
+			block-size: 1.5rem;
 			position: absolute;
 			transform: translateX(-50%);
-			width: inherit;
+			inline-size: inherit;
 			z-index: 10;
 		}
 
@@ -177,10 +177,10 @@
 			counter-reset: value var(--integer); // 2, 3
 			opacity: 0;
 			padding: variables.$gutter * 0.5;
-			left: calc(var(--offset) * 3);
+			inset-inline-start: calc(var(--offset) * 3);
 			pointer-events: none;
 			position: absolute;
-			top: var(--top, 0);
+			inset-block-start: var(--top, 0);
 			transform-origin: 50% calc(100% + 10px);
 			transform: translate3d(-50%, -125%, 0) perspective(1000px) rotate3d(1, 0, 0, 45deg);
 			transition: opacity .2s var(--enter),
@@ -190,7 +190,7 @@
 		}
 
 		+ td::after {
-			left: calc((100% / var(--x) * var(--index)) + var(--offset));
+			inset-inline-start: calc((100% / var(--x) * var(--index)) + var(--offset));
 		}
 
 		@each $number in 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 {
@@ -251,9 +251,9 @@
 			background: var(--color, currentColor) var(--background);
 			content: "";
 			display: inline-block;
-			height: 1rem;
+			block-size: 1rem;
 			transform: translate3d(-.2rem, .1rem, 0);
-			width: 1rem;
+			inline-size: 1rem;
 		}
 
 		td {
@@ -265,19 +265,19 @@
 				border-radius: 50%;
 				box-shadow: 0 0 #{variables.$gutter * 0.25} var(--foreground-o-50);
 				content: "";
-				height: var(--size);
-				left: calc(var(--offset) * 3);
+				block-size: var(--size);
+				inset-inline-start: calc(var(--offset) * 3);
 				position: absolute;
-				top: var(--top, 100);
+				inset-block-start: var(--top, 100);
 				transform: translate3d(calc(var(--size) / -2), calc(var(--size) / -2), 0);
 				transition: opacity .3s var(--move),
 				transform .3s var(--move);
-				width: var(--size);
+				inline-size: var(--size);
 				z-index: 4;
 			}
 
 			+ td::before {
-				left: calc((100% / var(--x) * var(--index)) + var(--offset));
+				inset-inline-start: calc((100% / var(--x) * var(--index)) + var(--offset));
 			}
 
 			@each $number in 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 {
