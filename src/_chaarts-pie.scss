@@ -1,6 +1,5 @@
 @use "sass:list";
 @use "sass:map";
-@use "abstracts/mixins";
 @use "abstracts/variables";
 
 /* ==================== */
@@ -70,8 +69,8 @@
 		--main-angle: calc(var(--part) - (90 * (var(--gt-25, 0) + var(--gt-50, 0) + var(--gt-75, 0))));
 		--β: calc(var(--main-angle) * 0.01745329251);
 		--α: calc((90 - var(--main-angle)) * 0.01745329251);
-		@include mixins.sin(β);
-		@include mixins.sin(α);
+		--sin-β: sin(var(--β));
+		--sin-α: sin(var(--α));
 		--pos-B: calc(var(--sin-β) * 50);
 		--pos-A: calc(var(--sin-α) * 50);
 		--polygon: polygon(

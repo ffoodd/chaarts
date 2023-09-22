@@ -1,6 +1,5 @@
 @use "sass:map";
 @use "sass:math";
-@use "abstracts/mixins";
 @use "abstracts/variables";
 
 /* ==================== */
@@ -76,11 +75,7 @@
 	 * @note To do so, we need to know skewed width (which is hypothenuse of the resulting triangle)
 	 * @note We only know two angles (skew one + suqare one) and a side (initial width),
 	 * @note So we need to compute the sinus of the opposite angle to get hypothenuse
-	 * @note Thanks god, Stereokai made trigonometry functions in pure CSS:
-	 *
-	 * @note Trigonometry functions based on:
-	 * @link https://gist.github.com/stereokai/7666bfe93929b14c2dced148c79e0e97
-	 * @author Stereokai
+	 * @note Thanks god, sin() exists
 	 */
 	td {
 		--skew: calc(90deg - var(--part));
@@ -111,8 +106,7 @@
 		--opposite: calc(180 - (90 + (90 - (360 / var(--items)))));
 		// get opposite angle in radians
 		--angle: calc(var(--opposite) * 0.01745329251);
-		// calc() sin, dark wizardry!
-		@include mixins.sin(angle);
+		--sin-angle: sin(var(--angle));
 		// calc() hypothenuse
 		--hypo: calc(var(--unitless-radius) / var(--sin-angle));
 		// get the ratio: skewed / initial width
