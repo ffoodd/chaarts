@@ -31,8 +31,8 @@ table {
 	border-collapse: collapse;
 	caption-side: top;
 	font-feature-settings: "tnum";
-	margin-bottom: variables.$gutter * 1.5;
-	width: 100%;
+	margin-block-end: variables.$gutter * 1.5;
+	inline-size: 100%;
 	vertical-align: top;
 
 	> caption:first-child {
@@ -50,7 +50,7 @@ td {
 
 td {
 	line-height: 1.25;
-	max-width: 100%;
+	max-inline-size: 100%;
 }
 
 tbody {
@@ -183,7 +183,7 @@ thead {
 	background-position: 0 0, 100%, 0 0, 100%;
 	background-attachment: local, local, scroll, scroll;
 	margin: variables.$gutter * 2 0;
-	max-width: 100%;
+	max-inline-size: 100%;
 	overflow-x: auto;
 	overflow-y: hidden;
 	-webkit-overflow-scrolling: touch;
@@ -195,7 +195,7 @@ thead {
 	}
 
 	abbr[title] {
-		border-bottom: 0;
+		border-block-end: 0;
 		font-size: small;
 		font-weight: normal;
 		text-transform: none;

@@ -9,7 +9,7 @@
 .chaarts.pie {
 	--radius: 32em;
 	margin: 0 auto;
-	padding-top: calc(var(--radius) - #{variables.$gutter * 2});
+	padding-block-start: calc(var(--radius) - #{variables.$gutter * 2});
 	position: relative;
 
 	tbody {
@@ -22,15 +22,15 @@
 	}
 
 	[scope="row"] {
-		padding-right: variables.$gutter * 0.5;
+		padding-inline-end: variables.$gutter * 0.5;
 
 		&::before {
 			background: var(--color, currentColor) var(--background);
 			content: "";
 			display: inline-block;
-			height: variables.$gutter;
+			block-size: variables.$gutter;
 			transform: translate3d(-.2rem, .1rem, 0);
-			width: variables.$gutter;
+			inline-size: variables.$gutter;
 		}
 	}
 
@@ -40,9 +40,9 @@
 
 	td::after,
 	td::before {
-		left: 50%;
+		inset-inline-start: 50%;
 		position: absolute;
-		top: calc(var(--radius) / 2);
+		inset-block-start: calc(var(--radius) / 2);
 		transform-origin: center center;
 	}
 
@@ -90,7 +90,7 @@
 		border-radius: 50%;
 		clip-path: var(--polygon);
 		content: '';
-		height: var(--radius);
+		block-size: var(--radius);
 		--mask: radial-gradient(
 				circle at center,
 				#ffff 0 calc((var(--radius) / 2) - 1px),
@@ -99,7 +99,7 @@
 		mask-image: var(--mask);
 		transform: translate3d(-50%, -50%, 0) rotate(var(--position)) scale(var(--zoom));
 		transition: transform .2s var(--move);
-		width: var(--radius);
+		inline-size: var(--radius);
 	}
 
 	tr:hover td::before {
