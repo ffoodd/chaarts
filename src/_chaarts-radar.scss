@@ -2,9 +2,10 @@
 @use "sass:math";
 @use "abstracts/variables";
 
-/* ==================== */
-/* == Radar Charts
-/* ==================== */
+// ====================
+// ==Radar Charts
+//
+// ====================
 
 .chaarts[class*="radar"] {
 	--radius: #{variables.$width * 0.2};
@@ -12,6 +13,7 @@
 	--size: calc(var(--radius) / var(--scale));
 	--part: calc(360deg / var(--items));
 	--integer: calc(var(--scale));
+
 	background-image:
 		repeating-radial-gradient(
 			circle at 50%,
@@ -23,15 +25,15 @@
 			var(--foreground-o-10) 0 2px,
 			transparent 0 var(--size)
 		);
+	block-size: calc(var(--radius) * 2);
 	border: 2px solid;
 	border-radius: 50%;
 	contain: layout;
 	counter-reset: scale var(--integer);
-	block-size: calc(var(--radius) * 2);
+	inline-size: calc(var(--radius) * 2);
 	margin: variables.$gutter * 6 auto variables.$gutter * 12;
 	overflow: visible;
 	position: relative;
-	inline-size: calc(var(--radius) * 2);
 
 	caption {
 		background: none;
@@ -49,6 +51,7 @@
 	 */
 	[scope="col"] {
 		--away: calc((var(--radius) * -1) - 50%);
+
 		background-color: transparent;
 		left: 50%;
 		margin: 0;
@@ -79,15 +82,16 @@
 	 */
 	td {
 		--skew: calc(90deg - var(--part));
-		border-block-end: 1px solid var(--chaarts-purple);
+
 		block-size: 50%;
+		border-block-end: 1px solid var(--chaarts-purple);
+		inline-size: 50%;
 		left: 0;
 		margin: 0;
 		position: absolute;
 		top: 0;
 		transform: rotate(calc(var(--part) * var(--index, 1))) skew(var(--skew));
 		transform-origin: 100% 100%;
-		inline-size: 50%;
 
 		@each $number in 1, 2, 3, 4, 5, 6, 7 {
 			&:nth-of-type(#{$number}) span {
@@ -104,11 +108,14 @@
 
 	span {
 		--opposite: calc(180 - (90 + (90 - (360 / var(--items)))));
+
 		// get opposite angle in radians
 		--angle: calc(var(--opposite) * 0.01745329251);
 		--sin-angle: sin(var(--angle));
+
 		// calc() hypothenuse
 		--hypo: calc(var(--unitless-radius) / var(--sin-angle));
+
 		// get the ratio: skewed / initial width
 		--ratio: calc(var(--hypo) / var(--unitless-radius));
 		--polygon: polygon(
@@ -116,12 +123,13 @@
 				calc(100% - (var(--point) * 100% / var(--scale))) 100%,
 				100% 100%
 		);
+
 		background: var(--chaarts-purple);
+		block-size: 100%;
 		clip-path: var(--polygon);
 		filter: drop-shadow(0 0 variables.$gutter var(--chaarts-purple));
-		block-size: 100%;
-		position: absolute;
 		inline-size: 100%;
+		position: absolute;
 	}
 }
 
@@ -147,8 +155,9 @@
 	@each $number in 1, 2, 3, 4, 5, 6, 7 {
 		&:nth-child(#{$number})::after {
 			--integer: calc(var(--#{$number})); // 2
-			counter-reset: value var(--integer); // 1
+
 			content: counter(value) "\A0/\A0" counter(scale); // 1
+			counter-reset: value var(--integer); // 1
 		}
 	}
 }
@@ -162,19 +171,19 @@
 	}
 
 	[scope="row"] {
-		bottom: variables.$gutter * -8;
 		block-size: variables.$gutter * 2;
+		bottom: variables.$gutter * -8;
 		left: variables.$gutter;
 		position: absolute;
 
 		&::before {
 			background: var(--color, currentColor);
+			block-size: variables.$gutter;
 			content: "";
 			display: inline-block;
-			block-size: variables.$gutter;
+			inline-size: variables.$gutter;
 			margin-inline-end: variables.$gutter * 0.25;
 			transform: translate3d(0, .1rem, 0);
-			inline-size: variables.$gutter;
 		}
 	}
 
@@ -199,18 +208,19 @@
 			display: block;
 			font-size: small;
 			font-weight: 700;
+			inline-size: 100%;
 			text-indent: math.div(variables.$gutter, -2);
 			transform: skew(calc(var(--skew) * -1)) rotate(calc(var(--part) * var(--index, 1) * -1));
 			transform-origin: 0 0;
-			inline-size: 100%;
 			white-space: nowrap;
 		}
 
 		@each $number in 1, 2, 3, 4, 5, 6, 7 {
 			&:nth-of-type(#{$number})::after {
 				--integer: calc(var(--#{$number})); // 2
-				counter-reset: value var(--integer); // 1
+
 				content: counter(value); // 1
+				counter-reset: value var(--integer); // 1
 				inline-size: calc(var(--#{$number}) * 100% / var(--scale));
 			}
 		}
@@ -218,6 +228,7 @@
 
 	span {
 		--mask: radial-gradient(circle at bottom right, var(--foreground), var(--foreground-o-50));
+
 		background: var(--color, currentColor);
 		mask-image: var(--mask);
 		pointer-events: auto;

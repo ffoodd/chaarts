@@ -1,14 +1,16 @@
-/* ==================== */
-/* == Abstracts
-/* ==================== */
+// ====================
+// ==Abstracts
+//
+// ====================
 @use "sass:math";
 @use "sass:meta";
 @use "abstracts/variables";
 @use "abstracts/mixins";
 
-/* ==================== */
-/* == Convert <Number> to <Integer>
-/* ==================== */
+// ====================
+// ==Convert <Number> to <Integer>
+// ====================
+
 /**
  * Using Houdini's @property to ensure --integer is <Integer> type in Chromium-based browsers
  * @link https://developer.mozilla.org/en-US/docs/Web/CSS/@property
@@ -17,22 +19,22 @@
  ** @author Carter Li
  ** @link https://css-tricks.com/animating-number-counters/#the-new-school-css-solution
  */
-//noinspection ALL
 @property --integer {
-	syntax: "<integer>";
-	initial-value: 0;
 	inherits: false;
+	initial-value: 0;
+	syntax: "<integer>";
 }
 
-/* ==================== */
-/* == Tables
-/* ==================== */
+// ====================
+// ==Tables
+//
+// ====================
 table {
 	border-collapse: collapse;
 	caption-side: top;
 	font-feature-settings: "tnum";
-	margin-block-end: variables.$gutter * 1.5;
 	inline-size: 100%;
+	margin-block-end: variables.$gutter * 1.5;
 	vertical-align: top;
 
 	> caption:first-child {
@@ -54,17 +56,38 @@ td {
 }
 
 tbody {
-	border: 1px solid hsl(0 0% 80%);
+	border: 1px solid hsl(0deg 0% 80%);
 }
 
 thead {
 	border: 1px solid var(--foreground);
 }
 
-/* ==================== */
-/* == Charts
-/* ==================== */
+// ====================
+// == Charts
+//
+// ====================
 .chaarts-container {
+	// ====================
+	// Improve table UX
+	//
+	// @note Gives scrollable table some UX hints with shadows
+	// @author Chen Hui Jing
+	// @link https://codepen.io/huijing/pen/XBGaNQ
+	// Based on:
+	// @author Lea Verou
+	// @link http://lea.verou.me/2012/04/background-attachment-local/
+	// ====================
+	background: linear-gradient(to right, var(--background-lighter) 30%, transparent),
+							linear-gradient(to right, transparent, var(--background-lighter) 70%) 0 100%,
+							radial-gradient(farthest-side at 0% 50%, var(--foreground), transparent),
+							radial-gradient(farthest-side at 100% 50%, var(--foreground), transparent) 0 100%;
+	background-attachment: local, local, scroll, scroll;
+	background-color: var(--background-lighter);
+	background-position: 0 0, 100%, 0 0, 100%;
+	background-repeat: no-repeat;
+	background-size: 2.5rem 100%, 2.5rem 100%, 1rem 100%, 1rem 100%;
+
 	// ====================
 	// == Colors
 	//
@@ -72,26 +95,32 @@ thead {
 	// @see https://meyerweb.com/eric/thoughts/2014/06/19/rebeccapurple/
 	// ====================
 	color-scheme: light;
+	margin: variables.$gutter * 2 0;
+	max-inline-size: 100%;
+	-webkit-overflow-scrolling: touch;
+	overflow-x: auto;
+	overflow-y: hidden;
+
 	--background-lightness: 100%;
 	--foreground-lightness: 0%;
 	--diff: 4%;
-	--background-lighter: hsl(0 0% var(--background-lightness));
-	--background: hsl(0 0% calc(var(--background-lightness) - var(--diff)));
-	--foreground: hsl(0 0% var(--foreround-lightness));
-	--foreground-lighter: hsl(0 0% calc(var(--foreround-lightness) + var(--diff)));
-	--foreground-o-50: hsl(0 0% var(--foreround-lightness) / .5);
-	--foreground-o-25: hsl(0 0% var(--foreround-lightness) / .25);
-	--foreground-o-10: hsl(0 0% var(--foreround-lightness) / .1);
+	--background-lighter: hsl(0deg 0% var(--background-lightness));
+	--background: hsl(0deg 0% calc(var(--background-lightness) - var(--diff)));
+	--foreground: hsl(0deg 0% var(--foreround-lightness));
+	--foreground-lighter: hsl(0deg 0% calc(var(--foreround-lightness) + var(--diff)));
+	--foreground-o-50: hsl(0deg 0% var(--foreround-lightness) / 50%);
+	--foreground-o-25: hsl(0deg 0% var(--foreround-lightness) / 25%);
+	--foreground-o-10: hsl(0deg 0% var(--foreround-lightness) / 10%);
 	--hue: 270;
 	--lightness: 50%;
 	--saturation: 100%;
 	--chaarts-purple: hsl(var(--hue) calc(var(--saturation) / 2) var(--lightness)); // 1
 	--chaarts-pink: hsl(calc(var(--hue) + 60) var(--saturation) var(--lightness));
 	--chaarts-blue: hsl(calc(var(--hue) - 60) var(--saturation) var(--lightness));
-	--chaarts-yellow: hsl(40 var(--saturation) var(--lightness));
+	--chaarts-yellow: hsl(40deg var(--saturation) var(--lightness));
 	--chaarts-green: hsl(calc(var(--hue) - 120) var(--saturation) var(--lightness));
 	--chaarts-red: hsl(calc(var(--hue) + 90) var(--saturation) var(--lightness));
-	--chaarts-gray: hsl(0 0% var(--lightness));
+	--chaarts-gray: hsl(0deg 0% var(--lightness));
 
 	@media (min-width: #{math.div(600em, 16)}) {
 		--lightness: 40%;
@@ -103,12 +132,13 @@ thead {
 	// @note Based on sseeeedd for progressive enhancement
 	// @link https://github.com/ffoodd/sseeeedd
 	// ====================
-	@include mixins.dark-mode() {
+	@include mixins.dark-mode {
 		color-scheme: dark;
+
 		--background-lightness: 0%;
 		--foreground-lightness: 100%;
-		--background: hsl(0 0% calc(var(--diff) * 5));
-		--foreground-lighter: hsl(0 0% calc(var(--foreground-lightness) - var(--diff)));
+		--background: hsl(0deg 0% calc(var(--diff) * 5));
+		--foreground-lighter: hsl(0deg 0% calc(var(--foreground-lightness) - var(--diff)));
 	}
 
 	// ====================
@@ -152,6 +182,7 @@ thead {
 	--zig: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 20 12'><g fill-rule='evenodd'><g fill='hsl(0 0% 100% / .6)'><path d='M9.8 12L0 2.2V.8l10 10 10-10v1.4L10.2 12h-.4zm-4 0L0 6.2V4.8L7.2 12H5.8zm8.4 0L20 6.2V4.8L12.8 12h1.4zM9.8 0l.2.2.2-.2h-.4zm-4 0L10 4.2 14.2 0h-1.4L10 2.8 7.2 0H5.8z'/></g></g></svg>");
 	--stripes: url("data:image/svg+xml,<svg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'><g fill='hsl(0 0% 100% / .6)' fill-rule='evenodd'><path d='M5 0h1L0 6V5zM6 5v1H5z'/></g></svg>");
 	--dots: url("data:image/svg+xml,<svg width='10' height='10' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><g fill='hsl(0 0% 100% / .6)' fill-rule='evenodd'><circle cx='3' cy='3' r='3'/><circle cx='13' cy='13' r='3'/></g></svg>");
+
 	// ====================
 	// == Timing functions
 	//
@@ -162,31 +193,6 @@ thead {
 	--enter: cubic-bezier(0, .5, .5, 1);
 	--exit: cubic-bezier(.5, 0, 1, .5);
 	--move: cubic-bezier(.5, 0, .5, 1);
-
-	// ====================
-	// Improve table UX
-	//
-	// @note Gives scrollable table some UX hints with shadows
-	// @author Chen Hui Jing
-	// @link https://codepen.io/huijing/pen/XBGaNQ
-	// Based on:
-	// @author Lea Verou
-	// @link http://lea.verou.me/2012/04/background-attachment-local/
-	// ====================
-	background: linear-gradient(to right, var(--background-lighter) 30%, transparent),
-							linear-gradient(to right, transparent, var(--background-lighter) 70%) 0 100%,
-							radial-gradient(farthest-side at 0% 50%, var(--foreground), transparent),
-							radial-gradient(farthest-side at 100% 50%, var(--foreground), transparent) 0 100%;
-	background-repeat: no-repeat;
-	background-color: var(--background-lighter);
-	background-size: 2.5rem 100%, 2.5rem 100%, 1rem 100%, 1rem 100%;
-	background-position: 0 0, 100%, 0 0, 100%;
-	background-attachment: local, local, scroll, scroll;
-	margin: variables.$gutter * 2 0;
-	max-inline-size: 100%;
-	overflow-x: auto;
-	overflow-y: hidden;
-	-webkit-overflow-scrolling: touch;
 
 	[dir="rtl"] & {
 		--is-rtl: -1;
@@ -221,9 +227,9 @@ thead {
 }
 
 table:not(.chaarts) .sr-only {
+	block-size: auto;
 	clip: auto;
 	clip-path: none;
-	block-size: auto;
 	inline-size: auto;
 	overflow: visible;
 	position: static;
