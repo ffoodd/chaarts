@@ -75,7 +75,7 @@
 		<h1>Chaarts</h1>
 
 		<p>
-			Every charts in this project relies solely on semantic markup
+			Every chart in this project relies solely on semantic markup
 			—&nbsp;<code>&lt;table&gt;</code> based&nbsp;— and a spread of
 			<strong>CSS variables carried by the tags</strong>.
 			No JavaScript required for display, and styles are
@@ -86,9 +86,7 @@
 			<strong>Note</strong>&nbsp;: by virtue of the <strong>experimental</strong>
 			nature of these techniques and a <strong>solid foundation</strong> enhanced progressively,
 			I don't mention <strong>browser support</strong> for each example —&nbsp;but
-			it goes without saying that this is not magic, and only modern browsers handle this right,
-			<a href="https://caniuse.com/#search=clip-path">with the notable exception of Edge
-				which does not (yet) support <code>clip-path</code></a>.
+			it goes without saying that this is not magic, and only modern browsers handle this right.
 			Other browsers display a properly styled table, and that's nice.
 		</p>
 
@@ -196,6 +194,9 @@
 				<strong>hover effects</strong> whose initial state consists in hiding content
 				are activated contextually in the <code>@media (hover: hover) { … }</code> media query.
 			</li>
+			<li>
+				<strong>RTL</strong> is supported thanks to logical properties and a few tweaks here and there.
+			</li>
 		</ol>
 
 		<h3><code>display</code> and semantics</h3>
@@ -210,8 +211,7 @@
 		<p>
 			That's why each table is preceded by a switch —&nbsp;based on
 			<a href="https://inclusive-components.design/toggle-button/"><strong>Heydon Pickering</strong>
-				inclusive toggle button</a>&nbsp;—
-			whose one and only role is to disable additional styles:
+				inclusive toggle button</a>&nbsp;— whose one and only role is to disable additional styles:
 		</p>
 
 		{% include 'includes/_inclusive-toggle.njk' %}
