@@ -110,7 +110,7 @@ html:where([data-theme=dark]) .chaarts-container {
   --background-lightness: 0%;
   --foreground-lightness: 100%;
   --background: hsl(0 0% calc(var(--diff) * 5));
-  --foreground-lighter: hsl(0 0% calc(var(--foreround-lightness) - var(--diff)));
+  --foreground-lighter: hsl(0 0% calc(var(--foreground-lightness) - var(--diff)));
 }
 @media screen and (prefers-color-scheme: dark) {
   .no-js .chaarts-container, html:where(:not([data-theme=light])) .chaarts-container {
@@ -118,7 +118,7 @@ html:where([data-theme=dark]) .chaarts-container {
     --background-lightness: 0%;
     --foreground-lightness: 100%;
     --background: hsl(0 0% calc(var(--diff) * 5));
-    --foreground-lighter: hsl(0 0% calc(var(--foreround-lightness) - var(--diff)));
+    --foreground-lighter: hsl(0 0% calc(var(--foreground-lightness) - var(--diff)));
   }
 }
 @media (prefers-contrast: more) {
@@ -135,6 +135,9 @@ html:where([data-theme=dark]) .chaarts-container {
     --chaarts-red: VisitedText;
     --chaarts-gray: ButtonShadow;
   }
+}
+[dir=rtl] .chaarts-container {
+  --is-rtl: -1;
 }
 
 [class*=chaarts] [role=presentation] {
@@ -391,7 +394,7 @@ table:not(.chaarts) .sr-only {
     content: "";
     display: inline-block;
     block-size: 1rem;
-    transform: translate3d(-0.2rem, 0.1rem, 0);
+    transform: translate3d(calc(-0.2rem * var(--is-rtl, 1)), 0.1rem, 0);
     inline-size: 1rem;
   }
   .chaarts.pie td {
@@ -403,6 +406,9 @@ table:not(.chaarts) .sr-only {
     position: absolute;
     inset-block-start: calc(var(--radius) / 2);
     transform-origin: center center;
+  }
+  [dir=rtl] .chaarts.pie td::after {
+    inset-inline-start: 40%;
   }
   .chaarts.pie td::before {
     --zoom: .75;
@@ -438,7 +444,7 @@ table:not(.chaarts) .sr-only {
     		#0000 0
     );
     mask-image: var(--mask);
-    transform: translate3d(-50%, -50%, 0) rotate(var(--position)) scale(var(--zoom));
+    transform: translate3d(calc(-50% * var(--is-rtl, 1)), -50%, 0) rotate(var(--position)) scale(var(--zoom));
     transition: transform 0.2s var(--move);
     inline-size: var(--radius);
   }
@@ -492,7 +498,7 @@ table:not(.chaarts) .sr-only {
   }
   .chaarts.polar td::before {
     --zoom: 50;
-    transform: translate3d(-50%, -50%, 0) rotate(var(--position)) scale(calc((var(--zoom) + var(--value) / (100 / var(--zoom))) / 100));
+    transform: translate3d(calc(-50% * var(--is-rtl, 1)), -50%, 0) rotate(var(--position)) scale(calc((var(--zoom) + var(--value) / (100 / var(--zoom))) / 100));
   }
   .chaarts.polar td::after {
     --away: calc((var(--radius) / 2) - ((var(--radius) / 4) * ((100 - var(--value)) / 100)) + 2.5rem);
@@ -566,6 +572,7 @@ table:not(.chaarts) .sr-only {
     position: absolute;
     inset-block-start: 0;
     inline-size: 100%;
+    scale: var(--is-rtl, 1) 1;
     z-index: 2;
   }
 }
@@ -673,7 +680,7 @@ table:not(.chaarts) .sr-only {
     content: "";
     block-size: 1.5rem;
     position: absolute;
-    transform: translateX(-50%);
+    transform: translateX(calc(-50% * var(--is-rtl, 1)));
     inline-size: inherit;
     z-index: 10;
   }
@@ -702,10 +709,13 @@ table:not(.chaarts) .sr-only {
     position: absolute;
     inset-block-start: var(--top, 0);
     transform-origin: 50% calc(100% + 10px);
-    transform: translate3d(-50%, -125%, 0) perspective(1000px) rotate3d(1, 0, 0, 45deg);
+    transform: translate3d(var(--rtl-offset, -50%), -125%, 0) perspective(1000px) rotate3d(1, 0, 0, 45deg);
     transition: opacity 0.2s var(--enter), transform 0.2s var(--enter);
     white-space: pre;
     z-index: 5;
+  }
+  [dir=rtl] .chaarts.line td:first-of-type::after {
+    inset-inline-start: var(--offset);
   }
   .chaarts.line td + td::after {
     inset-inline-start: calc(100% / var(--x) * var(--index) + var(--offset));
@@ -715,64 +725,112 @@ table:not(.chaarts) .sr-only {
     --term: var(--t-1);
     --index: 1;
   }
+  [dir=rtl] .chaarts.line td:nth-child(2)::after {
+    --index: 0;
+    --rtl-offset: -40%;
+  }
   .chaarts.line td:nth-child(3)::after {
     --value: var(--2);
     --term: var(--t-2);
     --index: 2;
+  }
+  [dir=rtl] .chaarts.line td:nth-child(3)::after {
+    --index: 1;
+    --rtl-offset: -40%;
   }
   .chaarts.line td:nth-child(4)::after {
     --value: var(--3);
     --term: var(--t-3);
     --index: 3;
   }
+  [dir=rtl] .chaarts.line td:nth-child(4)::after {
+    --index: 2;
+    --rtl-offset: -40%;
+  }
   .chaarts.line td:nth-child(5)::after {
     --value: var(--4);
     --term: var(--t-4);
     --index: 4;
+  }
+  [dir=rtl] .chaarts.line td:nth-child(5)::after {
+    --index: 3;
+    --rtl-offset: -40%;
   }
   .chaarts.line td:nth-child(6)::after {
     --value: var(--5);
     --term: var(--t-5);
     --index: 5;
   }
+  [dir=rtl] .chaarts.line td:nth-child(6)::after {
+    --index: 4;
+    --rtl-offset: -40%;
+  }
   .chaarts.line td:nth-child(7)::after {
     --value: var(--6);
     --term: var(--t-6);
     --index: 6;
+  }
+  [dir=rtl] .chaarts.line td:nth-child(7)::after {
+    --index: 5;
+    --rtl-offset: -40%;
   }
   .chaarts.line td:nth-child(8)::after {
     --value: var(--7);
     --term: var(--t-7);
     --index: 7;
   }
+  [dir=rtl] .chaarts.line td:nth-child(8)::after {
+    --index: 6;
+    --rtl-offset: -40%;
+  }
   .chaarts.line td:nth-child(9)::after {
     --value: var(--8);
     --term: var(--t-8);
     --index: 8;
+  }
+  [dir=rtl] .chaarts.line td:nth-child(9)::after {
+    --index: 7;
+    --rtl-offset: -40%;
   }
   .chaarts.line td:nth-child(10)::after {
     --value: var(--9);
     --term: var(--t-9);
     --index: 9;
   }
+  [dir=rtl] .chaarts.line td:nth-child(10)::after {
+    --index: 8;
+    --rtl-offset: -40%;
+  }
   .chaarts.line td:nth-child(11)::after {
     --value: var(--10);
     --term: var(--t-10);
     --index: 10;
+  }
+  [dir=rtl] .chaarts.line td:nth-child(11)::after {
+    --index: 9;
+    --rtl-offset: -40%;
   }
   .chaarts.line td:nth-child(12)::after {
     --value: var(--11);
     --term: var(--t-11);
     --index: 11;
   }
+  [dir=rtl] .chaarts.line td:nth-child(12)::after {
+    --index: 10;
+    --rtl-offset: -40%;
+  }
   .chaarts.line td:nth-child(13)::after {
     --value: var(--12);
     --term: var(--t-12);
     --index: 12;
   }
+  [dir=rtl] .chaarts.line td:nth-child(13)::after {
+    --index: 11;
+    --rtl-offset: -40%;
+  }
   .chaarts.line td:hover::after {
     opacity: 1;
-    transform: translate3d(-50%, -125%, 0) perspective(1000px) rotate3d(1, 0, 0, 0deg);
+    transform: translate3d(var(--rtl-offset, -50%), -125%, 0) perspective(1000px) rotate3d(1, 0, 0, 0deg);
     transition: opacity 0.2s var(--exit), transform 0.2s var(--exit);
   }
   .chaarts.points [style]::before {
@@ -808,6 +866,7 @@ table:not(.chaarts) .sr-only {
     		calc((100% / var(--x) * 1) + var(--offset)) calc((100% + 0.25rem) - (var(--1) / var(--y) * 100%))
     );
     transition: opacity 0.3s var(--move);
+    scale: var(--is-rtl, 1) 1;
   }
   .chaarts.points [style] th::before {
     background: var(--color, currentColor) var(--background);
@@ -820,7 +879,7 @@ table:not(.chaarts) .sr-only {
   .chaarts.points [style] td::before {
     --size: 1rem;
     --top: calc(var(--height) - (var(--value) / var(--y) * var(--height)));
-    background: var(--color, currentColor) var(--background);
+    background: var(--color, currentcolor) var(--background);
     border: 2px solid var(--background-lighter);
     border-radius: 50%;
     box-shadow: 0 0 0.25rem var(--foreground-o-50);
@@ -836,6 +895,9 @@ table:not(.chaarts) .sr-only {
   }
   .chaarts.points [style] td + td::before {
     inset-inline-start: calc(100% / var(--x) * var(--index) + var(--offset));
+  }
+  [dir=rtl] .chaarts.points [style] td::before, [dir=rtl] .chaarts.points [style] td + td::before {
+    inset-inline-start: unset;
   }
   .chaarts.points [style] td:nth-of-type(2)::before {
     --value: var(--2);
@@ -1223,11 +1285,11 @@ table:not(.chaarts) .sr-only {
   .chaarts[class*=radar] [scope=col] {
     --away: calc((var(--radius) * -1) - 50%);
     background-color: transparent;
-    inset-inline-start: 50%;
+    left: 50%;
     margin: 0;
     padding: 0 1rem;
     position: absolute;
-    inset-block-start: 50%;
+    top: 50%;
     transform: translate3d(-50%, -50%, 0) rotate(calc(var(--part) * var(--index, 1))) translate(var(--away)) rotate(calc(var(--part) * var(--index, 1) * -1));
   }
   .chaarts[class*=radar] tr > *:nth-of-type(1) {
@@ -1255,10 +1317,10 @@ table:not(.chaarts) .sr-only {
     --skew: calc(90deg - var(--part));
     border-block-end: 1px solid var(--chaarts-purple);
     block-size: 50%;
-    inset-inline-start: 0;
+    left: 0;
     margin: 0;
     position: absolute;
-    inset-block-start: 0;
+    top: 0;
     transform: rotate(calc(var(--part) * var(--index, 1))) skew(var(--skew));
     transform-origin: 100% 100%;
     inline-size: 50%;
@@ -1361,9 +1423,9 @@ table:not(.chaarts) .sr-only {
     vertical-align: bottom;
   }
   .chaarts.radar-multiple [scope=row] {
-    inset-block-end: -8rem;
+    bottom: -8rem;
     block-size: 2rem;
-    inset-inline-start: 1rem;
+    left: 1rem;
     position: absolute;
   }
   .chaarts.radar-multiple [scope=row]::before {
@@ -1376,7 +1438,7 @@ table:not(.chaarts) .sr-only {
     inline-size: 1rem;
   }
   .chaarts.radar-multiple tr:nth-child(2) [scope=row] {
-    inset-inline-start: calc(1rem + 100% / var(--areas) * 1);
+    left: calc(1rem + 100% / var(--areas) * 1);
   }
   .chaarts.radar-multiple td {
     align-items: flex-end;

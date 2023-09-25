@@ -50,11 +50,11 @@
 	[scope="col"] {
 		--away: calc((var(--radius) * -1) - 50%);
 		background-color: transparent;
-		inset-inline-start: 50%;
+		left: 50%;
 		margin: 0;
 		padding: 0 variables.$gutter;
 		position: absolute;
-		inset-block-start: 50%;
+		top: 50%;
 		transform: translate3d(-50%, -50%, 0) rotate(calc(var(--part) * var(--index, 1))) translate(var(--away)) rotate(calc(var(--part) * var(--index, 1) * -1));
 	}
 
@@ -81,10 +81,10 @@
 		--skew: calc(90deg - var(--part));
 		border-block-end: 1px solid var(--chaarts-purple);
 		block-size: 50%;
-		inset-inline-start: 0;
+		left: 0;
 		margin: 0;
 		position: absolute;
-		inset-block-start: 0;
+		top: 0;
 		transform: rotate(calc(var(--part) * var(--index, 1))) skew(var(--skew));
 		transform-origin: 100% 100%;
 		inline-size: 50%;
@@ -162,9 +162,9 @@
 	}
 
 	[scope="row"] {
-		inset-block-end: variables.$gutter * -8;
+		bottom: variables.$gutter * -8;
 		block-size: variables.$gutter * 2;
-		inset-inline-start: variables.$gutter;
+		left: variables.$gutter;
 		position: absolute;
 
 		&::before {
@@ -181,7 +181,7 @@
 	// Allowing more areas :)
 	@each $number in 1 {
 		tr:nth-child(#{$number + 1}) [scope="row"] {
-			inset-inline-start: calc(#{variables.$gutter} + (100% / var(--areas)) * #{$number});
+			left: calc(#{variables.$gutter} + (100% / var(--areas)) * #{$number});
 		}
 	}
 

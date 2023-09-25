@@ -108,7 +108,7 @@ thead {
 		--background-lightness: 0%;
 		--foreground-lightness: 100%;
 		--background: hsl(0 0% calc(var(--diff) * 5));
-		--foreground-lighter: hsl(0 0% calc(var(--foreround-lightness) - var(--diff)));
+		--foreground-lighter: hsl(0 0% calc(var(--foreground-lightness) - var(--diff)));
 	}
 
 	// ====================
@@ -187,6 +187,10 @@ thead {
 	overflow-x: auto;
 	overflow-y: hidden;
 	-webkit-overflow-scrolling: touch;
+
+	[dir="rtl"] & {
+		--is-rtl: -1;
+	}
 }
 
 [class*="chaarts"] {
