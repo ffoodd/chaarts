@@ -394,7 +394,7 @@ table:not(.chaarts) .sr-only {
     content: "";
     display: inline-block;
     block-size: 1rem;
-    transform: translate3d(calc(-0.2rem * var(--is-rtl, 1)), 0.1rem, 0);
+    translate: calc(-0.2rem * var(--is-rtl, 1)) 0.1rem 0;
     inline-size: 1rem;
   }
   .chaarts.pie td {
@@ -680,7 +680,7 @@ table:not(.chaarts) .sr-only {
     content: "";
     block-size: 1.5rem;
     position: absolute;
-    transform: translateX(calc(-50% * var(--is-rtl, 1)));
+    translate: calc(-50% * var(--is-rtl, 1)) 0;
     inline-size: inherit;
     z-index: 10;
   }
@@ -873,7 +873,7 @@ table:not(.chaarts) .sr-only {
     content: "";
     display: inline-block;
     block-size: 1rem;
-    transform: translate3d(-0.2rem, 0.1rem, 0);
+    translate: -0.2rem 0.1rem 0;
     inline-size: 1rem;
   }
   .chaarts.points [style] td::before {
@@ -887,8 +887,8 @@ table:not(.chaarts) .sr-only {
     block-size: var(--size);
     inset-inline-start: calc(var(--offset) * 3);
     position: absolute;
-    inset-block-start: var(--top, 100);
-    transform: translate3d(calc(var(--size) / -2), calc(var(--size) / -2), 0);
+    inset-block-start: var(--top, 100%);
+    translate: calc(var(--size) / -2) calc(var(--size) / -2) 0;
     transition: opacity 0.3s var(--move), transform 0.3s var(--move);
     inline-size: var(--size);
     z-index: 4;
@@ -970,7 +970,8 @@ table:not(.chaarts) .sr-only {
     opacity: 1;
   }
   .chaarts.points tbody:hover [style]:hover td::before {
-    transform: translate3d(calc(var(--size) / -2), calc(var(--size) / -2), 0) scale(1.25);
+    translate: calc(var(--size) / -2) calc(var(--size) / -2) 0;
+    scale: 1.25;
   }
   .chaarts.points [scope=col]:not(:first-child)::after {
     mix-blend-mode: multiply;
