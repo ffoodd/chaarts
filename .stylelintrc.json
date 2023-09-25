@@ -1,10 +1,14 @@
 {
-	"extends": "stylelint-config-recommended-scss",
+	"extends": "stylelint-config-standard-scss",
 	"plugins": [
-		"stylelint-scss"
+		"stylelint-scss",
+		"stylelint-order"
 	],
 	"rules": {
 		"no-descending-specificity": null,
-		"scss/comment-no-empty": null
+		"number-max-precision": 12,
+		"custom-property-pattern": null,
+		"scss/comment-no-empty": null,
+		"order/properties-alphabetical-order": true
 	}
 }

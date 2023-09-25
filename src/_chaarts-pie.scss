@@ -2,12 +2,14 @@
 @use "sass:map";
 @use "abstracts/variables";
 
-/* ==================== */
-/* == Pie Charts
-/* ==================== */
+// ====================
+// == Pie Charts
+//
+// ====================
 
 .chaarts.pie {
 	--radius: 32em;
+
 	margin: 0 auto;
 	padding-block-start: calc(var(--radius) - #{variables.$gutter * 2});
 	position: relative;
@@ -26,11 +28,11 @@
 
 		&::before {
 			background: var(--color, currentColor) var(--background);
+			block-size: variables.$gutter;
 			content: "";
 			display: inline-block;
-			block-size: variables.$gutter;
-			translate: calc(-.2rem * var(--is-rtl, 1)) .1rem 0;
 			inline-size: variables.$gutter;
+			translate: calc(-.2rem * var(--is-rtl, 1)) .1rem 0;
 		}
 	}
 
@@ -40,9 +42,9 @@
 
 	td::after,
 	td::before {
+		inset-block-start: calc(var(--radius) / 2);
 		inset-inline-start: 50%;
 		position: absolute;
-		inset-block-start: calc(var(--radius) / 2);
 		transform-origin: center center;
 	}
 
@@ -90,20 +92,22 @@
 				calc(50% - (var(--pos-A) * 1% * var(--gt-75, 0))) calc(50% - (var(--pos-B) * 1% * var(--gt-75, 0))),
 				50% 50%
 		);
-		background: var(--color, currentColor) var(--background);
+
+		background: var(--color, currentcolor) var(--background);
+		block-size: var(--radius);
 		border-radius: 50%;
 		clip-path: var(--polygon);
 		content: '';
-		block-size: var(--radius);
+		inline-size: var(--radius);
+		mask-image: var(--mask);
+		transform: translate3d(calc(-50% * var(--is-rtl, 1)), -50%, 0) rotate(var(--position)) scale(var(--zoom));
+		transition: transform .2s var(--move);
+
 		--mask: radial-gradient(
 				circle at center,
 				#ffff 0 calc((var(--radius) / 2) - 1px),
 				#0000 0
 		);
-		mask-image: var(--mask);
-		transform: translate3d(calc(-50%* var(--is-rtl, 1)), -50%, 0) rotate(var(--position)) scale(var(--zoom));
-		transition: transform .2s var(--move);
-		inline-size: var(--radius);
 	}
 
 	tr:hover td::before {
@@ -134,6 +138,7 @@
 		--axis: calc(var(--position) - .25turn + var(--value) * .005turn);
 		--away: calc(var(--radius) / 2 - #{variables.$gutter});
 		--integer: calc(var(--value)); // 2
+
 		background-color: var(--foreground-lighter);
 		color: var(--background-lighter);
 		content: var(--term) "\A0: " counter(value) "\A0%"; // 1
@@ -141,8 +146,8 @@
 		opacity: 0;
 		padding: variables.$gutter * 0.5;
 		pointer-events: none;
-		transform-origin: 50% calc(100% + 10px);
 		transform: translate3d(-50%, -50%, 0) rotate(var(--axis)) translate(var(--away)) rotate(calc(var(--axis) * -1)) perspective(1000px) rotate3d(1, 0, 0, 45deg);
+		transform-origin: 50% calc(100% + 10px);
 		transition: opacity .2s var(--enter),
 		transform .2s var(--enter);
 	}
@@ -166,7 +171,8 @@
 .chaarts.polar {
 	td::before {
 		--zoom: 50;
-		transform: translate3d(calc(-50%* var(--is-rtl, 1)), -50%, 0) rotate(var(--position)) scale(calc((var(--zoom) + (var(--value) / (100 / var(--zoom)))) / 100));
+
+		transform: translate3d(calc(-50% * var(--is-rtl, 1)), -50%, 0) rotate(var(--position)) scale(calc((var(--zoom) + (var(--value) / (100 / var(--zoom)))) / 100));
 	}
 
 	td::after {
@@ -180,10 +186,11 @@
 
 .chaarts.donut {
 	--mask: radial-gradient(
-			circle at 50% calc(50% - #{variables.$gutter  * 0.25}),
+			circle at 50% calc(50% - #{variables.$gutter * 0.25}),
 			#0000 0 var(--offset),
 			#ffff calc(var(--offset) + 1px) 100%
 	);
+
 	mask-image: var(--mask);
 
 	td::after {

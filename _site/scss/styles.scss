@@ -1,8 +1,8 @@
 @use "sass:meta";
 
-/* ==================== */
-/* == Vendors
-/* ==================== */
+// ====================
+// == Vendors
+// ====================
 @layer sseeeedd {
 	@include meta.load-css("sseeeedd/src/sseeeedd");
 }

@@ -3,9 +3,10 @@
 @use "sass:list";
 @use "abstracts/variables";
 
-/* ==================== */
-/* == Bar Charts
- *
+// ====================
+// == Bar Charts
+
+/*
  * @note Grid charts based on:
  * @see https://css-tricks.com/css-charts-grid-custom-properties/
  * @author Miriam Suzanne
@@ -19,7 +20,7 @@
  * @see https://www.ffoodd.fr/le-web-en-kit/
  * @see http://dabblet.com/gist/08fddf3666c39ebc62ca
  * @author Gaël Poupard
-/* ==================== */
+// ==================== */
 
 .chaarts.bar {
 	caption {
@@ -53,6 +54,7 @@
 	td {
 		--size: calc(var(--scale, 100) * 100%);
 		--position: calc(var(--value, 0) / var(--scale, 100) * 100%);
+
 		background: linear-gradient(to right,
 			var(--chaarts-green),
 			var(--chaarts-gray),
@@ -69,7 +71,6 @@
 
 	span {
 		background: inherit;
-		-webkit-background-clip: text;
 		background-clip: text;
 		color: transparent;
 		font-weight: bold;
