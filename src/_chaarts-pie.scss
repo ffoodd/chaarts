@@ -29,7 +29,7 @@
 			content: "";
 			display: inline-block;
 			block-size: variables.$gutter;
-			transform: translate3d(calc(-.2rem * var(--is-rtl, 1)), .1rem, 0);
+			translate: calc(-.2rem * var(--is-rtl, 1)) .1rem 0;
 			inline-size: variables.$gutter;
 		}
 	}
