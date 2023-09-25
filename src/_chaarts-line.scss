@@ -78,6 +78,7 @@
 		position: absolute;
 		inset-block-start: 0;
 		inline-size: 100%;
+		scale: var(--is-rtl, 1) 1;
 		z-index: 2;
 
 		@media (prefers-contrast: more) {
@@ -133,7 +134,7 @@
 			content: "";
 			block-size: 1.5rem;
 			position: absolute;
-			transform: translateX(-50%);
+			transform: translateX(calc(-50% * var(--is-rtl, 1)));
 			inline-size: inherit;
 			z-index: 10;
 		}
@@ -182,11 +183,15 @@
 			position: absolute;
 			inset-block-start: var(--top, 0);
 			transform-origin: 50% calc(100% + 10px);
-			transform: translate3d(-50%, -125%, 0) perspective(1000px) rotate3d(1, 0, 0, 45deg);
+			transform: translate3d(var(--rtl-offset, -50%), -125%, 0) perspective(1000px) rotate3d(1, 0, 0, 45deg);
 			transition: opacity .2s var(--enter),
 			transform .2s var(--enter);
 			white-space: pre;
 			z-index: 5;
+		}
+
+		[dir="rtl"] &:first-of-type::after {
+			inset-inline-start: var(--offset);
 		}
 
 		+ td::after {
@@ -198,12 +203,17 @@
 				--value: var(--#{$number - 1});
 				--term: var(--t-#{$number - 1});
 				--index: #{$number - 1};
+
+				[dir="rtl"] & {
+					--index: #{$number - 2};
+					--rtl-offset: -40%;
+				}
 			}
 		}
 
 		&:hover::after {
 			opacity: 1;
-			transform: translate3d(-50%, -125%, 0) perspective(1000px) rotate3d(1, 0, 0, 0deg);
+			transform: translate3d(var(--rtl-offset, -50%), -125%, 0) perspective(1000px) rotate3d(1, 0, 0, 0deg);
 			transition: opacity .2s var(--exit),
 			transform .2s var(--exit);
 		}
@@ -245,6 +255,7 @@
 					calc((100% / var(--x) * 1) + var(--offset)) calc((100% + #{variables.$gutter * 0.25}) - (var(--1) / var(--y) * 100%))
 			);
 			transition: opacity .3s var(--move);
+			scale: var(--is-rtl, 1) 1;
 		}
 
 		th::before {
@@ -260,7 +271,7 @@
 			&::before {
 				--size: #{variables.$gutter};
 				--top: calc(var(--height) - (var(--value) / var(--y) * var(--height)));
-				background: var(--color, currentColor) var(--background);
+				background: var(--color, currentcolor) var(--background);
 				border: 2px solid var(--background-lighter);
 				border-radius: 50%;
 				box-shadow: 0 0 #{variables.$gutter * 0.25} var(--foreground-o-50);
@@ -278,6 +289,11 @@
 
 			+ td::before {
 				inset-inline-start: calc((100% / var(--x) * var(--index)) + var(--offset));
+			}
+
+			[dir="rtl"] &::before,
+			[dir="rtl"] & + td::before {
+				inset-inline-start: unset;
 			}
 
 			@each $number in 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 {
