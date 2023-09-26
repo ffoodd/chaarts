@@ -1,5 +1,5 @@
 // ====================
-// ==Abstracts
+// == Abstracts
 //
 // ====================
 @use "sass:math";
@@ -8,17 +8,15 @@
 @use "abstracts/mixins";
 
 // ====================
-// ==Convert <Number> to <Integer>
+// == Convert <Number> to <Integer>
+//
+// Using Houdini's @property to ensure --integer is <Integer> type in Chromium-based browsers
+// @link https://developer.mozilla.org/en-US/docs/Web/CSS/@property
+// @link https://caniuse.com/mdn-css_at-rules_property
+//// Based on:
+//// @author Carter Li
+//// @link https://css-tricks.com/animating-number-counters/#the-new-school-css-solution
 // ====================
-
-/**
- * Using Houdini's @property to ensure --integer is <Integer> type in Chromium-based browsers
- * @link https://developer.mozilla.org/en-US/docs/Web/CSS/@property
- * @link https://caniuse.com/mdn-css_at-rules_property
- ** Based on:
- ** @author Carter Li
- ** @link https://css-tricks.com/animating-number-counters/#the-new-school-css-solution
- */
 @property --integer {
 	inherits: false;
 	initial-value: 0;
@@ -26,7 +24,7 @@
 }
 
 // ====================
-// ==Tables
+// == Tables
 //
 // ====================
 table {
@@ -46,6 +44,7 @@ table {
 
 th,
 td {
+	background-color: transparent;
 	padding: math.div(variables.$gutter, 2) math.div(12rem, 16);
 	text-align: start;
 }
@@ -78,15 +77,11 @@ thead {
 	// @author Lea Verou
 	// @link http://lea.verou.me/2012/04/background-attachment-local/
 	// ====================
-	background: linear-gradient(to right, var(--background-lighter) 30%, transparent),
-							linear-gradient(to right, transparent, var(--background-lighter) 70%) 0 100%,
-							radial-gradient(farthest-side at 0% 50%, var(--foreground), transparent),
-							radial-gradient(farthest-side at 100% 50%, var(--foreground), transparent) 0 100%;
-	background-attachment: local, local, scroll, scroll;
-	background-color: var(--background-lighter);
-	background-position: 0 0, 100%, 0 0, 100%;
-	background-repeat: no-repeat;
-	background-size: 2.5rem 100%, 2.5rem 100%, 1rem 100%, 1rem 100%;
+	background: local linear-gradient(to right, var(--background-lighter) 30%, transparent) 0 0 / 2.5rem 100% no-repeat,
+							local linear-gradient(to right, transparent, var(--background-lighter) 70%) 100% / 2.5rem 100% no-repeat,
+							scroll radial-gradient(farthest-side at 0% 50%, var(--foreground-o-25), transparent) 0 0 / 1rem 100% no-repeat,
+							var(--background-lighter)
+							scroll radial-gradient(farthest-side at 100% 50%, var(--foreground-o-25), transparent) 100% / 1rem 100% no-repeat;
 
 	// ====================
 	// == Colors
@@ -106,11 +101,11 @@ thead {
 	--diff: 4%;
 	--background-lighter: hsl(0deg 0% var(--background-lightness));
 	--background: hsl(0deg 0% calc(var(--background-lightness) - var(--diff)));
-	--foreground: hsl(0deg 0% var(--foreround-lightness));
-	--foreground-lighter: hsl(0deg 0% calc(var(--foreround-lightness) + var(--diff)));
-	--foreground-o-50: hsl(0deg 0% var(--foreround-lightness) / 50%);
-	--foreground-o-25: hsl(0deg 0% var(--foreround-lightness) / 25%);
-	--foreground-o-10: hsl(0deg 0% var(--foreround-lightness) / 10%);
+	--foreground: hsl(0deg 0% var(--foreground-lightness));
+	--foreground-lighter: hsl(0deg 0% calc(var(--foreground-lightness) + var(--diff)));
+	--foreground-o-50: hsl(0deg 0% var(--foreground-lightness) / 50%);
+	--foreground-o-25: hsl(0deg 0% var(--foreground-lightness) / 25%);
+	--foreground-o-10: hsl(0deg 0% var(--foreground-lightness) / 10%);
 	--hue: 270;
 	--lightness: 50%;
 	--saturation: 100%;
@@ -199,19 +194,6 @@ thead {
 	}
 }
 
-[class*="chaarts"] {
-	[role="presentation"] {
-		display: none;
-	}
-
-	abbr[title] {
-		border-block-end: 0;
-		font-size: small;
-		font-weight: normal;
-		text-transform: none;
-	}
-}
-
 .chaarts {
 	caption-side: bottom;
 	empty-cells: hide;
@@ -223,6 +205,17 @@ thead {
 		background: inherit;
 		font-style: normal;
 		padding: variables.$gutter 0;
+	}
+
+	[role="presentation"] {
+		display: none;
+	}
+
+	abbr[title] {
+		border-block-end: 0;
+		font-size: small;
+		font-weight: normal;
+		text-transform: none;
 	}
 }
 
@@ -236,7 +229,7 @@ table:not(.chaarts) .sr-only {
 	white-space: normal;
 }
 
-@media screen and (min-width: math.div(480em, 16)) {
+@media (min-width: math.div(480em, 16)) {
 	.chaarts {
 		border-collapse: separate;
 		border-spacing: 0;

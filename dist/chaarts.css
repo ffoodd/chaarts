@@ -1,12 +1,4 @@
 @charset "UTF-8";
-/**
- * Using Houdini's @property to ensure --integer is <Integer> type in Chromium-based browsers
- * @link https://developer.mozilla.org/en-US/docs/Web/CSS/@property
- * @link https://caniuse.com/mdn-css_at-rules_property
- ** Based on:
- ** @author Carter Li
- ** @link https://css-tricks.com/animating-number-counters/#the-new-school-css-solution
- */
 @property --integer {
   inherits: false;
   initial-value: 0;
@@ -28,6 +20,7 @@ table > caption:first-child {
 
 th,
 td {
+  background-color: transparent;
   padding: 0.5rem 0.75rem;
   text-align: start;
 }
@@ -46,12 +39,7 @@ thead {
 }
 
 .chaarts-container {
-  background: linear-gradient(to right, var(--background-lighter) 30%, transparent), linear-gradient(to right, transparent, var(--background-lighter) 70%) 0 100%, radial-gradient(farthest-side at 0% 50%, var(--foreground), transparent), radial-gradient(farthest-side at 100% 50%, var(--foreground), transparent) 0 100%;
-  background-attachment: local, local, scroll, scroll;
-  background-color: var(--background-lighter);
-  background-position: 0 0, 100%, 0 0, 100%;
-  background-repeat: no-repeat;
-  background-size: 2.5rem 100%, 2.5rem 100%, 1rem 100%, 1rem 100%;
+  background: local linear-gradient(to right, var(--background-lighter) 30%, transparent) 0 0/2.5rem 100% no-repeat, local linear-gradient(to right, transparent, var(--background-lighter) 70%) 100%/2.5rem 100% no-repeat, scroll radial-gradient(farthest-side at 0% 50%, var(--foreground-o-25), transparent) 0 0/1rem 100% no-repeat, var(--background-lighter) scroll radial-gradient(farthest-side at 100% 50%, var(--foreground-o-25), transparent) 100%/1rem 100% no-repeat;
   color-scheme: light;
   margin: 2rem 0;
   max-inline-size: 100%;
@@ -63,11 +51,11 @@ thead {
   --diff: 4%;
   --background-lighter: hsl(0deg 0% var(--background-lightness));
   --background: hsl(0deg 0% calc(var(--background-lightness) - var(--diff)));
-  --foreground: hsl(0deg 0% var(--foreround-lightness));
-  --foreground-lighter: hsl(0deg 0% calc(var(--foreround-lightness) + var(--diff)));
-  --foreground-o-50: hsl(0deg 0% var(--foreround-lightness) / 50%);
-  --foreground-o-25: hsl(0deg 0% var(--foreround-lightness) / 25%);
-  --foreground-o-10: hsl(0deg 0% var(--foreround-lightness) / 10%);
+  --foreground: hsl(0deg 0% var(--foreground-lightness));
+  --foreground-lighter: hsl(0deg 0% calc(var(--foreground-lightness) + var(--diff)));
+  --foreground-o-50: hsl(0deg 0% var(--foreground-lightness) / 50%);
+  --foreground-o-25: hsl(0deg 0% var(--foreground-lightness) / 25%);
+  --foreground-o-10: hsl(0deg 0% var(--foreground-lightness) / 10%);
   --hue: 270;
   --lightness: 50%;
   --saturation: 100%;
@@ -100,7 +88,7 @@ html:where([data-theme=dark]) .chaarts-container {
   --background: hsl(0deg 0% calc(var(--diff) * 5));
   --foreground-lighter: hsl(0deg 0% calc(var(--foreground-lightness) - var(--diff)));
 }
-@media screen and (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   .no-js .chaarts-container, html:where(:not([data-theme=light])) .chaarts-container {
     color-scheme: dark;
     --background-lightness: 0%;
@@ -128,16 +116,6 @@ html:where([data-theme=dark]) .chaarts-container {
   --is-rtl: -1;
 }
 
-[class*=chaarts] [role=presentation] {
-  display: none;
-}
-[class*=chaarts] abbr[title] {
-  border-block-end: 0;
-  font-size: small;
-  font-weight: normal;
-  text-transform: none;
-}
-
 .chaarts {
   caption-side: bottom;
   empty-cells: hide;
@@ -150,6 +128,15 @@ html:where([data-theme=dark]) .chaarts-container {
   font-style: normal;
   padding: 1rem 0;
 }
+.chaarts [role=presentation] {
+  display: none;
+}
+.chaarts abbr[title] {
+  border-block-end: 0;
+  font-size: small;
+  font-weight: normal;
+  text-transform: none;
+}
 
 table:not(.chaarts) .sr-only {
   block-size: auto;
@@ -161,7 +148,7 @@ table:not(.chaarts) .sr-only {
   white-space: normal;
 }
 
-@media screen and (min-width: 30em) {
+@media (min-width: 30em) {
   .chaarts {
     border-collapse: separate;
     border-spacing: 0;
@@ -176,21 +163,6 @@ table:not(.chaarts) .sr-only {
   .chaarts td:empty {
     display: none !important;
   }
-  /*
-   * @note Grid charts based on:
-   * @see https://css-tricks.com/css-charts-grid-custom-properties/
-   * @author Miriam Suzanne
-   *
-   * @note Grid setup:
-   * 1. 1st column to display legends, fixed width
-   * 1. 2nd column is a repeater, creating a subcolumn for each unit in --scale
-   * 1. 3rd columns with 6ch width to ensure that 6 characters long values has enough space to not overflow <dl>
-   *
-   * @note Clipped value coming from:
-   * @see https://www.ffoodd.fr/le-web-en-kit/
-   * @see http://dabblet.com/gist/08fddf3666c39ebc62ca
-   * @author Gaël Poupard
-  // ==================== */
   .chaarts.bar caption {
     text-align: initial;
     text-indent: 13.5rem;
@@ -250,33 +222,8 @@ table:not(.chaarts) .sr-only {
   .chaarts.bar:hover tr:hover {
     opacity: 1;
   }
-  /*
-   * @note Grid charts based on
-   * @see https://css-tricks.com/css-charts-grid-custom-properties/
-   * @author Miriam Suzanne
-   *
-   * @note Massively using clip-path
-   * @see Bennett Feely's clippy to understand polygon() syntax
-   * @link http://bennettfeely.com/clippy/
-   */
-  /*
-   * @note Grid charts based on:
-   * @see https://css-tricks.com/css-charts-grid-custom-properties/
-   * @author Miriam Suzanne
-  // ==================== */
-  /**
-   * 1.
-   * @note Display CSS integers custom properties with a trick using counters
-   * @author Cassie Evans
-   * @link https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab
-   *
-   * 2.
-   * @note We need to ensure our counter uses an integer, --value might a a floating number
-   * @author Carter Li
-   * @link https://css-tricks.com/animating-number-counters/#the-new-school-css-solution
-   */
 }
-@media screen and (min-width: 30em) and (prefers-contrast: more) {
+@media (min-width: 30em) and (prefers-contrast: more) {
   .chaarts.bar td {
     background: var(--chaarts-blue);
   }
@@ -286,7 +233,7 @@ table:not(.chaarts) .sr-only {
     color: var(--chaarts-blue);
   }
 }
-@media screen and (min-width: 30em) {
+@media (min-width: 30em) {
   .chaarts.bar.waterfall tr:nth-of-type(1) td {
     grid-column: var(--0, 2) / var(--value, 2);
   }
@@ -325,34 +272,6 @@ table:not(.chaarts) .sr-only {
     margin: 0 auto;
     padding-block-start: calc(var(--radius) - 2rem);
     position: relative;
-    /**
-     * Using clip-path + calc() + transform + CSS vars
-     * Using mask-image to make a circle
-     *
-     * 1.
-     * @note Based on Ana Tudor's work
-     * @link https://css-tricks.com/1-html-element-5-css-properties-magic/
-     * @author Ana Tudor
-     *
-     * 2.
-     * @note Using a Roma Komarov's idea about boolean custom properties
-     * @link https://www.kizu.ru/conditions-for-css-variables/
-     *
-     * 3.
-     * @note Mask support:
-     * @link https://caniuse.com/#search=mask
-     */
-    /**
-     * 1.
-     * @note Display CSS integers custom properties with a trick using counters
-     * @author Cassie Evans
-     * @link https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab
-     *
-     * 2.
-     * @note We need to ensure our counter uses an integer, --value might a a floating number
-     * @author Carter Li
-     * @link https://css-tricks.com/animating-number-counters/#the-new-school-css-solution
-     */
   }
   .chaarts.pie tbody {
     display: table-row;
@@ -365,7 +284,7 @@ table:not(.chaarts) .sr-only {
     padding-inline-end: 0.5rem;
   }
   .chaarts.pie [scope=row]::before {
-    background: var(--color, currentColor) var(--background);
+    background: var(--color, currentcolor) var(--background);
     block-size: 1rem;
     content: "";
     display: inline-block;
@@ -516,7 +435,7 @@ table:not(.chaarts) .sr-only {
   }
   .chaarts.line [scope=row],
   .chaarts.line thead th:first-child {
-    color: var(--color, currentColor);
+    color: var(--color, currentcolor);
     text-align: start;
   }
   .chaarts.line [style]::before {
@@ -551,12 +470,12 @@ table:not(.chaarts) .sr-only {
     );
   }
 }
-@media screen and (min-width: 30em) and (prefers-contrast: more) {
+@media (min-width: 30em) and (prefers-contrast: more) {
   .chaarts.line [style]::before {
     background: var(--chaarts-blue);
   }
 }
-@media screen and (min-width: 30em) {
+@media (min-width: 30em) {
   .chaarts.line th,
   .chaarts.line td {
     background: var(--background-lighter);
@@ -582,12 +501,12 @@ table:not(.chaarts) .sr-only {
     mix-blend-mode: lighten;
   }
 }
-@media screen and (min-width: 30em) and (prefers-color-scheme: dark) {
+@media (min-width: 30em) and (prefers-color-scheme: dark) {
   .no-js .chaarts.line [scope=col]:not(:first-child)::after, html:where(:not([data-theme=light])) .chaarts.line [scope=col]:not(:first-child)::after {
     mix-blend-mode: lighten;
   }
 }
-@media screen and (min-width: 30em) {
+@media (min-width: 30em) {
   .chaarts.line [scope=col]:nth-child(2)::after {
     --index: 1;
   }
@@ -631,25 +550,6 @@ table:not(.chaarts) .sr-only {
     --value: var(--1);
     --term: var(--t-1);
     line-height: 1.5;
-    /**
-     * 1.
-     * @note Using white-space and:
-     ** `\A` to make a line-break
-     ** `\A0` for a non-breakable space
-     * @note Based on CSS Secrets by
-     * @author Lea Verou
-     * @link https://lea.verou.me/2012/02/flexible-multiline-definition-lists-with-2-lines-of-css/
-     *
-     * 2.
-     * @note Display CSS integers custom properties with a trick using counters
-     * @author Cassie Evans
-     * @link https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab
-     *
-     * 3.
-     * @note We need to ensure our counter uses an integer, --value might a a floating number
-     * @author Carter Li
-     * @link https://css-tricks.com/animating-number-counters/#the-new-school-css-solution
-     */
   }
   .chaarts.line td::before {
     block-size: 1.5rem;
@@ -809,7 +709,7 @@ table:not(.chaarts) .sr-only {
     transition: opacity 0.2s var(--exit), transform 0.2s var(--exit);
   }
   .chaarts.points [style]::before {
-    background: var(--color, currentColor) var(--background);
+    background: var(--color, currentcolor) var(--background);
     scale: var(--is-rtl, 1) 1;
     transition: opacity 0.3s var(--move);
     --polygon: polygon(
@@ -844,7 +744,7 @@ table:not(.chaarts) .sr-only {
     );
   }
   .chaarts.points [style] th::before {
-    background: var(--color, currentColor) var(--background);
+    background: var(--color, currentcolor) var(--background);
     block-size: 1rem;
     content: "";
     display: inline-block;
@@ -962,11 +862,6 @@ table:not(.chaarts) .sr-only {
     grid-column-gap: var(--gap);
     max-block-size: 64em;
     position: relative;
-    /**
-     * @note Use display: contents to place table-cells in table's grid
-     * @link https://hiddedevries.nl/en/blog/2018-04-21-more-accessible-markup-with-display-contents
-     * @link https://bitsofco.de/how-display-contents-works/
-     */
   }
   .chaarts[class*=column] td,
   .chaarts[class*=column] th {
@@ -1034,14 +929,14 @@ table:not(.chaarts) .sr-only {
     position: absolute;
   }
 }
-@media screen and (min-width: 30em) and (prefers-contrast: more) {
+@media (min-width: 30em) and (prefers-contrast: more) {
   .chaarts[class*=column] span {
     background: var(--background-lighter);
     background-clip: unset;
     color: var(--chaarts-blue);
   }
 }
-@media screen and (min-width: 30em) {
+@media (min-width: 30em) {
   .chaarts[class*=column].column-single {
     grid-auto-columns: 1fr;
     grid-template-rows: 2ex repeat(var(--scale, 100), minmax(0, 0.25rem)) minmax(min-content, 2rem);
@@ -1060,12 +955,12 @@ table:not(.chaarts) .sr-only {
     background-blend-mode: hard-light;
   }
 }
-@media screen and (min-width: 30em) and (prefers-contrast: more) {
+@media (min-width: 30em) and (prefers-contrast: more) {
   .chaarts[class*=column].column-single td {
     background-color: var(--chaarts-blue);
   }
 }
-@media screen and (min-width: 30em) {
+@media (min-width: 30em) {
   .chaarts[class*=column].column-single :is([scope=col], [scope=colgroup])::after {
     background: var(--background) var(--stripes);
     background-blend-mode: exclusion;
@@ -1121,9 +1016,6 @@ table:not(.chaarts) .sr-only {
   .chaarts[class*=column].column-multiple {
     grid-template-columns: minmax(min-content, 14ch) repeat(calc(var(--y) - 1), 1fr);
     grid-template-rows: 2ex repeat(var(--scale, 100), minmax(0, 0.25rem)) repeat(2, minmax(min-content, 2rem));
-    /**
-     * @note Oh boy, if we could use var(--span) in selector…
-     */
   }
   .chaarts[class*=column].column-multiple span {
     background-image: none;
@@ -1230,27 +1122,6 @@ table:not(.chaarts) .sr-only {
     margin: 6rem auto 12rem;
     overflow: visible;
     position: relative;
-    /**
-     * Placing items around a circle based on:
-     * @link https://stackoverflow.com/questions/12813573/position-icons-into-circle
-     * @link http://dabblet.com/gist/3866686
-     * @author Ana Tudor
-     *
-     * @note Negative values for radius helps to start at the top left corner
-     */
-    /**
-     * This is quite sophisticated, we're mixing multiple techniques
-     *
-     * @note Setting items as parts of the circle:
-     * @link https://tympanus.net/codrops/2013/08/09/building-a-circular-navigation-with-css-transforms/
-     * @author Sara Soueidan
-     *
-     * @note Because we skew items, clip-path() needs to take skew angle into account
-     * @note To do so, we need to know skewed width (which is hypothenuse of the resulting triangle)
-     * @note We only know two angles (skew one + square one) and a side (initial width),
-     * @note So we need to compute the sinus of the opposite angle to get hypothenuse
-     * @note Thanks god, sin() exists
-     */
   }
   .chaarts[class*=radar] caption {
     background: none;
@@ -1404,7 +1275,7 @@ table:not(.chaarts) .sr-only {
     position: absolute;
   }
   .chaarts.radar-multiple [scope=row]::before {
-    background: var(--color, currentColor);
+    background: var(--color, currentcolor);
     block-size: 1rem;
     content: "";
     display: inline-block;
@@ -1417,7 +1288,7 @@ table:not(.chaarts) .sr-only {
   }
   .chaarts.radar-multiple td {
     align-items: flex-end;
-    border-color: var(--color, currentColor);
+    border-color: var(--color, currentcolor);
     display: flex;
     justify-content: flex-end;
     opacity: 0.5;
@@ -1479,12 +1350,12 @@ table:not(.chaarts) .sr-only {
   }
   .chaarts.radar-multiple span {
     --mask: radial-gradient(circle at bottom right, var(--foreground), var(--foreground-o-50));
-    background: var(--color, currentColor);
+    background: var(--color, currentcolor);
     mask-image: var(--mask);
     pointer-events: auto;
   }
 }
-@media screen and (min-width: 30em) and (hover: hover) {
+@media (min-width: 30em) and (hover: hover) {
   .chaarts.radar-multiple td {
     opacity: 0.25;
     transition: opacity 0.2s var(--move);

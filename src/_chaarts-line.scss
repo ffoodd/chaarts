@@ -4,17 +4,16 @@
 @use "abstracts/mixins";
 
 // ====================
-// ==Line Charts
-
-/*
- * @note Grid charts based on
- * @see https://css-tricks.com/css-charts-grid-custom-properties/
- * @author Miriam Suzanne
- *
- * @note Massively using clip-path
- * @see Bennett Feely's clippy to understand polygon() syntax
- * @link http://bennettfeely.com/clippy/
- */
+// == Line Charts
+//
+// @note Grid charts based on
+// @see https://css-tricks.com/css-charts-grid-custom-properties/
+// @author Miriam Suzanne
+//
+// @note Massively using clip-path
+// @see Bennett Feely's clippy to understand polygon() syntax
+// @link http://bennettfeely.com/clippy/
+// ====================
 
 .chaarts.line {
 	--offset: calc((100% / var(--x)) / 2);
@@ -49,7 +48,7 @@
 
 	[scope="row"],
 	thead th:first-child {
-		color: var(--color, currentColor);
+		color: var(--color, currentcolor);
 		text-align: start;
 	}
 
@@ -144,25 +143,25 @@
 			z-index: 10;
 		}
 
-		/**
-		 * 1.
-		 * @note Using white-space and:
-		 ** `\A` to make a line-break
-		 ** `\A0` for a non-breakable space
-		 * @note Based on CSS Secrets by
-		 * @author Lea Verou
-		 * @link https://lea.verou.me/2012/02/flexible-multiline-definition-lists-with-2-lines-of-css/
-		 *
-		 * 2.
-		 * @note Display CSS integers custom properties with a trick using counters
-		 * @author Cassie Evans
-		 * @link https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab
-		 *
-		 * 3.
-		 * @note We need to ensure our counter uses an integer, --value might a a floating number
-		 * @author Carter Li
-		 * @link https://css-tricks.com/animating-number-counters/#the-new-school-css-solution
-		 */
+		// ====================
+		// 1.
+		// @note Using white-space and:
+		//* `\A` to make a line-break
+		//* `\A0` for a non-breakable space
+		// @note Based on CSS Secrets by
+		// @author Lea Verou
+		// @link https://lea.verou.me/2012/02/flexible-multiline-definition-lists-with-2-lines-of-css/
+		//
+		// 2.
+		// @note Display CSS integers custom properties with a trick using counters
+		// @author Cassie Evans
+		// @link https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab
+		//
+		// 3.
+		// @note We need to ensure our counter uses an integer, --value might a a floating number
+		// @author Carter Li
+		// @link https://css-tricks.com/animating-number-counters/#the-new-school-css-solution
+		// ====================
 		&::after {
 			--arrow: calc(100% - #{variables.$gutter * 0.25});
 			--top: calc(var(--height) - (var(--value) / var(--y) * var(--height)));
@@ -191,7 +190,7 @@
 			transform: translate3d(var(--rtl-offset, -50%), -125%, 0) perspective(1000px) rotate3d(1, 0, 0, 45deg);
 			transform-origin: 50% calc(100% + 10px);
 			transition: opacity .2s var(--enter),
-			transform .2s var(--enter);
+									transform .2s var(--enter);
 			white-space: pre;
 			z-index: 5;
 		}
@@ -221,7 +220,7 @@
 			opacity: 1;
 			transform: translate3d(var(--rtl-offset, -50%), -125%, 0) perspective(1000px) rotate3d(1, 0, 0, 0deg);
 			transition: opacity .2s var(--exit),
-			transform .2s var(--exit);
+									transform .2s var(--exit);
 		}
 	}
 }
@@ -229,7 +228,7 @@
 .chaarts.points {
 	[style] {
 		&::before {
-			background: var(--color, currentColor) var(--background);
+			background: var(--color, currentcolor) var(--background);
 			scale: var(--is-rtl, 1) 1;
 			transition: opacity .3s var(--move);
 
@@ -266,7 +265,7 @@
 		}
 
 		th::before {
-			background: var(--color, currentColor) var(--background);
+			background: var(--color, currentcolor) var(--background);
 			block-size: 1rem;
 			content: "";
 			display: inline-block;
@@ -290,7 +289,7 @@
 				inset-inline-start: calc(var(--offset) * 3);
 				position: absolute;
 				transition: opacity .3s var(--move),
-				transform .3s var(--move);
+										transform .3s var(--move);
 				translate: calc(var(--size) / -2) calc(var(--size) / -2) 0;
 				z-index: 4;
 			}

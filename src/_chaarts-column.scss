@@ -5,12 +5,11 @@
 
 // ====================
 // == Column Charts
-
-/*
- * @note Grid charts based on:
- * @see https://css-tricks.com/css-charts-grid-custom-properties/
- * @author Miriam Suzanne
-// ==================== */
+//
+// @note Grid charts based on:
+// @see https://css-tricks.com/css-charts-grid-custom-properties/
+// @author Miriam Suzanne
+// ====================
 
 .chaarts[class*="column"] {
 	--gap: #{variables.$gutter * 0.5};
@@ -31,11 +30,11 @@
 		text-align: center;
 	}
 
-	/**
-	 * @note Use display: contents to place table-cells in table's grid
-	 * @link https://hiddedevries.nl/en/blog/2018-04-21-more-accessible-markup-with-display-contents
-	 * @link https://bitsofco.de/how-display-contents-works/
-	 */
+	// ====================
+	// @note Use display: contents to place table-cells in table's grid
+	// @link https://hiddedevries.nl/en/blog/2018-04-21-more-accessible-markup-with-display-contents
+	// @link https://bitsofco.de/how-display-contents-works/
+	// ====================
 	tr,
 	tbody,
 	thead {
@@ -210,9 +209,7 @@
 			grid-row-end: -3;
 		}
 
-		/**
-		 * @note Oh boy, if we could use var(--span) in selector…
-		 */
+		// @note Oh boy, if we could use var(--span) in selector…
 		td:nth-of-type(2n + 2) {
 			background: var(--chaarts-blue) var(--triangles);
 		}

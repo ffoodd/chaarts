@@ -3,7 +3,7 @@
 @use "abstracts/variables";
 
 // ====================
-// ==Radar Charts
+// == Radar Charts
 //
 // ====================
 
@@ -41,14 +41,15 @@
 		position: absolute;
 	}
 
-	/**
-	 * Placing items around a circle based on:
-	 * @link https://stackoverflow.com/questions/12813573/position-icons-into-circle
-	 * @link http://dabblet.com/gist/3866686
-	 * @author Ana Tudor
-	 *
-	 * @note Negative values for radius helps to start at the top left corner
-	 */
+	// ====================
+	// Placing items around a circle
+	//
+	// @link https://stackoverflow.com/questions/12813573/position-icons-into-circle
+	// @link http://dabblet.com/gist/3866686
+	// @author Ana Tudor
+	//
+	// @note Negative values for radius helps to start at the top left corner
+	// ====================
 	[scope="col"] {
 		--away: calc((var(--radius) * -1) - 50%);
 
@@ -67,19 +68,19 @@
 		}
 	}
 
-	/**
-	 * This is quite sophisticated, we're mixing multiple techniques
-	 *
-	 * @note Setting items as parts of the circle:
-	 * @link https://tympanus.net/codrops/2013/08/09/building-a-circular-navigation-with-css-transforms/
-	 * @author Sara Soueidan
-	 *
-	 * @note Because we skew items, clip-path() needs to take skew angle into account
-	 * @note To do so, we need to know skewed width (which is hypothenuse of the resulting triangle)
-	 * @note We only know two angles (skew one + square one) and a side (initial width),
-	 * @note So we need to compute the sinus of the opposite angle to get hypothenuse
-	 * @note Thanks god, sin() exists
-	 */
+	// ====================
+	// This is quite sophisticated, we're mixing multiple techniques
+	//
+	// @note Setting items as parts of the circle:
+	// @link https://tympanus.net/codrops/2013/08/09/building-a-circular-navigation-with-css-transforms/
+	// @author Sara Soueidan
+	//
+	// @note Because we skew items, clip-path() needs to take skew angle into account
+	// @note To do so, we need to know skewed width (which is hypothenuse of the resulting triangle)
+	// @note We only know two angles (skew one + square one) and a side (initial width),
+	// @note So we need to compute the sinus of the opposite angle to get hypothenuse
+	// @note Thanks god, sin() exists
+	// ====================
 	td {
 		--skew: calc(90deg - var(--part));
 
@@ -109,14 +110,14 @@
 	span {
 		--opposite: calc(180 - (90 + (90 - (360 / var(--items)))));
 
-		// get opposite angle in radians
+		// Get opposite angle in radians
 		--angle: calc(var(--opposite) * 0.01745329251);
 		--sin-angle: sin(var(--angle));
 
 		// calc() hypothenuse
 		--hypo: calc(var(--unitless-radius) / var(--sin-angle));
 
-		// get the ratio: skewed / initial width
+		// Get the ratio: skewed / initial width
 		--ratio: calc(var(--hypo) / var(--unitless-radius));
 		--polygon: polygon(
 				100% var(--pos),
@@ -133,17 +134,17 @@
 	}
 }
 
-/**
- * 1.
- * @note Display CSS integers custom properties with a trick using counters
- * @author Cassie Evans
- * @link https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab
- *
- * 2.
- * @note We need to ensure our counter uses an integer, --value might a a floating number
- * @author Carter Li
- * @link https://css-tricks.com/animating-number-counters/#the-new-school-css-solution
- */
+// ====================
+// 1.
+// @note Display CSS integers custom properties with a trick using counters
+// @author Cassie Evans
+// @link https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab
+//
+// 2.
+// @note We need to ensure our counter uses an integer, --value might a a floating number
+// @author Carter Li
+// @link https://css-tricks.com/animating-number-counters/#the-new-school-css-solution
+// ====================
 .chaarts.radar [scope="col"] {
 	&::after {
 		color: var(--foreground-lighter);
@@ -177,7 +178,7 @@
 		position: absolute;
 
 		&::before {
-			background: var(--color, currentColor);
+			background: var(--color, currentcolor);
 			block-size: variables.$gutter;
 			content: "";
 			display: inline-block;
@@ -196,7 +197,7 @@
 
 	td {
 		align-items: flex-end;
-		border-color: var(--color, currentColor);
+		border-color: var(--color, currentcolor);
 		display: flex;
 		justify-content: flex-end;
 		opacity: .5;
@@ -229,7 +230,7 @@
 	span {
 		--mask: radial-gradient(circle at bottom right, var(--foreground), var(--foreground-o-50));
 
-		background: var(--color, currentColor);
+		background: var(--color, currentcolor);
 		mask-image: var(--mask);
 		pointer-events: auto;
 	}

@@ -3,7 +3,7 @@
 		@content;
 	}
 
-	@media screen and (prefers-color-scheme: dark) {
+	@media (prefers-color-scheme: dark) {
 		.no-js &,
 		html:where(:not([data-theme="light"])) & {
 			@content;

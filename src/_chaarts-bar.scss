@@ -5,22 +5,21 @@
 
 // ====================
 // == Bar Charts
-
-/*
- * @note Grid charts based on:
- * @see https://css-tricks.com/css-charts-grid-custom-properties/
- * @author Miriam Suzanne
- *
- * @note Grid setup:
- * 1. 1st column to display legends, fixed width
- * 1. 2nd column is a repeater, creating a subcolumn for each unit in --scale
- * 1. 3rd columns with 6ch width to ensure that 6 characters long values has enough space to not overflow <dl>
- *
- * @note Clipped value coming from:
- * @see https://www.ffoodd.fr/le-web-en-kit/
- * @see http://dabblet.com/gist/08fddf3666c39ebc62ca
- * @author Gaël Poupard
-// ==================== */
+//
+// @note Grid charts based on:
+// @see https://css-tricks.com/css-charts-grid-custom-properties/
+// @author Miriam Suzanne
+//
+// @note Grid setup:
+// 1. 1st column to display legends, fixed width
+// 1. 2nd column is a repeater, creating a subcolumn for each unit in --scale
+// 1. 3rd columns with 6ch width to ensure that 6 characters long values has enough space to not overflow <dl>
+//
+// @note Clipped value coming from:
+// @see https://www.ffoodd.fr/le-web-en-kit/
+// @see http://dabblet.com/gist/08fddf3666c39ebc62ca
+// @author Gaël Poupard
+// ====================
 
 .chaarts.bar {
 	caption {
@@ -89,7 +88,7 @@
 		}
 	}
 
-	@media screen and (prefers-contrast: more) {
+	@media (prefers-contrast: more) {
 		td {
 			background: var(--chaarts-blue);
 		}
