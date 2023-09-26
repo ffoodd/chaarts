@@ -1,6 +1,7 @@
 @use "sass:map";
 @use "sass:math";
 @use "sass:list";
+@use "abstracts/mixins";
 @use "abstracts/variables";
 
 // ====================
@@ -22,25 +23,21 @@
 // ====================
 
 .chaarts.bar {
+	--offset: #{math.div(200em, 16)};
+
 	caption {
 		text-align: initial;
-		text-indent: #{math.div(200, 16) + variables.$gutter};
+		text-indent: calc(var(--offset) + #{variables.$gutter});
 	}
 
 	tr {
 		display: grid;
 		grid-auto-rows: 1fr;
 		grid-row-gap: variables.$gutter * 0.5;
-		grid-template-columns: minmax(min-content, math.div(200em, 16)) repeat(var(--scale, 100), minmax(0, 1fr)) 10ch;
+		grid-template-columns: minmax(min-content, var(--offset)) repeat(var(--scale, 100), minmax(0, 1fr)) 10ch;
 		transition: opacity .2s var(--move);
 
-		@each $pattern in variables.$patterns {
-			$i: list.index(variables.$patterns, $pattern);
-
-			&:nth-child(#{$i}n + #{$i}) {
-				--background: var(--#{$pattern});
-			}
-		}
+		@include mixins.patterns;
 	}
 
 	th {

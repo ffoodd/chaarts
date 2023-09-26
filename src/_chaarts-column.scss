@@ -1,6 +1,7 @@
 @use "sass:map";
 @use "sass:math";
 @use "sass:list";
+@use "abstracts/mixins";
 @use "abstracts/variables";
 
 // ====================
@@ -107,6 +108,8 @@
 			var(--background) center / variables.$gutter;
 			background-blend-mode: hard-light;
 
+			@include mixins.patterns;
+
 			@media (prefers-contrast: more) {
 				background-color: var(--chaarts-blue);
 			}
@@ -135,14 +138,6 @@
 				&:nth-child(#{$number + 1})::after {
 					inset-inline-start: calc(1em + (var(--width) * #{$number}) + (var(--gap) * #{$number}));
 				}
-			}
-		}
-
-		@each $pattern in variables.$patterns {
-			$i: list.index(variables.$patterns, $pattern);
-
-			td:nth-of-type(#{$i}n + #{$i}) {
-				--background: var(--#{$pattern});
 			}
 		}
 	}

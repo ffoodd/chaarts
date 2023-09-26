@@ -163,33 +163,36 @@ table:not(.chaarts) .sr-only {
   .chaarts td:empty {
     display: none !important;
   }
+  .chaarts.bar {
+    --offset: 12.5em;
+  }
   .chaarts.bar caption {
     text-align: initial;
-    text-indent: 13.5rem;
+    text-indent: calc(var(--offset) + 1rem);
   }
   .chaarts.bar tr {
     display: grid;
     grid-auto-rows: 1fr;
     grid-row-gap: 0.5rem;
-    grid-template-columns: minmax(min-content, 12.5em) repeat(var(--scale, 100), minmax(0, 1fr)) 10ch;
+    grid-template-columns: minmax(min-content, var(--offset)) repeat(var(--scale, 100), minmax(0, 1fr)) 10ch;
     transition: opacity 0.2s var(--move);
   }
-  .chaarts.bar tr:nth-child(1n+1) {
+  .chaarts.bar tr:nth-of-type(1n + 1) {
     --background: var(--checkers);
   }
-  .chaarts.bar tr:nth-child(2n+2) {
+  .chaarts.bar tr:nth-of-type(2n + 2) {
     --background: var(--hexagons);
   }
-  .chaarts.bar tr:nth-child(3n+3) {
+  .chaarts.bar tr:nth-of-type(3n + 3) {
     --background: var(--triangles);
   }
-  .chaarts.bar tr:nth-child(4n+4) {
+  .chaarts.bar tr:nth-of-type(4n + 4) {
     --background: var(--zig);
   }
-  .chaarts.bar tr:nth-child(5n+5) {
+  .chaarts.bar tr:nth-of-type(5n + 5) {
     --background: var(--stripes);
   }
-  .chaarts.bar tr:nth-child(6n+6) {
+  .chaarts.bar tr:nth-of-type(6n + 6) {
     --background: var(--dots);
   }
   .chaarts.bar th {
@@ -280,6 +283,24 @@ table:not(.chaarts) .sr-only {
     display: table-cell;
     transition: opacity 0.3s var(--move);
   }
+  .chaarts.pie tr:nth-of-type(1n + 1) {
+    --background: var(--checkers);
+  }
+  .chaarts.pie tr:nth-of-type(2n + 2) {
+    --background: var(--hexagons);
+  }
+  .chaarts.pie tr:nth-of-type(3n + 3) {
+    --background: var(--triangles);
+  }
+  .chaarts.pie tr:nth-of-type(4n + 4) {
+    --background: var(--zig);
+  }
+  .chaarts.pie tr:nth-of-type(5n + 5) {
+    --background: var(--stripes);
+  }
+  .chaarts.pie tr:nth-of-type(6n + 6) {
+    --background: var(--dots);
+  }
   .chaarts.pie [scope=row] {
     padding-inline-end: 0.5rem;
   }
@@ -344,24 +365,6 @@ table:not(.chaarts) .sr-only {
   }
   .chaarts.pie tr:hover td::before {
     --zoom: .8;
-  }
-  .chaarts.pie tr:nth-child(1n+1) {
-    --background: var(--checkers);
-  }
-  .chaarts.pie tr:nth-child(2n+2) {
-    --background: var(--hexagons);
-  }
-  .chaarts.pie tr:nth-child(3n+3) {
-    --background: var(--triangles);
-  }
-  .chaarts.pie tr:nth-child(4n+4) {
-    --background: var(--zig);
-  }
-  .chaarts.pie tr:nth-child(5n+5) {
-    --background: var(--stripes);
-  }
-  .chaarts.pie tr:nth-child(6n+6) {
-    --background: var(--dots);
   }
   .chaarts.pie td::after {
     --arrow: calc(100% - 0.25rem);
@@ -818,22 +821,22 @@ table:not(.chaarts) .sr-only {
     --value: var(--12);
     --index: 12;
   }
-  .chaarts.points [style]:nth-child(1n+1) {
+  .chaarts.points [style]:nth-of-type(1n + 1) {
     --background: var(--checkers);
   }
-  .chaarts.points [style]:nth-child(2n+2) {
+  .chaarts.points [style]:nth-of-type(2n + 2) {
     --background: var(--hexagons);
   }
-  .chaarts.points [style]:nth-child(3n+3) {
+  .chaarts.points [style]:nth-of-type(3n + 3) {
     --background: var(--triangles);
   }
-  .chaarts.points [style]:nth-child(4n+4) {
+  .chaarts.points [style]:nth-of-type(4n + 4) {
     --background: var(--zig);
   }
-  .chaarts.points [style]:nth-child(5n+5) {
+  .chaarts.points [style]:nth-of-type(5n + 5) {
     --background: var(--stripes);
   }
-  .chaarts.points [style]:nth-child(6n+6) {
+  .chaarts.points [style]:nth-of-type(6n + 6) {
     --background: var(--dots);
   }
   .chaarts.points tbody:hover [style]::before,
@@ -954,6 +957,24 @@ table:not(.chaarts) .sr-only {
     background: linear-gradient(to top, var(--chaarts-green), var(--chaarts-gray), var(--chaarts-blue), var(--chaarts-purple), var(--chaarts-red)) 0% var(--position) / 100% var(--size), var(--background) center/1rem;
     background-blend-mode: hard-light;
   }
+  .chaarts[class*=column].column-single td:nth-of-type(1n + 1) {
+    --background: var(--checkers);
+  }
+  .chaarts[class*=column].column-single td:nth-of-type(2n + 2) {
+    --background: var(--hexagons);
+  }
+  .chaarts[class*=column].column-single td:nth-of-type(3n + 3) {
+    --background: var(--triangles);
+  }
+  .chaarts[class*=column].column-single td:nth-of-type(4n + 4) {
+    --background: var(--zig);
+  }
+  .chaarts[class*=column].column-single td:nth-of-type(5n + 5) {
+    --background: var(--stripes);
+  }
+  .chaarts[class*=column].column-single td:nth-of-type(6n + 6) {
+    --background: var(--dots);
+  }
 }
 @media (min-width: 30em) and (prefers-contrast: more) {
   .chaarts[class*=column].column-single td {
@@ -994,24 +1015,6 @@ table:not(.chaarts) .sr-only {
   }
   .chaarts[class*=column].column-single :is([scope=col], [scope=colgroup]):nth-child(7)::after {
     inset-inline-start: calc(1em + var(--width) * 6 + var(--gap) * 6);
-  }
-  .chaarts[class*=column].column-single td:nth-of-type(1n + 1) {
-    --background: var(--checkers);
-  }
-  .chaarts[class*=column].column-single td:nth-of-type(2n + 2) {
-    --background: var(--hexagons);
-  }
-  .chaarts[class*=column].column-single td:nth-of-type(3n + 3) {
-    --background: var(--triangles);
-  }
-  .chaarts[class*=column].column-single td:nth-of-type(4n + 4) {
-    --background: var(--zig);
-  }
-  .chaarts[class*=column].column-single td:nth-of-type(5n + 5) {
-    --background: var(--stripes);
-  }
-  .chaarts[class*=column].column-single td:nth-of-type(6n + 6) {
-    --background: var(--dots);
   }
   .chaarts[class*=column].column-multiple {
     grid-template-columns: minmax(min-content, 14ch) repeat(calc(var(--y) - 1), 1fr);

@@ -1,3 +1,6 @@
+@use "sass:list";
+@use "./variables";
+
 @mixin dark-mode() {
 	html:where([data-theme="dark"]) & {
 		@content;
@@ -7,6 +10,16 @@
 		.no-js &,
 		html:where(:not([data-theme="light"])) & {
 			@content;
+		}
+	}
+}
+
+@mixin patterns {
+	@each $pattern in variables.$patterns {
+		$i: list.index(variables.$patterns, $pattern);
+
+		&:nth-of-type(#{$i}n + #{$i}) {
+			--background: var(--#{$pattern});
 		}
 	}
 }

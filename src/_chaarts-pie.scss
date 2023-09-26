@@ -1,5 +1,6 @@
 @use "sass:list";
 @use "sass:map";
+@use "abstracts/mixins";
 @use "abstracts/variables";
 
 // ====================
@@ -21,6 +22,8 @@
 	tr {
 		display: table-cell;
 		transition: opacity .3s var(--move);
+
+		@include mixins.patterns;
 	}
 
 	[scope="row"] {
@@ -112,14 +115,6 @@
 
 	tr:hover td::before {
 		--zoom: .8;
-	}
-
-	@each $pattern in variables.$patterns {
-		$i: list.index(variables.$patterns, $pattern);
-
-		tr:nth-child(#{$i}n + #{$i}) {
-			--background: var(--#{$pattern});
-		}
 	}
 
 	// ====================

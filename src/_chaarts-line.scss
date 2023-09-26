@@ -146,8 +146,8 @@
 		// ====================
 		// 1.
 		// @note Using white-space and:
-		//* `\A` to make a line-break
-		//* `\A0` for a non-breakable space
+		// `\A` to make a line-break
+		// `\A0` for a non-breakable space
 		// @note Based on CSS Secrets by
 		// @author Lea Verou
 		// @link https://lea.verou.me/2012/02/flexible-multiline-definition-lists-with-2-lines-of-css/
@@ -310,14 +310,8 @@
 				}
 			}
 		}
-	}
 
-	@each $pattern in variables.$patterns {
-		$i: list.index(variables.$patterns, $pattern);
-
-		[style]:nth-child(#{$i}n + #{$i}) {
-			--background: var(--#{$pattern});
-		}
+		@include mixins.patterns;
 	}
 
 	tbody:hover [style]::before,
