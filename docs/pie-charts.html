@@ -280,168 +280,150 @@
 	<details>
 		<summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
 		<div>
-	<pre>
-	 <code class="language-css">
-@supports (clip-path: polygon( 50% calc( 50% + ( var(--gt-25, 0) ) ) )) {
- .chaarts.pie {
-	 --radius: 32em;
-	 margin: 0 auto;
-	 padding-top: calc(var(--radius) - 2rem);
-	 position: relative;
- }
+			<pre><code class="language-css">@charset "UTF-8";
+.chaarts.pie {
+  --radius: 32em;
+  margin: 0 auto;
+  padding-block-start: calc(var(--radius) - 2rem);
+  position: relative;
+}
 
- .chaarts.pie tbody {
-	 display: table-row;
- }
+.chaarts.pie tbody {
+  display: table-row;
+}
 
- .chaarts.pie tr {
-	 display: table-cell;
-	 transition: opacity .3s cubic-bezier(.5, 0, .5, 1);
- }
+.chaarts.pie tr {
+  display: table-cell;
+  transition: opacity 0.3s var(--move);
+}
 
- .chaarts.pie [scope="row"] {
-	 padding-right: .5rem;
- }
+.chaarts.pie tr:nth-of-type(1n + 1) {
+  --background: var(--checkers);
+}
 
- .chaarts.pie [scope="row"]::before {
-	 background: var(--color, currentColor);
-	 content: "";
-	 display: inline-block;
-	 height: 1rem;
-	 transform: translate3d(-.2rem, .1rem, 0);
-	 width: 1rem;
- }
+.chaarts.pie tr:nth-of-type(2n + 2) {
+  --background: var(--hexagons);
+}
 
- .chaarts.pie td {
-	 --position: calc(var(--start, 0) * .01turn);
- }
+.chaarts.pie tr:nth-of-type(3n + 3) {
+  --background: var(--triangles);
+}
 
- .chaarts.pie td::after,
- .chaarts.pie td::before {
-	 left: 50%;
-	 position: absolute;
-	 top: calc(var(--radius) / 2);
-	 transform-origin: center center;
- }
+.chaarts.pie tr:nth-of-type(4n + 4) {
+  --background: var(--zig);
+}
 
- .chaarts.pie td::before {
-	 /* The inclination, to be in the right place */
-	 --position: calc(var(--start, 0) * .01turn);
-	 --zoom: .75;
-	 /* The angle represented by the value: 3.6 = 360deg / 100 */
-	 /* Since we're using a percentage value */
-	 --part: calc( var(--value) * 3.6 );
-	 /* The "useful" angle for the calculation, necessarily less than 90deg */
-	 /*  We therefore subtract 90deg (= ¼ × 360deg) per 25% (= ¼ × 100%, indeed) */
-	 --main-angle: calc( var(--part) - ( 90 * ( var(--gt-25, 0) + var(--gt-50, 0) + var(--gt-75, 0) ) ) );
-	 /* Main angle, in radian */
-	 --β: calc( var(--main-angle) * 0.01745329251 );
-	 /* The last angle in radian, by deduction since in a right-angled triangle */
-	 --α: calc( ( 90 - var(--main-angle) ) * 0.01745329251 );
-	 --sin-β: sin(var(--β));
-	 --sin-α: sin(var(--α));
-	 /* Finally, the position expressed in %, of the hypothenuse, divided by 2 to fit in ¼ of the circle
-		* or after simplification, divided by 50 */
-	 --pos-B: calc( var(--sin-β) * 50 );
-	 --pos-A: calc( var(--sin-α) * 50 );
-	 background-color: var(--color, currentColor) var(--background);
-	 --polygon: polygon(
-		 50% 50%,
-		 50% 0%,
-		 100% 0%,
-		 calc( 50% + ( var(--pos-B) * 1% * var(--lt-25, 1) ) + ( var(--gt-25, 0) * 50% ) ) calc( 50% - ( var(--pos-A) * 1% * var(--lt-25, 1) ) ),
-		 calc( 50% + ( var(--gt-25, 0) * 50% ) )                      calc( 50% + ( var(--gt-25, 0) * 50% ) ),
-		 calc( 50% + ( var(--pos-A) * 1% * var(--lt-50, 1) ) + ( var(--gt-50, 0) * 50% ) ) calc( 50% + ( var(--pos-B) * 1% * var(--lt-50, 1) ) + ( var(--gt-50, 0) * 50% ) ),
-		 calc( 50% - ( var(--gt-50, 0) * 50% ) )                      calc( 50% + ( var(--gt-50, 0) * 50% ) ),
-		 calc( 50% - ( var(--pos-B) * 1% * var(--lt-75, 1) ) - ( var(--gt-75, 0) * 50% ) ) calc( 50% + ( var(--pos-A) * 1% * var(--lt-75, 1) ) ),
-		 calc( 50% - ( var(--gt-75, 0) * 50% ) )                      calc( 50% - ( var(--gt-75, 0) * 50% ) ),
-		 calc( 50% - ( var(--pos-A) * 1% * var(--gt-75, 0) ) )        calc( 50% - ( var(--pos-B) * 1% * var(--gt-75, 0) ) ),
-		 50% 50%
-	 );
-	 clip-path: var(--polygon);
-	 content: '';
-	 height: var(--radius);
-	 --mask: radial-gradient(
-		 circle at center,
-		 white 0%,
-		 white calc(var(--radius)  / 2),
-		 transparent calc(var(--radius)  / 2)
-	 );
-	 mask-image: var(--mask);
-	 transform:
-		 translate3d(-50%, -50%, 0)
-		 rotate( var(--position) )
-		 scale( var(--zoom) );
-	 transition: transform .2s cubic-bezier(.5, 0, .5, 1);
-	 width: var(--radius);
- }
+.chaarts.pie tr:nth-of-type(5n + 5) {
+  --background: var(--stripes);
+}
 
- .chaarts.pie tr:hover td::before {
-	 --zoom: .8;
- }
+.chaarts.pie tr:nth-of-type(6n + 6) {
+  --background: var(--dots);
+}
 
- .chaarts.pie tr:nth-child(2n + 2) *::before {
-	 --background: var(--stripes);
- }
+.chaarts.pie [scope=row] {
+  padding-inline-end: 0.5rem;
+}
 
- .chaarts.pie td::after {
-	 --arrow: calc(100% - .25rem);
-	 --axis: calc( var(--position) - .25turn + var(--value) * .005turn );
-	 --away: calc( var(--radius) / 2 - 1rem );
-	 --integer: calc(var(--value));
-	 background-color: #444;
-	 color: white;
-	 content: var(--term) "\A0: " counter(value) "\A0%";
-	 counter-reset: value var(--integer);
-	 opacity: 0;
-	 padding: .5rem;
-	 pointer-events: none;
-	 transform-origin: 50% calc(100% + 10px);
-	 transform:
-		 translate3d(-50%, -50%, 0)
-		 rotate( var(--axis) )
-		 translate( var(--away) )
-		 rotate( calc( var(--axis) * -1 ) )
-		 perspective(1000px)
-		 rotate3d(1, 0, 0, 45deg);
-	 transition:
-		 opacity .2s cubic-bezier(0, .5, .5, 1),
-		 transform .2s cubic-bezier(0, .5, .5, 1);
- }
+.chaarts.pie [scope=row]::before {
+  background: var(--color, currentcolor) var(--background);
+  block-size: 1rem;
+  content: "";
+  display: inline-block;
+  inline-size: 1rem;
+  translate: calc(-0.2rem * var(--is-rtl, 1)) 0.1rem 0;
+}
 
- .chaarts.pie tbody:hover tr {
-	 opacity: .75;
- }
+.chaarts.pie td {
+  --position: calc(var(--start, 0) * .01turn);
+}
 
- .chaarts.pie tbody:hover tr:hover {
-	 opacity: 1;
- }
+.chaarts.pie td::after,
+.chaarts.pie td::before {
+  inset-block-start: calc(var(--radius) / 2);
+  inset-inline-start: 50%;
+  position: absolute;
+  transform-origin: center center;
+}
 
- .chaarts.pie tbody:hover td::after {
-	 opacity: 1;
-	 transform:
-		 translate3d(-50%, -50%, 0)
-		 rotate( var(--axis) )
-		 translate( var(--away) )
-		 rotate( calc( var(--axis) * -1 ) )
-		 perspective(1000px)
-		 rotate3d(1, 0, 0, 0deg);
-	 transition:
-		 opacity .2s cubic-bezier(.5, 0, 1, .5),
-		 transform .2s cubic-bezier(.5, 0, 1, .5);
- }
+[dir=rtl] .chaarts.pie td::after {
+  inset-inline-start: 40%;
+}
 
- @media screen and (-ms-high-contrast: active) {
-	 .chaarts.pie tr *::before {
-		 background-color: Window;
-	 }
+.chaarts.pie td::before {
+  --zoom: .75;
+  --part: calc(var(--value) * 3.6);
+  --main-angle: calc(var(--part) - (90 * (var(--gt-25, 0) + var(--gt-50, 0) + var(--gt-75, 0))));
+  --β: calc(var(--main-angle) * 0.01745329251);
+  --α: calc((90 - var(--main-angle)) * 0.01745329251);
+  --sin-β: sin(var(--β));
+  --sin-α: sin(var(--α));
+  --pos-B: calc(var(--sin-β) * 50);
+  --pos-A: calc(var(--sin-α) * 50);
+  --polygon: polygon(
+  		50% 50%,
+  		50% 0%,
+  		100% 0%,
+  		calc(50% + (var(--pos-B) * 1% * var(--lt-25, 1)) + (var(--gt-25, 0) * 50%)) calc(50% - (var(--pos-A) * 1% * var(--lt-25, 1))),
+  		calc(50% + (var(--gt-25, 0) * 50%)) calc(50% + (var(--gt-25, 0) * 50%)),
+  		calc(50% + (var(--pos-A) * 1% * var(--lt-50, 1)) + (var(--gt-50, 0) * 50%)) calc(50% + (var(--pos-B) * 1% * var(--lt-50, 1)) + (var(--gt-50, 0) * 50%)),
+  		calc(50% - (var(--gt-50, 0) * 50%)) calc(50% + (var(--gt-50, 0) * 50%)),
+  		calc(50% - (var(--pos-B) * 1% * var(--lt-75, 1)) - (var(--gt-75, 0) * 50%)) calc(50% + (var(--pos-A) * 1% * var(--lt-75, 1))),
+  		calc(50% - (var(--gt-75, 0) * 50%)) calc(50% - (var(--gt-75, 0) * 50%)),
+  		calc(50% - (var(--pos-A) * 1% * var(--gt-75, 0))) calc(50% - (var(--pos-B) * 1% * var(--gt-75, 0))),
+  		50% 50%
+  );
+  background: var(--color, currentcolor) var(--background);
+  block-size: var(--radius);
+  border-radius: 50%;
+  clip-path: var(--polygon);
+  content: "";
+  inline-size: var(--radius);
+  mask-image: var(--mask);
+  transform: translate3d(calc(-50% * var(--is-rtl, 1)), -50%, 0) rotate(var(--position)) scale(var(--zoom));
+  transition: transform 0.2s var(--move);
+  --mask: radial-gradient(
+  		circle at center,
+  		#ffff 0 calc((var(--radius) / 2) - 1px),
+  		#0000 0
+  );
+}
 
-	 .chaarts.pie tr:nth-of-type(odd) *::before {
-		 background-color: WindowText;
-	 }
- }
-}</code>
-	</pre>
+.chaarts.pie tr:hover td::before {
+  --zoom: .8;
+}
+
+.chaarts.pie td::after {
+  --arrow: calc(100% - 0.25rem);
+  --axis: calc(var(--position) - .25turn + var(--value) * .005turn);
+  --away: calc(var(--radius) / 2 - 1rem);
+  --integer: calc(var(--value));
+  background-color: var(--foreground-lighter);
+  color: var(--background-lighter);
+  content: var(--term) " : " counter(value) " %";
+  counter-reset: value var(--integer);
+  opacity: 0;
+  padding: 0.5rem;
+  pointer-events: none;
+  transform: translate3d(-50%, -50%, 0) rotate(var(--axis)) translate(var(--away)) rotate(calc(var(--axis) * -1)) perspective(1000px) rotate3d(1, 0, 0, 45deg);
+  transform-origin: 50% calc(100% + 10px);
+  transition: opacity 0.2s var(--enter), transform 0.2s var(--enter);
+}
+
+.chaarts.pie tbody:hover tr {
+  opacity: 0.5;
+}
+
+.chaarts.pie tbody:hover tr:hover {
+  opacity: 1;
+}
+
+.chaarts.pie tbody:hover tr:hover td::after {
+  opacity: 1;
+  transform: translate3d(-50%, -50%, 0) rotate(var(--axis)) translate(var(--away)) rotate(calc(var(--axis) * -1)) perspective(1000px) rotate3d(1, 0, 0, 0deg);
+  transition: opacity 0.2s var(--exit), transform 0.2s var(--exit);
+}
+</code></pre>
 		</div>
 	</details>
 	<details id="calculation-twist">
@@ -800,19 +782,21 @@
 
 	<details>
 		<summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
-		<div><pre><code class="language-css">.chaarts.donut {
+		<div>
+			<pre><code class="language-css">.chaarts.pie.donut {
   --mask: radial-gradient(
-    circle at 50% calc(50% - .25rem),
-    transparent 0 var(--offset),
-    white calc(var(--offset) + 1px) 100%
+  		circle at 50% calc(50% - 0.25rem),
+  		#0000 0 var(--offset),
+  		#ffff calc(var(--offset) + 1px) 100%
   );
   mask-image: var(--mask);
 }
 
-.chaarts.donut td::after {
-  --away: calc( var(--radius) / 2 - 2.5rem );
-}</code></pre>
-</div>
+.chaarts.pie.donut td::after {
+  --away: calc(var(--radius) / 2 - 2.5rem);
+}
+</code></pre>
+		</div>
 	</details>
 
 	<div class="note">
@@ -910,26 +894,21 @@
 
 	<details>
 		<summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
-		<div><pre><code class="language-css">.chaarts.polar td::before {
+		<div>
+			<pre><code class="language-css">.chaarts.pie.polar td::before {
   --zoom: 50;
-  transform:
-    translate3d( -50%, -50%, 0 )
-    rotate( var(--position) )
-    scale( calc( ( var(--zoom) + ( var(--value) / ( 100 / var(--zoom) ) ) ) / 100 ) );
+  transform: translate3d(calc(-50% * var(--is-rtl, 1)), -50%, 0) rotate(var(--position)) scale(calc((var(--zoom) + var(--value) / (100 / var(--zoom))) / 100));
 }
 
-.chaarts.polar td::after {
-  --away: calc( ( var(--radius) / 2 ) - ( ( var(--radius) / 4 ) * ( ( 100 - var(--value) ) / 100 ) ) + 2.5rem );
+.chaarts.pie.polar td::after {
+  --away: calc((var(--radius) / 2) - ((var(--radius) / 4) * ((100 - var(--value)) / 100)) + 2.5rem);
 }
 
-.chaarts.polar tr:hover td::before {
+.chaarts.pie.polar tr:hover td::before {
   --zoom: 50;
 }
-
-.chaarts.polar tbody:hover tr {
-  opacity: .5;
-}</code></pre>
-</div>
+</code></pre>
+		</div>
 	</details>
 </main>
 

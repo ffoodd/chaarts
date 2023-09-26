@@ -245,90 +245,95 @@
 	</details>
 	<details>
 		<summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
-		<div><pre><code class="language-css">@supports (grid-template-columns: repeat( var(--scale, 100), minmax(0, 1fr) )) {
-  .chaarts.bar caption {
-    text-align: initial;
-    text-indent: 13.5rem;
-  }
+		<div>
+			<pre><code class="language-css">.chaarts.bar {
+  --offset: 12.5em;
+}
 
-  .chaarts.bar tr {
-    display: grid;
-    grid-auto-rows: 1fr;
-    grid-row-gap: .5rem;
-    grid-template-columns: minmax(min-content, em( 200 ) ) repeat( var(--scale, 100), minmax(0, 1fr) ) 10ch;
-    transition: opacity .2s cubic-bezier(.5, 0, .5, 1);
-  }
+.chaarts.bar caption {
+  text-align: initial;
+  text-indent: calc(var(--offset) + 1rem);
+}
 
-  .chaarts.bar th {
-    grid-column: 1 / 1;
-    margin: .5rem 0 0;
-    padding: 0 1rem 0 0;
-    text-align: right;
-  }
+.chaarts.bar tr {
+  display: grid;
+  grid-auto-rows: 1fr;
+  grid-row-gap: 0.5rem;
+  grid-template-columns: minmax(min-content, var(--offset)) repeat(var(--scale, 100), minmax(0, 1fr)) 10ch;
+  transition: opacity 0.2s var(--move);
+}
 
+.chaarts.bar tr:nth-of-type(1n + 1) {
+  --background: var(--checkers);
+}
+
+.chaarts.bar tr:nth-of-type(2n + 2) {
+  --background: var(--hexagons);
+}
+
+.chaarts.bar tr:nth-of-type(3n + 3) {
+  --background: var(--triangles);
+}
+
+.chaarts.bar tr:nth-of-type(4n + 4) {
+  --background: var(--zig);
+}
+
+.chaarts.bar tr:nth-of-type(5n + 5) {
+  --background: var(--stripes);
+}
+
+.chaarts.bar tr:nth-of-type(6n + 6) {
+  --background: var(--dots);
+}
+
+.chaarts.bar th {
+  grid-column: 1/1;
+  margin: 0.5rem 0 0;
+  padding: 0 1rem 0 0;
+  text-align: end;
+}
+
+.chaarts.bar td {
+  --size: calc(var(--scale, 100) * 100%);
+  --position: calc(var(--value, 0) / var(--scale, 100) * 100%);
+  background: linear-gradient(to right, var(--chaarts-green), var(--chaarts-gray), var(--chaarts-blue), var(--chaarts-purple), var(--chaarts-red)) var(--position) 0% / var(--size) 100%, var(--background) center/contain;
+  background-blend-mode: hard-light;
+  grid-column: 2 / var(--value, 0);
+  margin: 0.5rem 0 0;
+  position: relative;
+}
+
+.chaarts.bar span {
+  background: inherit;
+  background-clip: text;
+  color: transparent;
+  font-weight: bold;
+  inset-inline-start: 100%;
+  line-height: 1.5;
+  position: absolute;
+}
+
+.chaarts.bar:hover tr {
+  opacity: 0.5;
+}
+
+.chaarts.bar:hover tr:hover {
+  opacity: 1;
+}
+
+@media (prefers-contrast: more) {
   .chaarts.bar td {
-    --size: calc( var(--scale, 100) * 100% );
-    --position: calc( var(--value, 0) / var(--scale, 100) * 100% );
-    background-blend-mode: hard-light;
-    background-position: var(--position) 0%, center;
-    background-size: var(--size) 100%, contain;
-    grid-column: 2 / var(--value, 0);
-    margin: .5rem 0 0;
-    position: relative;
+    background: var(--chaarts-blue);
   }
-
   .chaarts.bar span {
-    font-weight: bold;
-    left: 100%;
-    line-height: 1.5;
-    position: absolute;
+    background: var(--background-lighter);
+    background-clip: unset;
+    color: var(--chaarts-blue);
   }
-
-  @supports (background-clip: text) or (-webkit-background-clip: text) {
-    .chaarts.bar span {
-      background: inherit;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-  }
-
-  /* @note Sass @each() */
-  .chaarts.bar tr:nth-child(2n + 2) td {
-    background-image:
-      linear-gradient(to right,
-        #01ac49,
-        #444,
-        mediumblue,
-        rebeccapurple,
-        crimson
-      ),
-     var(--stripes);
-  }
-
-  .chaarts.bar tbody:hover tr {
-    opacity: .5;
-  }
-
-  .chaarts.bar tbody:hover tr:hover {
-    opacity: 1;
-  }
-
-  @media screen and (-ms-high-contrast: active) {
-    .chaarts.bar tr:nth-child(2n + 2) td {
-      background-image:
-        linear-gradient(to right,
-           Window,
-           ButtonFace,
-           ButtonShadow,
-           ButtonText,
-           highlight
-        ),
-      var(--stripes);
-    }
-  }
-}</code></pre>
-</div>
+}
+</code></pre>
+		</div>
 	</details>
 
 	<h2>Waterfall</h2>
@@ -459,13 +464,48 @@
 	<details>
 		<summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
 		<div>
-			<pre><code class="language-css">@use "sass:meta";
+			<pre><code class="language-css">.chaarts.bar.waterfall tr:nth-of-type(1) td {
+  grid-column: var(--0, 2) / var(--value, 2);
+}
 
-// ====================
-// == Vendors
-// ====================
-@layer sseeeedd {
-	@include meta.load-css("sseeeedd/src/sseeeedd");
+.chaarts.bar.waterfall tr:nth-of-type(2) td {
+  grid-column: var(--1, 2) / var(--value, 2);
+}
+
+.chaarts.bar.waterfall tr:nth-of-type(3) td {
+  grid-column: var(--2, 2) / var(--value, 2);
+}
+
+.chaarts.bar.waterfall tr:nth-of-type(4) td {
+  grid-column: var(--3, 2) / var(--value, 2);
+}
+
+.chaarts.bar.waterfall tr:nth-of-type(5) td {
+  grid-column: var(--4, 2) / var(--value, 2);
+}
+
+.chaarts.bar.waterfall tr:nth-of-type(6) td {
+  grid-column: var(--5, 2) / var(--value, 2);
+}
+
+.chaarts.bar.waterfall tr:nth-of-type(7) td {
+  grid-column: var(--6, 2) / var(--value, 2);
+}
+
+.chaarts.bar.waterfall tr:nth-of-type(8) td {
+  grid-column: var(--7, 2) / var(--value, 2);
+}
+
+.chaarts.bar.waterfall tr:nth-of-type(9) td {
+  grid-column: var(--8, 2) / var(--value, 2);
+}
+
+.chaarts.bar.waterfall tr:nth-of-type(10) td {
+  grid-column: var(--9, 2) / var(--value, 2);
+}
+
+.chaarts.bar.waterfall tr:nth-of-type(11) td {
+  grid-column: var(--10, 2) / var(--value, 2);
 }
 </code></pre>
 		</div>

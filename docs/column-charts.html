@@ -166,140 +166,198 @@
 	</details>
 	<details>
 		<summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
-		<div><pre><code class="language-css">@supports (display: contents) {
-  .chaarts[class*="column"] {
-    --gap: .5rem;
-    --size: calc(var(--scale, 100) * 100%);
-    --width: calc(64em / var(--y) - 1rem);
-    display: grid;
-    grid-column-gap: var(--gap);
-    max-height: 64em;
-    position: relative;
-  }
+		<div>
+			<pre><code class="language-css">.chaarts[class*=column] {
+  --gap: 0.5rem;
+  --size: calc(var(--scale, 100) * 100%);
+  --width: calc(64em / var(--y) - 1rem);
+  display: grid;
+  grid-column-gap: var(--gap);
+  max-block-size: 64em;
+  position: relative;
+}
 
-  .chaarts[class*="column"] td,
-  .chaarts[class*="column"] th {
-    margin: 0;
-  }
+.chaarts[class*=column] td,
+.chaarts[class*=column] th {
+  margin: 0;
+}
 
-  .chaarts[class*="column"] tr &gt; * + * {
-    text-align: center;
-  }
+.chaarts[class*=column] tr > * + * {
+  text-align: center;
+}
 
-  .chaarts[class*="column"] tr,
-  .chaarts[class*="column"] tbody,
-  .chaarts[class*="column"] thead {
-    display: contents;
-  }
+.chaarts[class*=column] tr,
+.chaarts[class*=column] tbody,
+.chaarts[class*=column] thead {
+  display: contents;
+}
 
-  .chaarts[class*="column"] caption {
-    grid-column: 1 / span var(--y);
-    grid-row: -1;
-  }
+.chaarts[class*=column] caption {
+  grid-column: 1/span var(--y);
+  grid-row: -1;
+}
 
-  .chaarts[class*="column"] td {
-    --integer: calc(var(--value));
-    grid-row: calc( (var(--scale, 100) + 2) - var(--integer) ) / -2;
-    pointer-events: none;
-    position: relative;
-    transition: opacity .2s cubic-bezier(.5, 0, .5, 1);
-  }
+.chaarts[class*=column] td {
+  --integer: calc(var(--value));
+  grid-row: calc(var(--scale, 100) + 2 - var(--integer)) / -2;
+  pointer-events: none;
+  position: relative;
+  transition: opacity 0.2s var(--move);
+}
 
-  .chaarts[class*="column"] span {
-    font-weight: bold;
-    bottom: 100%;
-    left: 0;
-    line-height: 1.5;
-    pointer-events: auto;
-    position: absolute;
-    right: 0;
-  }
+.chaarts[class*=column] td:nth-of-type(1) {
+  grid-column: 2;
+}
 
-  @supports (background-clip: text) or (-webkit-background-clip: text) {
-    .chaarts[class*="column"] span {
-      background: inherit;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-  }
+.chaarts[class*=column] td:nth-of-type(2) {
+  grid-column: 3;
+}
 
-  /* @note Sass @each() */
-  .chaarts[class*="column"] td:nth-of-type(2) {
-    grid-column: 3;
-  }
+.chaarts[class*=column] td:nth-of-type(3) {
+  grid-column: 4;
+}
 
-  .chaarts.column-single {
-    grid-auto-columns: 1fr;
-    grid-template-rows: 2ex repeat(var(--scale, 100), minmax(0, .25rem)) minmax(min-content, 2rem);
-  }
+.chaarts[class*=column] td:nth-of-type(4) {
+  grid-column: 5;
+}
 
-  .chaarts.column-single tbody th {
-    grid-row: -6 / -3;
-    grid-column: 1;
-    line-height: 1;
-  }
+.chaarts[class*=column] td:nth-of-type(5) {
+  grid-column: 6;
+}
 
-  .chaarts.column-single thead * {
-    grid-row: -2;
-  }
+.chaarts[class*=column] td:nth-of-type(6) {
+  grid-column: 7;
+}
 
+.chaarts[class*=column] td:nth-of-type(7) {
+  grid-column: 8;
+}
+
+.chaarts[class*=column] td:nth-of-type(8) {
+  grid-column: 9;
+}
+
+.chaarts[class*=column] td:nth-of-type(9) {
+  grid-column: 10;
+}
+
+.chaarts[class*=column] td:nth-of-type(10) {
+  grid-column: 11;
+}
+
+.chaarts[class*=column] span {
+  background: inherit;
+  background-clip: text;
+  color: transparent;
+  font-weight: bold;
+  inset-block-end: 100%;
+  inset-inline-end: 0;
+  inset-inline-start: 0;
+  line-height: 1.5;
+  pointer-events: auto;
+  position: absolute;
+}
+
+@media (prefers-contrast: more) {
+  .chaarts[class*=column] span {
+    background: var(--background-lighter);
+    background-clip: unset;
+    color: var(--chaarts-blue);
+  }
+}
+.chaarts.column-single {
+  grid-auto-columns: 1fr;
+  grid-template-rows: 2ex repeat(var(--scale, 100), minmax(0, 0.25rem)) minmax(min-content, 2rem);
+}
+
+.chaarts.column-single tbody th {
+  grid-column: 1;
+  grid-row: -6/-3;
+  line-height: 1;
+}
+
+.chaarts.column-single thead * {
+  grid-row: -2;
+}
+
+.chaarts.column-single td {
+  --position: calc(var(--integer, 0) / var(--scale, 100) * 100%);
+  background: linear-gradient(to top, var(--chaarts-green), var(--chaarts-gray), var(--chaarts-blue), var(--chaarts-purple), var(--chaarts-red)) 0% var(--position) / 100% var(--size), var(--background) center/1rem;
+  background-blend-mode: hard-light;
+}
+
+.chaarts.column-single td:nth-of-type(1n + 1) {
+  --background: var(--checkers);
+}
+
+.chaarts.column-single td:nth-of-type(2n + 2) {
+  --background: var(--hexagons);
+}
+
+.chaarts.column-single td:nth-of-type(3n + 3) {
+  --background: var(--triangles);
+}
+
+.chaarts.column-single td:nth-of-type(4n + 4) {
+  --background: var(--zig);
+}
+
+.chaarts.column-single td:nth-of-type(5n + 5) {
+  --background: var(--stripes);
+}
+
+.chaarts.column-single td:nth-of-type(6n + 6) {
+  --background: var(--dots);
+}
+
+@media (prefers-contrast: more) {
   .chaarts.column-single td {
-    --position: calc(var(--integer, 0) / var(--scale, 100) * 100%);
-    background-blend-mode: hard-light;
-      linear-gradient(to top,
-        #01ac49,
-        #444,
-        mediumblue,
-        rebeccapurple,
-        crimson
-      ) 0% var(--position) / 100% var(--size),
-      var(--background) center / $gutter;
+    background-color: var(--chaarts-blue);
   }
+}
+.chaarts.column-single :is([scope=col], [scope=colgroup])::after {
+  background: var(--background) var(--stripes);
+  background-blend-mode: exclusion;
+  content: "";
+  inline-size: var(--width);
+  inset-block-end: 4rem;
+  inset-block-start: 1rem;
+  mix-blend-mode: color;
+  opacity: 0;
+  position: absolute;
+  transition: opacity 0.3s var(--move);
+  z-index: 0;
+}
 
-  .chaarts.column-single [scope="col"]::after {
-    background: whitesmoke var(--stripes);
-    background-blend-mode: exclusion;
-    bottom: 4rem;
-    content: "";
-    mix-blend-mode: multiply;
-    opacity: 0;
-    position: absolute;
-    transition: opacity .3s cubic-bezier(.5, 0, .5, 1);
-    top: 1rem;
-    width: var(--width);
-    z-index: 0;
-  }
+.chaarts.column-single :is([scope=col], [scope=colgroup]):hover::after {
+  opacity: 0.5;
+}
 
-  .chaarts.column-single [scope="col"]:hover::after {
-    opacity: .5;
-  }
+.chaarts.column-single :is([scope=col], [scope=colgroup]):nth-child(2)::after {
+  inset-inline-start: calc(1em + var(--width) * 1 + var(--gap) * 1);
+}
 
-  /* @note Sass @each() */
-  .chaarts.column-single [scope="col"]:nth-child(3)::after {
-    left: calc(1em + (var(--width) * 2) + (var(--gap) * 2));
-  }
+.chaarts.column-single :is([scope=col], [scope=colgroup]):nth-child(3)::after {
+  inset-inline-start: calc(1em + var(--width) * 2 + var(--gap) * 2);
+}
 
-  /* @note Sass @each() */
-  .chaarts.column-single td:nth-of-type(2n + 2) {
-    --background: var(--stripes);
-  }
+.chaarts.column-single :is([scope=col], [scope=colgroup]):nth-child(4)::after {
+  inset-inline-start: calc(1em + var(--width) * 3 + var(--gap) * 3);
+}
 
-  @media screen and (-ms-high-contrast: active) {
-    .chaarts.column-single td {
-      background-image:
-        linear-gradient(to top,
-          Window,
-          ButtonFace,
-          ButtonShadow,
-          ButtonText,
-          highlight
-        ),
-        var(--background);
-    }
-  }
-}</code></pre>
-</div>
+.chaarts.column-single :is([scope=col], [scope=colgroup]):nth-child(5)::after {
+  inset-inline-start: calc(1em + var(--width) * 4 + var(--gap) * 4);
+}
+
+.chaarts.column-single :is([scope=col], [scope=colgroup]):nth-child(6)::after {
+  inset-inline-start: calc(1em + var(--width) * 5 + var(--gap) * 5);
+}
+
+.chaarts.column-single :is([scope=col], [scope=colgroup]):nth-child(7)::after {
+  inset-inline-start: calc(1em + var(--width) * 6 + var(--gap) * 6);
+}
+</code></pre>
+		</div>
 	</details>
 
 	<h2>Multiple columns</h2>
@@ -442,77 +500,127 @@
 	</details>
 	<details>
 		<summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
-		<div><pre><code class="language-css">@supports (display: contents) {
-  .chaarts.column-multiple {
-    grid-template-columns: minmax(min-content, 14ch) repeat(calc(var(--y) - 1), 1fr);
-    grid-template-rows: 2ex repeat(var(--scale, 100), minmax(0, .25rem)) repeat(2, minmax(min-content, 2rem));
-  }
+		<div>
+			<pre><code class="language-css">.chaarts.column-multiple {
+  grid-template-columns: minmax(min-content, 14ch) repeat(calc(var(--y) - 1), 1fr);
+  grid-template-rows: 2ex repeat(var(--scale, 100), minmax(0, 0.25rem)) repeat(2, minmax(min-content, 2rem));
+}
 
-  .chaarts.column-multiple span {
-    background-image: none;
-  }
+.chaarts.column-multiple span {
+  background-image: none;
+}
 
-  .chaarts.column-multiple tbody th {
-    grid-row: -10 / span 7;
-  }
+.chaarts.column-multiple tbody th {
+  grid-row: -10/span 7;
+}
 
-  .chaarts.column-multiple thead tr * {
-    grid-row: -2;
-    grid-column: 1;
-  }
+.chaarts.column-multiple thead tr * {
+  grid-column: 1;
+  grid-row: -2;
+}
 
-  .chaarts.column-multiple thead tr *:nth-of-type(2) {
-    grid-column: calc(4 - var(--span)) / span var(--span);
-  }
+.chaarts.column-multiple thead tr *:nth-of-type(2) {
+  grid-column: calc(4 - var(--span))/span var(--span);
+}
 
-  .chaarts.column-multiple thead tr + tr * {
-    font-weight: normal;
-    grid-row: -3;
-  }
+.chaarts.column-multiple thead tr *:nth-of-type(3) {
+  grid-column: calc(6 - var(--span))/span var(--span);
+}
 
-  .chaarts.column-multiple thead tr + tr *:nth-of-type(2) {
-    grid-column: 2;
-  }
+.chaarts.column-multiple thead tr *:nth-of-type(4) {
+  grid-column: calc(8 - var(--span))/span var(--span);
+}
 
-  .chaarts.column-multiple tr:first-child [scope="col"]:nth-child(even)::after {
-    background: whitesmoke var(--stripes);
-    background-blend-mode: exclusion;
-    bottom: 4rem;
-    content: "";
-    mix-blend-mode: multiply;
-    opacity: .25;
-    position: absolute;
-    transition: opacity .3s cubic-bezier(.5, 0, .5, 1);
-    top: calc(1rem + 2ex);
-    width: calc((var(--width) * 2) + (var(--gap) / 2) + 1px);
-    z-index: 0;
-  }
+.chaarts.column-multiple thead tr *:nth-of-type(5) {
+  grid-column: calc(10 - var(--span))/span var(--span);
+}
 
-  .chaarts.column-multiple tr:first-child [scope="col"]:nth-child(4)::after {
-    left: calc(14ch + 1em + (((var(--width) * 2) + (var(--gap) / 2) + 1px) * 2) + (var(--gap) * 3));
-  }
+.chaarts.column-multiple thead tr *:nth-of-type(6) {
+  grid-column: calc(12 - var(--span))/span var(--span);
+}
 
-  .chaarts.column-multiple td {
-    background: var(--chaarts-pink) var(--zig);
-    grid-row-end: -3;
-  }
+.chaarts.column-multiple thead tr + tr * {
+  font-weight: normal;
+  grid-row: -3;
+}
 
-  /* @note Oh boy, if we could use var(--span) in selector… */
-  .chaarts.column-multiple td:nth-of-type(2n + 2) {
-    background: var(--chaarts-blue) var(--triangles);
-  }
+.chaarts.column-multiple thead tr + tr *:nth-of-type(2) {
+  grid-column: 2;
+}
 
-  @media screen and (-ms-high-contrast: active) {
-    .chaarts.column-multiple td {
-      background-color: Window;
-    }
+.chaarts.column-multiple thead tr + tr *:nth-of-type(3) {
+  grid-column: 3;
+}
 
-    .chaarts.column-multiple td:nth-of-type(2n + 2) {
-      background-color: Highlight;
-    }
-  }
-}</code></pre>
-</div>
+.chaarts.column-multiple thead tr + tr *:nth-of-type(4) {
+  grid-column: 4;
+}
+
+.chaarts.column-multiple thead tr + tr *:nth-of-type(5) {
+  grid-column: 5;
+}
+
+.chaarts.column-multiple thead tr + tr *:nth-of-type(6) {
+  grid-column: 6;
+}
+
+.chaarts.column-multiple thead tr + tr *:nth-of-type(7) {
+  grid-column: 7;
+}
+
+.chaarts.column-multiple thead tr + tr *:nth-of-type(8) {
+  grid-column: 8;
+}
+
+.chaarts.column-multiple thead tr + tr *:nth-of-type(9) {
+  grid-column: 9;
+}
+
+.chaarts.column-multiple thead tr + tr *:nth-of-type(10) {
+  grid-column: 10;
+}
+
+.chaarts.column-multiple thead tr + tr *:nth-of-type(11) {
+  grid-column: 11;
+}
+
+.chaarts.column-multiple [scope=colgroup]:nth-child(even)::after {
+  background: var(--background) var(--stripes);
+  background-blend-mode: exclusion;
+  content: "";
+  inline-size: calc(var(--width) * 2 + var(--gap) / 2 + 1px);
+  inset-block-end: 4rem;
+  inset-block-start: calc(1rem + 2ex);
+  mix-blend-mode: color;
+  opacity: 0.25;
+  position: absolute;
+  transition: opacity 0.3s var(--move);
+  z-index: 0;
+}
+
+.chaarts.column-multiple [scope=colgroup]:nth-child(2)::after {
+  inset-inline-start: calc(14ch + 1em + (var(--width) * 2 + var(--gap) / 2 + 1px) * 0 + var(--gap) * 1);
+}
+
+.chaarts.column-multiple [scope=colgroup]:nth-child(4)::after {
+  inset-inline-start: calc(14ch + 1em + (var(--width) * 2 + var(--gap) / 2 + 1px) * 2 + var(--gap) * 3);
+}
+
+.chaarts.column-multiple [scope=colgroup]:nth-child(6)::after {
+  inset-inline-start: calc(14ch + 1em + (var(--width) * 2 + var(--gap) / 2 + 1px) * 4 + var(--gap) * 5);
+}
+
+.chaarts.column-multiple td {
+  background-color: var(--chaarts-pink);
+  background-image: var(--zig);
+  grid-row-end: -3;
+}
+
+.chaarts.column-multiple td:nth-of-type(2n + 2) {
+  background: var(--chaarts-blue) var(--triangles);
+}
+</code></pre>
+		</div>
 	</details>
 </main>
 

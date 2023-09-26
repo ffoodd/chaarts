@@ -220,121 +220,192 @@
 	</details>
 	<details>
 		<summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
-		<div><pre><code class="language-css">@supports(clip-path: polygon(calc( 0% 0%, 100% - ( var(--1) * 100% / var(--scale) ) ) 100%, 100% 100%)) {
-  .chaarts[class*="radar"] {
-    --radius: 12.8rem;
-    --unitless-radius: calc( 1024 / 16 / 5 );
-    --size: calc( var(--radius) / var(--scale) );
-    --part: calc( 360deg / var(--items) );
-    --integer: calc(var(--scale));
-    background-image:
-      repeating-radial-gradient(
-        circle at 50%,
-        rgba(0, 0, 0, .2) 0 2px,
-        transparent 2px calc(var(--size) * var(--step))
-      ),
-      repeating-radial-gradient(
-        circle at 50%,
-        rgba(0, 0, 0, .1) 0 2px,
-        transparent 2px var(--size)
-      );
-    border: 2px solid;
-    border-radius: 50%;
-    contain: layout;
-    counter-reset: scale var(--integer);
-    height: calc( var(--radius) * 2 );
-    margin: 6rem auto 12rem;
-    overflow: visible;
-    position: relative;
-    width: calc( var(--radius) * 2 );
-  }
+		<div>
+			<pre><code class="language-css">@charset "UTF-8";
+.chaarts[class*=radar] {
+  --radius: 12.8em;
+  --unitless-radius: calc(1024 / 16 / 5);
+  --size: calc(var(--radius) / var(--scale));
+  --part: calc(360deg / var(--items));
+  --integer: calc(var(--scale));
+  background-image: repeating-radial-gradient(circle at 50%, var(--foreground-o-25) 0 2px, transparent 0 calc(var(--size) * var(--step))), repeating-radial-gradient(circle at 50%, var(--foreground-o-10) 0 2px, transparent 0 var(--size));
+  block-size: calc(var(--radius) * 2);
+  border: 2px solid;
+  border-radius: 50%;
+  contain: layout;
+  counter-reset: scale var(--integer);
+  inline-size: calc(var(--radius) * 2);
+  margin: 6rem auto 12rem;
+  overflow: visible;
+  position: relative;
+}
 
-  .chaarts[class*="radar"] caption {
-    background: none;
-    bottom: -10rem;
-    position: absolute;
-  }
+.chaarts[class*=radar] caption {
+  background: none;
+  inset-block-end: -10rem;
+  position: absolute;
+}
 
-  .chaarts[class*="radar"] [scope="col"] {
-    --away: calc( (var(--radius) * -1) - 50% );
-    left: 50%;
-    margin: 0;
-    padding: 0 1rem;
-    position: absolute;
-    top: 50%;
-    transform:
-      translate3d(-50%, -50%, 0)
-      rotate( calc(var(--part) * var(--index, 1)) )
-      translate( var(--away) )
-      rotate( calc(var(--part) * var(--index, 1) * -1) );
-  }
+.chaarts[class*=radar] [scope=col] {
+  --away: calc((var(--radius) * -1) - 50%);
+  background-color: transparent;
+  left: 50%;
+  margin: 0;
+  padding: 0 1rem;
+  position: absolute;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0) rotate(calc(var(--part) * var(--index, 1))) translate(var(--away)) rotate(calc(var(--part) * var(--index, 1) * -1));
+}
 
-  .chaarts[class*="radar"] tr &gt; *:nth-of-type(2) {
-    --index: 2;
-  }
+.chaarts[class*=radar] tr > *:nth-of-type(1) {
+  --index: 1;
+}
 
-  .chaarts[class*="radar"] td {
-    --skew: calc( 90deg - var(--part) );
-    border-bottom: 1px solid blueviolet;
-    height: 50%;
-    left: 0;
-    margin: 0;
-    position: absolute;
-    top: 0;
-    transform:
-      rotate( calc(var(--part) * var(--index, 1)) )
-      skew( var(--skew) );
-    transform-origin: 100% 100%;
-    width: 50%;
-  }
+.chaarts[class*=radar] tr > *:nth-of-type(2) {
+  --index: 2;
+}
 
-  .chaarts[class*="radar"] span {
-    --opposite: calc( 180 - (90 + (90 - (360 / var(--items)))) );
-    --angle: calc( var(--opposite) * 0.01745329251 );
-    --sin-angle: sin(var(--angle));
-    --hypo: calc( var(--unitless-radius) / var(--sin-angle) );
-    --ratio: calc( var(--hypo) / var(--unitless-radius) );
-    background: linear-gradient(
-      to top left,
-      blueviolet 10%,
-      darkblue 75%
-    );
-    filter: drop-shadow( 0 0 1rem indigo );
-    height: 100%;
-    position: absolute;
-    width: 100%;
-  }
+.chaarts[class*=radar] tr > *:nth-of-type(3) {
+  --index: 3;
+}
 
-  /* Sass @each() */
-  .chaarts[class*="radar"] td:nth-of-type(2) span {
-    --pos: calc( 100% - (var(--3) * 100% / (var(--scale) * var(--ratio) ) ) );
-    --polygon: polygon(
-      100% var(--pos),
-      calc( 100% - ( var(--2) * 100% / var(--scale) ) ) 100%,
-      100% 100%
-    );
-    clip-path: var(--polygon);
-  }
+.chaarts[class*=radar] tr > *:nth-of-type(4) {
+  --index: 4;
+}
 
-  .chaarts[class*="radar"] td::after,
-  .chaarts[class*="radar"] td::before {
-    display: none;
-  }
+.chaarts[class*=radar] tr > *:nth-of-type(5) {
+  --index: 5;
+}
 
-  .chaarts.radar [scope="col"]::after {
-    color: rebeccapurple;
-    display: block;
-    font-size: small;
-    font-weight: 400;
-  }
+.chaarts[class*=radar] tr > *:nth-of-type(6) {
+  --index: 6;
+}
 
-  .chaarts.radar [scope="col"]:nth-child(2)::after {
-    --integer: calc(var(--2));
-    counter-reset: value var(--integer);
-    content: counter(value) "\A0/\A0" counter(scale);
-  }
-}</code></pre>
-</div>
+.chaarts[class*=radar] tr > *:nth-of-type(7) {
+  --index: 7;
+}
+
+.chaarts[class*=radar] td {
+  --skew: calc(90deg - var(--part));
+  block-size: 50%;
+  border-block-end: 1px solid var(--chaarts-purple);
+  inline-size: 50%;
+  left: 0;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  transform: rotate(calc(var(--part) * var(--index, 1))) skew(var(--skew));
+  transform-origin: 100% 100%;
+}
+
+.chaarts[class*=radar] td:nth-of-type(1) span {
+  --point: var(--1);
+  --pos: calc(100% - (var(--2) * 100% / (var(--scale) * var(--ratio))));
+}
+
+.chaarts[class*=radar] td:nth-of-type(2) span {
+  --point: var(--2);
+  --pos: calc(100% - (var(--3) * 100% / (var(--scale) * var(--ratio))));
+}
+
+.chaarts[class*=radar] td:nth-of-type(3) span {
+  --point: var(--3);
+  --pos: calc(100% - (var(--4) * 100% / (var(--scale) * var(--ratio))));
+}
+
+.chaarts[class*=radar] td:nth-of-type(4) span {
+  --point: var(--4);
+  --pos: calc(100% - (var(--5) * 100% / (var(--scale) * var(--ratio))));
+}
+
+.chaarts[class*=radar] td:nth-of-type(5) span {
+  --point: var(--5);
+  --pos: calc(100% - (var(--6) * 100% / (var(--scale) * var(--ratio))));
+}
+
+.chaarts[class*=radar] td:nth-of-type(6) span {
+  --point: var(--6);
+  --pos: calc(100% - (var(--7) * 100% / (var(--scale) * var(--ratio))));
+}
+
+.chaarts[class*=radar] td:nth-of-type(7) span {
+  --point: var(--7);
+  --pos: calc(100% - (var(--8) * 100% / (var(--scale) * var(--ratio))));
+}
+
+.chaarts[class*=radar] td::after, .chaarts[class*=radar] td::before {
+  display: none;
+}
+
+.chaarts[class*=radar] span {
+  --opposite: calc(180 - (90 + (90 - (360 / var(--items)))));
+  --angle: calc(var(--opposite) * 0.01745329251);
+  --sin-angle: sin(var(--angle));
+  --hypo: calc(var(--unitless-radius) / var(--sin-angle));
+  --ratio: calc(var(--hypo) / var(--unitless-radius));
+  --polygon: polygon(
+  		100% var(--pos),
+  		calc(100% - (var(--point) * 100% / var(--scale))) 100%,
+  		100% 100%
+  );
+  background: var(--chaarts-purple);
+  block-size: 100%;
+  clip-path: var(--polygon);
+  filter: drop-shadow(0 0 1rem var(--chaarts-purple));
+  inline-size: 100%;
+  position: absolute;
+}
+
+.chaarts.radar [scope=col]::after {
+  color: var(--foreground-lighter);
+  display: block;
+  font-size: small;
+  font-weight: 400;
+}
+
+.chaarts.radar [scope=col]:nth-child(1)::after {
+  --integer: calc(var(--1));
+  content: counter(value) " / " counter(scale);
+  counter-reset: value var(--integer);
+}
+
+.chaarts.radar [scope=col]:nth-child(2)::after {
+  --integer: calc(var(--2));
+  content: counter(value) " / " counter(scale);
+  counter-reset: value var(--integer);
+}
+
+.chaarts.radar [scope=col]:nth-child(3)::after {
+  --integer: calc(var(--3));
+  content: counter(value) " / " counter(scale);
+  counter-reset: value var(--integer);
+}
+
+.chaarts.radar [scope=col]:nth-child(4)::after {
+  --integer: calc(var(--4));
+  content: counter(value) " / " counter(scale);
+  counter-reset: value var(--integer);
+}
+
+.chaarts.radar [scope=col]:nth-child(5)::after {
+  --integer: calc(var(--5));
+  content: counter(value) " / " counter(scale);
+  counter-reset: value var(--integer);
+}
+
+.chaarts.radar [scope=col]:nth-child(6)::after {
+  --integer: calc(var(--6));
+  content: counter(value) " / " counter(scale);
+  counter-reset: value var(--integer);
+}
+
+.chaarts.radar [scope=col]:nth-child(7)::after {
+  --integer: calc(var(--7));
+  content: counter(value) " / " counter(scale);
+  counter-reset: value var(--integer);
+}
+</code></pre>
+		</div>
 	</details>
 	<details>
 		<summary>A Chromium bug</summary>
@@ -523,8 +594,9 @@
 	</details>
 	<details>
 		<summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
-		<div><pre><code class="language-css">.chaarts.radar-multiple {
-  margin-bottom: 12rem;
+		<div>
+			<pre><code class="language-css">.chaarts.radar-multiple {
+  margin-block-end: 12rem;
 }
 
 .chaarts.radar-multiple tbody {
@@ -532,91 +604,124 @@
   vertical-align: bottom;
 }
 
-.chaarts.radar-multiple [scope="row"] {
+.chaarts.radar-multiple [scope=row] {
+  block-size: 2rem;
   bottom: -8rem;
-  height: 2rem;
   left: 1rem;
   position: absolute;
 }
 
-.chaarts.radar-multiple [scope="row"]::before {
-  background: var(--color, currentColor);
+.chaarts.radar-multiple [scope=row]::before {
+  background: var(--color, currentcolor);
+  block-size: 1rem;
   content: "";
   display: inline-block;
-  height: 1rem;
-  margin-right: .25rem;
-  transform: translate3d(0, .1rem, 0);
-  width: 1rem;
+  inline-size: 1rem;
+  margin-inline-end: 0.25rem;
+  transform: translate3d(0, 0.1rem, 0);
 }
 
-/* 2nd: */
-.chaarts.radar-multiple tr:nth-child(2) [scope="row"] {
-  left: calc( 1rem + (100% / var(--areas)) * 1);
+.chaarts.radar-multiple tr:nth-child(2) [scope=row] {
+  left: calc(1rem + 100% / var(--areas) * 1);
 }
 
 .chaarts.radar-multiple td {
   align-items: flex-end;
-  border-color: var(--color, currentColor);
+  border-color: var(--color, currentcolor);
   display: flex;
   justify-content: flex-end;
-  opacity: .5;
+  opacity: 0.5;
   pointer-events: none;
-  transition: opacity .2s cubic-bezier(.5, 0, .5, 1);
   z-index: 0;
 }
 
 .chaarts.radar-multiple td::after {
-  color: var(--color, currentColor);
+  color: var(--foreground);
   display: block;
   font-size: small;
   font-weight: 700;
-  text-indent: -.5rem;
-  transform:
-    skew( calc( var(--skew) * -1 ) )
-    rotate( calc( var(--part) * var(--index, 1) * -1 ) );
+  inline-size: 100%;
+  text-indent: -0.5rem;
+  transform: skew(calc(var(--skew) * -1)) rotate(calc(var(--part) * var(--index, 1) * -1));
   transform-origin: 0 0;
-  width: 100%;
   white-space: nowrap;
+}
+
+.chaarts.radar-multiple td:nth-of-type(1)::after {
+  --integer: calc(var(--1));
+  content: counter(value);
+  counter-reset: value var(--integer);
+  inline-size: calc(var(--1) * 100% / var(--scale));
 }
 
 .chaarts.radar-multiple td:nth-of-type(2)::after {
   --integer: calc(var(--2));
-  counter-reset: value var(--integer);
   content: counter(value);
-  width: calc( var(--2) * 100% / var(--scale) );
+  counter-reset: value var(--integer);
+  inline-size: calc(var(--2) * 100% / var(--scale));
+}
+
+.chaarts.radar-multiple td:nth-of-type(3)::after {
+  --integer: calc(var(--3));
+  content: counter(value);
+  counter-reset: value var(--integer);
+  inline-size: calc(var(--3) * 100% / var(--scale));
+}
+
+.chaarts.radar-multiple td:nth-of-type(4)::after {
+  --integer: calc(var(--4));
+  content: counter(value);
+  counter-reset: value var(--integer);
+  inline-size: calc(var(--4) * 100% / var(--scale));
+}
+
+.chaarts.radar-multiple td:nth-of-type(5)::after {
+  --integer: calc(var(--5));
+  content: counter(value);
+  counter-reset: value var(--integer);
+  inline-size: calc(var(--5) * 100% / var(--scale));
+}
+
+.chaarts.radar-multiple td:nth-of-type(6)::after {
+  --integer: calc(var(--6));
+  content: counter(value);
+  counter-reset: value var(--integer);
+  inline-size: calc(var(--6) * 100% / var(--scale));
+}
+
+.chaarts.radar-multiple td:nth-of-type(7)::after {
+  --integer: calc(var(--7));
+  content: counter(value);
+  counter-reset: value var(--integer);
+  inline-size: calc(var(--7) * 100% / var(--scale));
 }
 
 .chaarts.radar-multiple span {
-  background: var(--color, currentColor);
+  --mask: radial-gradient(circle at bottom right, var(--foreground), var(--foreground-o-50));
+  background: var(--color, currentcolor);
+  mask-image: var(--mask);
   pointer-events: auto;
-}
-
-@supports (mask-image: url()) {
-  .chaarts.radar-multiple span {
-    --mask: radial-gradient(circle at bottom right, rgba(0,0,0,1), rgba(0,0,0,.5));
-    mask-image: var(--mask);
-  }
 }
 
 @media (hover: hover) {
   .chaarts.radar-multiple td {
-    opacity: .25;
+    opacity: 0.25;
+    transition: opacity 0.2s var(--move);
   }
-
   .chaarts.radar-multiple td::after {
     opacity: 0;
+    transition: inherit;
   }
-
   .chaarts.radar-multiple tr:hover td {
     opacity: 1;
     z-index: 1;
   }
-
   .chaarts.radar-multiple tr:hover td::after {
     opacity: inherit;
   }
-}</code></pre>
-</div>
+}
+</code></pre>
+		</div>
 	</details>
 </main>
 

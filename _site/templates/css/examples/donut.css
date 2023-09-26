@@ -1,0 +1,12 @@
+.chaarts.pie.donut {
+  --mask: radial-gradient(
+  		circle at 50% calc(50% - 0.25rem),
+  		#0000 0 var(--offset),
+  		#ffff calc(var(--offset) + 1px) 100%
+  );
+  mask-image: var(--mask);
+}
+
+.chaarts.pie.donut td::after {
+  --away: calc(var(--radius) / 2 - 2.5rem);
+}

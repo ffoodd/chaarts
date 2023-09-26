@@ -1,0 +1,344 @@
+@charset "UTF-8";
+.chaarts.line {
+  --offset: calc((100% / var(--x)) / 2);
+  --height: calc(32em - 2rem);
+  --bottom: calc(100% - var(--height));
+  padding: var(--height) 0 1rem;
+  position: relative;
+  transition: background 0.3s var(--move), color 0.3s var(--move);
+}
+
+.chaarts.line::after {
+  --scale: calc((100% - (var(--y) * 1px)) / var(--y));
+  background: repeating-linear-gradient(to bottom, var(--background-lighter) 0 var(--scale), var(--foreground-o-25) calc(var(--scale) + 1px));
+  content: "";
+  inline-size: 100%;
+  inset-block-end: var(--bottom);
+  inset-block-start: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.chaarts.line tr::before {
+  content: "";
+  position: absolute;
+}
+
+.chaarts.line [scope=row],
+.chaarts.line thead th:first-child {
+  color: var(--color, currentcolor);
+  text-align: start;
+}
+
+.chaarts.line [style]::before {
+  background: linear-gradient(to top, var(--chaarts-blue), var(--chaarts-red) 75%);
+  clip-path: var(--polygon);
+  content: "";
+  inline-size: 100%;
+  inset-block-end: var(--bottom);
+  inset-block-start: 0;
+  position: absolute;
+  scale: var(--is-rtl, 1) 1;
+  z-index: 2;
+  --polygon: polygon(
+  		0% 100%,
+  		calc((100% / var(--x) * 1)) 100%,
+  		calc((100% / var(--x) * 1)) calc(100% - (var(--1) / var(--y) * 100%)),
+  		calc((100% / var(--x) * 1) + var(--offset)) calc(100% - (var(--1) / var(--y) * 100%)),
+  		calc((100% / var(--x) * 2) + var(--offset)) calc(100% - (var(--2) / var(--y) * 100%)),
+  		calc((100% / var(--x) * 3) + var(--offset)) calc(100% - (var(--3) / var(--y) * 100%)),
+  		calc((100% / var(--x) * 4) + var(--offset)) calc(100% - (var(--4) / var(--y) * 100%)),
+  		calc((100% / var(--x) * 5) + var(--offset)) calc(100% - (var(--5) / var(--y) * 100%)),
+  		calc((100% / var(--x) * 6) + var(--offset)) calc(100% - (var(--6) / var(--y) * 100%)),
+  		calc((100% / var(--x) * 7) + var(--offset)) calc(100% - (var(--7) / var(--y) * 100%)),
+  		calc((100% / var(--x) * 8) + var(--offset)) calc(100% - (var(--8) / var(--y) * 100%)),
+  		calc((100% / var(--x) * 9) + var(--offset)) calc(100% - (var(--9) / var(--y) * 100%)),
+  		calc((100% / var(--x) * 10) + var(--offset)) calc(100% - (var(--10) / var(--y) * 100%)),
+  		calc((100% / var(--x) * 11) + var(--offset)) calc(100% - (var(--11) / var(--y) * 100%)),
+  		calc((100% / var(--x) * 12) + var(--offset)) calc(100% - (var(--12) / var(--y) * 100%)),
+  		100% calc(100% - (var(--12) / var(--y) * 100%)),
+  		100% 100%,
+  		0% 100%
+  );
+}
+
+@media (prefers-contrast: more) {
+  .chaarts.line [style]::before {
+    background: var(--chaarts-blue);
+  }
+}
+.chaarts.line th,
+.chaarts.line td {
+  background: var(--background-lighter);
+  font-weight: bold;
+  inline-size: calc(100% / var(--x));
+  text-align: center;
+}
+
+.chaarts.line [scope=col]:not(:first-child)::after {
+  background: var(--background-lighter) var(--stripes);
+  background-blend-mode: exclusion;
+  block-size: calc(100% - 4rem);
+  content: "";
+  inline-size: inherit;
+  inset-block-end: 4rem;
+  inset-inline-start: calc(100% / var(--x) * var(--index));
+  mix-blend-mode: soft-light;
+  opacity: 0;
+  position: absolute;
+  transition: opacity 0.3s var(--move);
+  z-index: 3;
+}
+
+html:where([data-theme=dark]) .chaarts.line [scope=col]:not(:first-child)::after {
+  mix-blend-mode: lighten;
+}
+
+@media (prefers-color-scheme: dark) {
+  .no-js .chaarts.line [scope=col]:not(:first-child)::after, html:where(:not([data-theme=light])) .chaarts.line [scope=col]:not(:first-child)::after {
+    mix-blend-mode: lighten;
+  }
+}
+.chaarts.line [scope=col]:nth-child(2)::after {
+  --index: 1;
+}
+
+.chaarts.line [scope=col]:nth-child(3)::after {
+  --index: 2;
+}
+
+.chaarts.line [scope=col]:nth-child(4)::after {
+  --index: 3;
+}
+
+.chaarts.line [scope=col]:nth-child(5)::after {
+  --index: 4;
+}
+
+.chaarts.line [scope=col]:nth-child(6)::after {
+  --index: 5;
+}
+
+.chaarts.line [scope=col]:nth-child(7)::after {
+  --index: 6;
+}
+
+.chaarts.line [scope=col]:nth-child(8)::after {
+  --index: 7;
+}
+
+.chaarts.line [scope=col]:nth-child(9)::after {
+  --index: 8;
+}
+
+.chaarts.line [scope=col]:nth-child(10)::after {
+  --index: 9;
+}
+
+.chaarts.line [scope=col]:nth-child(11)::after {
+  --index: 10;
+}
+
+.chaarts.line [scope=col]:nth-child(12)::after {
+  --index: 11;
+}
+
+.chaarts.line [scope=col]:nth-child(13)::after {
+  --index: 12;
+}
+
+.chaarts.line [scope=col]:hover::after {
+  opacity: 0.75;
+}
+
+.chaarts.line td {
+  --value: var(--1);
+  --term: var(--t-1);
+  line-height: 1.5;
+}
+
+.chaarts.line td::before {
+  block-size: 1.5rem;
+  content: "";
+  inline-size: inherit;
+  position: absolute;
+  translate: calc(-50% * var(--is-rtl, 1)) 0;
+  z-index: 10;
+}
+
+.chaarts.line td::after {
+  --arrow: calc(100% - 0.25rem);
+  --top: calc(var(--height) - (var(--value) / var(--y) * var(--height)));
+  --polygon: polygon(
+  		0% 0%,
+  		100% 0%,
+  		100% var(--arrow),
+  		calc(50% - 0.25rem) var(--arrow),
+  		50% 100%,
+  		calc(50% + 0.25rem) var(--arrow),
+  		0% var(--arrow)
+  );
+  --integer: calc(var(--value));
+  background-color: var(--foreground-lighter);
+  clip-path: var(--polygon);
+  color: var(--background-lighter);
+  content: var(--term) " " var(--year) "\a" counter(value) " " var(--unit);
+  counter-reset: value var(--integer);
+  inset-block-start: var(--top, 0);
+  inset-inline-start: calc(var(--offset) * 3);
+  opacity: 0;
+  padding: 0.5rem;
+  pointer-events: none;
+  position: absolute;
+  transform: translate3d(var(--rtl-offset, -50%), -125%, 0) perspective(1000px) rotate3d(1, 0, 0, 45deg);
+  transform-origin: 50% calc(100% + 10px);
+  transition: opacity 0.2s var(--enter), transform 0.2s var(--enter);
+  white-space: pre;
+  z-index: 5;
+}
+
+[dir=rtl] .chaarts.line td:first-of-type::after {
+  inset-inline-start: var(--offset);
+}
+
+.chaarts.line td + td::after {
+  inset-inline-start: calc(100% / var(--x) * var(--index) + var(--offset));
+}
+
+.chaarts.line td:nth-child(2)::after {
+  --value: var(--1);
+  --term: var(--t-1);
+  --index: 1;
+}
+
+[dir=rtl] .chaarts.line td:nth-child(2)::after {
+  --index: 0;
+  --rtl-offset: -40%;
+}
+
+.chaarts.line td:nth-child(3)::after {
+  --value: var(--2);
+  --term: var(--t-2);
+  --index: 2;
+}
+
+[dir=rtl] .chaarts.line td:nth-child(3)::after {
+  --index: 1;
+  --rtl-offset: -40%;
+}
+
+.chaarts.line td:nth-child(4)::after {
+  --value: var(--3);
+  --term: var(--t-3);
+  --index: 3;
+}
+
+[dir=rtl] .chaarts.line td:nth-child(4)::after {
+  --index: 2;
+  --rtl-offset: -40%;
+}
+
+.chaarts.line td:nth-child(5)::after {
+  --value: var(--4);
+  --term: var(--t-4);
+  --index: 4;
+}
+
+[dir=rtl] .chaarts.line td:nth-child(5)::after {
+  --index: 3;
+  --rtl-offset: -40%;
+}
+
+.chaarts.line td:nth-child(6)::after {
+  --value: var(--5);
+  --term: var(--t-5);
+  --index: 5;
+}
+
+[dir=rtl] .chaarts.line td:nth-child(6)::after {
+  --index: 4;
+  --rtl-offset: -40%;
+}
+
+.chaarts.line td:nth-child(7)::after {
+  --value: var(--6);
+  --term: var(--t-6);
+  --index: 6;
+}
+
+[dir=rtl] .chaarts.line td:nth-child(7)::after {
+  --index: 5;
+  --rtl-offset: -40%;
+}
+
+.chaarts.line td:nth-child(8)::after {
+  --value: var(--7);
+  --term: var(--t-7);
+  --index: 7;
+}
+
+[dir=rtl] .chaarts.line td:nth-child(8)::after {
+  --index: 6;
+  --rtl-offset: -40%;
+}
+
+.chaarts.line td:nth-child(9)::after {
+  --value: var(--8);
+  --term: var(--t-8);
+  --index: 8;
+}
+
+[dir=rtl] .chaarts.line td:nth-child(9)::after {
+  --index: 7;
+  --rtl-offset: -40%;
+}
+
+.chaarts.line td:nth-child(10)::after {
+  --value: var(--9);
+  --term: var(--t-9);
+  --index: 9;
+}
+
+[dir=rtl] .chaarts.line td:nth-child(10)::after {
+  --index: 8;
+  --rtl-offset: -40%;
+}
+
+.chaarts.line td:nth-child(11)::after {
+  --value: var(--10);
+  --term: var(--t-10);
+  --index: 10;
+}
+
+[dir=rtl] .chaarts.line td:nth-child(11)::after {
+  --index: 9;
+  --rtl-offset: -40%;
+}
+
+.chaarts.line td:nth-child(12)::after {
+  --value: var(--11);
+  --term: var(--t-11);
+  --index: 11;
+}
+
+[dir=rtl] .chaarts.line td:nth-child(12)::after {
+  --index: 10;
+  --rtl-offset: -40%;
+}
+
+.chaarts.line td:nth-child(13)::after {
+  --value: var(--12);
+  --term: var(--t-12);
+  --index: 12;
+}
+
+[dir=rtl] .chaarts.line td:nth-child(13)::after {
+  --index: 11;
+  --rtl-offset: -40%;
+}
+
+.chaarts.line td:hover::after {
+  opacity: 1;
+  transform: translate3d(var(--rtl-offset, -50%), -125%, 0) perspective(1000px) rotate3d(1, 0, 0, 0deg);
+  transition: opacity 0.2s var(--exit), transform 0.2s var(--exit);
+}
