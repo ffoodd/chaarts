@@ -273,7 +273,7 @@
 	<details>
 		<summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
 		<div>
-			<pre><code class="language-css">@charset "UTF-8";
+			<pre><code class="language-css">@charset &quot;UTF-8&quot;;
 .chaarts.line {
   --offset: calc((100% / var(--x)) / 2);
   --height: calc(32em - 2rem);
@@ -286,7 +286,7 @@
 .chaarts.line::after {
   --scale: calc((100% - (var(--y) * 1px)) / var(--y));
   background: repeating-linear-gradient(to bottom, var(--background-lighter) 0 var(--scale), var(--foreground-o-25) calc(var(--scale) + 1px));
-  content: "";
+  content: &quot;&quot;;
   inline-size: 100%;
   inset-block-end: var(--bottom);
   inset-block-start: 0;
@@ -295,7 +295,7 @@
 }
 
 .chaarts.line tr::before {
-  content: "";
+  content: &quot;&quot;;
   position: absolute;
 }
 
@@ -308,7 +308,7 @@
 .chaarts.line [style]::before {
   background: linear-gradient(to top, var(--chaarts-blue), var(--chaarts-red) 75%);
   clip-path: var(--polygon);
-  content: "";
+  content: &quot;&quot;;
   inline-size: 100%;
   inset-block-end: var(--bottom);
   inset-block-start: 0;
@@ -354,7 +354,7 @@
   background: var(--background-lighter) var(--stripes);
   background-blend-mode: exclusion;
   block-size: calc(100% - 4rem);
-  content: "";
+  content: &quot;&quot;;
   inline-size: inherit;
   inset-block-end: 4rem;
   inset-inline-start: calc(100% / var(--x) * var(--index));
@@ -434,7 +434,7 @@ html:where([data-theme=dark]) .chaarts.line [scope=col]:not(:first-child)::after
 
 .chaarts.line td::before {
   block-size: 1.5rem;
-  content: "";
+  content: &quot;&quot;;
   inline-size: inherit;
   position: absolute;
   translate: calc(-50% * var(--is-rtl, 1)) 0;
@@ -457,7 +457,7 @@ html:where([data-theme=dark]) .chaarts.line [scope=col]:not(:first-child)::after
   background-color: var(--foreground-lighter);
   clip-path: var(--polygon);
   color: var(--background-lighter);
-  content: var(--term) " " var(--year) "\a" counter(value) " " var(--unit);
+  content: var(--term) &quot; &quot; var(--year) &quot;&#92;a&quot; counter(value) &quot; &quot; var(--unit);
   counter-reset: value var(--integer);
   inset-block-start: var(--top, 0);
   inset-inline-start: calc(var(--offset) * 3);
@@ -841,7 +841,7 @@ html:where([data-theme=dark]) .chaarts.line [scope=col]:not(:first-child)::after
 .chaarts.points [style] th::before {
   background: var(--color, currentcolor) var(--background);
   block-size: 1rem;
-  content: "";
+  content: &quot;&quot;;
   display: inline-block;
   inline-size: 1rem;
   translate: -0.2rem 0.1rem 0;
@@ -855,7 +855,7 @@ html:where([data-theme=dark]) .chaarts.line [scope=col]:not(:first-child)::after
   border: 2px solid var(--background-lighter);
   border-radius: 50%;
   box-shadow: 0 0 0.25rem var(--foreground-o-50);
-  content: "";
+  content: &quot;&quot;;
   inline-size: var(--size);
   inset-block-start: var(--top, 100%);
   inset-inline-start: calc(var(--offset) * 3);

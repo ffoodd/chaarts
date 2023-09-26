@@ -182,7 +182,7 @@
   margin: 0;
 }
 
-.chaarts[class*=column] tr > * + * {
+.chaarts[class*=column] tr &gt; * + * {
   text-align: center;
 }
 
@@ -318,7 +318,7 @@
 .chaarts.column-single :is([scope=col], [scope=colgroup])::after {
   background: var(--background) var(--stripes);
   background-blend-mode: exclusion;
-  content: "";
+  content: &quot;&quot;;
   inline-size: var(--width);
   inset-block-end: 4rem;
   inset-block-start: 1rem;
@@ -587,7 +587,7 @@
 .chaarts.column-multiple [scope=colgroup]:nth-child(even)::after {
   background: var(--background) var(--stripes);
   background-blend-mode: exclusion;
-  content: "";
+  content: &quot;&quot;;
   inline-size: calc(var(--width) * 2 + var(--gap) / 2 + 1px);
   inset-block-end: 4rem;
   inset-block-start: calc(1rem + 2ex);

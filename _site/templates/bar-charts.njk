@@ -129,7 +129,7 @@
 	<details>
 		<summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
 		<div>
-			<pre><code class="language-css">{% include 'css/examples/bar.css' %}</code></pre>
+			<pre><code class="language-css">{% filter escape %}{% include 'css/examples/bar.css' %}{% endfilter %}</code></pre>
 		</div>
 	</details>
 
@@ -192,7 +192,7 @@
 	<details>
 		<summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
 		<div>
-			<pre><code class="language-css">{% include 'css/examples/waterfall.css' %}</code></pre>
+			<pre><code class="language-css">{% filter escape %}{% include 'css/examples/waterfall.css' %}{% endfilter %}</code></pre>
 		</div>
 	</details>
 {% endblock %}

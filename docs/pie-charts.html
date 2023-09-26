@@ -280,7 +280,7 @@
 	<details>
 		<summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
 		<div>
-			<pre><code class="language-css">@charset "UTF-8";
+			<pre><code class="language-css">@charset &quot;UTF-8&quot;;
 .chaarts.pie {
   --radius: 32em;
   margin: 0 auto;
@@ -328,7 +328,7 @@
 .chaarts.pie [scope=row]::before {
   background: var(--color, currentcolor) var(--background);
   block-size: 1rem;
-  content: "";
+  content: &quot;&quot;;
   display: inline-block;
   inline-size: 1rem;
   translate: calc(-0.2rem * var(--is-rtl, 1)) 0.1rem 0;
@@ -377,7 +377,7 @@
   block-size: var(--radius);
   border-radius: 50%;
   clip-path: var(--polygon);
-  content: "";
+  content: &quot;&quot;;
   inline-size: var(--radius);
   mask-image: var(--mask);
   transform: translate3d(calc(-50% * var(--is-rtl, 1)), -50%, 0) rotate(var(--position)) scale(var(--zoom));
@@ -400,7 +400,7 @@
   --integer: calc(var(--value));
   background-color: var(--foreground-lighter);
   color: var(--background-lighter);
-  content: var(--term) " : " counter(value) " %";
+  content: var(--term) &quot; : &quot; counter(value) &quot; %&quot;;
   counter-reset: value var(--integer);
   opacity: 0;
   padding: 0.5rem;

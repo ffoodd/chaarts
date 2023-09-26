@@ -221,7 +221,7 @@
 	<details>
 		<summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
 		<div>
-			<pre><code class="language-css">@charset "UTF-8";
+			<pre><code class="language-css">@charset &quot;UTF-8&quot;;
 .chaarts[class*=radar] {
   --radius: 12.8em;
   --unitless-radius: calc(1024 / 16 / 5);
@@ -257,31 +257,31 @@
   transform: translate3d(-50%, -50%, 0) rotate(calc(var(--part) * var(--index, 1))) translate(var(--away)) rotate(calc(var(--part) * var(--index, 1) * -1));
 }
 
-.chaarts[class*=radar] tr > *:nth-of-type(1) {
+.chaarts[class*=radar] tr &gt; *:nth-of-type(1) {
   --index: 1;
 }
 
-.chaarts[class*=radar] tr > *:nth-of-type(2) {
+.chaarts[class*=radar] tr &gt; *:nth-of-type(2) {
   --index: 2;
 }
 
-.chaarts[class*=radar] tr > *:nth-of-type(3) {
+.chaarts[class*=radar] tr &gt; *:nth-of-type(3) {
   --index: 3;
 }
 
-.chaarts[class*=radar] tr > *:nth-of-type(4) {
+.chaarts[class*=radar] tr &gt; *:nth-of-type(4) {
   --index: 4;
 }
 
-.chaarts[class*=radar] tr > *:nth-of-type(5) {
+.chaarts[class*=radar] tr &gt; *:nth-of-type(5) {
   --index: 5;
 }
 
-.chaarts[class*=radar] tr > *:nth-of-type(6) {
+.chaarts[class*=radar] tr &gt; *:nth-of-type(6) {
   --index: 6;
 }
 
-.chaarts[class*=radar] tr > *:nth-of-type(7) {
+.chaarts[class*=radar] tr &gt; *:nth-of-type(7) {
   --index: 7;
 }
 
@@ -365,43 +365,43 @@
 
 .chaarts.radar [scope=col]:nth-child(1)::after {
   --integer: calc(var(--1));
-  content: counter(value) " / " counter(scale);
+  content: counter(value) &quot; / &quot; counter(scale);
   counter-reset: value var(--integer);
 }
 
 .chaarts.radar [scope=col]:nth-child(2)::after {
   --integer: calc(var(--2));
-  content: counter(value) " / " counter(scale);
+  content: counter(value) &quot; / &quot; counter(scale);
   counter-reset: value var(--integer);
 }
 
 .chaarts.radar [scope=col]:nth-child(3)::after {
   --integer: calc(var(--3));
-  content: counter(value) " / " counter(scale);
+  content: counter(value) &quot; / &quot; counter(scale);
   counter-reset: value var(--integer);
 }
 
 .chaarts.radar [scope=col]:nth-child(4)::after {
   --integer: calc(var(--4));
-  content: counter(value) " / " counter(scale);
+  content: counter(value) &quot; / &quot; counter(scale);
   counter-reset: value var(--integer);
 }
 
 .chaarts.radar [scope=col]:nth-child(5)::after {
   --integer: calc(var(--5));
-  content: counter(value) " / " counter(scale);
+  content: counter(value) &quot; / &quot; counter(scale);
   counter-reset: value var(--integer);
 }
 
 .chaarts.radar [scope=col]:nth-child(6)::after {
   --integer: calc(var(--6));
-  content: counter(value) " / " counter(scale);
+  content: counter(value) &quot; / &quot; counter(scale);
   counter-reset: value var(--integer);
 }
 
 .chaarts.radar [scope=col]:nth-child(7)::after {
   --integer: calc(var(--7));
-  content: counter(value) " / " counter(scale);
+  content: counter(value) &quot; / &quot; counter(scale);
   counter-reset: value var(--integer);
 }
 </code></pre>
@@ -614,7 +614,7 @@
 .chaarts.radar-multiple [scope=row]::before {
   background: var(--color, currentcolor);
   block-size: 1rem;
-  content: "";
+  content: &quot;&quot;;
   display: inline-block;
   inline-size: 1rem;
   margin-inline-end: 0.25rem;
