@@ -48,7 +48,7 @@
 			for the graph,
 			in order to determine its scale. Concretely, a grid will be generated with:
 			<ul>
-				<li>the first column dedicated to header cells <code>&lt;th&gt;</code> arbitrarily set to <code>12.5em</code>;
+				<li>the first column dedicated to header cells <code>&lt;th&gt;</code> arbitrarily set to <code>12.5em</code>, though being configurable through <var>--offset</var>;
 				</li>
 				<li>then the CSS <code>repeat()</code> function creates a column per scale unit —&nbsp;in the example, 3000
 					columns;
@@ -56,8 +56,8 @@
 				<li>
 					and finally the last column measuring <code>10ch</code>, literally meaning enough space for ten "0" characters
 					have a look to <a href="https://every-layout.dev/rudiments/units/#the-ch-and-ex-units">CSS
-						units rudiments, documented in <em>Every Layout</em> by <strong>Andy Bell</strong> and <strong>Heydon
-							Pickering</strong></a>.
+						units rudiments, documented in <em>Every Layout</em> by <strong>Andy Bell</strong>
+						and <strong>Heydon Pickering</strong></a>.
 				</li>
 			</ul>
 		</li>
@@ -74,7 +74,7 @@
 			(and <code>aria-label</code> to complement <code>title</code>) if a title can explicit the unit.
 			This value is pushed to the right of the grid, and its text serves as a mask for the background
 			gradient — thanks to <a href="https://twitter.com/shshaw/status/1140637533539377153"><strong>S. Shaw</strong>'s trick to
-				apply <code>background-clip: text</code> as a progressively enhancement</a> —&nbsp;allowing it to be the
+				apply <code>background-clip: text</code> as a progressive enhancement</a> —&nbsp;allowing it to be the
 			corresponding color at the end of the gradient for the given position.
 		</li>
 	</ol>
@@ -189,6 +189,8 @@
 	</details>
 	<details>
 		<summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
-		<div>{% include 'includes/_waterfall-styles.njk' %}</div>
+		<div>
+			<pre><code class="language-css">{% include 'includes/styles.scss' %}</code></pre>
+		</div>
 	</details>
 {% endblock %}

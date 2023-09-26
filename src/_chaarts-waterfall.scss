@@ -1,0 +1,15 @@
+@use "sass:list";
+
+// ====================
+// == Waterfall Charts
+//
+// @note (!) Requires bar chart
+// ====================
+
+.chaarts.bar.waterfall {
+	@each $number in 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 {
+		tr:nth-of-type(#{$number}) td {
+			grid-column: list.slash(var(--#{$number - 1}, 2), var(--value, 2));
+		}
+	}
+}

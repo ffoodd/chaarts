@@ -162,33 +162,3 @@
 		}
 	}
 }
-
-.chaarts.polar {
-	td::before {
-		--zoom: 50;
-
-		transform: translate3d(calc(-50% * var(--is-rtl, 1)), -50%, 0) rotate(var(--position)) scale(calc((var(--zoom) + (var(--value) / (100 / var(--zoom)))) / 100));
-	}
-
-	td::after {
-		--away: calc((var(--radius) / 2) - ((var(--radius) / 4) * ((100 - var(--value)) / 100)) + #{variables.$gutter * 2.5});
-	}
-
-	tr:hover td::before {
-		--zoom: 50;
-	}
-}
-
-.chaarts.donut {
-	--mask: radial-gradient(
-			circle at 50% calc(50% - #{variables.$gutter * 0.25}),
-			#0000 0 var(--offset),
-			#ffff calc(var(--offset) + 1px) 100%
-	);
-
-	mask-image: var(--mask);
-
-	td::after {
-		--away: calc(var(--radius) / 2 - #{variables.$gutter * 2.5});
-	}
-}

@@ -37,128 +37,133 @@
   }
 }
 @layer chaarts {
-  .chaarts-container {
-    background: local linear-gradient(to right, var(--background-lighter) 30%, transparent) 0 0/2.5rem 100% no-repeat, local linear-gradient(to right, transparent, var(--background-lighter) 70%) 100%/2.5rem 100% no-repeat, scroll radial-gradient(farthest-side at 0% 50%, var(--foreground-o-25), transparent) 0 0/1rem 100% no-repeat, var(--background-lighter) scroll radial-gradient(farthest-side at 100% 50%, var(--foreground-o-25), transparent) 100%/1rem 100% no-repeat;
-    color-scheme: light;
-    margin: 2rem 0;
-    max-inline-size: 100%;
-    -webkit-overflow-scrolling: touch;
-    overflow-x: auto;
-    overflow-y: hidden;
-    --background-lightness: 100%;
-    --foreground-lightness: 0%;
-    --diff: 4%;
-    --background-lighter: hsl(0deg 0% var(--background-lightness));
-    --background: hsl(0deg 0% calc(var(--background-lightness) - var(--diff)));
-    --foreground: hsl(0deg 0% var(--foreground-lightness));
-    --foreground-lighter: hsl(0deg 0% calc(var(--foreground-lightness) + var(--diff)));
-    --foreground-o-50: hsl(0deg 0% var(--foreground-lightness) / 50%);
-    --foreground-o-25: hsl(0deg 0% var(--foreground-lightness) / 25%);
-    --foreground-o-10: hsl(0deg 0% var(--foreground-lightness) / 10%);
-    --hue: 270;
-    --lightness: 50%;
-    --saturation: 100%;
-    --chaarts-purple: hsl(var(--hue) calc(var(--saturation) / 2) var(--lightness));
-    --chaarts-pink: hsl(calc(var(--hue) + 60) var(--saturation) var(--lightness));
-    --chaarts-blue: hsl(calc(var(--hue) - 60) var(--saturation) var(--lightness));
-    --chaarts-yellow: hsl(40deg var(--saturation) var(--lightness));
-    --chaarts-green: hsl(calc(var(--hue) - 120) var(--saturation) var(--lightness));
-    --chaarts-red: hsl(calc(var(--hue) + 90) var(--saturation) var(--lightness));
-    --chaarts-gray: hsl(0deg 0% var(--lightness));
-    --checkers: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'><g fill='hsl(0 0% 100% / .6)'><path fill-rule='evenodd' d='M0 0h4v4H0V0zm4 4h4v4H4V4z'/></g></svg>");
-    --hexagons: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='24' viewBox='0 0 28 49'><g fill-rule='evenodd'><g fill='hsl(0 0% 100% / .6)' fill-rule='nonzero'><path d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/></g></g></svg>");
-    --triangles: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='16' viewBox='0 0 36 72'><g fill-rule='evenodd'><g fill='hsl(0 0% 100% / .6)'><path d='M2 6h12L8 18 2 6zm18 36h12l-6 12-6-12z'/></g></g></svg>");
-    --zig: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 20 12'><g fill-rule='evenodd'><g fill='hsl(0 0% 100% / .6)'><path d='M9.8 12L0 2.2V.8l10 10 10-10v1.4L10.2 12h-.4zm-4 0L0 6.2V4.8L7.2 12H5.8zm8.4 0L20 6.2V4.8L12.8 12h1.4zM9.8 0l.2.2.2-.2h-.4zm-4 0L10 4.2 14.2 0h-1.4L10 2.8 7.2 0H5.8z'/></g></g></svg>");
-    --stripes: url("data:image/svg+xml,<svg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'><g fill='hsl(0 0% 100% / .6)' fill-rule='evenodd'><path d='M5 0h1L0 6V5zM6 5v1H5z'/></g></svg>");
-    --dots: url("data:image/svg+xml,<svg width='10' height='10' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><g fill='hsl(0 0% 100% / .6)' fill-rule='evenodd'><circle cx='3' cy='3' r='3'/><circle cx='13' cy='13' r='3'/></g></svg>");
-    --enter: cubic-bezier(0, .5, .5, 1);
-    --exit: cubic-bezier(.5, 0, 1, .5);
-    --move: cubic-bezier(.5, 0, .5, 1);
-  }
-  @media (min-width: 37.5em) {
+  @layer container, bar, pie, line, column, radar;
+  @layer container {
     .chaarts-container {
-      --lightness: 40%;
+      background: local linear-gradient(to right, var(--background-lighter) 30%, transparent) 0 0/2.5rem 100% no-repeat, local linear-gradient(to right, transparent, var(--background-lighter) 70%) 100%/2.5rem 100% no-repeat, scroll radial-gradient(farthest-side at 0% 50%, var(--foreground-o-25), transparent) 0 0/1rem 100% no-repeat, var(--background-lighter) scroll radial-gradient(farthest-side at 100% 50%, var(--foreground-o-25), transparent) 100%/1rem 100% no-repeat;
+      color-scheme: light;
+      margin: 2rem 0;
+      max-inline-size: 100%;
+      -webkit-overflow-scrolling: touch;
+      overflow-x: auto;
+      overflow-y: hidden;
+      --background-lightness: 100%;
+      --foreground-lightness: 0%;
+      --diff: 4%;
+      --background-lighter: hsl(0deg 0% var(--background-lightness));
+      --background: hsl(0deg 0% calc(var(--background-lightness) - var(--diff)));
+      --foreground: hsl(0deg 0% var(--foreground-lightness));
+      --foreground-lighter: hsl(0deg 0% calc(var(--foreground-lightness) + var(--diff)));
+      --foreground-o-50: hsl(0deg 0% var(--foreground-lightness) / 50%);
+      --foreground-o-25: hsl(0deg 0% var(--foreground-lightness) / 25%);
+      --foreground-o-10: hsl(0deg 0% var(--foreground-lightness) / 10%);
+      --hue: 270;
+      --lightness: 50%;
+      --saturation: 100%;
+      --chaarts-purple: hsl(var(--hue) calc(var(--saturation) / 2) var(--lightness));
+      --chaarts-pink: hsl(calc(var(--hue) + 60) var(--saturation) var(--lightness));
+      --chaarts-blue: hsl(calc(var(--hue) - 60) var(--saturation) var(--lightness));
+      --chaarts-yellow: hsl(40deg var(--saturation) var(--lightness));
+      --chaarts-green: hsl(calc(var(--hue) - 120) var(--saturation) var(--lightness));
+      --chaarts-red: hsl(calc(var(--hue) + 90) var(--saturation) var(--lightness));
+      --chaarts-gray: hsl(0deg 0% var(--lightness));
+      --checkers: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'><g fill='hsl(0 0% 100% / .6)'><path fill-rule='evenodd' d='M0 0h4v4H0V0zm4 4h4v4H4V4z'/></g></svg>");
+      --hexagons: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='24' viewBox='0 0 28 49'><g fill-rule='evenodd'><g fill='hsl(0 0% 100% / .6)' fill-rule='nonzero'><path d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/></g></g></svg>");
+      --triangles: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='16' viewBox='0 0 36 72'><g fill-rule='evenodd'><g fill='hsl(0 0% 100% / .6)'><path d='M2 6h12L8 18 2 6zm18 36h12l-6 12-6-12z'/></g></g></svg>");
+      --zig: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 20 12'><g fill-rule='evenodd'><g fill='hsl(0 0% 100% / .6)'><path d='M9.8 12L0 2.2V.8l10 10 10-10v1.4L10.2 12h-.4zm-4 0L0 6.2V4.8L7.2 12H5.8zm8.4 0L20 6.2V4.8L12.8 12h1.4zM9.8 0l.2.2.2-.2h-.4zm-4 0L10 4.2 14.2 0h-1.4L10 2.8 7.2 0H5.8z'/></g></g></svg>");
+      --stripes: url("data:image/svg+xml,<svg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'><g fill='hsl(0 0% 100% / .6)' fill-rule='evenodd'><path d='M5 0h1L0 6V5zM6 5v1H5z'/></g></svg>");
+      --dots: url("data:image/svg+xml,<svg width='10' height='10' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><g fill='hsl(0 0% 100% / .6)' fill-rule='evenodd'><circle cx='3' cy='3' r='3'/><circle cx='13' cy='13' r='3'/></g></svg>");
+      --enter: cubic-bezier(0, .5, .5, 1);
+      --exit: cubic-bezier(.5, 0, 1, .5);
+      --move: cubic-bezier(.5, 0, .5, 1);
     }
-  }
-  html:where([data-theme=dark]) .chaarts-container {
-    color-scheme: dark;
-    --background-lightness: 0%;
-    --foreground-lightness: 100%;
-    --background: hsl(0deg 0% calc(var(--diff) * 5));
-    --foreground-lighter: hsl(0deg 0% calc(var(--foreground-lightness) - var(--diff)));
-  }
-  @media (prefers-color-scheme: dark) {
-    .no-js .chaarts-container, html:where(:not([data-theme=light])) .chaarts-container {
+    @media (min-width: 37.5em) {
+      .chaarts-container {
+        --lightness: 40%;
+      }
+    }
+    html:where([data-theme=dark]) .chaarts-container {
       color-scheme: dark;
       --background-lightness: 0%;
       --foreground-lightness: 100%;
       --background: hsl(0deg 0% calc(var(--diff) * 5));
       --foreground-lighter: hsl(0deg 0% calc(var(--foreground-lightness) - var(--diff)));
     }
-  }
-  @media (prefers-contrast: more) {
-    .chaarts-container {
-      --background-lighter: Canvas;
-      --background: Canvas;
-      --foreground: CanvasText;
-      --foreground-lighter: CanvasText;
-      --chaarts-purple: LinkText;
-      --chaarts-pink: CanvasText;
-      --chaarts-blue: Highlight;
-      --chaarts-yellow: ActiveText;
-      --chaarts-green: InactiveBorder;
-      --chaarts-red: VisitedText;
-      --chaarts-gray: ButtonShadow;
+    @media (prefers-color-scheme: dark) {
+      .no-js .chaarts-container, html:where(:not([data-theme=light])) .chaarts-container {
+        color-scheme: dark;
+        --background-lightness: 0%;
+        --foreground-lightness: 100%;
+        --background: hsl(0deg 0% calc(var(--diff) * 5));
+        --foreground-lighter: hsl(0deg 0% calc(var(--foreground-lightness) - var(--diff)));
+      }
     }
-  }
-  [dir=rtl] .chaarts-container {
-    --is-rtl: -1;
-  }
-  .chaarts {
-    caption-side: bottom;
-    empty-cells: hide;
-    margin: 1.5em auto;
-    overflow: hidden;
-    padding: 1em;
-  }
-  .chaarts > caption:first-child {
-    background: inherit;
-    font-style: normal;
-    padding: 1rem 0;
-  }
-  .chaarts [role=presentation] {
-    display: none;
-  }
-  .chaarts abbr[title] {
-    border-block-end: 0;
-    font-size: small;
-    font-weight: normal;
-    text-transform: none;
-  }
-  table:not(.chaarts) .sr-only {
-    block-size: auto;
-    clip: auto;
-    clip-path: none;
-    inline-size: auto;
-    overflow: visible;
-    position: static;
-    white-space: normal;
-  }
-  @media (min-width: 30em) {
+    @media (prefers-contrast: more) {
+      .chaarts-container {
+        --background-lighter: Canvas;
+        --background: Canvas;
+        --foreground: CanvasText;
+        --foreground-lighter: CanvasText;
+        --chaarts-purple: LinkText;
+        --chaarts-pink: CanvasText;
+        --chaarts-blue: Highlight;
+        --chaarts-yellow: ActiveText;
+        --chaarts-green: InactiveBorder;
+        --chaarts-red: VisitedText;
+        --chaarts-gray: ButtonShadow;
+      }
+    }
+    [dir=rtl] .chaarts-container {
+      --is-rtl: -1;
+    }
     .chaarts {
-      border-collapse: separate;
-      border-spacing: 0;
-      contain: content;
+      caption-side: bottom;
+      empty-cells: hide;
+      margin: 1.5em auto;
+      overflow: hidden;
+      padding: 1em;
     }
-    .chaarts th,
-    .chaarts td {
-      border: 0;
-      padding: 0;
+    .chaarts > caption:first-child {
+      background: inherit;
+      font-style: normal;
+      padding: 1rem 0;
     }
-    .chaarts th:empty,
-    .chaarts td:empty {
-      display: none !important;
+    .chaarts [role=presentation] {
+      display: none;
     }
+    .chaarts abbr[title] {
+      border-block-end: 0;
+      font-size: small;
+      font-weight: normal;
+      text-transform: none;
+    }
+    table:not(.chaarts) .sr-only {
+      block-size: auto;
+      clip: auto;
+      clip-path: none;
+      inline-size: auto;
+      overflow: visible;
+      position: static;
+      white-space: normal;
+    }
+    @media (min-width: 30em) {
+      .chaarts {
+        border-collapse: separate;
+        border-spacing: 0;
+        contain: content;
+      }
+      .chaarts th,
+      .chaarts td {
+        border: 0;
+        padding: 0;
+      }
+      .chaarts th:empty,
+      .chaarts td:empty {
+        display: none !important;
+      }
+    }
+  }
+  @layer bar {
     .chaarts.bar {
       --offset: 12.5em;
     }
@@ -221,18 +226,16 @@
     .chaarts.bar:hover tr:hover {
       opacity: 1;
     }
-  }
-  @media (min-width: 30em) and (prefers-contrast: more) {
-    .chaarts.bar td {
-      background: var(--chaarts-blue);
+    @media (prefers-contrast: more) {
+      .chaarts.bar td {
+        background: var(--chaarts-blue);
+      }
+      .chaarts.bar span {
+        background: var(--background-lighter);
+        background-clip: unset;
+        color: var(--chaarts-blue);
+      }
     }
-    .chaarts.bar span {
-      background: var(--background-lighter);
-      background-clip: unset;
-      color: var(--chaarts-blue);
-    }
-  }
-  @media (min-width: 30em) {
     .chaarts.bar.waterfall tr:nth-of-type(1) td {
       grid-column: var(--0, 2) / var(--value, 2);
     }
@@ -266,6 +269,8 @@
     .chaarts.bar.waterfall tr:nth-of-type(11) td {
       grid-column: var(--10, 2) / var(--value, 2);
     }
+  }
+  @layer pie {
     .chaarts.pie {
       --radius: 32em;
       margin: 0 auto;
@@ -389,17 +394,7 @@
       transform: translate3d(-50%, -50%, 0) rotate(var(--axis)) translate(var(--away)) rotate(calc(var(--axis) * -1)) perspective(1000px) rotate3d(1, 0, 0, 0deg);
       transition: opacity 0.2s var(--exit), transform 0.2s var(--exit);
     }
-    .chaarts.polar td::before {
-      --zoom: 50;
-      transform: translate3d(calc(-50% * var(--is-rtl, 1)), -50%, 0) rotate(var(--position)) scale(calc((var(--zoom) + var(--value) / (100 / var(--zoom))) / 100));
-    }
-    .chaarts.polar td::after {
-      --away: calc((var(--radius) / 2) - ((var(--radius) / 4) * ((100 - var(--value)) / 100)) + 2.5rem);
-    }
-    .chaarts.polar tr:hover td::before {
-      --zoom: 50;
-    }
-    .chaarts.donut {
+    .chaarts.pie.donut {
       --mask: radial-gradient(
       		circle at 50% calc(50% - 0.25rem),
       		#0000 0 var(--offset),
@@ -407,9 +402,21 @@
       );
       mask-image: var(--mask);
     }
-    .chaarts.donut td::after {
+    .chaarts.pie.donut td::after {
       --away: calc(var(--radius) / 2 - 2.5rem);
     }
+    .chaarts.pie.polar td::before {
+      --zoom: 50;
+      transform: translate3d(calc(-50% * var(--is-rtl, 1)), -50%, 0) rotate(var(--position)) scale(calc((var(--zoom) + var(--value) / (100 / var(--zoom))) / 100));
+    }
+    .chaarts.pie.polar td::after {
+      --away: calc((var(--radius) / 2) - ((var(--radius) / 4) * ((100 - var(--value)) / 100)) + 2.5rem);
+    }
+    .chaarts.pie.polar tr:hover td::before {
+      --zoom: 50;
+    }
+  }
+  @layer line {
     .chaarts.line {
       --offset: calc((100% / var(--x)) / 2);
       --height: calc(32em - 2rem);
@@ -468,13 +475,11 @@
       		0% 100%
       );
     }
-  }
-  @media (min-width: 30em) and (prefers-contrast: more) {
-    .chaarts.line [style]::before {
-      background: var(--chaarts-blue);
+    @media (prefers-contrast: more) {
+      .chaarts.line [style]::before {
+        background: var(--chaarts-blue);
+      }
     }
-  }
-  @media (min-width: 30em) {
     .chaarts.line th,
     .chaarts.line td {
       background: var(--background-lighter);
@@ -499,13 +504,11 @@
     html:where([data-theme=dark]) .chaarts.line [scope=col]:not(:first-child)::after {
       mix-blend-mode: lighten;
     }
-  }
-  @media (min-width: 30em) and (prefers-color-scheme: dark) {
-    .no-js .chaarts.line [scope=col]:not(:first-child)::after, html:where(:not([data-theme=light])) .chaarts.line [scope=col]:not(:first-child)::after {
-      mix-blend-mode: lighten;
+    @media (prefers-color-scheme: dark) {
+      .no-js .chaarts.line [scope=col]:not(:first-child)::after, html:where(:not([data-theme=light])) .chaarts.line [scope=col]:not(:first-child)::after {
+        mix-blend-mode: lighten;
+      }
     }
-  }
-  @media (min-width: 30em) {
     .chaarts.line [scope=col]:nth-child(2)::after {
       --index: 1;
     }
@@ -853,6 +856,8 @@
     .chaarts.points [scope=col]:not(:first-child):hover::after {
       opacity: 0.5;
     }
+  }
+  @layer column {
     .chaarts[class*=column] {
       --gap: 0.5rem;
       --size: calc(var(--scale, 100) * 100%);
@@ -927,58 +932,54 @@
       pointer-events: auto;
       position: absolute;
     }
-  }
-  @media (min-width: 30em) and (prefers-contrast: more) {
-    .chaarts[class*=column] span {
-      background: var(--background-lighter);
-      background-clip: unset;
-      color: var(--chaarts-blue);
+    @media (prefers-contrast: more) {
+      .chaarts[class*=column] span {
+        background: var(--background-lighter);
+        background-clip: unset;
+        color: var(--chaarts-blue);
+      }
     }
-  }
-  @media (min-width: 30em) {
-    .chaarts[class*=column].column-single {
+    .chaarts.column-single {
       grid-auto-columns: 1fr;
       grid-template-rows: 2ex repeat(var(--scale, 100), minmax(0, 0.25rem)) minmax(min-content, 2rem);
     }
-    .chaarts[class*=column].column-single tbody th {
+    .chaarts.column-single tbody th {
       grid-column: 1;
       grid-row: -6/-3;
       line-height: 1;
     }
-    .chaarts[class*=column].column-single thead * {
+    .chaarts.column-single thead * {
       grid-row: -2;
     }
-    .chaarts[class*=column].column-single td {
+    .chaarts.column-single td {
       --position: calc(var(--integer, 0) / var(--scale, 100) * 100%);
       background: linear-gradient(to top, var(--chaarts-green), var(--chaarts-gray), var(--chaarts-blue), var(--chaarts-purple), var(--chaarts-red)) 0% var(--position) / 100% var(--size), var(--background) center/1rem;
       background-blend-mode: hard-light;
     }
-    .chaarts[class*=column].column-single td:nth-of-type(1n + 1) {
+    .chaarts.column-single td:nth-of-type(1n + 1) {
       --background: var(--checkers);
     }
-    .chaarts[class*=column].column-single td:nth-of-type(2n + 2) {
+    .chaarts.column-single td:nth-of-type(2n + 2) {
       --background: var(--hexagons);
     }
-    .chaarts[class*=column].column-single td:nth-of-type(3n + 3) {
+    .chaarts.column-single td:nth-of-type(3n + 3) {
       --background: var(--triangles);
     }
-    .chaarts[class*=column].column-single td:nth-of-type(4n + 4) {
+    .chaarts.column-single td:nth-of-type(4n + 4) {
       --background: var(--zig);
     }
-    .chaarts[class*=column].column-single td:nth-of-type(5n + 5) {
+    .chaarts.column-single td:nth-of-type(5n + 5) {
       --background: var(--stripes);
     }
-    .chaarts[class*=column].column-single td:nth-of-type(6n + 6) {
+    .chaarts.column-single td:nth-of-type(6n + 6) {
       --background: var(--dots);
     }
-  }
-  @media (min-width: 30em) and (prefers-contrast: more) {
-    .chaarts[class*=column].column-single td {
-      background-color: var(--chaarts-blue);
+    @media (prefers-contrast: more) {
+      .chaarts.column-single td {
+        background-color: var(--chaarts-blue);
+      }
     }
-  }
-  @media (min-width: 30em) {
-    .chaarts[class*=column].column-single :is([scope=col], [scope=colgroup])::after {
+    .chaarts.column-single :is([scope=col], [scope=colgroup])::after {
       background: var(--background) var(--stripes);
       background-blend-mode: exclusion;
       content: "";
@@ -991,91 +992,91 @@
       transition: opacity 0.3s var(--move);
       z-index: 0;
     }
-    .chaarts[class*=column].column-single :is([scope=col], [scope=colgroup]):hover::after {
+    .chaarts.column-single :is([scope=col], [scope=colgroup]):hover::after {
       opacity: 0.5;
     }
-    .chaarts[class*=column].column-single :is([scope=col], [scope=colgroup]):nth-child(2)::after {
+    .chaarts.column-single :is([scope=col], [scope=colgroup]):nth-child(2)::after {
       inset-inline-start: calc(1em + var(--width) * 1 + var(--gap) * 1);
     }
-    .chaarts[class*=column].column-single :is([scope=col], [scope=colgroup]):nth-child(3)::after {
+    .chaarts.column-single :is([scope=col], [scope=colgroup]):nth-child(3)::after {
       inset-inline-start: calc(1em + var(--width) * 2 + var(--gap) * 2);
     }
-    .chaarts[class*=column].column-single :is([scope=col], [scope=colgroup]):nth-child(4)::after {
+    .chaarts.column-single :is([scope=col], [scope=colgroup]):nth-child(4)::after {
       inset-inline-start: calc(1em + var(--width) * 3 + var(--gap) * 3);
     }
-    .chaarts[class*=column].column-single :is([scope=col], [scope=colgroup]):nth-child(5)::after {
+    .chaarts.column-single :is([scope=col], [scope=colgroup]):nth-child(5)::after {
       inset-inline-start: calc(1em + var(--width) * 4 + var(--gap) * 4);
     }
-    .chaarts[class*=column].column-single :is([scope=col], [scope=colgroup]):nth-child(6)::after {
+    .chaarts.column-single :is([scope=col], [scope=colgroup]):nth-child(6)::after {
       inset-inline-start: calc(1em + var(--width) * 5 + var(--gap) * 5);
     }
-    .chaarts[class*=column].column-single :is([scope=col], [scope=colgroup]):nth-child(7)::after {
+    .chaarts.column-single :is([scope=col], [scope=colgroup]):nth-child(7)::after {
       inset-inline-start: calc(1em + var(--width) * 6 + var(--gap) * 6);
     }
-    .chaarts[class*=column].column-multiple {
+    .chaarts.column-multiple {
       grid-template-columns: minmax(min-content, 14ch) repeat(calc(var(--y) - 1), 1fr);
       grid-template-rows: 2ex repeat(var(--scale, 100), minmax(0, 0.25rem)) repeat(2, minmax(min-content, 2rem));
     }
-    .chaarts[class*=column].column-multiple span {
+    .chaarts.column-multiple span {
       background-image: none;
     }
-    .chaarts[class*=column].column-multiple tbody th {
+    .chaarts.column-multiple tbody th {
       grid-row: -10/span 7;
     }
-    .chaarts[class*=column].column-multiple thead tr * {
+    .chaarts.column-multiple thead tr * {
       grid-column: 1;
       grid-row: -2;
     }
-    .chaarts[class*=column].column-multiple thead tr *:nth-of-type(2) {
+    .chaarts.column-multiple thead tr *:nth-of-type(2) {
       grid-column: calc(4 - var(--span))/span var(--span);
     }
-    .chaarts[class*=column].column-multiple thead tr *:nth-of-type(3) {
+    .chaarts.column-multiple thead tr *:nth-of-type(3) {
       grid-column: calc(6 - var(--span))/span var(--span);
     }
-    .chaarts[class*=column].column-multiple thead tr *:nth-of-type(4) {
+    .chaarts.column-multiple thead tr *:nth-of-type(4) {
       grid-column: calc(8 - var(--span))/span var(--span);
     }
-    .chaarts[class*=column].column-multiple thead tr *:nth-of-type(5) {
+    .chaarts.column-multiple thead tr *:nth-of-type(5) {
       grid-column: calc(10 - var(--span))/span var(--span);
     }
-    .chaarts[class*=column].column-multiple thead tr *:nth-of-type(6) {
+    .chaarts.column-multiple thead tr *:nth-of-type(6) {
       grid-column: calc(12 - var(--span))/span var(--span);
     }
-    .chaarts[class*=column].column-multiple thead tr + tr * {
+    .chaarts.column-multiple thead tr + tr * {
       font-weight: normal;
       grid-row: -3;
     }
-    .chaarts[class*=column].column-multiple thead tr + tr *:nth-of-type(2) {
+    .chaarts.column-multiple thead tr + tr *:nth-of-type(2) {
       grid-column: 2;
     }
-    .chaarts[class*=column].column-multiple thead tr + tr *:nth-of-type(3) {
+    .chaarts.column-multiple thead tr + tr *:nth-of-type(3) {
       grid-column: 3;
     }
-    .chaarts[class*=column].column-multiple thead tr + tr *:nth-of-type(4) {
+    .chaarts.column-multiple thead tr + tr *:nth-of-type(4) {
       grid-column: 4;
     }
-    .chaarts[class*=column].column-multiple thead tr + tr *:nth-of-type(5) {
+    .chaarts.column-multiple thead tr + tr *:nth-of-type(5) {
       grid-column: 5;
     }
-    .chaarts[class*=column].column-multiple thead tr + tr *:nth-of-type(6) {
+    .chaarts.column-multiple thead tr + tr *:nth-of-type(6) {
       grid-column: 6;
     }
-    .chaarts[class*=column].column-multiple thead tr + tr *:nth-of-type(7) {
+    .chaarts.column-multiple thead tr + tr *:nth-of-type(7) {
       grid-column: 7;
     }
-    .chaarts[class*=column].column-multiple thead tr + tr *:nth-of-type(8) {
+    .chaarts.column-multiple thead tr + tr *:nth-of-type(8) {
       grid-column: 8;
     }
-    .chaarts[class*=column].column-multiple thead tr + tr *:nth-of-type(9) {
+    .chaarts.column-multiple thead tr + tr *:nth-of-type(9) {
       grid-column: 9;
     }
-    .chaarts[class*=column].column-multiple thead tr + tr *:nth-of-type(10) {
+    .chaarts.column-multiple thead tr + tr *:nth-of-type(10) {
       grid-column: 10;
     }
-    .chaarts[class*=column].column-multiple thead tr + tr *:nth-of-type(11) {
+    .chaarts.column-multiple thead tr + tr *:nth-of-type(11) {
       grid-column: 11;
     }
-    .chaarts[class*=column].column-multiple [scope=colgroup]:nth-child(even)::after {
+    .chaarts.column-multiple [scope=colgroup]:nth-child(even)::after {
       background: var(--background) var(--stripes);
       background-blend-mode: exclusion;
       content: "";
@@ -1088,23 +1089,25 @@
       transition: opacity 0.3s var(--move);
       z-index: 0;
     }
-    .chaarts[class*=column].column-multiple [scope=colgroup]:nth-child(2)::after {
+    .chaarts.column-multiple [scope=colgroup]:nth-child(2)::after {
       inset-inline-start: calc(14ch + 1em + (var(--width) * 2 + var(--gap) / 2 + 1px) * 0 + var(--gap) * 1);
     }
-    .chaarts[class*=column].column-multiple [scope=colgroup]:nth-child(4)::after {
+    .chaarts.column-multiple [scope=colgroup]:nth-child(4)::after {
       inset-inline-start: calc(14ch + 1em + (var(--width) * 2 + var(--gap) / 2 + 1px) * 2 + var(--gap) * 3);
     }
-    .chaarts[class*=column].column-multiple [scope=colgroup]:nth-child(6)::after {
+    .chaarts.column-multiple [scope=colgroup]:nth-child(6)::after {
       inset-inline-start: calc(14ch + 1em + (var(--width) * 2 + var(--gap) / 2 + 1px) * 4 + var(--gap) * 5);
     }
-    .chaarts[class*=column].column-multiple td {
+    .chaarts.column-multiple td {
       background-color: var(--chaarts-pink);
       background-image: var(--zig);
       grid-row-end: -3;
     }
-    .chaarts[class*=column].column-multiple td:nth-of-type(2n + 2) {
+    .chaarts.column-multiple td:nth-of-type(2n + 2) {
       background: var(--chaarts-blue) var(--triangles);
     }
+  }
+  @layer radar {
     .chaarts[class*=radar] {
       --radius: 12.8em;
       --unitless-radius: calc(1024 / 16 / 5);
@@ -1353,22 +1356,22 @@
       mask-image: var(--mask);
       pointer-events: auto;
     }
-  }
-  @media (min-width: 30em) and (hover: hover) {
-    .chaarts.radar-multiple td {
-      opacity: 0.25;
-      transition: opacity 0.2s var(--move);
-    }
-    .chaarts.radar-multiple td::after {
-      opacity: 0;
-      transition: inherit;
-    }
-    .chaarts.radar-multiple tr:hover td {
-      opacity: 1;
-      z-index: 1;
-    }
-    .chaarts.radar-multiple tr:hover td::after {
-      opacity: inherit;
+    @media (hover: hover) {
+      .chaarts.radar-multiple td {
+        opacity: 0.25;
+        transition: opacity 0.2s var(--move);
+      }
+      .chaarts.radar-multiple td::after {
+        opacity: 0;
+        transition: inherit;
+      }
+      .chaarts.radar-multiple tr:hover td {
+        opacity: 1;
+        z-index: 1;
+      }
+      .chaarts.radar-multiple tr:hover td::after {
+        opacity: inherit;
+      }
     }
   }
 }

@@ -1,0 +1,21 @@
+@use "abstracts/variables";
+
+// ====================
+// == Donut Charts
+//
+// @note (!) Requires pie chart
+// ====================
+
+.chaarts.pie.donut {
+	--mask: radial-gradient(
+			circle at 50% calc(50% - #{variables.$gutter * 0.25}),
+			#0000 0 var(--offset),
+			#ffff calc(var(--offset) + 1px) 100%
+	);
+
+	mask-image: var(--mask);
+
+	td::after {
+		--away: calc(var(--radius) / 2 - #{variables.$gutter * 2.5});
+	}
+}
