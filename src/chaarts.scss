@@ -86,9 +86,10 @@
 			// @link http://lea.verou.me/2012/04/background-attachment-local/
 			// ====================
 			background: local linear-gradient(to right, var(--background-lighter) 30%, transparent) 0 0 / 2.5rem 100% no-repeat,
-			local linear-gradient(to right, transparent, var(--background-lighter) 70%) 100% / 2.5rem 100% no-repeat,
-			scroll radial-gradient(farthest-side at 0% 50%, var(--foreground-o-25), transparent) 0 0 / 1rem 100% no-repeat,
-			var(--background-lighter) scroll radial-gradient(farthest-side at 100% 50%, var(--foreground-o-25), transparent) 100% / 1rem 100% no-repeat;
+									local linear-gradient(to right, transparent, var(--background-lighter) 70%) 100% / 2.5rem 100% no-repeat,
+									scroll radial-gradient(farthest-side at 0% 50%, var(--foreground-o-25), transparent) 0 0 / 1rem 100% no-repeat,
+									var(--background-lighter)
+									scroll radial-gradient(farthest-side at 100% 50%, var(--foreground-o-25), transparent) 100% / 1rem 100% no-repeat;
 
 			// ====================
 			// == Colors
@@ -255,29 +256,31 @@
 		}
 	}
 
-	@layer bar {
-		@include meta.load-css("chaarts-bar");
-		@include meta.load-css("chaarts-waterfall");
-	}
+	@media (min-width: math.div(480em, 16)) {
+		@layer bar {
+			@include meta.load-css("chaarts-bar");
+			@include meta.load-css("chaarts-waterfall");
+		}
 
-	@layer pie {
-		@include meta.load-css("chaarts-pie");
-		@include meta.load-css("chaarts-donut");
-		@include meta.load-css("chaarts-polar");
-	}
+		@layer pie {
+			@include meta.load-css("chaarts-pie");
+			@include meta.load-css("chaarts-donut");
+			@include meta.load-css("chaarts-polar");
+		}
 
-	@layer line {
-		@include meta.load-css("chaarts-line");
-		@include meta.load-css("chaarts-points");
-	}
+		@layer line {
+			@include meta.load-css("chaarts-line");
+			@include meta.load-css("chaarts-points");
+		}
 
-	@layer column {
-		@include meta.load-css("chaarts-column");
-		@include meta.load-css("chaarts-column-multiple");
-	}
+		@layer column {
+			@include meta.load-css("chaarts-column");
+			@include meta.load-css("chaarts-column-multiple");
+		}
 
-	@layer radar {
-		@include meta.load-css("chaarts-radar");
-		@include meta.load-css("chaarts-radar-multiple");
+		@layer radar {
+			@include meta.load-css("chaarts-radar");
+			@include meta.load-css("chaarts-radar-multiple");
+		}
 	}
 }

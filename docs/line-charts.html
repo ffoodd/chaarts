@@ -251,7 +251,7 @@
 
 	<details>
 		<summary><abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
-		<div><pre><code class="language-markup">&lt;table class="chaarts line" style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Feb.'; […]"&gt;
+		<div><pre class="scrollable-container"><code class="language-markup">&lt;table class="chaarts line" style="--y: 32; --x: 13; --t-1: 'Jan.'; --t-2: 'Feb.'; […]"&gt;
   &lt;caption id="caption-3"&gt;[…]&lt;/caption&gt;
   &lt;thead&gt;
     &lt;tr&gt;
@@ -273,7 +273,7 @@
 	<details>
 		<summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
 		<div>
-			<pre><code class="language-css">@charset &quot;UTF-8&quot;;
+			<pre class="scrollable-container"><code class="language-css">@charset &quot;UTF-8&quot;;
 .chaarts.line {
   --offset: calc((100% / var(--x)) / 2);
   --height: calc(32em - 2rem);
@@ -802,7 +802,7 @@ html:where([data-theme=dark]) .chaarts.line [scope=col]:not(:first-child)::after
 	<details>
 		<summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
 		<div>
-			<pre><code class="language-css">.chaarts.points [style]::before {
+			<pre class="scrollable-container"><code class="language-css">.chaarts.points [style]::before {
   background: var(--color, currentcolor) var(--background);
   scale: var(--is-rtl, 1) 1;
   transition: opacity 0.3s var(--move);

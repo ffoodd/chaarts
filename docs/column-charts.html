@@ -145,7 +145,7 @@
 
 	<details>
 		<summary><abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
-		<div><pre><code class="language-markup">&lt;table class="chaarts column" id="column" style="--y: 7;"&gt;
+		<div><pre class="scrollable-container"><code class="language-markup">&lt;table class="chaarts column" id="column" style="--y: 7;"&gt;
   &lt;caption id="caption-7"&gt;[…]&lt;/caption&gt;
   &lt;thead&gt;
     &lt;tr&gt;
@@ -167,7 +167,7 @@
 	<details>
 		<summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
 		<div>
-			<pre><code class="language-css">.chaarts[class*=column] {
+			<pre class="scrollable-container"><code class="language-css">.chaarts[class*=column] {
   --gap: 0.5rem;
   --size: calc(var(--scale, 100) * 100%);
   --width: calc(64em / var(--y) - 1rem);
@@ -475,7 +475,7 @@
 
 	<details>
 		<summary><abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
-		<div><pre><code class="language-markup">&lt;table class="chaarts column-multiple" id="column-multiple" style="--y: 11; --span: 2;"&gt;
+		<div><pre class="scrollable-container"><code class="language-markup">&lt;table class="chaarts column-multiple" id="column-multiple" style="--y: 11; --span: 2;"&gt;
   &lt;caption id="caption-8"&gt;[…]&lt;/caption&gt;
   &lt;thead&gt;
     &lt;tr&gt;
@@ -501,7 +501,7 @@
 	<details>
 		<summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
 		<div>
-			<pre><code class="language-css">.chaarts.column-multiple {
+			<pre class="scrollable-container"><code class="language-css">.chaarts.column-multiple {
   grid-template-columns: minmax(min-content, 14ch) repeat(calc(var(--y) - 1), 1fr);
   grid-template-rows: 2ex repeat(var(--scale, 100), minmax(0, 0.25rem)) repeat(2, minmax(min-content, 2rem));
 }

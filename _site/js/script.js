@@ -15,15 +15,15 @@
 		});
 	});
 
-	// Scrollable tables
-	const regions = document.querySelectorAll('.table-container');
+	// Scrollable tables or code blocks
+	const regions = document.querySelectorAll('.scrollable-container, .chaarts-container');
 	if (window.matchMedia('(min-width: 30em)').matches) {
-		regions.forEach(el => {
-			const width = el.offsetWidth;
-			const table = el.querySelector('table');
+		regions.forEach(region => {
+			const width = region.offsetWidth;
+			const child = region.querySelector('table') || region.querySelector('code');
 
-			if (table.offsetWidth > width) {
-				el.setAttribute('tabindex', '0');
+			if (child.offsetWidth > width) {
+				region.setAttribute('tabindex', '0');
 			}
 		});
 	}
