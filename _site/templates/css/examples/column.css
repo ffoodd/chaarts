@@ -9,7 +9,9 @@
 }
 
 .chaarts[class*=column] td,
-.chaarts[class*=column] th {
+.chaarts[class*=column] th,
+.chaarts[class*=column] col {
+  grid-column: 1;
   margin: 0;
 }
 
@@ -19,7 +21,8 @@
 
 .chaarts[class*=column] tr,
 .chaarts[class*=column] tbody,
-.chaarts[class*=column] thead {
+.chaarts[class*=column] thead,
+.chaarts[class*=column] colgroup {
   display: contents;
 }
 
@@ -96,13 +99,74 @@
     color: var(--chaarts-blue);
   }
 }
+.chaarts[class*=column] col {
+  background: var(--background) var(--stripes);
+  background-blend-mode: exclusion;
+  grid-row: 1/-1;
+  mix-blend-mode: color;
+  opacity: 0.25;
+  transition: opacity 0.3s var(--move);
+}
+
+.chaarts[class*=column] col:hover {
+  opacity: 0.5;
+}
+
+.chaarts[class*=column] col:first-of-type {
+  opacity: 0;
+}
+
+.chaarts[class*=column] col:nth-of-type(2),
+.chaarts[class*=column] thead tr *:nth-of-type(2) {
+  grid-column: 2;
+}
+
+.chaarts[class*=column] col:nth-of-type(3),
+.chaarts[class*=column] thead tr *:nth-of-type(3) {
+  grid-column: 3;
+}
+
+.chaarts[class*=column] col:nth-of-type(4),
+.chaarts[class*=column] thead tr *:nth-of-type(4) {
+  grid-column: 4;
+}
+
+.chaarts[class*=column] col:nth-of-type(5),
+.chaarts[class*=column] thead tr *:nth-of-type(5) {
+  grid-column: 5;
+}
+
+.chaarts[class*=column] col:nth-of-type(6),
+.chaarts[class*=column] thead tr *:nth-of-type(6) {
+  grid-column: 6;
+}
+
+.chaarts[class*=column] col:nth-of-type(7),
+.chaarts[class*=column] thead tr *:nth-of-type(7) {
+  grid-column: 7;
+}
+
+.chaarts[class*=column] col:nth-of-type(8),
+.chaarts[class*=column] thead tr *:nth-of-type(8) {
+  grid-column: 8;
+}
+
+.chaarts[class*=column] col:nth-of-type(9),
+.chaarts[class*=column] thead tr *:nth-of-type(9) {
+  grid-column: 9;
+}
+
+.chaarts[class*=column] col:nth-of-type(10),
+.chaarts[class*=column] thead tr *:nth-of-type(10) {
+  grid-column: 10;
+}
+
 .chaarts.column-single {
   grid-auto-columns: 1fr;
   grid-template-rows: 2ex repeat(var(--scale, 100), minmax(0, 0.25rem)) minmax(min-content, 2rem);
 }
 
 .chaarts.column-single tbody th {
-  grid-column: 1;
   grid-row: -6/-3;
   line-height: 1;
 }
@@ -145,45 +209,4 @@
   .chaarts.column-single td {
     background-color: var(--chaarts-blue);
   }
-}
-.chaarts.column-single :is([scope=col], [scope=colgroup])::after {
-  background: var(--background) var(--stripes);
-  background-blend-mode: exclusion;
-  content: "";
-  inline-size: var(--width);
-  inset-block-end: 4rem;
-  inset-block-start: 1rem;
-  mix-blend-mode: color;
-  opacity: 0;
-  position: absolute;
-  transition: opacity 0.3s var(--move);
-  z-index: 0;
-}
-
-.chaarts.column-single :is([scope=col], [scope=colgroup]):hover::after {
-  opacity: 0.5;
-}
-
-.chaarts.column-single :is([scope=col], [scope=colgroup]):nth-child(2)::after {
-  inset-inline-start: calc(1em + var(--width) * 1 + var(--gap) * 1);
-}
-
-.chaarts.column-single :is([scope=col], [scope=colgroup]):nth-child(3)::after {
-  inset-inline-start: calc(1em + var(--width) * 2 + var(--gap) * 2);
-}
-
-.chaarts.column-single :is([scope=col], [scope=colgroup]):nth-child(4)::after {
-  inset-inline-start: calc(1em + var(--width) * 3 + var(--gap) * 3);
-}
-
-.chaarts.column-single :is([scope=col], [scope=colgroup]):nth-child(5)::after {
-  inset-inline-start: calc(1em + var(--width) * 4 + var(--gap) * 4);
-}
-
-.chaarts.column-single :is([scope=col], [scope=colgroup]):nth-child(6)::after {
-  inset-inline-start: calc(1em + var(--width) * 5 + var(--gap) * 5);
-}
-
-.chaarts.column-single :is([scope=col], [scope=colgroup]):nth-child(7)::after {
-  inset-inline-start: calc(1em + var(--width) * 6 + var(--gap) * 6);
 }

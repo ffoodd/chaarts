@@ -118,6 +118,15 @@
 
 		<table class="chaarts column-single" id="column" style="--y: 7;">
 			<caption id="caption-7">Browser market shares in France in January 2019</caption>
+			<colgroup>
+				<col>
+				<col>
+				<col>
+				<col>
+				<col>
+				<col>
+				<col>
+			</colgroup>
 			<thead>
 			<tr>
 				<th scope="row">Browser</th>
@@ -178,7 +187,9 @@
 }
 
 .chaarts[class*=column] td,
-.chaarts[class*=column] th {
+.chaarts[class*=column] th,
+.chaarts[class*=column] col {
+  grid-column: 1;
   margin: 0;
 }
 
@@ -188,7 +199,8 @@
 
 .chaarts[class*=column] tr,
 .chaarts[class*=column] tbody,
-.chaarts[class*=column] thead {
+.chaarts[class*=column] thead,
+.chaarts[class*=column] colgroup {
   display: contents;
 }
 
@@ -265,13 +277,74 @@
     color: var(--chaarts-blue);
   }
 }
+.chaarts[class*=column] col {
+  background: var(--background) var(--stripes);
+  background-blend-mode: exclusion;
+  grid-row: 1/-1;
+  mix-blend-mode: color;
+  opacity: 0.25;
+  transition: opacity 0.3s var(--move);
+}
+
+.chaarts[class*=column] col:hover {
+  opacity: 0.5;
+}
+
+.chaarts[class*=column] col:first-of-type {
+  opacity: 0;
+}
+
+.chaarts[class*=column] col:nth-of-type(2),
+.chaarts[class*=column] thead tr *:nth-of-type(2) {
+  grid-column: 2;
+}
+
+.chaarts[class*=column] col:nth-of-type(3),
+.chaarts[class*=column] thead tr *:nth-of-type(3) {
+  grid-column: 3;
+}
+
+.chaarts[class*=column] col:nth-of-type(4),
+.chaarts[class*=column] thead tr *:nth-of-type(4) {
+  grid-column: 4;
+}
+
+.chaarts[class*=column] col:nth-of-type(5),
+.chaarts[class*=column] thead tr *:nth-of-type(5) {
+  grid-column: 5;
+}
+
+.chaarts[class*=column] col:nth-of-type(6),
+.chaarts[class*=column] thead tr *:nth-of-type(6) {
+  grid-column: 6;
+}
+
+.chaarts[class*=column] col:nth-of-type(7),
+.chaarts[class*=column] thead tr *:nth-of-type(7) {
+  grid-column: 7;
+}
+
+.chaarts[class*=column] col:nth-of-type(8),
+.chaarts[class*=column] thead tr *:nth-of-type(8) {
+  grid-column: 8;
+}
+
+.chaarts[class*=column] col:nth-of-type(9),
+.chaarts[class*=column] thead tr *:nth-of-type(9) {
+  grid-column: 9;
+}
+
+.chaarts[class*=column] col:nth-of-type(10),
+.chaarts[class*=column] thead tr *:nth-of-type(10) {
+  grid-column: 10;
+}
+
 .chaarts.column-single {
   grid-auto-columns: 1fr;
   grid-template-rows: 2ex repeat(var(--scale, 100), minmax(0, 0.25rem)) minmax(min-content, 2rem);
 }
 
 .chaarts.column-single tbody th {
-  grid-column: 1;
   grid-row: -6/-3;
   line-height: 1;
 }
@@ -314,47 +387,6 @@
   .chaarts.column-single td {
     background-color: var(--chaarts-blue);
   }
-}
-.chaarts.column-single :is([scope=col], [scope=colgroup])::after {
-  background: var(--background) var(--stripes);
-  background-blend-mode: exclusion;
-  content: &quot;&quot;;
-  inline-size: var(--width);
-  inset-block-end: 4rem;
-  inset-block-start: 1rem;
-  mix-blend-mode: color;
-  opacity: 0;
-  position: absolute;
-  transition: opacity 0.3s var(--move);
-  z-index: 0;
-}
-
-.chaarts.column-single :is([scope=col], [scope=colgroup]):hover::after {
-  opacity: 0.5;
-}
-
-.chaarts.column-single :is([scope=col], [scope=colgroup]):nth-child(2)::after {
-  inset-inline-start: calc(1em + var(--width) * 1 + var(--gap) * 1);
-}
-
-.chaarts.column-single :is([scope=col], [scope=colgroup]):nth-child(3)::after {
-  inset-inline-start: calc(1em + var(--width) * 2 + var(--gap) * 2);
-}
-
-.chaarts.column-single :is([scope=col], [scope=colgroup]):nth-child(4)::after {
-  inset-inline-start: calc(1em + var(--width) * 3 + var(--gap) * 3);
-}
-
-.chaarts.column-single :is([scope=col], [scope=colgroup]):nth-child(5)::after {
-  inset-inline-start: calc(1em + var(--width) * 4 + var(--gap) * 4);
-}
-
-.chaarts.column-single :is([scope=col], [scope=colgroup]):nth-child(6)::after {
-  inset-inline-start: calc(1em + var(--width) * 5 + var(--gap) * 5);
-}
-
-.chaarts.column-single :is([scope=col], [scope=colgroup]):nth-child(7)::after {
-  inset-inline-start: calc(1em + var(--width) * 6 + var(--gap) * 6);
 }
 </code></pre>
 		</div>
@@ -432,6 +464,14 @@
 
 		<table class="chaarts column-multiple" id="column-multiple" style="--y: 11; --span: 2;">
 			<caption id="caption-8">Browser market shares in France in January 2019</caption>
+			<colgroup>
+				<col>
+				<col span="2">
+				<col span="2">
+				<col span="2">
+				<col span="2">
+				<col span="2">
+			</colgroup>
 			<thead>
 			<tr>
 				<th scope="row" id="browser">Browser</th>
@@ -510,31 +550,39 @@
   background-image: none;
 }
 
+.chaarts.column-multiple col:nth-child(odd) {
+  opacity: 0;
+}
+
 .chaarts.column-multiple tbody th {
   grid-row: -10/span 7;
 }
 
 .chaarts.column-multiple thead tr * {
-  grid-column: 1;
   grid-row: -2;
 }
 
+.chaarts.column-multiple col:nth-of-type(2),
 .chaarts.column-multiple thead tr *:nth-of-type(2) {
   grid-column: calc(4 - var(--span))/span var(--span);
 }
 
+.chaarts.column-multiple col:nth-of-type(3),
 .chaarts.column-multiple thead tr *:nth-of-type(3) {
   grid-column: calc(6 - var(--span))/span var(--span);
 }
 
+.chaarts.column-multiple col:nth-of-type(4),
 .chaarts.column-multiple thead tr *:nth-of-type(4) {
   grid-column: calc(8 - var(--span))/span var(--span);
 }
 
+.chaarts.column-multiple col:nth-of-type(5),
 .chaarts.column-multiple thead tr *:nth-of-type(5) {
   grid-column: calc(10 - var(--span))/span var(--span);
 }
 
+.chaarts.column-multiple col:nth-of-type(6),
 .chaarts.column-multiple thead tr *:nth-of-type(6) {
   grid-column: calc(12 - var(--span))/span var(--span);
 }
@@ -582,32 +630,6 @@
 
 .chaarts.column-multiple thead tr + tr *:nth-of-type(11) {
   grid-column: 11;
-}
-
-.chaarts.column-multiple [scope=colgroup]:nth-child(even)::after {
-  background: var(--background) var(--stripes);
-  background-blend-mode: exclusion;
-  content: &quot;&quot;;
-  inline-size: calc(var(--width) * 2 + var(--gap) / 2 + 1px);
-  inset-block-end: 4rem;
-  inset-block-start: calc(1rem + 2ex);
-  mix-blend-mode: color;
-  opacity: 0.25;
-  position: absolute;
-  transition: opacity 0.3s var(--move);
-  z-index: 0;
-}
-
-.chaarts.column-multiple [scope=colgroup]:nth-child(2)::after {
-  inset-inline-start: calc(14ch + 1em + (var(--width) * 2 + var(--gap) / 2 + 1px) * 0 + var(--gap) * 1);
-}
-
-.chaarts.column-multiple [scope=colgroup]:nth-child(4)::after {
-  inset-inline-start: calc(14ch + 1em + (var(--width) * 2 + var(--gap) / 2 + 1px) * 2 + var(--gap) * 3);
-}
-
-.chaarts.column-multiple [scope=colgroup]:nth-child(6)::after {
-  inset-inline-start: calc(14ch + 1em + (var(--width) * 2 + var(--gap) / 2 + 1px) * 4 + var(--gap) * 5);
 }
 
 .chaarts.column-multiple td {
