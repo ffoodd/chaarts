@@ -63,8 +63,12 @@
 			—&nbsp;its background color also depending on its value;
 		</li>
 		<li>
-			and finally its text value —&nbsp;wrapped in a <code>&lt;span&gt;</code> element&nbsp;—
-			is positioned at the top of the column using the same trick as in the bar chart.
+			its text value —&nbsp;wrapped in a <code>&lt;span&gt;</code> element&nbsp;—
+			is positioned at the top of the column using the same trick as in the bar chart;
+		</li>
+		<li>
+			and finally <code>&lt;colgroup&gt;</code> and <code>&lt;col&gt;</code> elements are used to display
+			a light background for each column, which becomes more visible on <code>:hover</code>.
 		</li>
 	</ol>
 
@@ -146,7 +150,7 @@
 				</li>
 				<li>
 					remember to add <code>colspan="2"</code> on the first row's header cell
-					to match the new table layout;
+					to match the new table layout— and a <code>span="2"</code> on <code>&lt;col&gt;</code>s;
 				</li>
 				<li>
 					and finally add an <strong>identifier</strong> to each header cell
@@ -169,7 +173,7 @@
 				</li>
 				<li>
 					but no! Thus, a <var>--span</var> custom property is added on <code>&lt;table&gt;</code>,
-					and must match the <code>colspan</code> attributes values mentionned earlier:
+					and must match the <code>colspan</code> attributes values mentioned earlier:
 					it is therefore used to extend the first level headers to the appropriate number of columns.
 				</li>
 				<li>

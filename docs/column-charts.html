@@ -97,8 +97,12 @@
 			—&nbsp;its background color also depending on its value;
 		</li>
 		<li>
-			and finally its text value —&nbsp;wrapped in a <code>&lt;span&gt;</code> element&nbsp;—
-			is positioned at the top of the column using the same trick as in the bar chart.
+			its text value —&nbsp;wrapped in a <code>&lt;span&gt;</code> element&nbsp;—
+			is positioned at the top of the column using the same trick as in the bar chart;
+		</li>
+		<li>
+			and finally <code>&lt;colgroup&gt;</code> and <code>&lt;col&gt;</code> elements are used to display
+			a light background for each column, which becomes more visible on <code>:hover</code>.
 		</li>
 	</ol>
 
@@ -155,21 +159,30 @@
 	<details>
 		<summary><abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
 		<div><pre class="scrollable-container"><code class="language-markup">&lt;table class="chaarts column" id="column" style="--y: 7;"&gt;
-  &lt;caption id="caption-7"&gt;[…]&lt;/caption&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th scope="row"&gt;[…]&lt;/th&gt;
-      &lt;th scope="col" style="--value: 62;"&gt;Chrome&lt;/th&gt;
-      &lt;th scope="col" style="--value: 15;"&gt;Firefox&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th scope="row"&gt;[…]&lt;/th&gt;
-      &lt;td style="--value: 62;"&gt;&lt;span&gt;62%&lt;/span&gt;&lt;/td&gt;
-      &lt;td style="--value: 15;"&gt;&lt;span&gt;15%&lt;/span&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
+	&lt;caption id="caption-7"&gt;[…]&lt;/caption&gt;
+	&lt;colgroup&gt;
+		&lt;col&gt;
+		&lt;col&gt;
+		&lt;col&gt;
+		&lt;col&gt;
+		&lt;col&gt;
+		&lt;col&gt;
+		&lt;col&gt;
+	&lt;/colgroup&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th scope="row"&gt;[…]&lt;/th&gt;
+			&lt;th scope="col" style="--value: 62;"&gt;Chrome&lt;/th&gt;
+			&lt;th scope="col" style="--value: 15;"&gt;Firefox&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th scope="row"&gt;[…]&lt;/th&gt;
+			&lt;td style="--value: 62;"&gt;&lt;span&gt;62%&lt;/span&gt;&lt;/td&gt;
+			&lt;td style="--value: 15;"&gt;&lt;span&gt;15%&lt;/span&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
 &lt;/table&gt;</code></pre>
 </div>
 	</details>
@@ -409,7 +422,7 @@
 				</li>
 				<li>
 					remember to add <code>colspan="2"</code> on the first row's header cell
-					to match the new table layout;
+					to match the new table layout— and a <code>span="2"</code> on <code>&lt;col&gt;</code>s;
 				</li>
 				<li>
 					and finally add an <strong>identifier</strong> to each header cell
@@ -432,7 +445,7 @@
 				</li>
 				<li>
 					but no! Thus, a <var>--span</var> custom property is added on <code>&lt;table&gt;</code>,
-					and must match the <code>colspan</code> attributes values mentionned earlier:
+					and must match the <code>colspan</code> attributes values mentioned earlier:
 					it is therefore used to extend the first level headers to the appropriate number of columns.
 				</li>
 				<li>
@@ -516,25 +529,32 @@
 	<details>
 		<summary><abbr title="HyperText Markup Language" aria-label="HyperText Markup Language">HTML</abbr></summary>
 		<div><pre class="scrollable-container"><code class="language-markup">&lt;table class="chaarts column-multiple" id="column-multiple" style="--y: 11; --span: 2;"&gt;
-  &lt;caption id="caption-8"&gt;[…]&lt;/caption&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th scope="row" id="browser"&gt;[…]&lt;/th&gt;
-      &lt;th scope="col" colspan="2" id="chrome"&gt;Chrome&lt;/th&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th scope="row" id="year"&gt;[…]&lt;/th&gt;
-      &lt;th scope="col" id="chrome-2018"&gt;2018&lt;/th&gt;
-      &lt;th scope="col" id="chrome-2019"&gt;2019&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th scope="row" id="parts"&gt;[…]&lt;/th&gt;
-      &lt;td style="--value: 50;" headers="browser chrome year chrome-2018"&gt;&lt;span&gt;49.6%&lt;/span&gt;&lt;/td&gt;
-      &lt;td style="--value: 57;" headers="browser chrome year chrome-2019"&gt;&lt;span&gt;57%&lt;/span&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
+	&lt;caption id="caption-8"&gt;[…]&lt;/caption&gt;&lt;colgroup&gt;
+		&lt;col&gt;
+		&lt;col span="2"&gt;
+		&lt;col span="2"&gt;
+		&lt;col span="2"&gt;
+		&lt;col span="2"&gt;
+		&lt;col span="2"&gt;
+	&lt;/colgroup&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th scope="row" id="browser"&gt;[…]&lt;/th&gt;
+			&lt;th scope="col" colspan="2" id="chrome"&gt;Chrome&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th scope="row" id="year"&gt;[…]&lt;/th&gt;
+			&lt;th scope="col" id="chrome-2018"&gt;2018&lt;/th&gt;
+			&lt;th scope="col" id="chrome-2019"&gt;2019&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th scope="row" id="parts"&gt;[…]&lt;/th&gt;
+			&lt;td style="--value: 50;" headers="browser chrome year chrome-2018"&gt;&lt;span&gt;49.6%&lt;/span&gt;&lt;/td&gt;
+			&lt;td style="--value: 57;" headers="browser chrome year chrome-2019"&gt;&lt;span&gt;57%&lt;/span&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
 &lt;/table&gt;</code></pre>
 </div>
 	</details>
