@@ -66,7 +66,8 @@
 						<strong>Roman Komarov</strong> in <cite>Conditions for CSS variables</cite></a>&nbsp;—
 					depend on the value: <var>--lt-25</var>, <var>--gt-25</var>, <var>--lt-50</var>…
 					They allow to <strong>toggle the points</strong> from their original position
-					(<code>50% 50%</code>) to their calculated position, by adding or subtracting from the initial value;
+					(<code>50% 50%</code>) to their calculated position, by adding or subtracting from the initial value
+					using <code>min()</code> and <code>max()</code> comparison functions;
 				</li>
 			</ol>
 		</li>
@@ -222,7 +223,7 @@
 						For example, the point at the bottom right concerns values between 25% and 50%:
 						if the value is less than 25%, it must be in the centre (so as not to interfere
 						with the drawing), and if not, it must be in its corner:
-						<code>calc( 50% + ( var(--gt-25, 0) * 50% ) ) calc( 50% + ( var(--gt-25, 0) * 50% ) )</code><br>
+						<code>max(50%, var(--gt-25, 0) * 100%) max(50%, var(--gt-25, 0) * 100%)</code><br>
 						Thus the calculated value will be <code>50% 50%</code> if <var>--gt-25</var> is 0,
 						and <code>100% 100%</code> if <var>--gt-25</var> is 1.
 					</li>
@@ -380,10 +381,10 @@
 				</tr>
 				</thead>
 				<tbody>
-				{{ table.pie('HTML', '2', '%', '', '0', 'var(--chaarts-purple)') }}
-				{{ table.pie('CSS', '2', '%', '', '2', 'var(--chaarts-pink)') }}
-				{{ table.pie('JS', '8', '%', '', '4', 'var(--chaarts-blue)') }}
-				{{ table.pie('Images', '88', '%', '', '12', 'var(--chaarts-green)') }}
+				{{ table.pie('Images', '88', '%', '', '0', 'var(--chaarts-green)') }}
+				{{ table.pie('HTML', '2', '%', '', '88', 'var(--chaarts-purple)') }}
+				{{ table.pie('CSS', '2', '%', '', '90', 'var(--chaarts-pink)') }}
+				{{ table.pie('JS', '8', '%', '', '92', 'var(--chaarts-blue)') }}
 				</tbody>
 			</table>
 		</div>

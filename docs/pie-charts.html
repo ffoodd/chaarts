@@ -100,7 +100,8 @@
 						<strong>Roman Komarov</strong> in <cite>Conditions for CSS variables</cite></a>&nbsp;—
 					depend on the value: <var>--lt-25</var>, <var>--gt-25</var>, <var>--lt-50</var>…
 					They allow to <strong>toggle the points</strong> from their original position
-					(<code>50% 50%</code>) to their calculated position, by adding or subtracting from the initial value;
+					(<code>50% 50%</code>) to their calculated position, by adding or subtracting from the initial value
+					using <code>min()</code> and <code>max()</code> comparison functions;
 				</li>
 			</ol>
 		</li>
@@ -178,43 +179,43 @@
 			<tbody>
 				<tr style="--color: var(--chaarts-purple);--term: 'HTML';">
 		<th scope="row">HTML</th>
-		<td style="--value: 2; --start: 0; ">
+		<td style="--value: 2; --start: 0; --lt-25: 1; --gt-25: 0; --lt-50: 1; --gt-50: 0; --lt-75: 1; --gt-75: 0;">
 			2&nbsp;%		</td>
 	</tr>
 
 				<tr style="--color: var(--chaarts-pink);--term: 'CSS';">
 		<th scope="row">CSS</th>
-		<td style="--value: 2; --start: 2; ">
+		<td style="--value: 2; --start: 2; --lt-25: 1; --gt-25: 0; --lt-50: 1; --gt-50: 0; --lt-75: 1; --gt-75: 0;">
 			2&nbsp;%		</td>
 	</tr>
 
 				<tr style="--color: var(--chaarts-blue);--term: 'JS';">
 		<th scope="row">JS</th>
-		<td style="--value: 32; --start: 4; --lt-25: 0; --gt-25: 1; --lt-50: 1; --gt-50: 0;">
+		<td style="--value: 32; --start: 4; --lt-25: 0; --gt-25: 1; --lt-50: 1; --gt-50: 0; --lt-75: 1; --gt-75: 0;">
 			32&nbsp;%		</td>
 	</tr>
 
 				<tr style="--color: var(--chaarts-yellow);--term: 'Json';">
 		<th scope="row">Json</th>
-		<td style="--value: 1; --start: 36; ">
+		<td style="--value: 1; --start: 36; --lt-25: 1; --gt-25: 0; --lt-50: 1; --gt-50: 0; --lt-75: 1; --gt-75: 0;">
 			1&nbsp;%		</td>
 	</tr>
 
 				<tr style="--color: var(--chaarts-green);--term: 'Images';">
 		<th scope="row">Images</th>
-		<td style="--value: 44; --start: 37; --lt-25: 0; --gt-25: 1; --lt-50: 1; --gt-50: 0;">
+		<td style="--value: 44; --start: 37; --lt-25: 0; --gt-25: 1; --lt-50: 1; --gt-50: 0; --lt-75: 1; --gt-75: 0;">
 			44&nbsp;%		</td>
 	</tr>
 
 				<tr style="--color: var(--chaarts-red);--term: 'Webfonts';">
 		<th scope="row">Webfonts</th>
-		<td style="--value: 17; --start: 81; ">
+		<td style="--value: 17; --start: 81; --lt-25: 1; --gt-25: 0; --lt-50: 1; --gt-50: 0; --lt-75: 1; --gt-75: 0;">
 			17&nbsp;%		</td>
 	</tr>
 
 				<tr style="--color: var(--chaarts-gray);--term: 'Other';">
 		<th scope="row">Other</th>
-		<td style="--value: 2; --start: 98; ">
+		<td style="--value: 2; --start: 98; --lt-25: 1; --gt-25: 0; --lt-50: 1; --gt-50: 0; --lt-75: 1; --gt-75: 0;">
 			2&nbsp;%		</td>
 	</tr>
 
@@ -364,13 +365,13 @@
   		50% 50%,
   		50% 0%,
   		100% 0%,
-  		calc(50% + (var(--pos-B) * 1% * var(--lt-25, 1)) + (var(--gt-25, 0) * 50%)) calc(50% - (var(--pos-A) * 1% * var(--lt-25, 1))),
-  		calc(50% + (var(--gt-25, 0) * 50%)) calc(50% + (var(--gt-25, 0) * 50%)),
-  		calc(50% + (var(--pos-A) * 1% * var(--lt-50, 1)) + (var(--gt-50, 0) * 50%)) calc(50% + (var(--pos-B) * 1% * var(--lt-50, 1)) + (var(--gt-50, 0) * 50%)),
-  		calc(50% - (var(--gt-50, 0) * 50%)) calc(50% + (var(--gt-50, 0) * 50%)),
-  		calc(50% - (var(--pos-B) * 1% * var(--lt-75, 1)) - (var(--gt-75, 0) * 50%)) calc(50% + (var(--pos-A) * 1% * var(--lt-75, 1))),
-  		calc(50% - (var(--gt-75, 0) * 50%)) calc(50% - (var(--gt-75, 0) * 50%)),
-  		calc(50% - (var(--pos-A) * 1% * var(--gt-75, 0))) calc(50% - (var(--pos-B) * 1% * var(--gt-75, 0))),
+  		max(50% + (var(--pos-B) * 1%), var(--gt-25, 0) * 100%) calc(50% - (var(--pos-A) * var(--lt-25, 1) * 1%)),
+  		max(50%, var(--gt-25, 0) * 100%) max(50%, var(--gt-25, 0) * 100%),
+  		max(50% + (var(--pos-A) * 1%), var(--gt-50, 0) * 100%) max(50% + (var(--pos-B) * var(--lt-50, 0) * 1%), var(--gt-50, 0) * 100%),
+  		max(0%, var(--lt-50, 0) * 50%) max(50%, var(--gt-50, 0) * 100%),
+  		min(50% - (var(--pos-B) * var(--gt-75, 0) * 1%), 0%) calc(50% + (var(--pos-A) * var(--lt-75, 1) * 1%)),
+  		max(0%, var(--lt-75, 0) * 50%) max(0%, var(--lt-75, 0) * 50%),
+  		calc(50% - (var(--pos-A) * var(--gt-75, 0) * 1%)) calc(50% - (var(--pos-B) * var(--gt-75, 0) * 1%)),
   		50% 50%
   );
   background: var(--color, currentcolor) var(--background);
@@ -449,7 +450,7 @@
 						For example, the point at the bottom right concerns values between 25% and 50%:
 						if the value is less than 25%, it must be in the centre (so as not to interfere
 						with the drawing), and if not, it must be in its corner:
-						<code>calc( 50% + ( var(--gt-25, 0) * 50% ) ) calc( 50% + ( var(--gt-25, 0) * 50% ) )</code><br>
+						<code>max(50%, var(--gt-25, 0) * 100%) max(50%, var(--gt-25, 0) * 100%)</code><br>
 						Thus the calculated value will be <code>50% 50%</code> if <var>--gt-25</var> is 0,
 						and <code>100% 100%</code> if <var>--gt-25</var> is 1.
 					</li>
@@ -620,19 +621,19 @@
 				<tbody>
 						<tr style="--color: var(--chaarts-purple);--term: 'HTML';">
 		<th scope="row">HTML</th>
-		<td style="--value: 2; --start: 0; ">
+		<td style="--value: 2; --start: 0; --lt-25: 1; --gt-25: 0; --lt-50: 1; --gt-50: 0; --lt-75: 1; --gt-75: 0;">
 			2&nbsp;%		</td>
 	</tr>
 
 						<tr style="--color: var(--chaarts-pink);--term: 'CSS';">
 		<th scope="row">CSS</th>
-		<td style="--value: 2; --start: 2; ">
+		<td style="--value: 2; --start: 2; --lt-25: 1; --gt-25: 0; --lt-50: 1; --gt-50: 0; --lt-75: 1; --gt-75: 0;">
 			2&nbsp;%		</td>
 	</tr>
 
 						<tr style="--color: var(--chaarts-blue);--term: 'JS';">
 		<th scope="row">JS</th>
-		<td style="--value: 32; --start: 4; --lt-25: 0; --gt-25: 1; --lt-50: 1; --gt-50: 0;">
+		<td style="--value: 32; --start: 4; --lt-25: 0; --gt-25: 1; --lt-50: 1; --gt-50: 0; --lt-75: 1; --gt-75: 0;">
 			32&nbsp;%		</td>
 	</tr>
 
@@ -669,28 +670,28 @@
 				</tr>
 				</thead>
 				<tbody>
+					<tr style="--color: var(--chaarts-green);--term: 'Images';">
+		<th scope="row">Images</th>
+		<td style="--value: 88; --start: 0; --lt-25: 0; --gt-25: 1; --lt-50: 0; --gt-50: 1; --lt-75: 0; --gt-75: 1;">
+			88&nbsp;%		</td>
+	</tr>
+
 					<tr style="--color: var(--chaarts-purple);--term: 'HTML';">
 		<th scope="row">HTML</th>
-		<td style="--value: 2; --start: 0; ">
+		<td style="--value: 2; --start: 88; --lt-25: 1; --gt-25: 0; --lt-50: 1; --gt-50: 0; --lt-75: 1; --gt-75: 0;">
 			2&nbsp;%		</td>
 	</tr>
 
 					<tr style="--color: var(--chaarts-pink);--term: 'CSS';">
 		<th scope="row">CSS</th>
-		<td style="--value: 2; --start: 2; ">
+		<td style="--value: 2; --start: 90; --lt-25: 1; --gt-25: 0; --lt-50: 1; --gt-50: 0; --lt-75: 1; --gt-75: 0;">
 			2&nbsp;%		</td>
 	</tr>
 
 					<tr style="--color: var(--chaarts-blue);--term: 'JS';">
 		<th scope="row">JS</th>
-		<td style="--value: 8; --start: 4; ">
+		<td style="--value: 8; --start: 92; --lt-25: 1; --gt-25: 0; --lt-50: 1; --gt-50: 0; --lt-75: 1; --gt-75: 0;">
 			8&nbsp;%		</td>
-	</tr>
-
-					<tr style="--color: var(--chaarts-green);--term: 'Images';">
-		<th scope="row">Images</th>
-		<td style="--value: 88; --start: 12; --lt-25: 0; --gt-25: 1; --lt-50: 0; --gt-50: 1; --lt-75: 0; --gt-75: 1; --lt-100: 1;">
-			88&nbsp;%		</td>
 	</tr>
 
 				</tbody>
@@ -736,43 +737,43 @@
 			<tbody>
 				<tr style="--color: var(--chaarts-purple);--term: 'HTML';">
 		<th scope="row">HTML</th>
-		<td style="--value: 2; --start: 0; ">
+		<td style="--value: 2; --start: 0; --lt-25: 1; --gt-25: 0; --lt-50: 1; --gt-50: 0; --lt-75: 1; --gt-75: 0;">
 			2&nbsp;%		</td>
 	</tr>
 
 				<tr style="--color: var(--chaarts-pink);--term: 'CSS';">
 		<th scope="row">CSS</th>
-		<td style="--value: 2; --start: 2; ">
+		<td style="--value: 2; --start: 2; --lt-25: 1; --gt-25: 0; --lt-50: 1; --gt-50: 0; --lt-75: 1; --gt-75: 0;">
 			2&nbsp;%		</td>
 	</tr>
 
 				<tr style="--color: var(--chaarts-blue);--term: 'JS';">
 		<th scope="row">JS</th>
-		<td style="--value: 32; --start: 4; --lt-25: 0; --gt-25: 1; --lt-50: 1; --gt-50: 0;">
+		<td style="--value: 32; --start: 4; --lt-25: 0; --gt-25: 1; --lt-50: 1; --gt-50: 0; --lt-75: 1; --gt-75: 0;">
 			32&nbsp;%		</td>
 	</tr>
 
 				<tr style="--color: var(--chaarts-yellow);--term: 'Json';">
 		<th scope="row">Json</th>
-		<td style="--value: 1; --start: 36; ">
+		<td style="--value: 1; --start: 36; --lt-25: 1; --gt-25: 0; --lt-50: 1; --gt-50: 0; --lt-75: 1; --gt-75: 0;">
 			1&nbsp;%		</td>
 	</tr>
 
 				<tr style="--color: var(--chaarts-green);--term: 'Images';">
 		<th scope="row">Images</th>
-		<td style="--value: 44; --start: 37; --lt-25: 0; --gt-25: 1; --lt-50: 1; --gt-50: 0;">
+		<td style="--value: 44; --start: 37; --lt-25: 0; --gt-25: 1; --lt-50: 1; --gt-50: 0; --lt-75: 1; --gt-75: 0;">
 			44&nbsp;%		</td>
 	</tr>
 
 				<tr style="--color: var(--chaarts-red);--term: 'Webfonts';">
 		<th scope="row">Webfonts</th>
-		<td style="--value: 17; --start: 81; ">
+		<td style="--value: 17; --start: 81; --lt-25: 1; --gt-25: 0; --lt-50: 1; --gt-50: 0; --lt-75: 1; --gt-75: 0;">
 			17&nbsp;%		</td>
 	</tr>
 
 				<tr style="--color: var(--chaarts-gray);--term: 'Other';">
 		<th scope="row">Other</th>
-		<td style="--value: 2; --start: 98; ">
+		<td style="--value: 2; --start: 98; --lt-25: 1; --gt-25: 0; --lt-50: 1; --gt-50: 0; --lt-75: 1; --gt-75: 0;">
 			2&nbsp;%		</td>
 	</tr>
 
@@ -848,43 +849,43 @@
 			<tbody>
 				<tr style="--color: var(--chaarts-purple);--term: 'HTML';">
 		<th scope="row">HTML</th>
-		<td style="--value: 2; --start: 0; ">
+		<td style="--value: 2; --start: 0; --lt-25: 1; --gt-25: 0; --lt-50: 1; --gt-50: 0; --lt-75: 1; --gt-75: 0;">
 			2&nbsp;%		</td>
 	</tr>
 
 				<tr style="--color: var(--chaarts-pink);--term: 'CSS';">
 		<th scope="row">CSS</th>
-		<td style="--value: 2; --start: 2; ">
+		<td style="--value: 2; --start: 2; --lt-25: 1; --gt-25: 0; --lt-50: 1; --gt-50: 0; --lt-75: 1; --gt-75: 0;">
 			2&nbsp;%		</td>
 	</tr>
 
 				<tr style="--color: var(--chaarts-blue);--term: 'JS';">
 		<th scope="row">JS</th>
-		<td style="--value: 32; --start: 4; --lt-25: 0; --gt-25: 1; --lt-50: 1; --gt-50: 0;">
+		<td style="--value: 32; --start: 4; --lt-25: 0; --gt-25: 1; --lt-50: 1; --gt-50: 0; --lt-75: 1; --gt-75: 0;">
 			32&nbsp;%		</td>
 	</tr>
 
 				<tr style="--color: var(--chaarts-yellow);--term: 'Json';">
 		<th scope="row">Json</th>
-		<td style="--value: 1; --start: 36; ">
+		<td style="--value: 1; --start: 36; --lt-25: 1; --gt-25: 0; --lt-50: 1; --gt-50: 0; --lt-75: 1; --gt-75: 0;">
 			1&nbsp;%		</td>
 	</tr>
 
 				<tr style="--color: var(--chaarts-green);--term: 'Images';">
 		<th scope="row">Images</th>
-		<td style="--value: 44; --start: 37; --lt-25: 0; --gt-25: 1; --lt-50: 1; --gt-50: 0;">
+		<td style="--value: 44; --start: 37; --lt-25: 0; --gt-25: 1; --lt-50: 1; --gt-50: 0; --lt-75: 1; --gt-75: 0;">
 			44&nbsp;%		</td>
 	</tr>
 
 				<tr style="--color: var(--chaarts-red);--term: 'Webfonts';">
 		<th scope="row">Webfonts</th>
-		<td style="--value: 17; --start: 81; ">
+		<td style="--value: 17; --start: 81; --lt-25: 1; --gt-25: 0; --lt-50: 1; --gt-50: 0; --lt-75: 1; --gt-75: 0;">
 			17&nbsp;%		</td>
 	</tr>
 
 				<tr style="--color: var(--chaarts-gray);--term: 'Other';">
 		<th scope="row">Other</th>
-		<td style="--value: 2; --start: 98; ">
+		<td style="--value: 2; --start: 98; --lt-25: 1; --gt-25: 0; --lt-50: 1; --gt-50: 0; --lt-75: 1; --gt-75: 0;">
 			2&nbsp;%		</td>
 	</tr>
 
