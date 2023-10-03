@@ -116,7 +116,7 @@
 
 .chaarts[class*=radar] span {
   --opposite: calc(180 - (90 + (90 - (360 / var(--items)))));
-  --angle: calc(var(--opposite) * 0.01745329251);
+  --angle: calc(var(--opposite) * var(--to-radians));
   --sin-angle: sin(var(--angle));
   --hypo: calc(var(--unitless-radius) / var(--sin-angle));
   --ratio: calc(var(--hypo) / var(--unitless-radius));

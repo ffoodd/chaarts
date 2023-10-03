@@ -67,6 +67,7 @@
       --chaarts-green: hsl(calc(var(--hue) - 120) var(--saturation) var(--lightness));
       --chaarts-red: hsl(calc(var(--hue) + 90) var(--saturation) var(--lightness));
       --chaarts-gray: hsl(0deg 0% var(--lightness));
+      --to-radians: 0.01745329251;
       --checkers: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'><g fill='hsl(0 0% 100% / .6)'><path fill-rule='evenodd' d='M0 0h4v4H0V0zm4 4h4v4H4V4z'/></g></svg>");
       --hexagons: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='24' viewBox='0 0 28 49'><g fill-rule='evenodd'><g fill='hsl(0 0% 100% / .6)' fill-rule='nonzero'><path d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/></g></g></svg>");
       --triangles: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='16' viewBox='0 0 36 72'><g fill-rule='evenodd'><g fill='hsl(0 0% 100% / .6)'><path d='M2 6h12L8 18 2 6zm18 36h12l-6 12-6-12z'/></g></g></svg>");
@@ -331,8 +332,8 @@
         --zoom: .75;
         --part: calc(var(--value) * 3.6);
         --main-angle: calc(var(--part) - (90 * (var(--gt-25, 0) + var(--gt-50, 0) + var(--gt-75, 0))));
-        --β: calc(var(--main-angle) * 0.01745329251);
-        --α: calc((90 - var(--main-angle)) * 0.01745329251);
+        --β: calc(var(--main-angle) * var(--to-radians));
+        --α: calc((90 - var(--main-angle)) * var(--to-radians));
         --sin-β: sin(var(--β));
         --sin-α: sin(var(--α));
         --pos-B: calc(var(--sin-β) * 50);
@@ -1207,7 +1208,7 @@
       }
       .chaarts[class*=radar] span {
         --opposite: calc(180 - (90 + (90 - (360 / var(--items)))));
-        --angle: calc(var(--opposite) * 0.01745329251);
+        --angle: calc(var(--opposite) * var(--to-radians));
         --sin-angle: sin(var(--angle));
         --hypo: calc(var(--unitless-radius) / var(--sin-angle));
         --ratio: calc(var(--hypo) / var(--unitless-radius));

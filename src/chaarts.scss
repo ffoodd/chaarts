@@ -124,6 +124,7 @@
 			--chaarts-green: hsl(calc(var(--hue) - 120) var(--saturation) var(--lightness));
 			--chaarts-red: hsl(calc(var(--hue) + 90) var(--saturation) var(--lightness));
 			--chaarts-gray: hsl(0deg 0% var(--lightness));
+			--to-radians: 0.01745329251;
 
 			@media (min-width: #{math.div(600em, 16)}) {
 				--lightness: 40%;

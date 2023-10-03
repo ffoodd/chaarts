@@ -111,7 +111,7 @@
 		--opposite: calc(180 - (90 + (90 - (360 / var(--items)))));
 
 		// Get opposite angle in radians
-		--angle: calc(var(--opposite) * 0.01745329251);
+		--angle: calc(var(--opposite) * var(--to-radians));
 		--sin-angle: sin(var(--angle));
 
 		// calc() hypothenuse
