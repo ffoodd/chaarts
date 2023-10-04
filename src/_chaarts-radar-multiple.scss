@@ -28,7 +28,7 @@
 			display: inline-block;
 			inline-size: variables.$gutter;
 			margin-inline-end: variables.$gutter * 0.25;
-			transform: translate3d(0, .1rem, 0);
+			translate: 0 .1rem 0;
 		}
 	}
 
