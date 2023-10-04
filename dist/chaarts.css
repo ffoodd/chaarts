@@ -351,6 +351,11 @@
         		calc(50% - (var(--pos-A) * var(--gt-75, 0) * 1%)) calc(50% - (var(--pos-B) * var(--gt-75, 0) * 1%)),
         		50% 50%
         );
+        --mask: radial-gradient(
+        		circle at center,
+        		#ffff 0 calc((var(--radius) / 2) - 1px),
+        		#0000 0
+        );
         background: var(--color, currentcolor) var(--background);
         block-size: var(--radius);
         border-radius: 50%;
@@ -360,11 +365,6 @@
         mask-image: var(--mask);
         transform: translate3d(calc(-50% * var(--is-rtl, 1)), -50%, 0) rotate(var(--position)) scale(var(--zoom));
         transition: transform 0.2s var(--move);
-        --mask: radial-gradient(
-        		circle at center,
-        		#ffff 0 calc((var(--radius) / 2) - 1px),
-        		#0000 0
-        );
       }
       .chaarts.pie tr:hover td::before {
         --zoom: .8;
