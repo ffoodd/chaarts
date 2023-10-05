@@ -437,7 +437,7 @@
         position: absolute;
         z-index: 1;
       }
-      .chaarts.line tr::before {
+      .chaarts.line tr[style]::before {
         content: "";
         position: absolute;
       }
@@ -449,11 +449,9 @@
       .chaarts.line [style]::before {
         background: linear-gradient(to top, var(--chaarts-blue), var(--chaarts-red) 75%);
         clip-path: var(--polygon);
-        content: "";
         inline-size: 100%;
         inset-block-end: var(--bottom);
         inset-block-start: 0;
-        position: absolute;
         scale: var(--is-rtl, 1) 1;
         z-index: 2;
         --polygon: polygon(
@@ -712,7 +710,7 @@
         transform: translate3d(var(--rtl-offset, -50%), -125%, 0) perspective(1000px) rotate3d(1, 0, 0, 0deg);
         transition: opacity 0.2s var(--exit), transform 0.2s var(--exit);
       }
-      .chaarts.points [style]::before {
+      .chaarts.points tr[style]::before {
         background: var(--color, currentcolor) var(--background);
         scale: var(--is-rtl, 1) 1;
         transition: opacity 0.3s var(--move);
@@ -747,7 +745,7 @@
         		calc((100% / var(--x) * 1) + var(--offset)) calc((100% + 0.25rem) - (var(--1) / var(--y) * 100%))
         );
       }
-      .chaarts.points [style] th::before {
+      .chaarts.points tr[style] th::before {
         background: var(--color, currentcolor) var(--background);
         block-size: 1rem;
         content: "";
@@ -755,7 +753,7 @@
         inline-size: 1rem;
         translate: -0.2rem 0.1rem 0;
       }
-      .chaarts.points [style] td::before {
+      .chaarts.points tr[style] td::before {
         --size: 1rem;
         --top: calc(var(--height) - (var(--value) / var(--y) * var(--height)));
         background: var(--color, currentcolor) var(--background);
@@ -772,72 +770,72 @@
         translate: calc(var(--size) / -2) calc(var(--size) / -2) 0;
         z-index: 4;
       }
-      .chaarts.points [style] td + td::before {
+      .chaarts.points tr[style] td + td::before {
         inset-inline-start: calc(100% / var(--x) * var(--index) + var(--offset));
       }
-      [dir=rtl] .chaarts.points [style] td::before, [dir=rtl] .chaarts.points [style] td + td::before {
+      [dir=rtl] .chaarts.points tr[style] td::before, [dir=rtl] .chaarts.points tr[style] td + td::before {
         inset-inline-start: unset;
       }
-      .chaarts.points [style] td:nth-of-type(2)::before {
+      .chaarts.points tr[style] td:nth-of-type(2)::before {
         --value: var(--2);
         --index: 2;
       }
-      .chaarts.points [style] td:nth-of-type(3)::before {
+      .chaarts.points tr[style] td:nth-of-type(3)::before {
         --value: var(--3);
         --index: 3;
       }
-      .chaarts.points [style] td:nth-of-type(4)::before {
+      .chaarts.points tr[style] td:nth-of-type(4)::before {
         --value: var(--4);
         --index: 4;
       }
-      .chaarts.points [style] td:nth-of-type(5)::before {
+      .chaarts.points tr[style] td:nth-of-type(5)::before {
         --value: var(--5);
         --index: 5;
       }
-      .chaarts.points [style] td:nth-of-type(6)::before {
+      .chaarts.points tr[style] td:nth-of-type(6)::before {
         --value: var(--6);
         --index: 6;
       }
-      .chaarts.points [style] td:nth-of-type(7)::before {
+      .chaarts.points tr[style] td:nth-of-type(7)::before {
         --value: var(--7);
         --index: 7;
       }
-      .chaarts.points [style] td:nth-of-type(8)::before {
+      .chaarts.points tr[style] td:nth-of-type(8)::before {
         --value: var(--8);
         --index: 8;
       }
-      .chaarts.points [style] td:nth-of-type(9)::before {
+      .chaarts.points tr[style] td:nth-of-type(9)::before {
         --value: var(--9);
         --index: 9;
       }
-      .chaarts.points [style] td:nth-of-type(10)::before {
+      .chaarts.points tr[style] td:nth-of-type(10)::before {
         --value: var(--10);
         --index: 10;
       }
-      .chaarts.points [style] td:nth-of-type(11)::before {
+      .chaarts.points tr[style] td:nth-of-type(11)::before {
         --value: var(--11);
         --index: 11;
       }
-      .chaarts.points [style] td:nth-of-type(12)::before {
+      .chaarts.points tr[style] td:nth-of-type(12)::before {
         --value: var(--12);
         --index: 12;
       }
-      .chaarts.points [style]:nth-of-type(1n + 1) {
+      .chaarts.points tr[style]:nth-of-type(1n + 1) {
         --background: var(--checkers);
       }
-      .chaarts.points [style]:nth-of-type(2n + 2) {
+      .chaarts.points tr[style]:nth-of-type(2n + 2) {
         --background: var(--hexagons);
       }
-      .chaarts.points [style]:nth-of-type(3n + 3) {
+      .chaarts.points tr[style]:nth-of-type(3n + 3) {
         --background: var(--triangles);
       }
-      .chaarts.points [style]:nth-of-type(4n + 4) {
+      .chaarts.points tr[style]:nth-of-type(4n + 4) {
         --background: var(--zig);
       }
-      .chaarts.points [style]:nth-of-type(5n + 5) {
+      .chaarts.points tr[style]:nth-of-type(5n + 5) {
         --background: var(--stripes);
       }
-      .chaarts.points [style]:nth-of-type(6n + 6) {
+      .chaarts.points tr[style]:nth-of-type(6n + 6) {
         --background: var(--dots);
       }
       .chaarts.points tbody:hover [style]::before,

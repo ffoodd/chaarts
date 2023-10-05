@@ -294,18 +294,13 @@
   z-index: 1;
 }
 
-.chaarts.line tr::before {
-  content: &quot;&quot;;
-  position: absolute;
-}
-
 .chaarts.line [scope=row],
 .chaarts.line thead th:first-child {
   color: var(--color, currentcolor);
   text-align: start;
 }
 
-.chaarts.line [style]::before {
+.chaarts.line tr[style]::before {
   background: linear-gradient(to top, var(--chaarts-blue), var(--chaarts-red) 75%);
   clip-path: var(--polygon);
   content: &quot;&quot;;
@@ -338,7 +333,7 @@
 }
 
 @media (prefers-contrast: more) {
-  .chaarts.line [style]::before {
+  .chaarts.line tr[style]::before {
     background: var(--chaarts-blue);
   }
 }
