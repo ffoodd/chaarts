@@ -17,16 +17,14 @@
 
 	// Scrollable tables or code blocks
 	const regions = document.querySelectorAll('.scrollable-container, .chaarts-container');
-	if (window.matchMedia('(min-width: 30em)').matches) {
-		regions.forEach(region => {
-			const width = region.offsetWidth;
-			const child = region.querySelector('table') || region.querySelector('code');
+	regions.forEach(region => {
+		const width = region.offsetWidth;
+		const child = region.querySelector('table') || region.querySelector('code');
 
-			if (child.offsetWidth > width) {
-				region.setAttribute('tabindex', '0');
-			}
-		});
-	}
+		if (child.offsetWidth > width) {
+			region.setAttribute('tabindex', '0');
+		}
+	});
 
 	// Toggles
 	const toggles = document.querySelectorAll('.toggle');
