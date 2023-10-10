@@ -139,13 +139,7 @@
       text-transform: none;
     }
     table:not(.chaarts) .sr-only {
-      block-size: auto;
-      clip: auto;
-      clip-path: none;
-      inline-size: auto;
-      overflow: visible;
-      position: static;
-      white-space: normal;
+      all: revert;
     }
     @media (min-width: 30em) {
       .chaarts {
