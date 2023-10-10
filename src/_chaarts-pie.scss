@@ -48,7 +48,7 @@
 		inset-block-start: calc(var(--radius) / 2);
 		inset-inline-start: 50%;
 		position: absolute;
-		transform-origin: center center;
+		transform-origin: center;
 	}
 
 	[dir="rtl"] & td::after {
