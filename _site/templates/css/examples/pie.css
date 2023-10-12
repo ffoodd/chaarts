@@ -86,7 +86,7 @@
   		max(50%, var(--gt-25, 0) * 100%) max(50%, var(--gt-25, 0) * 100%),
   		max(50% + (var(--pos-A) * 1%), var(--gt-50, 0) * 100%) max(50% + (var(--pos-B) * var(--lt-50, 0) * 1%), var(--gt-50, 0) * 100%),
   		max(0%, var(--lt-50, 0) * 50%) max(50%, var(--gt-50, 0) * 100%),
-  		min(50% - (var(--pos-B) * var(--gt-75, 0) * 1%), 0%) calc(50% + (var(--pos-A) * var(--lt-75, 1) * 1%)),
+  		min(50% - (var(--pos-B) * var(--gt-75, 0) * 1%), 0%) calc(50% + (var(--pos-A) * var(--gt-50, 0) * var(--lt-75, 1) * 1%)),
   		max(0%, var(--lt-75, 0) * 50%) max(0%, var(--lt-75, 0) * 50%),
   		calc(50% - (var(--pos-A) * var(--gt-75, 0) * 1%)) calc(50% - (var(--pos-B) * var(--gt-75, 0) * 1%)),
   		50% 50%
