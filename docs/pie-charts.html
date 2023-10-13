@@ -357,21 +357,19 @@
   --main-angle: calc(var(--part) - (90 * (var(--gt-25, 0) + var(--gt-50, 0) + var(--gt-75, 0))));
   --β: calc(var(--main-angle) * var(--to-radians));
   --α: calc((90 - var(--main-angle)) * var(--to-radians));
-  --sin-β: sin(var(--β));
-  --sin-α: sin(var(--α));
-  --pos-B: calc(var(--sin-β) * 50);
-  --pos-A: calc(var(--sin-α) * 50);
+  --pos-B: calc(sin(var(--β)) * 50%);
+  --pos-A: calc(sin(var(--α)) * 50%);
   --polygon: polygon(
   		50% 50%,
   		50% 0%,
   		100% 0%,
-  		max(50% + (var(--pos-B) * 1%), var(--gt-25, 0) * 100%) calc(50% - (var(--pos-A) * var(--lt-25, 1) * 1%)),
+  		max(50% + var(--pos-B), var(--gt-25, 0) * 100%) calc(50% - var(--pos-A) * var(--lt-25, 1)),
   		max(50%, var(--gt-25, 0) * 100%) max(50%, var(--gt-25, 0) * 100%),
-  		max(50% + (var(--pos-A) * var(--gt-25, 0) * 1%), var(--gt-50, 0) * 100%) max(50% + (var(--pos-B) * var(--gt-25, 0) * var(--lt-50, 0) * 1%), var(--gt-50, 0) * 100%),
+  		max(50% + var(--pos-A) * var(--gt-25, 0), var(--gt-50, 0) * 100%) max(50% + var(--pos-B) * var(--gt-25, 0) * var(--lt-50, 0), var(--gt-50, 0) * 100%),
   		max(0%, var(--lt-50, 0) * 50%) max(50%, var(--gt-50, 0) * 100%),
-  		min(50% - (var(--pos-B) * var(--gt-75, 0) * 1%), 0%) calc(50% + (var(--pos-A) * var(--gt-50, 0) * var(--lt-75, 1) * 1%)),
+  		min(50% - var(--pos-B) * var(--gt-75, 0), 0%) calc(50% + var(--pos-A) * var(--gt-50, 0) * var(--lt-75, 1)),
   		max(0%, var(--lt-75, 0) * 50%) max(0%, var(--lt-75, 0) * 50%),
-  		calc(50% - (var(--pos-A) * var(--gt-75, 0) * 1%)) calc(50% - (var(--pos-B) * var(--gt-75, 0) * 1%)),
+  		calc(50% - var(--pos-A) * var(--gt-75, 0)) calc(50% - var(--pos-B) * var(--gt-75, 0)),
   		50% 50%
   );
   --mask: radial-gradient(
