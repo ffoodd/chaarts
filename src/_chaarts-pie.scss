@@ -120,12 +120,11 @@
 	// @link https://codepen.io/cassie-codes/pen/22ea69e0f681d45f2f4c2ca5e6acf4ab
 	//
 	// 2.
-	// @note We need to ensure our counter uses an integer, --value might a a floating number
+	// @note We need to ensure our counter uses an integer, --value might be a floating number
 	// @author Carter Li
 	// @link https://css-tricks.com/animating-number-counters/#the-new-school-css-solution
 	// ====================
 	td::after {
-		--arrow: calc(100% - #{variables.$gutter * 0.25});
 		--axis: calc(var(--position) - .25turn + var(--value) * .005turn);
 		--away: calc(var(--radius) / 2 - #{variables.$gutter});
 		--integer: calc(var(--value)); // 2

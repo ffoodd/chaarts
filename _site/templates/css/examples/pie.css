@@ -109,7 +109,6 @@
 }
 
 .chaarts.pie td::after {
-  --arrow: calc(100% - 0.25rem);
   --axis: calc(var(--position) - .25turn + var(--value) * .005turn);
   --away: calc(var(--radius) / 2 - 1rem);
   --integer: calc(var(--value));
