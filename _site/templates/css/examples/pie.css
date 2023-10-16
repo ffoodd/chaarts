@@ -122,6 +122,7 @@
   transform: translate3d(-50%, -50%, 0) rotate(var(--axis)) translate(var(--away)) rotate(calc(var(--axis) * -1)) perspective(1000px) rotate3d(1, 0, 0, 45deg);
   transform-origin: 50% calc(100% + 10px);
   transition: opacity 0.2s var(--enter), transform 0.2s var(--enter);
+  z-index: 3;
 }
 
 .chaarts.pie tbody:hover tr {

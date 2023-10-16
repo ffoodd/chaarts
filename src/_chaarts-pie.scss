@@ -140,6 +140,7 @@
 		transform-origin: 50% calc(100% + 10px);
 		transition: opacity .2s var(--enter),
 								transform .2s var(--enter);
+		z-index: 3;
 	}
 
 	tbody:hover tr {

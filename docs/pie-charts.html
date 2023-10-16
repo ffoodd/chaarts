@@ -405,6 +405,7 @@
   transform: translate3d(-50%, -50%, 0) rotate(var(--axis)) translate(var(--away)) rotate(calc(var(--axis) * -1)) perspective(1000px) rotate3d(1, 0, 0, 45deg);
   transform-origin: 50% calc(100% + 10px);
   transition: opacity 0.2s var(--enter), transform 0.2s var(--enter);
+  z-index: 3;
 }
 
 .chaarts.pie tbody:hover tr {
@@ -901,17 +902,14 @@
 	<details>
 		<summary><abbr title="Cascading StyleSheet" aria-label="Cascading StyleSheet">css</abbr></summary>
 		<div>
-			<pre class="scrollable-container"><code class="language-css">.chaarts.pie.polar td::before {
+			<pre class="scrollable-container"><code class="language-css">.chaarts.pie.polar td::before,
+.chaarts.pie.polar tr:hover td::before {
   --zoom: 50;
   transform: translate3d(calc(-50% * var(--is-rtl, 1)), -50%, 0) rotate(var(--position)) scale(calc((var(--zoom) + var(--value) / (100 / var(--zoom))) / 100));
 }
 
 .chaarts.pie.polar td::after {
   --away: calc((var(--radius) / 2) - ((var(--radius) / 4) * ((100 - var(--value)) / 100)) + 2.5rem);
-}
-
-.chaarts.pie.polar tr:hover td::before {
-  --zoom: 50;
 }
 </code></pre>
 		</div>
