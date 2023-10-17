@@ -26,6 +26,17 @@
 }
 
 // ====================
+// == Animations
+//
+// ====================
+@keyframes to-value {
+	// @note Doesn't work for now since we need --gt-* / --lt-* flags to change, too
+	from {
+		--value: 0;
+	}
+}
+
+// ====================
 // == Tables
 //
 // ====================

@@ -60,16 +60,19 @@
 					of the arc on the circle. It's the sum of the previous definitions, and is applied
 					to the <code>rotate()</code> function of the <code>transform</code> poperty.
 				</li>
-				<li>
-					And finally a series of <em>pseudo-boolean</em> variables, each worthing <var>0</var> or <var>1</var>
-					—&nbsp;according to and idea of <a href="https://www.kizu.ru/conditions-for-css-variables/">
-						<strong>Roman Komarov</strong> in <cite>Conditions for CSS variables</cite></a>&nbsp;—
-					depend on the value: <var>--lt-25</var>, <var>--gt-25</var>, <var>--lt-50</var>…
-					They allow to <strong>toggle the points</strong> from their original position
-					(<code>50% 50%</code>) to their calculated position, by adding or subtracting from the initial value
-					using <code>min()</code> and <code>max()</code> comparison functions;
-				</li>
 			</ol>
+		</li>
+		<li>
+			A series of <em>pseudo-boolean</em> variables are computed using <code>clamp()</code> based on <var>--value</var>,
+			each worthing <var>0</var> or <var>1</var>&nbsp;:
+			<code>--lt-25: clamp(0, 25 - var(--value), 1)</code>, <code>--gt-25: calc(1 - var(--lt-25))</code> and so on
+			—&nbsp;according to and idea of <a href="https://www.kizu.ru/conditions-for-css-variables/">
+				<strong>Roman Komarov</strong> in <cite>Conditions for CSS variables</cite></a> and
+			<a href="https://css-tricks.com/logical-operations-with-css-variables/">some tricks shared by
+				<strong>Ana Tudor</strong>, who calls it switch variables</a>.
+			They allow to <strong>toggle the points</strong> from their original position
+			(<code>50% 50%</code>) to their calculated position, by adding or subtracting from the initial value
+			using <code>min()</code> and <code>max()</code> comparison functions;
 		</li>
 		<li>
 			a <code>::before</code> <strong>pseudo-element</strong> on each cell <code>&lt;td&gt;</code>is formatted

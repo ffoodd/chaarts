@@ -41,6 +41,12 @@
 
 	td {
 		--position: calc(var(--start, 0) * .01turn);
+		--lt-25: clamp(0, 25 - var(--value), 1);
+		--gt-25: calc(1 - var(--lt-25));
+		--lt-50: clamp(0, 50 - var(--value), 1);
+		--gt-50: calc(1 - var(--lt-50));
+		--lt-75: clamp(0, 75 - var(--value), 1);
+		--gt-75: calc(1 - var(--lt-75));
 	}
 
 	td::after,
@@ -98,6 +104,7 @@
 				#0000 0
 		);
 
+		animation: .25s ease-in 2s to-value;
 		background: var(--color, currentcolor) var(--background);
 		block-size: var(--radius);
 		border-radius: 50%;
@@ -132,7 +139,7 @@
 		background-color: var(--foreground-lighter);
 		color: var(--background-lighter);
 		content: var(--term) "\A0: " counter(value) "\A0%"; // 1
-		counter-reset: value var(--integer); // 1
+		counter-reset: value var(--value); // 1
 		opacity: 0;
 		padding: variables.$gutter * 0.5;
 		pointer-events: none;
