@@ -393,6 +393,29 @@
 		</div>
 	</div>
 
+	<div class="note">
+		<h3>Conical gradient</h3>
+		<p>
+			The use of <code>conic-gradient()</code> is promising for this case.
+			You'll find examples made by <strong>Ana Tudor</strong> and <strong>Lea Verou</strong>
+			—&nbsp;who actually wrote the specification.
+		</p>
+		<p>
+			<code>conic-gradient()</code> could be used in <code>mask-image</code> to replace <code>clip-path</code>
+			and drop the entire trigonometry thing, however there's a drawback:
+			since <code>mask</code> only clips visually, <strong>it prevents hovering other elements visible through the mask</strong>
+			— while <code>clip-path</code> really clips content, thus allowing interaction through element's layer.
+		</p>
+		<p>
+			If the current hovering interaction does not matter for you, you can change <code>.chaarts.pie td::before</code>
+			by dropping every custom properties —except <code>--zoom</code>— and <code>clip-path</code>, and modifying
+			<code>mask-image</code> to use <code>mask-image: conic-gradient(#ffff var(--value), #0000 0);</code> directly.
+		</p>
+		<p>
+			<strong>Caution:</strong> your value needs to be in <code>%</code> now.
+		</p>
+	</div>
+
 	<h2>Donut</h2>
 
 	<p>
@@ -446,29 +469,6 @@
 			<pre class="scrollable-container"><code class="language-css">{% filter escape %}{% include 'css/examples/donut.css' %}{% endfilter %}</code></pre>
 		</div>
 	</details>
-
-	<div class="note">
-		<h3>Conical gradient</h3>
-		<p>
-			The use of <code>conic-gradient()</code> is promising for this case.
-			You'll find examples made by <strong>Ana Tudor</strong> and <strong>Lea Verou</strong>
-			—&nbsp;who actually wrote the specification.
-		</p>
-		<p>
-			<code>conic-gradient()</code> could be used in <code>mask-image</code> to replace <code>clip-path</code>
-			and drop the entire trigonometry thing, however there's a drawback:
-			since <code>mask</code> only clips visually, <strong>it prevents hovering other elements visible through the mask</strong>
-			— while <code>clip-path</code> really clips content, thus allowing interaction through element's layer.
-		</p>
-		<p>
-			If the current hovering interaction does not matter for you, you can change <code>.chaarts.pie td::before</code>
-			by dropping every custom properties —except <code>--zoom</code>— and <code>clip-path</code>, and modifying
-			<code>mask-image</code> to use <code>mask-image: conic-gradient(#ffff var(--value), #0000 0);</code> directly.
-		</p>
-		<p>
-			<strong>Caution:</strong> your value needs to be in <code>%</code> now.
-		</p>
-	</div>
 
 	<h2>Polar chart</h2>
 
