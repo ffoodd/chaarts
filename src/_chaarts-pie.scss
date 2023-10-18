@@ -16,11 +16,15 @@
 	position: relative;
 
 	tbody {
-		display: table-row;
+		border: 0;
+		display: flex;
+		flex-wrap: wrap;
 	}
 
 	tr {
-		display: table-cell;
+		align-items: center;
+		display: flex;
+		flex: 1 1 auto;
 		transition: opacity .3s var(--move);
 
 		@include mixins.patterns;

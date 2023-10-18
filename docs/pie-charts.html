@@ -293,11 +293,15 @@
 }
 
 .chaarts.pie tbody {
-  display: table-row;
+  border: 0;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .chaarts.pie tr {
-  display: table-cell;
+  align-items: center;
+  display: flex;
+  flex: 1 1 auto;
   transition: opacity 0.3s var(--move);
 }
 
@@ -380,18 +384,12 @@
   		max(0%, var(--lt-75, 0) * 50%) max(0%, var(--lt-75, 0) * 50%),
   		calc(50% - var(--pos-A) * var(--gt-75, 0)) calc(50% - var(--pos-B) * var(--gt-75, 0))
   );
-  --mask: radial-gradient(
-  		circle at center,
-  		#ffff 0 calc((var(--radius) / 2) - 1px),
-  		#0000 0
-  );
   background: var(--color, currentcolor) var(--background);
   block-size: var(--radius);
   border-radius: 50%;
   clip-path: var(--polygon);
   content: &quot;&quot;;
   inline-size: var(--radius);
-  mask-image: var(--mask);
   transform: translate3d(calc(-50% * var(--is-rtl, 1)), -50%, 0) rotate(var(--position)) scale(var(--zoom));
   transition: transform 0.2s var(--move);
 }
