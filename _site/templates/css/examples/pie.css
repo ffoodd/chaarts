@@ -13,6 +13,12 @@
 }
 
 .chaarts.pie tr {
+  --lt-25: clamp(0, 25 - var(--value), 1);
+  --gt-25: calc(1 - var(--lt-25));
+  --lt-50: clamp(0, 50 - var(--value), 1);
+  --gt-50: calc(1 - var(--lt-50));
+  --lt-75: clamp(0, 75 - var(--value), 1);
+  --gt-75: calc(1 - var(--lt-75));
   align-items: center;
   display: flex;
   flex: 1 1 auto;
@@ -89,15 +95,6 @@
   display: inline-block;
   inline-size: 1rem;
   translate: calc(-0.2rem * var(--is-rtl, 1)) 0.1rem 0;
-}
-
-.chaarts.pie td {
-  --lt-25: clamp(0, 25 - var(--value), 1);
-  --gt-25: calc(1 - var(--lt-25));
-  --lt-50: clamp(0, 50 - var(--value), 1);
-  --gt-50: calc(1 - var(--lt-50));
-  --lt-75: clamp(0, 75 - var(--value), 1);
-  --gt-75: calc(1 - var(--lt-75));
 }
 
 .chaarts.pie td::after,
