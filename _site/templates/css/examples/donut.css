@@ -1,6 +1,6 @@
 .chaarts.pie.donut {
   --mask: radial-gradient(
-  		circle at 50% calc(50% - 0.25rem),
+  		circle at 50% calc(50% - 1.5rem),
   		#0000 0 var(--offset),
   		#ffff calc(var(--offset) + 1px) 100%
   );

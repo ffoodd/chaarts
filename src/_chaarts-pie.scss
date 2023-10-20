@@ -1,5 +1,6 @@
 @use "sass:list";
 @use "sass:map";
+@use "sass:string";
 @use "abstracts/mixins";
 @use "abstracts/variables";
 
@@ -17,6 +18,7 @@
 
 	tbody {
 		border: 0;
+		// counter-reset: start;
 		display: flex;
 		flex-wrap: wrap;
 	}
@@ -28,6 +30,32 @@
 		transition: opacity .3s var(--move);
 
 		@include mixins.patterns;
+
+
+		&:first-child {
+			--value: var(--1);
+			--position: 0turn;
+		}
+
+		&:nth-child(2) {
+			--value: var(--2);
+			--position: calc(var(--1) * .01turn);
+		}
+
+		@each $index in 3, 4, 5, 6, 7 {
+			$start: 'var(--1)';
+			$value: $index - 1;
+
+			@while $value > 1 {
+				$start: string.insert($start, ' + var(--#{$value})', 100);
+				$value: $value - 1;
+			}
+
+			&:nth-of-type(#{$index}n + #{$index}) {
+				--value: var(--#{$index});
+				--position: calc((#{$start}) * .01turn);
+			}
+		}
 	}
 
 	[scope="row"] {
@@ -44,7 +72,6 @@
 	}
 
 	td {
-		--position: calc(var(--start, 0) * .01turn);
 		--lt-25: clamp(0, 25 - var(--value), 1);
 		--gt-25: calc(1 - var(--lt-25));
 		--lt-50: clamp(0, 50 - var(--value), 1);

@@ -41,29 +41,32 @@
 
 	<ol>
 		<li>
-			<strong>On each header</strong> <code>&lt;th&gt;</code>, a <var>--color</var>
-			custom property allows you to assign, well… a color.
+			The <code>&lt;table&gt;</code> itself carries a set of custom properties,
+		  corresponding to each values it contains as a percentage,
+			useful for determining <strong>the angle</strong> each value should occupy on the circle.
 		</li>
 		<li>
-			<strong>Then each cell</strong> <code>&lt;td&gt;</code> must contain the value
-			and its unit, as well as a <code>style</code> attribute to carry some variables:
+			<strong>On each header</strong> <code>&lt;th&gt;</code>, a <var>--color</var>
+			custom property allows you to assign, well… a color ; and a <var>--term</var> custom
+			property to get header in CSS.
+		</li>
+		<li>
+			<strong>Then each cell</strong> <code>&lt;td&gt;</code> must contain the value and its unit.
 			<ol>
 				<li>
-					<var>--value</var> is the percentage value,
-					useful for determining <strong>the angle</strong> the element should occupy on the circle.
 					All points of the <code>polygon()</code> —&nbsp;used to draw the pie part thanks to <code>clip-path</code>&nbsp;—
-					depend on this value (read <a href="#calculation-twist">the technical note after
-						the example for details of the calculations</a>).
+					depend on <var>--value</var>, matching the corresponding custom property set on the <code>&lt;table&gt;</code> (eg. <var>--1</var>).
+					Read <a href="#calculation-twist">the technical note after the example for details of the calculations</a>.
 				</li>
 				<li>
-					<var>--start</var> is used to define the <strong>starting point</strong>
-					of the arc on the circle. It's the sum of the previous definitions, and is applied
-					to the <code>rotate()</code> function of the <code>transform</code> poperty.
+					<var>--start</var> is the sum of the previous values and used to define the
+					<strong>starting point</strong> of the arc on the circle, applied
+					to the <code>rotate()</code> function of the <code>transform</code> property.
 				</li>
 			</ol>
 		</li>
 		<li>
-			A series of <em>pseudo-boolean</em> variables are computed using <code>clamp()</code> based on <var>--value</var>,
+			A series of <em>pseudo-boolean</em> variables are computed using <code>clamp()</code> based on the value (eg. <var>--1</var>),
 			each worthing <var>0</var> or <var>1</var>&nbsp;:
 			<code>--lt-25: clamp(0, 25 - var(--value), 1)</code>, <code>--gt-25: calc(1 - var(--lt-25))</code> and so on
 			—&nbsp;according to and idea of <a href="https://www.kizu.ru/conditions-for-css-variables/">
@@ -91,8 +94,7 @@
 		</li>
 		<li>
 			a <code>::after</code> <strong>pseudo-element</strong> is used as a tooltip, to summarize header and value for
-			each cell
-			—but the display of custom properties in a pseudo-element is not so trivial:
+			each cell —but the display of custom properties in a pseudo-element is not so trivial:
 			<ul>
 				<li>
 					<code>content</code> only accepts strings, and our custom properties contains… number.
@@ -106,9 +108,7 @@
 					However <code>counter-reset</code> requires an integer, and we may have a floating number.
 					We first need to make sure we're using an integer, so we rely on
 					<a href="https://css-tricks.com/animating-number-counters/#the-new-school-css-solution"><strong>Carter Li</strong>'s
-						ruse
-						to use <code>calc()</code> to wrap our value—&nbsp;and <code>@property</code> for Chromium-based
-						browsers</a>.
+						ruse to use <code>calc()</code> to wrap our value—&nbsp;and <code>@property</code> for Chromium-based browsers</a>.
 					Boum!
 				</li>
 			</ul>
@@ -135,7 +135,7 @@
 			</button>
 		</div>
 
-		<table class="chaarts pie" id="pie">
+		<table class="chaarts pie" id="pie" style="--1: 2; --2: 2; --3: 32; --4: 1; --5: 44; --6: 17; --7: 2;">
 			<caption id="caption-5">
 				Distribution of the weight of resources for
 				<a href="https://www.ffoodd.fr" target="_blank" rel="noopener noreferrer">ffoodd.fr</a>
@@ -147,13 +147,13 @@
 			</tr>
 			</thead>
 			<tbody>
-			{{ table.pie('HTML', '2', '%', '', '0', 'var(--chaarts-purple)') }}
-			{{ table.pie('CSS', '2', '%', '', '2', 'var(--chaarts-pink)') }}
-			{{ table.pie('JS', '32', '%', '', '4', 'var(--chaarts-blue)') }}
-			{{ table.pie('Json', '1', '%', '', '36', 'var(--chaarts-yellow)') }}
-			{{ table.pie('Images', '44', '%', '', '37', 'var(--chaarts-green)') }}
-			{{ table.pie('Webfonts', '17', '%', '', '81', 'var(--chaarts-red)') }}
-			{{ table.pie('Other', '2', '%', '', '98', 'var(--chaarts-gray)') }}
+			{{ table.pie('HTML', '2', '%', '', 'var(--chaarts-purple)') }}
+			{{ table.pie('CSS', '2', '%', '', 'var(--chaarts-pink)') }}
+			{{ table.pie('JS', '32', '%', '', 'var(--chaarts-blue)') }}
+			{{ table.pie('Json', '1', '%', '', 'var(--chaarts-yellow)') }}
+			{{ table.pie('Images', '44', '%', '', 'var(--chaarts-green)') }}
+			{{ table.pie('Webfonts', '17', '%', '', 'var(--chaarts-red)') }}
+			{{ table.pie('Other', '2', '%', '', 'var(--chaarts-gray)') }}
 			</tbody>
 		</table>
 	</div>
@@ -210,7 +210,7 @@
 			The use of pseudo-Boolean variables makes this calculation pseudo-algorithmic.
 			Let's start with an essential pre-requisite: the polygon being a closed shape and CSS
 			not being magical, <strong>points must pre-exist</strong>.
-			Spoiler, we need eleven points:
+			Spoiler, we need ten points:
 		</p>
 		<ol>
 			<li>
@@ -260,10 +260,6 @@
 						<code>0%</code> or <code>100%</code> as appropriate.
 					</li>
 				</ul>
-			</li>
-			<li>
-				And lastly, we <strong>lose the path by going back to the centre</strong> of the circle,
-				at <code>50% 50%</code>.
 			</li>
 		</ol>
 		<p>That's it!</p>
@@ -344,7 +340,7 @@
 				</button>
 			</div>
 
-			<table class="chaarts pie">
+			<table class="chaarts pie" style="--1: 2; --2: 2; --3: 32; --4: 64;">
 				<caption id="caption-12">Pie chart example with a value between 50 and 75%</caption>
 				<thead class="sr-only">
 				<tr>
@@ -353,10 +349,10 @@
 				</tr>
 				</thead>
 				<tbody>
-					{{ table.pie('HTML', '2', '%', '', '0', 'var(--chaarts-purple)') }}
-					{{ table.pie('CSS', '2', '%', '', '2', 'var(--chaarts-pink)') }}
-					{{ table.pie('JS', '32', '%', '', '4', 'var(--chaarts-blue)') }}
-					{{ table.pie('Images', '64', '%', '', '36', 'var(--chaarts-green)') }}
+					{{ table.pie('HTML', '2', '%', '', 'var(--chaarts-purple)') }}
+					{{ table.pie('CSS', '2', '%', '', 'var(--chaarts-pink)') }}
+					{{ table.pie('JS', '32', '%', '', 'var(--chaarts-blue)') }}
+					{{ table.pie('Images', '64', '%', '', 'var(--chaarts-green)') }}
 				</tbody>
 			</table>
 		</div>
@@ -375,7 +371,7 @@
 				</button>
 			</div>
 
-			<table class="chaarts pie">
+			<table class="chaarts pie" style="--1: 88; --2: 2; --3: 2; --4: 8;">
 				<caption id="caption-13">Pie chart example with a value greater than 75%</caption>
 				<thead class="sr-only">
 				<tr>
@@ -384,10 +380,10 @@
 				</tr>
 				</thead>
 				<tbody>
-				{{ table.pie('Images', '88', '%', '', '0', 'var(--chaarts-green)') }}
-				{{ table.pie('HTML', '2', '%', '', '88', 'var(--chaarts-purple)') }}
-				{{ table.pie('CSS', '2', '%', '', '90', 'var(--chaarts-pink)') }}
-				{{ table.pie('JS', '8', '%', '', '92', 'var(--chaarts-blue)') }}
+				{{ table.pie('Images', '88', '%', '', 'var(--chaarts-green)') }}
+				{{ table.pie('HTML', '2', '%', '', 'var(--chaarts-purple)') }}
+				{{ table.pie('CSS', '2', '%', '', 'var(--chaarts-pink)') }}
+				{{ table.pie('JS', '8', '%', '', 'var(--chaarts-blue)') }}
 				</tbody>
 			</table>
 		</div>
@@ -440,7 +436,7 @@
 			</button>
 		</div>
 
-		<table class="chaarts pie donut" id="donut" style="--offset: 8rem;">
+		<table class="chaarts pie donut" id="donut" style="--offset: 8rem; --1: 2; --2: 2; --3: 32; --4: 1; --5: 44; --6: 17; --7: 2;">
 			<caption id="caption-6">
 				Distribution of the weight of resources for
 				<a href="https://www.ffoodd.fr" target="_blank" rel="noopener noreferrer">ffoodd.fr</a>
@@ -452,13 +448,13 @@
 			</tr>
 			</thead>
 			<tbody>
-			{{ table.pie('HTML', '2', '%', '', '0', 'var(--chaarts-purple)') }}
-			{{ table.pie('CSS', '2', '%', '', '2', 'var(--chaarts-pink)') }}
-			{{ table.pie('JS', '32', '%', '', '4', 'var(--chaarts-blue)') }}
-			{{ table.pie('Json', '1', '%', '', '36', 'var(--chaarts-yellow)') }}
-			{{ table.pie('Images', '44', '%', '', '37', 'var(--chaarts-green)') }}
-			{{ table.pie('Webfonts', '17', '%', '', '81', 'var(--chaarts-red)') }}
-			{{ table.pie('Other', '2', '%', '', '98', 'var(--chaarts-gray)') }}
+			{{ table.pie('HTML', '2', '%', '', 'var(--chaarts-purple)') }}
+			{{ table.pie('CSS', '2', '%', '', 'var(--chaarts-pink)') }}
+			{{ table.pie('JS', '32', '%', '', 'var(--chaarts-blue)') }}
+			{{ table.pie('Json', '1', '%', '', 'var(--chaarts-yellow)') }}
+			{{ table.pie('Images', '44', '%', '', 'var(--chaarts-green)') }}
+			{{ table.pie('Webfonts', '17', '%', '', 'var(--chaarts-red)') }}
+			{{ table.pie('Other', '2', '%', '', 'var(--chaarts-gray)') }}
 			</tbody>
 		</table>
 	</div>
@@ -491,7 +487,7 @@
 			</button>
 		</div>
 
-		<table class="chaarts pie polar" id="polar">
+		<table class="chaarts pie polar" id="polar" style="--1: 2; --2: 2; --3: 32; --4: 1; --5: 44; --6: 17; --7: 2;">
 			<caption id="caption-10">
 				Distribution of the weight of resources for
 				<a href="https://www.ffoodd.fr" target="_blank" rel="noopener noreferrer">ffoodd.fr</a>
@@ -503,13 +499,13 @@
 			</tr>
 			</thead>
 			<tbody>
-			{{ table.pie('HTML', '2', '%', '', '0', 'var(--chaarts-purple)') }}
-			{{ table.pie('CSS', '2', '%', '', '2', 'var(--chaarts-pink)') }}
-			{{ table.pie('JS', '32', '%', '', '4', 'var(--chaarts-blue)') }}
-			{{ table.pie('Json', '1', '%', '', '36', 'var(--chaarts-yellow)') }}
-			{{ table.pie('Images', '44', '%', '', '37', 'var(--chaarts-green)') }}
-			{{ table.pie('Webfonts', '17', '%', '', '81', 'var(--chaarts-red)') }}
-			{{ table.pie('Other', '2', '%', '', '98', 'var(--chaarts-gray)') }}
+			{{ table.pie('HTML', '2', '%', '', 'var(--chaarts-purple)') }}
+			{{ table.pie('CSS', '2', '%', '', 'var(--chaarts-pink)') }}
+			{{ table.pie('JS', '32', '%', '', 'var(--chaarts-blue)') }}
+			{{ table.pie('Json', '1', '%', '', 'var(--chaarts-yellow)') }}
+			{{ table.pie('Images', '44', '%', '', 'var(--chaarts-green)') }}
+			{{ table.pie('Webfonts', '17', '%', '', 'var(--chaarts-red)') }}
+			{{ table.pie('Other', '2', '%', '', 'var(--chaarts-gray)') }}
 			</tbody>
 		</table>
 	</div>

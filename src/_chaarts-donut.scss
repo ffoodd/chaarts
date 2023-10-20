@@ -8,7 +8,7 @@
 
 .chaarts.pie.donut {
 	--mask: radial-gradient(
-			circle at 50% calc(50% - #{variables.$gutter * 0.25}),
+			circle at 50% calc(50% - #{variables.$gutter * 1.5}),
 			#0000 0 var(--offset),
 			#ffff calc(var(--offset) + 1px) 100%
 	);
