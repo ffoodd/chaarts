@@ -63,6 +63,7 @@
   font-weight: bold;
   inset-inline-start: 100%;
   line-height: 1.5;
+  padding-inline-start: 0.5ch;
   position: absolute;
 }
 
