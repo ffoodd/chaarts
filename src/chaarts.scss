@@ -85,11 +85,14 @@
 			// @author Lea Verou
 			// @link http://lea.verou.me/2012/04/background-attachment-local/
 			// ====================
-			background: local linear-gradient(to right, var(--background-lighter) 30%, transparent) 0 0 / 2.5rem 100% no-repeat,
-									local linear-gradient(to right, transparent, var(--background-lighter) 70%) 100% / 2.5rem 100% no-repeat,
-									scroll radial-gradient(farthest-side at 0% 50%, var(--foreground-o-25), transparent) 0 0 / 1rem 100% no-repeat,
-									var(--background-lighter)
-									scroll radial-gradient(farthest-side at 100% 50%, var(--foreground-o-25), transparent) 100% / 1rem 100% no-repeat;
+			&[tabindex] {
+				--scrollable-background: var(--background-lighter);
+				background: local linear-gradient(to right, var(--scrollable-background) 30%, transparent) 0 0 / 2.5rem 100% no-repeat,
+										local linear-gradient(to right, transparent, var(--scrollable-background) 70%) 100% / 2.5rem 100% no-repeat,
+										scroll radial-gradient(farthest-side at 0% 50%, var(--foreground-o-25), transparent) 0 0 / 1rem 100% no-repeat,
+										var(--scrollable-background)
+										scroll radial-gradient(farthest-side at 100% 50%, var(--foreground-o-25), transparent) 100% / 1rem 100% no-repeat;
+			}
 
 			// ====================
 			// == Colors

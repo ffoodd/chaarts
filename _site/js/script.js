@@ -11,20 +11,30 @@
 			if (el.classList.contains('disable-css')) {
 				const chart = el.parentNode.nextElementSibling;
 				chart.classList.toggle('chaarts');
+				handleTabindex(el.parentElement.parentElement);
 			}
 		});
 	});
 
 	// Scrollable tables or code blocks
 	const regions = document.querySelectorAll('.scrollable-container, .chaarts-container');
-	regions.forEach(region => {
+	regions.forEach(region => handleTabindex(region));
+	function handleTabindex(region) {
 		const width = region.offsetWidth;
 		const child = region.querySelector('table') || region.querySelector('code');
 
 		if (child.offsetWidth > width) {
 			region.setAttribute('tabindex', '0');
+		} else {
+			if (region.hasAttribute('tabindex')) {
+				region.removeAttribute('tabindex');
+			}
 		}
-	});
+	}
+
+	window.addEventListener('resize', () => {
+		regions.forEach(region => handleTabindex(region));
+	})
 
 	// Toggles
 	const toggles = document.querySelectorAll('.toggle');

@@ -40,7 +40,6 @@
   @layer container, bar, pie, line, column, radar;
   @layer container {
     .chaarts-container {
-      background: local linear-gradient(to right, var(--background-lighter) 30%, transparent) 0 0/2.5rem 100% no-repeat, local linear-gradient(to right, transparent, var(--background-lighter) 70%) 100%/2.5rem 100% no-repeat, scroll radial-gradient(farthest-side at 0% 50%, var(--foreground-o-25), transparent) 0 0/1rem 100% no-repeat, var(--background-lighter) scroll radial-gradient(farthest-side at 100% 50%, var(--foreground-o-25), transparent) 100%/1rem 100% no-repeat;
       color-scheme: light;
       margin: 2rem 0;
       max-inline-size: 100%;
@@ -77,6 +76,10 @@
       --enter: cubic-bezier(0, .5, .5, 1);
       --exit: cubic-bezier(.5, 0, 1, .5);
       --move: cubic-bezier(.5, 0, .5, 1);
+    }
+    .chaarts-container[tabindex] {
+      --scrollable-background: var(--background-lighter);
+      background: local linear-gradient(to right, var(--scrollable-background) 30%, transparent) 0 0/2.5rem 100% no-repeat, local linear-gradient(to right, transparent, var(--scrollable-background) 70%) 100%/2.5rem 100% no-repeat, scroll radial-gradient(farthest-side at 0% 50%, var(--foreground-o-25), transparent) 0 0/1rem 100% no-repeat, var(--scrollable-background) scroll radial-gradient(farthest-side at 100% 50%, var(--foreground-o-25), transparent) 100%/1rem 100% no-repeat;
     }
     @media (min-width: 37.5em) {
       .chaarts-container {
