@@ -51,7 +51,7 @@
   --position: calc(var(--value, 0) / var(--scale, 100) * 100%);
   background: linear-gradient(to right, var(--chaarts-green), var(--chaarts-gray), var(--chaarts-blue), var(--chaarts-purple), var(--chaarts-red)) var(--position) 0% / var(--size) 100%, var(--background) center/contain;
   background-blend-mode: hard-light;
-  grid-column: 2 / var(--value, 0);
+  grid-column: 2 / max(2, var(--value, 0));
   margin: 0.5rem 0 0;
   position: relative;
 }

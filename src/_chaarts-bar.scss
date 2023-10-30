@@ -60,7 +60,7 @@
 		) var(--position) list.slash(0%, var(--size)) 100%,
 		var(--background) center / contain;
 		background-blend-mode: hard-light;
-		grid-column: list.slash(2, var(--value, 0));
+		grid-column: list.slash(2, max(2, var(--value, 0)));
 		margin: variables.$gutter * 0.5 0 0;
 		position: relative;
 	}
