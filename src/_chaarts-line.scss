@@ -30,7 +30,7 @@
 
 		background: repeating-linear-gradient(
 				to bottom,
-				var(--background-lighter) 0 var(--scale),
+				var(--scrollable-background) 0 var(--scale),
 				var(--foreground-o-25) calc(var(--scale) + 1px)
 		);
 		content: "";
