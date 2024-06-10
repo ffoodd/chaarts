@@ -122,7 +122,7 @@
 				max(50%, var(--gt-25, 0) * 100%) max(50%, var(--gt-25, 0) * 100%),
 				max(50% + var(--pos-A) * var(--gt-25, 0), var(--gt-50, 0) * 100%) max(50% + var(--pos-B) * var(--gt-25, 0) * var(--lt-50, 0), var(--gt-50, 0) * 100%),
 				max(0%, var(--lt-50, 0) * 50%) max(50%, var(--gt-50, 0) * 100%),
-				min(50% - var(--pos-B) * var(--gt-75, 0), 0%) calc(50% + var(--pos-A)  * var(--gt-50, 0) * var(--lt-75, 1)),
+				clamp(0%, 100% * (var(--lt-75, 1)), 50% - var(--pos-B) * var(--gt-50, 0)) calc(50% + var(--pos-A) * var(--gt-50, 0) * var(--lt-75, 1)),
 				max(0%, var(--lt-75, 0) * 50%) max(0%, var(--lt-75, 0) * 50%),
 				calc(50% - var(--pos-A) * var(--gt-75, 0)) calc(50% - var(--pos-B) * var(--gt-75, 0))
 		);
