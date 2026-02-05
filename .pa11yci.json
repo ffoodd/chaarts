@@ -21,7 +21,7 @@
 		],
 		"defaults": {
 			"chromeLaunchConfig": {
-				"executablePath": "/snap/bin/chromium"
+				"executablePath": "/usr/bin/google-chrome"
 			}
 		}
 	}
